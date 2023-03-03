@@ -21,12 +21,12 @@ button:disabled {
     cursor:not-allowed;
 }
 
-ul { padding: 0; }
+ul { padding: 0; margin: 0; }
 
 li { list-style: none; }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     display: inline-block;
     cursor: pointer;
 }
@@ -62,4 +62,107 @@ h1, h2, h3, h4, h5, h6 {
 
 .gap-30 {
   gap: 30px;
+}
+
+
+
+
+
+//////////////////////////////////////
+/// 
+/// 
+/// 
+/// 
+
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Class For All application */
+
+.section{
+  padding: 4rem 0 2rem;
+}
+
+.container{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.icon{
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+.grid{
+  display: grid;
+  align-items: center;
+}
+
+.btn{
+  padding: .6rem 1.5rem;
+  background: var(--gradientColor);
+  border-radius: 3rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn a{
+  color: var(--whiteColor);
+  font-weight: 500;
+}
+
+.btn:hover{
+  background: var(--SecondaryColor);
+}
+
+image, video{
+  width: 100%;
+  height: auto;
+}
+
+input{
+  font-size: 100%;
+}
+
+body{
+  background: var(--bodyColor);
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 1024px) {
+  .container{
+    width: 80% !important;
+    margin: auto !important;
+    
+  }
+
+  .section{
+    padding: 6rem 0 4rem;
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .container{
+    width: 80% !important;
+    margin: auto !important;
+    
+  }
+
+  .section{
+    padding: 6rem 0 4rem;
+  }
+}
+
+@media screen and (min-width: 2560px){
+  body{
+    zoom: 1.7;
+  }
 }
