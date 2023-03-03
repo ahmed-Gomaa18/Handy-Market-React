@@ -1,0 +1,61 @@
+@import '../base/setting';
+
+.header-top-strip {
+    background-color: $sea_nymph;
+    border-bottom: 1px solid $bright_gray;
+}
+
+.header-upper {
+    background-color: $bright_gray;
+    border-bottom: 1px solid $bright_gray;
+}
+
+.header-upper .input-group-text {
+    background-color: $koromiko;
+}
+
+.header-upper .header-upper-links img {
+    width: 35px;
+    height: 35px;
+    max-width: 35px;
+} 
+
+.header-bottom {
+    background-color: $ebony_clay;
+}
+
+:is(.header-bottom) 
+.menu-links a,
+.dropdown button {
+    color: white;
+    line-height: 18px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.header-bottom .dropdown button:before {
+    content: url('../../../public/images/menu.svg');
+    margin-right: 15px;
+}
+
+.header-bottom .dropdown button:focus {
+    box-shadow: none;
+}
+
+.header-bottom .dropdown-menu {
+    background-color: $sea_nymph;
+    width: 100%;
+    transform: translate3d(0px, 53px, 0px) !important;
+}
+
+.header-bottom .dropdown-item {
+    padding: 20px;
+    margin-bottom: 3px;
+    border-bottom: 1px solid $bright_gray; 
+}
+
+.header-bottom .dropdown-item:hover {
+    background-color: transparent;
+    color: $ebony_clay !important;
+}

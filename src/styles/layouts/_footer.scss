@@ -1,0 +1,28 @@
+@import '../base/setting';
+
+footer {
+    background-color: $dawn_pink;
+}
+
+footer:not(:first-of-type) {
+    border-top: 1px solid #dedede;
+}
+
+footer .subscribe {
+    background-color: $ebony_clay;
+    color: white;
+}
+
+footer .subscribe:hover {
+    background-color: $sea_nymph;
+    color: white;
+}
+
+footer a {
+    color: $gray;
+}
+
+footer a:hover,
+footer h4 {
+    color: $bright_gray;
+}
