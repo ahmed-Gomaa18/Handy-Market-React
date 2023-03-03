@@ -23,6 +23,7 @@ button:disabled {
 
 ul {
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -30,7 +31,7 @@ li {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   display: inline-block;
   cursor: pointer;
 }
@@ -68,6 +69,86 @@ h1, h2, h3, h4, h5, h6 {
   gap: 30px;
 }
 
+/* Class For All application */
+.section {
+  padding: 4rem 0 2rem;
+}
+
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.6rem 1.5rem;
+  background: var(--gradientColor);
+  border-radius: 3rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn a {
+  color: var(--whiteColor);
+  font-weight: 500;
+}
+
+.btn:hover {
+  background: var(--SecondaryColor);
+}
+
+image, video {
+  width: 100%;
+  height: auto;
+}
+
+input {
+  font-size: 100%;
+}
+
+body {
+  background: var(--bodyColor);
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 80% !important;
+    margin: auto !important;
+  }
+  .section {
+    padding: 6rem 0 4rem;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .container {
+    width: 80% !important;
+    margin: auto !important;
+  }
+  .section {
+    padding: 6rem 0 4rem;
+  }
+}
+@media screen and (min-width: 2560px) {
+  body {
+    zoom: 1.7;
+  }
+}
 .carousel-caption {
   top: 9.25rem;
 }
@@ -115,7 +196,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-top-strip {
   background-color: #72a499;
-  border-bottom: 1px solid #3b4149;
 }
 
 .header-upper {
@@ -199,6 +279,143 @@ footer h4 {
   color: #3b4149;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(229, 234, 238, 0.6117647059);
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(2, 15, 29, 0.242);
+}
+.header .logo {
+  color: var(--blackColor);
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.header .logo .icon {
+  font-size: 30px;
+  color: var(--PrimaryColor);
+  transform: translateY(7px);
+}
+@media screen and (max-width: 768px) {
+  .header .navBar {
+    position: absolute;
+    background-color: rgba(229, 234, 238, 0.6117647059);
+    height: max-content;
+    width: 80%;
+    border-radius: 1rem;
+    top: -500rem;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 2000;
+    transition: 0.5s ease-in-out;
+    box-shadow: 0 2px 4px rgba(2, 15, 29, 0.904);
+    padding: 1rem 1.2rem;
+  }
+  .header .navBar .navLists {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    padding: 0.5rem 0;
+  }
+  .header .navBar .navLists .navItem {
+    padding: 0.4rem 0;
+  }
+  .header .navBar .navLists .navLink {
+    color: var(--texColor);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .header .navBar .navLists .navLink:hover {
+    color: var(--PrimaryColor);
+  }
+  .header .navBar .btn {
+    margin-top: 1rem;
+  }
+  .header .navBar .btn a {
+    font-weight: 600;
+    color: var(--whiteColor);
+  }
+  .header .navBar .closeNavbar {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--PrimaryColor);
+  }
+  .header .navBar .closeNavbar:hover {
+    color: var(--SecondaryColor);
+  }
+  .header .activeNavbar {
+    top: 6rem;
+  }
+}
+.header .toggleNavbar .icon {
+  font-size: 25px;
+  color: var(--PrimaryColor);
+}
+.header .toggleNavbar:hover.icon {
+  color: var(--SecondaryColor);
+}
+
+@media screen and (max-width: 768px) {
+  .sm-none {
+    padding: 0;
+  }
+}
+.nav-icons {
+  display: flex;
+}
+.nav-icons > * {
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .nav-icons {
+    margin-left: 8rem;
+  }
+}
+@media screen and (max-width: 965px) {
+  .nav-icons {
+    margin-left: 18rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .toggleNavbar, .closeNavbar {
+    display: none;
+  }
+  .header {
+    padding: 1.5rem 2rem;
+  }
+  .header .navBar .navLists {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .header .navBar .navLists .navItem .navLink {
+    color: var(--texColor);
+    padding: 0 0.45rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+  .header .navBar .navLists .navItem .navLink:hover {
+    color: var(--PrimaryColor);
+  }
+}
+@media screen and (min-width: 960px) {
+  .header .navBar .navLists .navItem {
+    padding: 0 0.7rem;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .header {
+    padding: 1rem 8.5rem;
+  }
+}
 .section-title .sub-title {
   color: #72a499;
   font-size: 80px;
@@ -231,7 +448,7 @@ footer h4 {
   width: 100%;
   max-width: 510px;
   margin: auto;
-  padding-bottom: 100%;
+  padding-bottom: 80%;
   background-image: url("../images/sale-banner.png");
   background-repeat: no-repeat;
   background-position: center;
