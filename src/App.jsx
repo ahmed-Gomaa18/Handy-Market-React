@@ -4,7 +4,10 @@ import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-
+import Login from './pages/login';
+import Register from './pages/register';
+import SellerSignUp from './pages/sellerReg';
+import Role from './pages/role';
 function App() {
   return (
     <>
@@ -14,6 +17,11 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="login" element={< Login/>} />
+            <Route path="register" element={< Register/>} />
+            <Route path="sellerSignUp" element={< SellerSignUp/>} />
+            <Route path="role" element={< Role/>} />
+            <Route path="role/:register" element={< Role/>} />
           </Route>
         </Routes>
       </Router>
