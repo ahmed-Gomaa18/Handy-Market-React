@@ -8,6 +8,10 @@ import Login from './pages/login';
 import Register from './pages/register';
 import SellerSignUp from './pages/sellerReg';
 import Role from './pages/role';
+import ForgetPassword from './pages/forgetPassword';
+import CodeForgetPass from './pages/CodeForgetPass';
+import ChangePassword from './pages/changePassowrd';
+
 function App() {
   return (
     <>
@@ -21,7 +25,10 @@ function App() {
             <Route path="register" element={< Register/>} />
             <Route path="sellerSignUp" element={< SellerSignUp/>} />
             <Route path="role" element={< Role/>} />
-            <Route path="role/:register" element={< Role/>} />
+            <Route path="forgetPassword" element={< ForgetPassword/>} />
+            <Route path="codeForgetPass" element={< CodeForgetPass/>} />
+            <Route path="ChangePassword" element={< ChangePassword/>} />
+       
           </Route>
         </Routes>
       </Router>
