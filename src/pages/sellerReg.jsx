@@ -269,7 +269,7 @@ const SellerSignUp = () => {
                                 <input type="radio" className="form-check-input" id="Male" name="Male" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
                                 <label className="form-check-label" htmlFor="exampleCheck1">Male</label>
                             </div>
-                            <div class=" text-danger  ">
+                            <div className=" text-danger  ">
                                 {formErrors.gender}
                             </div>
 

@@ -2,12 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { FaWpbeginner } from 'react-icons/fa';
 import { AiOutlineUser } from "react-icons/ai";
-import { Link ,useNavigate} from "react-router-dom";
-const Login = () => {
+import { Link, useNavigate } from "react-router-dom";
+
+const CodeForgetPass = () => {
     const [form, setForm] = useState({
+        code: "",
         email: "",
-        password: "",
-        rememberMe: false,
     });
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
@@ -21,23 +21,16 @@ const Login = () => {
     const validate = (val) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const pass = /^[A-Z][1-9]{2,5}$/;
         //email validations
         if (!val.email) {
             errors.email = "email is required"
         } else if (!regex.test(form.email)) {
             errors.email = "this email not vaild! "
         }
-        //password 
-        if (!val.password) {
-            errors.password = "password is required"
-        } else if (val.password < 2) {
-            errors.password = "Password length must be atleast 2 characters"
-        } else if (val.password > 5) {
-            errors.password = "Password length must not exceed 5 characters"
-        } else if (!pass.test(form.password)) {
-            errors.password = "Password length must not exceed 5 characters"
+        if (!val.code) {
+            errors.email = "code is required"
         }
+
         return errors;
     }
     const navigate = useNavigate();
@@ -45,24 +38,16 @@ const Login = () => {
         e.preventDefault();
         setFormErrors(validate(form));
         setIsSubmit(true);
-        axios.post('http://localhost:3000/api/v1/auth/login', form).then((res) => {
+        axios.post('http://localhost:3000/api/v1/auth/checkCode', form).then((res) => {
             console.log('sucess', res);
-            const data = res.data
-            const token = data.token;
-            localStorage.setItem('user-token', token);
-            if (res.data.message === 'Login Success') {
-                navigate('/home');
+            if (res.data.message === "Done Right code  to Your Email") {
+                navigate('/changePassword');
             } 
+            
         }).catch((err) => {
-
-            if (err.response?.data.message === "Email and Password misMatch") {
-                const myError = err.response.data.message;
-                seterrMssg(myError)
-            }
-            if (err.response?.data.message === "You are Already Login.") {
-                const myError = err.response.data.message;
-                seterrMssg(myError)
-            }
+            
+            const myError = err.response.data.message;
+            seterrMssg(myError)
         });
     };
     return (
@@ -70,33 +55,29 @@ const Login = () => {
             <div className="forms-container">
                 <div className="signin-signup">
                     <form onSubmit={onSubmitForm} className="sign-in-form myform">
-                        <h2 className="title">Log in</h2>
+                        <h2 className="title">check your email</h2>
+                        <p></p>
                         <div className="input-field">
                             <i > <AiOutlineUser /></i>
-                            <input type="email" classNameName="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            <input type="email" classNameName="form-control" id="exampleInputEmail1"
                                 placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
                         </div>
                         <div className='err'>
                             {formErrors.email}
                         </div>
                         <div className=" text-danger">
-                            {errMssg && <p>{errMssg}</p>}
-                        </div>
+                                    {errMssg && <p>{errMssg}</p>}
+                                </div>
+
                         <div className="input-field">
-                            <i > <FaWpbeginner /> </i>
-                            <input type="password" classNameName="form-control" id="exampleInputPassword1" name="password"
-                                placeholder="Password" value={form.password} onChange={onUpdateField} />
+                            <i > <AiOutlineUser /></i>
+                            <input type="text" classNameName="form-control" id="code"
+                                placeholder="Enter your code" name="code" value={form.code} onChange={onUpdateField} />
                         </div>
                         <div className='err'>
-                            {formErrors.password}
+                            {formErrors.code}
                         </div>
-                        <div className="form-check  " >
-                            <input type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" value="true" onChange={(e) => setForm((prev) => ({ ...prev, rememberMe: e.target.value }))} />
-                            <label className="form-check-label" htmlFor="exampleCheck1">rememberMe</label>
-                        </div>
-
-                        <Link to="/forgetPassword"><a >forget password </a> </Link>
-                        <input type="submit" value="Login" className="mybtn solid" />
+                        <input type="submit" value="next" className="mybtn solid" />
                     </form>
                 </div>
             </div>
@@ -122,4 +103,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default CodeForgetPass;
