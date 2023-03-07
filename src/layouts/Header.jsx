@@ -4,6 +4,7 @@ import { BsSearch } from 'react-icons/bs';
 import { MdLanguage } from 'react-icons/md';
 // import '../styles/layouts/header';
 
+
 const Header = () => {
   return (
     <>
@@ -94,6 +95,7 @@ const Header = () => {
                     <NavLink to="/store">Our Store</NavLink>
                     <NavLink to="/blogs">Blogs</NavLink>
                     <NavLink to="/contact">Contact</NavLink>
+                    <NavLink to="/dashboard">Dashboard</NavLink>
                   </div>
                 </div>
               </div>

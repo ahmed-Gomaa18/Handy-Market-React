@@ -231,7 +231,7 @@ footer h4 {
   width: 100%;
   max-width: 510px;
   margin: auto;
-  padding-bottom: 100%;
+  padding-bottom: 80%;
   background-image: url("../images/sale-banner.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -441,6 +441,10 @@ footer h4 {
 .product-info .price span.old {
   color: #aaa;
   text-decoration: line-through;
+}
+
+#hla {
+  background-color: #febd69;
 }
 
 /*# sourceMappingURL=styles.css.map */
