@@ -6,8 +6,6 @@ import { motion, LayoutGroup } from "framer-motion";
 import { UilTimes } from "@iconscout/react-unicons";
 import Chart from "react-apexcharts";
 
-// parent Card
-
 const Card = (props) => {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -21,7 +19,6 @@ const Card = (props) => {
   );
 };
 
-// Compact Card
 const CompactCard = ({ param, setExpanded }) => {
   const Png = param.png;
   return (
@@ -32,22 +29,18 @@ const CompactCard = ({ param, setExpanded }) => {
       onClick={setExpanded}
     >
       <div className={styles.radialBar}>
-
         <CircularProgressbar value={param.barValue} text={`${param.barValue}%`}/>
         <span>{param.title}</span>
-
       </div>
       <div className={styles.detail}>
         <Png />
         <span>${param.value}</span>
         <span>Last 24 hours</span>
-
       </div>
     </motion.div>
   );
 }
 
-// Expanded Card
 const ExpandedCard =({ param, setExpanded })=> {
   const data = {
     options: {
@@ -55,7 +48,6 @@ const ExpandedCard =({ param, setExpanded })=> {
         type: "area",
         height: "auto",
       },
-
       dropShadow: {
         enabled: false,
         enabledOnSeries: undefined,
@@ -65,7 +57,6 @@ const ExpandedCard =({ param, setExpanded })=> {
         color: "#000",
         opacity: 0.35,
       },
-
       fill: {
         colors: ["#fff"],
         type: "gradient",
@@ -106,12 +97,9 @@ const ExpandedCard =({ param, setExpanded })=> {
       layoutId="expandableCard"
     >
       <div className={styles.clicking}>
-
         <UilTimes onClick={setExpanded} />
       </div>
-
-        <span>{param.title}</span>
-        
+      <span>{param.title}</span>  
       <div className="chartContainer">
         <Chart options={data.options} series={param.series} type="area" />
       </div>

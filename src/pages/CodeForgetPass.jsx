@@ -1,27 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
-import { FaWpbeginner } from 'react-icons/fa';
 import { AiOutlineUser } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 
 const CodeForgetPass = () => {
     const [form, setForm] = useState({
         code: "",
-        email: "",
+        email: ""
     });
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
     const [errMssg, seterrMssg] = useState();
     const onUpdateField = e => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
-
     };
     const validate = (val) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        //email validations
         if (!val.email) {
             errors.email = "email is required"
         } else if (!regex.test(form.email)) {
@@ -30,22 +26,18 @@ const CodeForgetPass = () => {
         if (!val.code) {
             errors.email = "code is required"
         }
-
         return errors;
     }
     const navigate = useNavigate();
     const onSubmitForm = e => {
         e.preventDefault();
         setFormErrors(validate(form));
-        setIsSubmit(true);
         axios.post('http://localhost:3000/api/v1/auth/checkCode', form).then((res) => {
             console.log('sucess', res);
             if (res.data.message === "Done Right code  to Your Email") {
                 navigate('/changePassword');
-            } 
-            
+            }
         }).catch((err) => {
-            
             const myError = err.response.data.message;
             seterrMssg(myError)
         });
@@ -66,8 +58,8 @@ const CodeForgetPass = () => {
                             {formErrors.email}
                         </div>
                         <div className=" text-danger">
-                                    {errMssg && <p>{errMssg}</p>}
-                                </div>
+                            {errMssg && <p>{errMssg}</p>}
+                        </div>
 
                         <div className="input-field">
                             <i > <AiOutlineUser /></i>

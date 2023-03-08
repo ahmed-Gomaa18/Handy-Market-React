@@ -2,17 +2,16 @@ import { useState } from "react";
 import axios from "axios";
 import { FaWpbeginner } from 'react-icons/fa';
 import { AiOutlineUser } from "react-icons/ai";
-import { Link ,useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../guard/Auth";
 
 const Login = () => {
     const [form, setForm] = useState({
         email: "",
         password: "",
-        rememberMe: false,
+        rememberMe: false
     });
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
     const [errMssg, seterrMssg] = useState();
     const navigate = useNavigate();
     const auth = useAuth();
@@ -23,19 +22,16 @@ const Login = () => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
-
     };
     const validate = (val) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const pass = /^[A-Z][1-9]{2,5}$/;
-        //email validations
         if (!val.email) {
             errors.email = "email is required"
         } else if (!regex.test(form.email)) {
             errors.email = "this email not vaild! "
         }
-        //password 
         if (!val.password) {
             errors.password = "password is required"
         } else if (val.password < 2) {
@@ -50,27 +46,21 @@ const Login = () => {
     const onSubmitForm = e => {
         e.preventDefault();
         setFormErrors(validate(form));
-        setIsSubmit(true);
         axios.post('http://localhost:3000/api/v1/auth/login', form).then((res) => {
             console.log('sucess', res);
             const data = res.data
             const token = data.token;
             const id = data.userId;
             const role = data.role;
-            
             localStorage.clear();
             localStorage.setItem('user-token', token);
             localStorage.setItem('user-id', id);
             localStorage.setItem('role', role);
-
             auth.login(token)
-
             if (res.data.message === 'Login Success') {
-                // navigate('/home');
                 navigate(redirectPath, { replace: true });
-            } 
+            }
         }).catch((err) => {
-
             if (err.response?.data.message === "Email and Password misMatch") {
                 const myError = err.response.data.message;
                 seterrMssg(myError)
@@ -88,7 +78,7 @@ const Login = () => {
                     <form onSubmit={onSubmitForm} className="sign-in-form myform">
                         <h2 className="title">Log in</h2>
                         <div className="input-field">
-                            <i > <AiOutlineUser /></i>
+                            <i><AiOutlineUser /></i>
                             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
                         </div>
@@ -106,17 +96,15 @@ const Login = () => {
                         <div className='err'>
                             {formErrors.password}
                         </div>
-                        <div className="form-check  " >
+                        <div className="form-check">
                             <input type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" value="true" onChange={(e) => setForm((prev) => ({ ...prev, rememberMe: e.target.value }))} />
                             <label className="form-check-label" htmlFor="exampleCheck1">rememberMe</label>
                         </div>
-
-                        <Link to="/forgetPassword"><a >forget password </a> </Link>
+                        <Link to="/forgetPassword">forget password</Link>
                         <input type="submit" value="Login" className="mybtn solid" />
                     </form>
                 </div>
             </div>
-
             <div className="panels-container">
                 <div className="panel left-panel">
                     <div className="content">

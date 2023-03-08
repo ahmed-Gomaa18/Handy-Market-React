@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-const SellerSignUp = () => {
 
+const SellerSignUp = () => {
     const [form, setForm] = useState({
         user_name: "",
         full_name: "",
@@ -21,10 +21,8 @@ const SellerSignUp = () => {
         description: ""
     });
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
     const [errMssg, seterrMssg] = useState();
 
-    //====>address obj
     const UpdateAddress = e => {
         form.address.building_num = +form.address.building_num;
         setForm((prev) => {
@@ -36,20 +34,18 @@ const SellerSignUp = () => {
             }
         })
     }
-    // =====update field + validations
+
     const onUpdateField = e => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
     };
 
-    //validation function
     const validate = (val) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const phonenum = /^\d{11}$/;
         const pass = /^[A-Z][1-9]{2,5}$/;
-        //name vaildations
         if (!val.user_name) {
             errors.user_name = "username is required"
         } else if (val.user_name.length < 3) {
@@ -57,7 +53,6 @@ const SellerSignUp = () => {
         } else if (val.user_name.length > 20) {
             errors.user_name = "username is must be less than 20 digits"
         }
-        //fullname vaildations
         if (!val.full_name) {
             errors.full_name = "full name is required"
         } else if (val.full_name.length < 3) {
@@ -65,8 +60,6 @@ const SellerSignUp = () => {
         } else if (val.full_name.length > 20) {
             errors.full_name = "full name is must be less than 20 digits"
         }
-
-        //shopname vaildations
         if (!val.shop_name) {
             errors.shop_name = "shop_name is required"
         } else if (val.shop_name.length < 3) {
@@ -74,7 +67,6 @@ const SellerSignUp = () => {
         } else if (val.shop_name.length > 20) {
             errors.shop_name = "shop_name is must be less than 20 digits"
         }
-        //description vaildations
         if (!val.description) {
             errors.description = "description is required"
         } else if (val.description.length < 3) {
@@ -82,23 +74,19 @@ const SellerSignUp = () => {
         } else if (val.description.length > 20) {
             errors.description = "description is must be less than 20 digits"
         }
-        //email validations
         if (!val.email) {
             errors.email = "email is required"
         } else if (!regex.test(form.email)) {
             errors.email = "this email not vaild! "
         }
-        // age validation
         if (!val.age) {
             errors.age = "age is required"
         } else if (val.age <= 15) {
             errors.age = "un vaild! "
         }
-        // gender 
         if (!val.gender) {
             errors.gender = "gender is required"
         }
-        //password 
         if (!val.password) {
             errors.password = "password is required"
         } else if (val.password < 2) {
@@ -108,45 +96,35 @@ const SellerSignUp = () => {
         } else if (!pass.test(form.password)) {
             errors.password = "Password length must not exceed 5 characters"
         }
-        //confirm pass
         if (!val.confirmPassword) {
             errors.confirmPassword = "confirmPassword is required"
         } else if (val.password !== val.confirmPassword) {
             errors.confirmPassword = "passwords did not match"
         }
-        //address
-
         if (!val.address) {
             errors.address = "address is required"
         }
-
-        //phone
         if (!val.phone) {
             errors.phone = "phone is required"
         } else if (!phonenum.test(form.phone)) {
             errors.phone = "phone is not vaild"
         }
-
         return errors;
     }
 
-    //onsubimt form + validations
     const onSubmitForm = e => {
         form.address.building_num = +form.address.building_num;
         form.age = +form.age;
         e.preventDefault();
         setFormErrors(validate(form));
-        setIsSubmit(true);
-        console.log(form)
         axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
             console.log('sucess', res);
         }).catch((err) => {
             console.log(err.message)
+            seterrMssg(err)
         });
-
     };
     return (
-
         <div className="container-fluid ">
             <div className="row">
                 <div className='offset-lg-1 pb-5 col-md-6 pe-lg-5'>
@@ -179,14 +157,11 @@ const SellerSignUp = () => {
                                         {formErrors.confirmPassword}
                                     </div>
                                 </div>
-
                             </div>
-
                             <div className="row">
                                 <div className="form-group col-md-6">
                                     <label htmlFor="exampleInputusername" className='my-2'>User Name</label>
                                     <input type="text" className="form-control" id="exampleInputusername" placeholder="user name" name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
-
                                     <div className=" text-danger">
                                         {formErrors.user_name}
                                     </div>
@@ -216,10 +191,6 @@ const SellerSignUp = () => {
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div className="row">
                                 <div className="form-group col col-md-6">
                                     <label htmlFor="examplephone " className='my-2'>phone</label>
@@ -228,7 +199,6 @@ const SellerSignUp = () => {
                                         {formErrors.phone}
                                     </div>
                                 </div>
-
                                 <div className="form-group col-md-6">
                                     <label htmlFor="exampleInputusername" className='my-2'>Age </label>
                                     <input type="number" className="form-control" id="exampleInputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onChange={onUpdateField} />
@@ -250,7 +220,7 @@ const SellerSignUp = () => {
                                     <input type="text" className="form-control" id="street" name="street" placeholder="street" value={form.address.street} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.address}
-                              </div>
+                                    </div>
                                 </div>
                                 <div className="form-group col-md-6 mb-3">
                                     <label htmlFor="exampleInputaddress" className='my-2'>building number</label>
@@ -260,7 +230,6 @@ const SellerSignUp = () => {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="form-check form-check-inline " >
                                 <input type="radio" className="form-check-input" id="female" name="female" value="Female" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
                                 <label className="form-check-label" htmlFor="exampleCheck">Female</label>
@@ -272,18 +241,14 @@ const SellerSignUp = () => {
                             <div className=" text-danger  ">
                                 {formErrors.gender}
                             </div>
-
                             <button type="submit" className="btn btn-primary position-absolute end-50 mb-2">Submit</button>
                         </form>
                     </div>
                 </div>
-                <div className="col-md-5 mt-5 ps-lg-5   ">
-                    <div className="h-100 layer ">
-
-
+                <div className="col-md-5 mt-5 ps-lg-5">
+                    <div className="h-100 layer">
                         <img src="img/1.jpg" className="img-fluid h-100 imgg" alt="" />
                         <div className='overlay'>
-
                         </div>
                     </div>
                 </div>

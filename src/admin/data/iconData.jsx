@@ -1,9 +1,6 @@
-import {UilEstate, UilClipboardAlt, UilUsersAlt, UilPackage, UilChart, UilUsdSquare,UilMoneyWithdrawal} from "@iconscout/react-unicons"
-
-
+import { UilEstate, UilClipboardAlt, UilUsersAlt, UilPackage, UilUsdSquare,UilMoneyWithdrawal } from "@iconscout/react-unicons";
 
 export const SidebarIcons = [
-
     {
         icon: UilEstate ,
         name: "Dashboard ",
@@ -12,24 +9,23 @@ export const SidebarIcons = [
     {
         icon: UilClipboardAlt ,
         name: "Balance ",
-        heading:"dashboardBalance"
+        heading:"dashboard/dashboardBalance"
     }, 
     {
         icon: UilUsersAlt ,
         name: "Users",
-        heading:"dashboardUsers"
+        heading:"dashboard/dashboardUsers"
     },
     {
         icon: UilPackage ,
         name: "Products",
-        heading:"dashboardProduct"
+        heading:"dashboard/dashboardProduct"
     },
     {
       icon: UilPackage ,
       name: "Categories",
-      heading:"dashboardcategory"
+      heading:"dashboard/dashboardcategory"
     }
-    
 ];
 
 
@@ -82,7 +78,7 @@ export const cardsData = [
           data: [10, 25, 15, 30, 12, 15, 20],
         },
       ],
-    },
-  ];
+    }
+];
 
  
