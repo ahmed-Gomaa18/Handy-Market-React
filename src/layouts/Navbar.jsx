@@ -3,11 +3,17 @@ import {AiFillCloseCircle} from 'react-icons/ai';
 import {BsList, BsHandbag, BsSearch, BsHeart} from 'react-icons/bs';
 import { MdLanguage } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../guard/Auth';
 
 const Navbar = () => {
   const [active, setActive] = useState('navBar');
+  const auth = useAuth();
 
-  const showNav = () =>{
+  const handleLogout = () => {
+    auth.logout();
+  }
+
+  const showNav = () => {
     if (active === 'navBar'){
       setActive('navBar activeNavbar')
     }
@@ -16,7 +22,7 @@ const Navbar = () => {
     }    
   }
 
-  const closeNav = ()=>{
+  const closeNav = () => {
     setActive('navBar')
   }
 
@@ -87,25 +93,28 @@ const Navbar = () => {
                       </li>
 
                       <li className="navItem">
-                      <Link to="/" className="navLink">About</Link>
+                        <Link to="/seller" className="navLink">About</Link>
                       </li>
 
                       <li className="navItem">
-                      <Link to="/" className="navLink">Pages</Link>
-                      </li>
-
-                      <li className="navItem">
-                      <Link to="/" className="navLink">News</Link>
+                        <Link to="/seller" className="navLink">Store</Link>
                       </li>
                       
                       <li className="navItem">
-                      <Link to="/" className="navLink">Contact</Link>
+                        <Link to="/dashboard" className="navLink">Dashboard</Link>
                       </li>
 
-                      <button className='btn'>
-                      <Link href="#">Book Now</Link>
-                      </button>
+                    {!auth.token && (
+                        <li className="navItem">
+                          <Link to="/auth/login" className="navLink">Login</Link>
+                        </li>
+                    )}   
 
+                    {auth.token && (
+                      <li className="navItem">
+                        <Link to="/" className="navLink" onClick={handleLogout}>Logout</Link>
+                      </li>
+                    )}
                   </ul>
 
                   <div onClick={closeNav} className="closeNavbar">

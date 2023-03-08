@@ -20,9 +20,9 @@ return(
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
                     ex ratione. Aliquid!
                 </p>
-                <Link to="/login" >
+                <Link to="/auth/login">
                 <button className="mybtn transparent" id="sign-up-btn">
-                    Sign up
+                    Login
                 </button></Link>
             </div>
             <img src="/images/undraw.svg" className="myimage" alt="" />
