@@ -10,7 +10,7 @@ const Navbar = () => {
   const auth = useAuth();
 
   const handleLogout = () => {
-    auth.logout();
+    auth.logout(auth.token);
   }
 
   const showNav = () => {
