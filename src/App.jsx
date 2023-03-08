@@ -16,12 +16,16 @@ import ForgetPassword from './pages/forgetPassword';
 import CodeForgetPass from './pages/CodeForgetPass';
 import ChangePassword from './pages/changePassowrd';
 
+import { ContextProvider } from './guard/Auth';
+import RequireAuth from './guard/RequireAuth';
+import SellerAuth from './guard/SellerAuth';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <>
       <Router>
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<Layout />} >
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
@@ -40,7 +44,47 @@ function App() {
        
 
           </Route>
-        </Routes>
+        </Routes> */}
+
+
+        {/* New Routes */}
+        <ContextProvider>
+          <Routes>
+            {/* Customer Routes */}
+            <Route path="/" element={<Layout />} >
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="register" element={<Register/>} />
+              <Route path="sellerSignUp" element={<SellerSignUp/>} />
+              <Route path="role" element={< Role/>} />
+              <Route path="role/:register" element={<Role/>} />
+              <Route path="forgetPassword" element={< ForgetPassword/>} />
+              <Route path="codeForgetPass" element={< CodeForgetPass/>} />
+              <Route path="ChangePassword" element={< ChangePassword/>} />
+            </Route>
+
+            {/* Admin Routes */}
+            <Route path="/dashboard" element={
+              <RequireAuth >
+                <Routes>
+                  <Route path='/' element={<Dashboard />} />
+                </Routes>
+              </RequireAuth>
+            } />
+
+            {/* Seller Routes */}
+              <Route path="/seller" element={
+                <SellerAuth>
+                  <Routes>
+                    <Route path='/' element={<Store />} />
+                  </Routes>
+                </SellerAuth>
+              } />
+            
+            <Route path="/auth/login" element={<Login />} />
+          </Routes>
+        </ContextProvider>
       </Router>
     </>
   );

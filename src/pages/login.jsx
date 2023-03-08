@@ -2,7 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import { FaWpbeginner } from 'react-icons/fa';
 import { AiOutlineUser } from "react-icons/ai";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link ,useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../guard/Auth";
+
 const Login = () => {
     const [form, setForm] = useState({
         email: "",
@@ -12,6 +14,11 @@ const Login = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [errMssg, seterrMssg] = useState();
+    const navigate = useNavigate();
+    const auth = useAuth();
+    const location = useLocation();
+    const redirectPath = location.state?.path || '/';
+
     const onUpdateField = e => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
@@ -40,7 +47,6 @@ const Login = () => {
         }
         return errors;
     }
-    const navigate = useNavigate();
     const onSubmitForm = e => {
         e.preventDefault();
         setFormErrors(validate(form));
@@ -49,9 +55,19 @@ const Login = () => {
             console.log('sucess', res);
             const data = res.data
             const token = data.token;
+            const id = data.userId;
+            const role = data.role;
+            
+            localStorage.clear();
             localStorage.setItem('user-token', token);
+            localStorage.setItem('user-id', id);
+            localStorage.setItem('role', role);
+
+            auth.login(token)
+
             if (res.data.message === 'Login Success') {
-                navigate('/home');
+                // navigate('/home');
+                navigate(redirectPath, { replace: true });
             } 
         }).catch((err) => {
 
@@ -73,7 +89,7 @@ const Login = () => {
                         <h2 className="title">Log in</h2>
                         <div className="input-field">
                             <i > <AiOutlineUser /></i>
-                            <input type="email" classNameName="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
                         </div>
                         <div className='err'>
@@ -84,7 +100,7 @@ const Login = () => {
                         </div>
                         <div className="input-field">
                             <i > <FaWpbeginner /> </i>
-                            <input type="password" classNameName="form-control" id="exampleInputPassword1" name="password"
+                            <input type="password" className="form-control" id="exampleInputPassword1" name="password"
                                 placeholder="Password" value={form.password} onChange={onUpdateField} />
                         </div>
                         <div className='err'>
