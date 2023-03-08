@@ -8,7 +8,7 @@ const Navbar = () => {
   const [active, setActive] = useState('navBar');
 
   const showNav = () =>{
-    if (active == 'navBar'){
+    if (active === 'navBar'){
       setActive('navBar activeNavbar')
     }
     else{
