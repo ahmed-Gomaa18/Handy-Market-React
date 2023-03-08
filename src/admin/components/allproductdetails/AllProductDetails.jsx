@@ -2,29 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const AllProductDetails = (props) => {
-    
     const [product, setProduct] = useState(null);
     let { prodId } = props;
    
-  
     const imgSrc = 'http://localhost:3000/api/v1/image';
   
     useEffect(() => {
-  
       axios.get(`http://localhost:3000/api/v1/product/${prodId}`).then((data) => {
-      
       let productData = data.data.product;
         setProduct(productData);
       }).catch((err) => {
         console.log("error msg", err);
       });
-    }, [product]);
+    }, [product, prodId]);
   
     return (
-
- 
       <>
-      { product &&  
+        { product &&  
           <div className="col-lg-10">
               <div className="row my-5">
                   <div className="section-title text-center ">
@@ -65,7 +59,7 @@ const AllProductDetails = (props) => {
                   </div>
               </div>
           </div>
-}
+        }
       </>
     )
 };

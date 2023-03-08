@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 const About = () => {
   return (
     <>
-    <div>About</div>
-    <li className="navItem">
-      <Link to="/seller/addProduct" className="navLink">AddProduct</Link>
-    </li>
-  </>
-
+      <div>About</div>
+      <li className="navItem">
+        <Link to="/seller/addProduct" className="navLink">AddProduct</Link>
+      </li>
+    </>
   )
 };
 

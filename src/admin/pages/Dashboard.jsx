@@ -6,12 +6,10 @@ import './dashstyle.css';
 const Dashboard = () => {
     return (
         <div className='maincontainer container-fluid'>
-            <div className='AppGlass row p-5 '> 
+            <div className='AppGlass row p-5 '>
                 <Sidebar />
                 <MainDash />
-                
             </div>
-           
         </div>
     );
 };

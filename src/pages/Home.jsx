@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <>
       <Slider />
-
       <section className="py-3">
         <div className="container">
           <div className="row align-items-center py-5">
@@ -17,40 +16,39 @@ const Home = () => {
             </div>
           </div>
           <div className="row mb-4 align-items-center justify-content-between">
-              <div className="col-md-6 col-12 mb-5">
-                <div className="sale-banner1">
-                  <div className="inner">
-                    <img src="/images/sale-banner1.png" alt="sale-banner1" />
-                    <span className="title">Spring sale</span>
-                    <h2 className="sale-percent">
-                      <span className="number">40</span> % <br /> off
-                    </h2>
-                    <Link to="/" className="link">SHOP NOW</Link>
+            <div className="col-md-6 col-12 mb-5">
+              <div className="sale-banner1">
+                <div className="inner">
+                  <img src="/images/sale-banner1.png" alt="sale-banner1" />
+                  <span className="title">Spring sale</span>
+                  <h2 className="sale-percent">
+                    <span className="number">40</span> % <br /> off
+                  </h2>
+                  <Link to="/" className="link">SHOP NOW</Link>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 col-12">
+              <div className="sale-banner2">
+                <div className="inner">
+                  <div className="image">
+                    <img className="w-100" data-aos="zoom-in" src="/images/sale-banner2.jpg" alt="sale-banner2" />
+                  </div>
+                  <div className="content row justify-content-between mb-n3">
+                    <div className="col-auto mb-3">
+                      <h2 className="sale-percent">10% off</h2>
+                      <span className="text">YOUR NEXT PURCHASE</span>
+                    </div>
+                    <div className="col-auto mb-3">
+                      <Link className="btn btn-hover-dark" to="/">SHOP NOW</Link>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 col-12">
-                <div className="sale-banner2">
-                  <div className="inner">
-                    <div className="image">
-                      <img className="w-100" data-aos="zoom-in" src="/images/sale-banner2.jpg" alt="sale-banner2" />
-                    </div>
-                    <div className="content row justify-content-between mb-n3">
-                        <div className="col-auto mb-3">
-                          <h2 className="sale-percent">10% off</h2>
-                          <span className="text">YOUR NEXT PURCHASE</span>
-                        </div>
-                        <div className="col-auto mb-3">
-                          <Link className="btn btn-hover-dark" to="/">SHOP NOW</Link>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
           </div>
         </div>
       </section>
-
       <section className="py-3">
         <div className="container">
           <div className="row align-items-center py-5">
@@ -59,9 +57,6 @@ const Home = () => {
               <h2 className="title title-icon-both">Shop our best sellers</h2>
             </div>
           </div>
-
-
-
           <div className="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 mb-5 d-flex justify-content-center position-relative">
             <div className="col d-flex justify-content-center">
               <div className="product single-product">
@@ -76,7 +71,6 @@ const Home = () => {
                     <BsHeart className="fs-3" />
                   </Link>
                 </div>
-
                 <div className="product-info single-product__content text-center mt-3">
                   <h6 className="title popup_cart_title">
                     <Link to="/products/id">Dark Brown Leather Watch</Link>
@@ -88,12 +82,11 @@ const Home = () => {
                     <span className="main-price discounted old">
                       <span className="money" data-currency-usd="$130.00">$130.00</span>
                     </span>
-                      <div className="product-cart-action"></div>
+                    <div className="product-cart-action"></div>
                   </span>
                 </div>
               </div>
             </div>
-
             <div className="col d-flex justify-content-center">
               <div className="product single-product">
                 <div className="product-thumb single-product__image d-flex align-items-center">
@@ -107,7 +100,6 @@ const Home = () => {
                     <BsHeart className="fs-3" />
                   </Link>
                 </div>
-
                 <div className="product-info single-product__content text-center mt-3">
                   <h6 className="title popup_cart_title">
                     <Link to="/products/id">Dark Brown Leather Watch</Link>
@@ -119,12 +111,11 @@ const Home = () => {
                     <span className="main-price discounted old">
                       <span className="money" data-currency-usd="$130.00">$130.00</span>
                     </span>
-                      <div className="product-cart-action"></div>
+                    <div className="product-cart-action"></div>
                   </span>
                 </div>
               </div>
             </div>
-
             <div className="col d-flex justify-content-center">
               <div className="product single-product">
                 <div className="product-thumb single-product__image d-flex align-items-center">
@@ -138,7 +129,6 @@ const Home = () => {
                     <BsHeart className="fs-3" />
                   </Link>
                 </div>
-
                 <div className="product-info single-product__content text-center mt-3">
                   <h6 className="title popup_cart_title">
                     <Link to="/products/id">Dark Brown Leather Watch</Link>
@@ -150,12 +140,11 @@ const Home = () => {
                     <span className="main-price discounted old">
                       <span className="money" data-currency-usd="$130.00">$130.00</span>
                     </span>
-                      <div className="product-cart-action"></div>
+                    <div className="product-cart-action"></div>
                   </span>
                 </div>
               </div>
             </div>
-
             <div className="col d-flex justify-content-center">
               <div className="product single-product">
                 <div className="product-thumb single-product__image d-flex align-items-center">
@@ -169,7 +158,6 @@ const Home = () => {
                     <BsHeart className="fs-3" />
                   </Link>
                 </div>
-
                 <div className="product-info single-product__content text-center mt-3">
                   <h6 className="title popup_cart_title">
                     <Link to="/products/id">Dark Brown Leather Watch</Link>
@@ -181,7 +169,7 @@ const Home = () => {
                     <span className="main-price discounted old">
                       <span className="money" data-currency-usd="$130.00">$130.00</span>
                     </span>
-                      <div className="product-cart-action"></div>
+                    <div className="product-cart-action"></div>
                   </span>
                 </div>
               </div>
