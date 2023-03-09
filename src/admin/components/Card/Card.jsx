@@ -24,7 +24,7 @@ const CompactCard = ({ param, setExpanded }) => {
   return (
     <motion.div
       className={styles.CompactCard}
-      style={{ background: param.color.backGround,boxShadow: param.color.boxShadow,}}
+      style={{ background: param.color.backGround,boxShadow: param.color.boxShadow }}
       layoutId="expandableCard"
       onClick={setExpanded}
     >

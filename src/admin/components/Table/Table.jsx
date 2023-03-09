@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import styles from "./Table.module.css";
+import moment from "moment/moment";
 
 const BasicTable = () => {
   const [productData, productDataState] = useState([]);
@@ -58,16 +59,20 @@ const BasicTable = () => {
                     {row.product_name}
                   </TableCell>
                   <TableCell align="left">{row.created_by.user_name}</TableCell>
-                  <TableCell align="left">{row.createdAt}</TableCell>
+                  <TableCell align="left">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
                   <TableCell align="left">
                     <button className={styles.status} onClick={() => {
-                      const confirmBox = window.confirm("Do you really want to block this user?");
+                      const confirmBox = window.confirm("Do you really want to approve this product?");
                       if (confirmBox === true) {
                         updateProductState(row._id)
                       }
                     }}>Approve</button>
                   </TableCell>
-                  <TableCell align="left" className={styles.Details}><Link to={`/dashboardProductDetails/${row._id}`} className={styles.link}>Details</Link> </TableCell>
+                  <TableCell align="left">
+                    <Link to={`/dashboardProductDetails/${row._id}`}>
+                      <button className={styles.status}>Details</button>
+                    </Link>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

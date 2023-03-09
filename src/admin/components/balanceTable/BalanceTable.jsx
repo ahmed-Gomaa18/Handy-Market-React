@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import styles from './balanceTable.module.css'
+import moment from "moment";
 
 const BalanceTable = () => {
   localStorage.setItem("userToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4OWJhZTk3NDViZmY1ZmVkNWE3MCIsImlzTG9nZ2VkSW4iOnRydWUsImlhdCI6MTY3ODE0NDMxMSwiZXhwIjoxNjc4NzQ5MTExfQ.CqnoJteMEIVQVwcj3PJoDF--z_RyDvP5llRH9EykpX4");
@@ -36,11 +37,11 @@ const BalanceTable = () => {
           </TableHead>
           <TableBody>
             {balanceData.map((row) => (
-              <TableRow key={row.total_profit} >
-                <TableCell align="left">{row.total_profit}</TableCell>
+              <TableRow key={row.total_profit}>
+                <TableCell align="left">${row.total_profit}</TableCell>
                 <TableCell align="left">{row.order_id.user_id}</TableCell>
-                <TableCell align="left">{row.order_profit}</TableCell>
-                <TableCell align="left">{row.createdAt}</TableCell>
+                <TableCell align="left">${row.order_profit}</TableCell>
+                <TableCell align="left">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
               </TableRow>
             ))}
           </TableBody>

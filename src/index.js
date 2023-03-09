@@ -6,7 +6,7 @@ import App from './App';
 import 'aos/dist/aos.css';
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '/node_modules/bootstrap/dist/js/bootstrap.min.js';
-
+import './index.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
