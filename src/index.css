@@ -1,0 +1,14 @@
+:root {
+    --red_ribbon: #F31237;
+    --orange: #FC5C22;
+    --fiord: #4A596D;
+    --pale_sky: #6B7280;
+    --sea_nymph: #72a499;
+    --bg-back: #9ab0ab12;
+    --bg-front: #8ca9a23d;
+    --link-bg-color-hover: #6b728045;
+
+    /* fonts */
+    --font-size-sm: 1rem;
+    --font-size-lg: 1.4rem;
+}

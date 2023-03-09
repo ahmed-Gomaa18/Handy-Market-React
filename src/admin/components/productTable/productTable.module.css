@@ -21,6 +21,6 @@ th {
   border-radius: 9px;
 }
 
-.Details {
-  color: #00b5ff !important;
+.status:hover {
+  background-color: #fe5416ad;
 }

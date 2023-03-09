@@ -5,21 +5,14 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
     return (
-        <div className={`col-lg-2 col-md-2 text-center ${styles.sidebar}`}>
-            <div className={styles.logo}>
-                <img src="/images/logo.png" alt="logo" />
-                <span>
-                    H<span>a</span>n<span>d</span>y <span>M</span>a<span>r</span>k<span>e</span>t
-                </span>
-            </div>
-
-            <div className={styles.menu}>
+        <div className={`col-lg-2 col-md-2 text-center ${styles.Sidebar}`}>
+            <div className={`flex-row flex-md-column ${styles.menu}`}>
                 {SidebarIcons.map((item, index) => {
                     return (
-                        <div className={styles.menuItem} key={index} >
-                            <item.icon />
-                            <Link to={`/${item.heading}`} className={styles.link}>{item.name}</Link>
-                        </div>
+                        <Link to={`/${item.heading}`} className={styles.menuItem} key={index} >
+                            <item.icon className={styles.icon} />
+                            <h3 className={styles.link}>{item.name}</h3>
+                        </Link>
                     );
                 })}
             </div>

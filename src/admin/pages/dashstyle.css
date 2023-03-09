@@ -1,6 +1,5 @@
 .maincontainer{
-  background: rgb(255,225,188);
-  background: linear-gradient(137deg, rgba(255,225,188,1) 29.36%, rgba(255,207,209,1) 51.55%, rgba(243,198,241,1) 90.85);
+  background-color: var(--bg-back);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,6 +8,7 @@
 .AppGlass{
     width: 97%; 
     border-radius: 2rem;
-    background-color:antiquewhite;
+    background-color: var(--bg-front);
     overflow: hidden;
+    margin: 4rem 1rem !important;
 }
