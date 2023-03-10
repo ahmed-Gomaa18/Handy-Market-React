@@ -69,7 +69,7 @@ const BasicTable = () => {
                     }}>Approve</button>
                   </TableCell>
                   <TableCell align="left">
-                    <Link to={`/dashboardProductDetails/${row._id}`}>
+                    <Link to={`/dashboard/dashboardProductDetails/${row._id}`}>
                       <button className={styles.status}>Details</button>
                     </Link>
                   </TableCell>

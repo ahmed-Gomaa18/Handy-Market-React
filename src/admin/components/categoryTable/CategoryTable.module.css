@@ -25,7 +25,14 @@
     padding: 8px;
     border-radius: 9px;
   }
-  
+  .input{
+    background-color: transparent;
+    border:none; 
+  }
+  input:hover {
+    background-color: #d3d3d3;
+    cursor: pointer;
+  }
   .Details {
     color: #00b5ff !important;
   }

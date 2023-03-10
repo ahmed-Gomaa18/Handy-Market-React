@@ -25,6 +25,21 @@ import Category from './admin/pages/Category';
 import AllProductsdetails from './admin/pages/AllProductsdetails';
 import NotFound from './pages/NotFound/NotFound';
 
+import UpdateUserProfile from './pages/updateUserProfile';
+import UpdateService from './components/updateService';
+import Profile from './pages/profile';
+import Services from './components/services';
+import UserProfile from './pages/userProfile';
+import Favorites from './components/user.favorites';
+import Wishlist from './components/user.wishlist';
+import NoFavORwish from './components/noFavORwish';
+
+import Order from './pages/Order';
+import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
+
+
+
 function App() {
   return (
     <>
@@ -39,9 +54,13 @@ function App() {
               <Route path="sellerSignUp" element={<SellerSignUp/>} />
               <Route path="role" element={< Role/>} />
               <Route path="role/:register" element={<Role/>} />
-              <Route path="forgetPassword" element={<ForgetPassword />} />
-              <Route path="codeForgetPass" element={<CodeForgetPass />} />
-              <Route path="ChangePassword" element={<ChangePassword />} />
+              <Route path="forgetPassword" element={< ForgetPassword/>} />
+              <Route path="codeForgetPass" element={< CodeForgetPass/>} />
+              <Route path="ChangePassword" element={< ChangePassword/>} />
+              <Route path="order" element={< Order/>} />
+              <Route path="wishlist" element={<Wishlist/>} />
+              <Route path="cart" element={<Cart/>} />
+
             </Route>
 
             {/* Admin Routes */}
@@ -51,7 +70,7 @@ function App() {
                 <Route path="dashboardProductDetails/:id" element={<ProductDetails/>}/>
                 <Route path="dashboardProduct" element={<ProductData/>}/>
                 <Route path="dashboardBalance" element={<BalanceData/>}/>
-                <Route path="dashboardUsers" element={<UserData/>}/>
+                <Route path="users" element={<UserData/>}/>
                 <Route path="dashboardcategory" element={<Category/>}/>
                 <Route path="dashboardALLProductDetails/:id" element={<AllProductsdetails/>}/>
               </Route>
@@ -64,7 +83,19 @@ function App() {
                   <Route path='addProduct' element={<AddProduct />} /> 
               </Route>
             </Route>
-            
+
+            {/*  profile */}
+             
+               <Route  path="/editProfile" element={<UpdateUserProfile/>}/>
+               <Route exact path="/" element={<Profile/>}>
+                  <Route path="/" element={<Services />} />
+                  <Route  path="/update/:id/:userId" element={<UpdateService />} />
+               </Route> 
+                 <Route path="/" element={<UserProfile/>}>
+                     <Route path="/favorite" element={<Favorites/>}/>
+                     <Route path="/wishlist" element={<Wishlist/>}/>
+                     <Route index  element={<NoFavORwish/>}/>
+                </Route>
             <Route path="/auth/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
