@@ -1,0 +1,18 @@
+input{
+    &::placeholder{
+        font-size: 1.3rem;
+    }
+    
+}
+.FormData{
+    background-color: rgb(137, 220, 245) !important;
+    margin-top: 60px !important;
+    border-radius:20px;
+    box-shadow: 0px 0px 20px 12px #7a8c92;
+}
+
+.labelUpdateUser{
+    font-size: 20px;
+    font-weight: 600;
+    color:white
+}
