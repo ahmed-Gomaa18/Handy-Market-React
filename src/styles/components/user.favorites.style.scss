@@ -1,0 +1,49 @@
+.searchBlock{
+    border:2px solid gainsboro;
+    background-color: white;
+    border-radius: 20px;
+    
+    height:50px;
+    & input{
+      
+        height:100%;
+        text-align: center;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius:20px;
+        font-size: 1.3rem;
+        font-weight:300px;
+        &::placeholder{
+            font-size: 1.3rem; 
+        }
+    }
+
+}
+.search-icon {
+    font-size: 2rem !important;
+    text-align: center;
+    margin-right:2px;
+    // color: black;
+}
+.search-btn
+{
+    border: none;
+    padding-right:2px;
+    background-color:white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius:20px;
+}
+.cart{
+    border-radius:20px !important;
+}
+.checkbox
+{
+    width:30px;
+    height:30px;
+}
+.check-label{
+ font-size:14px;
+ font-weight: 500;
+}
+.custom-checkbox{
+   color:red
+}
