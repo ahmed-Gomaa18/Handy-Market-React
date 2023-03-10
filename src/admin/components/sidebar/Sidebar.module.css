@@ -51,7 +51,8 @@
 
 .menuItem:hover {
     cursor: pointer;
-    background: #fe5416ad;
+    /* background: #fe5416ad; */
+    background-color: #72A499;
     margin-left: 0;
 }
 

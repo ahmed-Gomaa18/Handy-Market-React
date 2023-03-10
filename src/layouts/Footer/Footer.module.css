@@ -1,0 +1,26 @@
+footer {
+    background-color: var(--dawn_pink);
+}
+
+footer:not(:first-of-type) {
+    border-top: 1px solid #dedede;
+}
+
+footer .subscribe {
+    background-color: var(--ebony_clay);
+    color: white;
+}
+
+footer .subscribe:hover {
+    background-color: var(--sea_nymph);
+    color: white;
+}
+
+footer a {
+    color: var(--gray);
+}
+
+footer a:hover,
+footer h4 {
+    color: var(--bright_gray);
+}

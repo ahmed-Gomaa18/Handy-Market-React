@@ -1,0 +1,131 @@
+.header_top_strip {
+    background-color: var(--sea_nymph);
+}
+
+.header {
+    background: #e5eaee9c;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(2, 15, 29, 0.242);
+}
+
+.navLink {
+    color: var(--shark);
+    padding: 0 0.45rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.navLink:hover {
+    color: #491fad;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 5px 8px -8px #31039c;
+}
+
+.navBar .navLists .navItem {
+    padding: 0.4rem 0;
+}
+
+.logo_img {
+    width: 17%;
+}
+
+.title {
+    color: #212529;
+    font-size: 2rem;
+    margin-left: .7rem;
+}
+
+.icon {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .navBar {
+        position: absolute;
+        background-color: #e5eaee9c;
+        height: max-content;
+        width: 80%;
+        border-radius: 1rem;
+        top: -500rem;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 2000;
+        transition: 0.5s ease-in-out;
+        box-shadow: 0 2px 4px rgba(2, 15, 29, 0.904);
+        padding: 1rem 1.2rem;
+    }
+
+    .navBar .navLists {
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+        padding: 0.5rem 0;
+    }
+
+    .activeNavbar {
+        top: 6rem;
+    }
+
+    .icon {
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 25px;
+        color: var(--shark);
+        cursor: pointer;
+        display: block;
+    }
+
+    .close_icon {
+        position: absolute;
+        display: block;
+    }
+
+    .sm-none {
+        padding: 0;
+    }
+
+    .nav-icons {
+        margin-left: 8rem;
+    }
+}
+
+@media screen and (max-width: 965px) {
+    .nav-icons {
+        margin-left: 18rem;
+    }
+
+    .title {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .header {
+        padding: 1.5rem 2rem;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .navBar .navLists .navItem {
+        padding: 0 0.7rem;
+    }
+}
+
+@media screen and (min-width: 1240px) {
+    .header {
+        padding: 1rem 8.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logo_img {
+        width: 26%;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+}
