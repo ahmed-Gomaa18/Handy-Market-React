@@ -24,6 +24,10 @@ import UserData from "./admin/pages/UserData";
 import Category from './admin/pages/Category';
 import AllProductsdetails from './admin/pages/AllProductsdetails';
 import NotFound from './pages/NotFound';
+import Order from './pages/Order';
+import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
+
 
 function App() {
   return (
@@ -42,6 +46,10 @@ function App() {
               <Route path="forgetPassword" element={< ForgetPassword/>} />
               <Route path="codeForgetPass" element={< CodeForgetPass/>} />
               <Route path="ChangePassword" element={< ChangePassword/>} />
+              <Route path="order" element={< Order/>} />
+              <Route path="wishlist" element={<Wishlist/>} />
+              <Route path="cart" element={<Cart/>} />
+
             </Route>
 
             {/* Admin Routes */}

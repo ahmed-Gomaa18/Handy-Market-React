@@ -4,6 +4,8 @@ import { BsList, BsHandbag, BsSearch, BsHeart } from 'react-icons/bs';
 import { MdLanguage } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../guard/Auth';
+import CartIcon from './../components/CartIcon';
+
 
 const Navbar = () => {
   const [active, setActive] = useState('navBar');
@@ -62,6 +64,7 @@ const Navbar = () => {
                   <div className="nav-icons">
                     <BsSearch className="me-4" />
                     <BsHandbag className="me-4" />
+                    <CartIcon className="me-4" />
                     <BsHeart className="" />
                   </div>
                 </div>
