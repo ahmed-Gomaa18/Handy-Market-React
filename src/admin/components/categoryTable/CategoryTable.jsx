@@ -9,9 +9,12 @@ import TableRow from "@mui/material/TableRow";
 import styles from './CategoryTable.module.css';
 
 const CategoryTable = () => {
+
   const [categoryData, categoryDataState] = useState([]);
-  const [categoryName, categoryNameState] = useState();
+  const [addCategory, setAddCategory] = useState("");
   
+  const adminId = localStorage.getItem("user-id");
+
   useEffect(() => {
     axios.get('http://localhost:3000/api/v1/category', { 
       headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` 
@@ -23,43 +26,53 @@ const CategoryTable = () => {
     });
   }, [categoryData]);
 
-  const onChangecategoryname = e => {
-    const { name, value } = e.target;
-    const newName = value;
-    categoryNameState(newName);
+//take value from input
+  const handleAddFormChange = (event) => {
+    event.preventDefault();
+    const newName = event.target.value;
+    setAddCategory(newName);
   };
+
+ //function to add new category 
+  const handleAddFormSubmit = event =>{
+    event.preventDefault();
+    axios.post('http://localhost:3000/api/v1/category', {"name":addCategory,"user_id":adminId},{ 
+      headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` 
+    }}).then((res) => {
+      console.log("Done created susccesfuly",res)
+    }).catch((err) => {
+      console.log("error msg", err);
+    });
+  }
 
   const onUpdatecategory = () => {
     axios.patch('http://localhost:3000/api/v1/category', {}, { 
       headers: { "Authorization": `Bearer ${localStorage.getItem("userToken")}` } 
-    }).then((data) => {
-      console.log(data);
+    }).then((res) => {
+      console.log("Done updated susccesfuly", res)
+  
     }).catch((err) => {
       console.log("error msg", err);
     });
   };
 
+
   return (
     <>
-      <div className='{styles.Table} col-lg-5 col-md-9'>
-        <div className="mb-2">
-          <div className="row">
-            <label className="my-2" > Add Category :</label>
-            <div className="col-md-8 mb-2">
-
-              <input className="form-control " ></input>
-            </div>
-            <div className="col-md-4 ">
-              <button className="btn btn-success my-2 " >ADD</button>
-            </div>
-
-          </div>
+      <div className='${styles.Table} col-lg-5 col-md-9'>
+        
+        <div className="row">
+          <h2>Add a New Category</h2>
+          <form onSubmit={handleAddFormSubmit}>
+            <input className="form-control my-2 " type="type" name="category name" value="" placeholder="enter category name.." required="required" onChange={handleAddFormChange}/>
+            <button className="btn btn-success my-2  " type="submit" >ADD</button>
+          </form>
         </div>
 
         <div className="p-2">
           <h3>Our Categories</h3>
           <TableContainer className={styles.tableContainer}  >
-            <Table className="table" >
+            <Table >
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
@@ -69,16 +82,20 @@ const CategoryTable = () => {
               <hr />
               <TableBody >
                 {categoryData.map((row) => (
-                  <TableRow key={row.name} >
-                    <TableCell align="left">{row.name}</TableCell>
-                    {/* <input name="categoryName" value={row.name} onChange={onChangecategoryname} /> */}
-                    <TableCell align="left"><button className="btn btn-sucess" onClick={onUpdatecategory}>Update</button></TableCell>
+                  <TableRow key={row._id} >
+                    <TableCell align="left">
+                    <input className={styles.input} type="text" name="categoryName" value={row.name} onChange={handleAddFormChange} />
+                    </TableCell>
+                    <TableCell align="left"><button className={`${styles.button} btn btn-sucess`} >Edit</button></TableCell>
+                    <TableCell align="left"><button className={`${styles.button} btn btn-sucess`} >Submit</button></TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
         </div>
+
+        
       </div>
     </>
   );

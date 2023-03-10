@@ -9,10 +9,11 @@ import TableRow from "@mui/material/TableRow";
 import styles from './userTable.module.css'
 
 const UsersTable = () => {
+
   const [usersData, usersDataState] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/admin/allUsers', {
-      headers: { "Authorization": `Bearer ${localStorage.getItem("userToken")}` }
+    axios.get('http://localhost:3000/api/v1/admin/allUsers',{
+      headers: {"authorization": `Bearer ${localStorage.getItem("user-token")}` }
     }).then((data) => {
       let test = data.data;
       usersDataState(test);
@@ -24,7 +25,7 @@ const UsersTable = () => {
   const BlockUser = async (param, stateblock) => {
     try {
       let result = await axios.patch(`http://localhost:3000/api/v1/admin/user/block/${!stateblock}/${param}`, {},
-        { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } })
+        { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } })
       if (result) {
         return;
       }
@@ -34,7 +35,7 @@ const UsersTable = () => {
   }
 
   return (
-    <div className={`col-lg-10 col-md-9 ${styles.Table}`}>
+    <div className={`col-lg-10 col-md-9 {styles.Table}`}>
       <h3>All Users</h3>
       <TableContainer className={styles.tableContainer}>
         <Table>
