@@ -51,7 +51,7 @@ const ProductTable = () => {
                 <TableCell align="left">{row.sold_items}</TableCell>
                 <TableCell align="left">{row.created_by.user_name}</TableCell>
                 <TableCell align="left" className={styles.Details}>
-                  <Link to={`/dashboardALLProductDetails/${row._id}`}>
+                  <Link to={`/dashboard/dashboardALLProductDetails/${row._id}`}>
                     <button className={styles.status}>Details</button>
                   </Link>
                 </TableCell>

@@ -40,7 +40,7 @@ const AllProductDetails = (props) => {
                               <span className="inventory-title">Discount: </span> <span className="variant-inventory">{product.discount}%</span>
                           </div>
                           <div className="product-price price mt-2 mb-4">
-                              <span className="price old fs-3 fw-bold me-2">
+                              <span className="fs-3 fw-bold me-2">
                                   <span className="money" data-currency-usd="$60.00" data-currency="USD">{product.price}</span>
                               </span>
                           </div>

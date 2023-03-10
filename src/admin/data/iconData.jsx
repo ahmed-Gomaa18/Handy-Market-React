@@ -14,7 +14,7 @@ export const SidebarIcons = [
     {
         icon: UilUsersAlt ,
         name: "Users",
-        heading:"dashboard/dashboardUsers"
+        heading:"dashboard/users"
     },
     {
         icon: UilPackage ,

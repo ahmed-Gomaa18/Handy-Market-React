@@ -51,7 +51,7 @@ function App() {
                 <Route path="dashboardProductDetails/:id" element={<ProductDetails/>}/>
                 <Route path="dashboardProduct" element={<ProductData/>}/>
                 <Route path="dashboardBalance" element={<BalanceData/>}/>
-                <Route path="dashboardUsers" element={<UserData/>}/>
+                <Route path="users" element={<UserData/>}/>
                 <Route path="dashboardcategory" element={<Category/>}/>
                 <Route path="dashboardALLProductDetails/:id" element={<AllProductsdetails/>}/>
               </Route>
