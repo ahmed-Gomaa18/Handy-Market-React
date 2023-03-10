@@ -1,0 +1,27 @@
+.cart {
+    position: relative;
+}
+
+.cart span {
+    padding: 0 10px;
+}
+
+.icon {
+    color: #000;
+}
+
+.cartBadgeIcon {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #72a499;
+    border-radius: 35%;
+    padding: 0px 3px !important;
+    font-size: 13px;
+}
