@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Aos from 'aos';
+import styles from './Slider.module.css';
 
 const Slider = () => {
     useEffect(() => {
@@ -19,40 +20,40 @@ const Slider = () => {
             <div className="carousel-inner">
                 <div className="carousel-item active" data-bs-interval="10000">
                     <img src="images/slider/slide-1.jpg" className="d-block w-100" alt="slide-1" />
-                    <div className="carousel-caption home-slide1-content d-none d-md-block">
-                        <h2 className="title" data-aos="fade-down">Affectious gifts</h2>
-                        <h3 className="sub-title" data-aos="fade-up">
-                            <img className="left-icon ls-is-cached lazyloaded" src="//cdn.shopify.com/s/files/1/0272/4937/7337/files/slide2-title-1_1024x1024.png?v=1613706191" alt="" />For friends &amp; family
-                            <img className="right-icon ls-is-cached lazyloaded" src="//cdn.shopify.com/s/files/1/0272/4937/7337/files/slide-2-3_1024x1024.png?v=1613704587" alt="" />
+                    <div className={`home-slide1-content carousel-caption d-none d-md-block ${styles.caption}`}>
+                        <h2 className={styles.title} data-aos="fade-down">Affectious gifts</h2>
+                        <h3 className={styles.sub_title} data-aos="fade-up">
+                            <img src="images/title-decor-left.png" alt="decor-left" />For friends &amp; family
+                            <img src="images/title-decor-right.png" alt="decor-right" />
                         </h3>
-                        <div className="link"><Link to="/" data-aos="fade-up">Shop now</Link></div>
+                        <div className={styles.link}><Link to="/" data-aos="fade-up">Shop now</Link></div>
                     </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="2000">
                     <img src="images/slider/slide-2.jpg" className="d-block w-100" alt="slide-2" />
-                    <div className="carousel-caption home-slide2-content d-none d-md-block">
+                    <div className={`home-slide2-content carousel-caption d-none d-md-block ${styles.caption}`}>
                         <span className="bg"></span>
                         <span className="slide-border"></span>
                         <span className="icon">
-                            <img className=" ls-is-cached lazyloaded" src="//cdn.shopify.com/s/files/1/0272/4937/7337/files/slide-1-1_1024x1024.png?v=1613704586" alt="" />
+                            <img src="images/slider/bard.png" alt="bard" />
                         </span>
-                        <h2 className="title" data-aos="fade-down">Handicraft Shop</h2>
-                        <h3 className="sub-title">Just for you</h3>
-                        <div className="link"><Link to="/" data-aos="fade-up">Shop now</Link></div>
+                        <h2 className={styles.title} data-aos="fade-down">Handicraft Shop</h2>
+                        <h3 className={styles.sub_title}>Just for you</h3>
+                        <div className={styles.link}><Link to="/" data-aos="fade-up">Shop now</Link></div>
                     </div>
                 </div>
                 <div className="carousel-item">
                     <img src="images/slider/slide-3.jpg" className="d-block w-100" alt="slide-3" />
-                    <div className="carousel-caption home-slide3-content d-none d-md-block">
+                    <div className={`home-slide2-content carousel-caption d-none d-md-block ${styles.caption}`}>
                         <span className="bg"></span>
                         <span className="slide-border"></span>
                         <span className="icon">
-                            <img className=" ls-is-cached lazyloaded" src="//cdn.shopify.com/s/files/1/0272/4937/7337/files/slide-2-2_1024x1024.png?v=1613704587" alt="" />
-                            <img className=" ls-is-cached lazyloaded" src="//cdn.shopify.com/s/files/1/0272/4937/7337/files/slide-2-3_1024x1024.png?v=1613704587" alt="" />
+                            <img src="images/title-decor-left.png" alt="decor-left" />
+                            <img src="images/title-decor-right.png" alt="decor-right" />
                         </span>
-                        <h2 className="title" data-aos="fade-down">Newly arrived</h2>
-                        <h3 className="sub-title">Sale up to <br />10%</h3>
-                        <div className="link"><Link to="/" data-aos="fade-up">Shop now</Link></div>
+                        <h2 className={styles.title} data-aos="fade-down">Newly arrived</h2>
+                        <h3 className={styles.sub_title}>Sale up to <br />10%</h3>
+                        <div className={styles.link}><Link to="/" data-aos="fade-up">Shop now</Link></div>
                     </div>
                 </div>
             </div>

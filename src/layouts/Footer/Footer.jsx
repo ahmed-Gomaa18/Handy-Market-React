@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsFacebook, BsTwitter, BsInstagram, BsYoutube } from 'react-icons/bs';
 import { GrMail } from 'react-icons/gr';
+import { FiSend } from 'react-icons/fi';
+import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
@@ -9,17 +11,16 @@ const Footer = () => {
     <footer className="py-4">
       <div className="container-xxl">
         <div className="row align-items-center">
-          <div className="col-12 col-md-5 mb-3">
+          <div className="col-12 col-md-5 py-3">
             <div className="footer-top-data d-flex align-items-center">
-              <img src="/images/newsletter.png" alt="newsletter" />
-              <h2 className="ms-3">Sign Up for Newsletter</h2>
+              <h2 className="ms-3"><FiSend className="fs-3"/> Sign Up for Newsletter</h2>
             </div>
           </div>
-          <div className="col-12 col-md-7 mb-3">
+          <div className="col-12 col-md-7 py-2">
             <div className="input-group">
               <input type="text" className="form-control py-1" placeholder="Your Email Address" aria-label="Your Email Address" aria-describedby="basic-addon2" />
               <button
-              className="subscribe btn p-2 fs-5" 
+              className={`btn p-2 fs-5 ${styles.subscribe}`} 
               type="submit" name="subscribe" id="subscribe">Subscribe</button>
             </div>
           </div>
@@ -30,10 +31,10 @@ const Footer = () => {
     <footer className="py-4">
       <div className="container">
         <div className="row">
-          <div className="col-12 col-md-3 mb-5">
-            <h4 className="mb-4">Contact Us</h4>
-            <div className="footer-links d-flex flex-wrap flex-column">
-              <ul className="social_links d-flex align-items-center justify-content-md-between">
+          <div className="col-12 col-md-4 col-lg-3 mb-5">
+            <h4 className="mb-4 text-center">Contact Us</h4>
+            <div className="footer-links d-flex flex-wrap flex-column align-items-center">
+              <ul className="d-flex flex-wrap align-items-center justify-content-md-between">
                 <li className="hintT-top me-3" data-hint="Facebook">
                   <Link to="https://facebook.com">
                     <BsFacebook className="fs-3" />
@@ -70,7 +71,7 @@ const Footer = () => {
               <Link className="py-2 mb-1">Terms & Conditions</Link>
             </div>
           </div>
-          <div className="col-4 col-md-3">
+          <div className="col-4 col-md-2 col-lg-3">
             <h4 className="mb-4">Account</h4>
             <div className="footer-links d-flex flex-column">
               <Link className="py-2 mb-1">About us</Link>
@@ -78,7 +79,7 @@ const Footer = () => {
               <Link className="py-2 mb-1">FAQs</Link>
             </div>
           </div>
-          <div className="col-4 col-md-3">
+          <div className="col-4 col-md-3 col-lg-3">
             <h4 className="mb-4">Quick Links</h4>
             <div className="footer-links d-flex flex-column">
               <Link className="py-2 mb-1">Baskets</Link>
