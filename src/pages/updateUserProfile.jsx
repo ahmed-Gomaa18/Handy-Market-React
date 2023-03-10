@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from 'react-bootstrap/Button';
 import {useNavigate} from 'react-router-dom';
 
-import "../../node_modules/bootstrap/dist/css/bootstrap.css";
-import "../styles/updateUserProfile.css";
-// fullname phone address city street  building_num shop_name user_name
 import axios from "axios";
 
 const UpdateUserProfile = () => {
@@ -113,9 +109,9 @@ const UpdateUserProfile = () => {
                         <input type="Number" className="form-control is-valid " id="validationServer07" placeholder="Building Number" required name="building_num" value={userData?.address?.building_num} onChange={handleChange} />
                     </div>
                     <div className=" mb-3 d-flex col-12 col-sm-8 justify-content-center">
-                        <Button className='message_btn col-sm-5 col-sx-10 mt-2 ' variant='btn btn-outline-primary' onClick={updateData}>
+                        <button className='message_btn col-sm-5 col-sx-10 mt-2 ' variant='btn btn-outline-primary' onClick={updateData}>
                            Upadate
-                        </Button>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -123,15 +119,4 @@ const UpdateUserProfile = () => {
     );
 }
  
-export default UpdateUserProfile;//     const obj={user_name:"mosh",
-//     full_name :"mousheraa gomaa abd eltwab", 
-//     address:{
-//        city:"cairo",
-//    street:"elmadbh",
-//        building_num:5
-//     }, 
-//     phone:"01011101010",
-//     shop_name:"my new work"
-//     }
-
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDRiYTFjM2E5ZGY1MWZiNzgxYzA2ZiIsImlzTG9nZ2VkSW4iOnRydWUsImlhdCI6MTY3ODI3NTUxMiwiZXhwIjoxNjc4MzYxOTEyfQ.zEozKXGAOsZMAYa3sKCcIYa9Tp_Vg9FTt2mMC10aEc4
+export default UpdateUserProfile;

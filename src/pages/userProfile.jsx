@@ -1,20 +1,16 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom"
 import Avatar from '@mui/material/Avatar';
-import { Link, Routes,Outlet } from 'react-router-dom';
-import "../../node_modules/bootstrap/dist/css/bootstrap.css"
+import { Link, Outlet } from 'react-router-dom';
 import { GrFavorite } from "react-icons/gr";
 import { SiWish } from "react-icons/si"
-import "../styles/userProfile.css";
 
-import "../styles/userProfile.css"
 const UserProfile = () => {
     const navigate = useNavigate();
     let followers = 0;
     return (
         <div className='parent '>
             <div className='container  pt-4'>
-                {/* img profile followers */}
                 <div className='d-flex flex-wrap justify-content-center     justify-content-sm-start' >
                     <Avatar className='imageProfile mt-0 me-4' id='avatar' sx={{ width: 140, height: 140 }} alt="Remy Sharp" src="Images/1.jpg" />
                     <div>

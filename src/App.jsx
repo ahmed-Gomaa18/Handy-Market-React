@@ -31,7 +31,7 @@ import Profile from './pages/profile';
 import Services from './components/services';
 import UserProfile from './pages/userProfile';
 import Favorites from './components/user.favorites';
-import Wishlist from './components/user.wishlist';
+import Wishlists from './components/user.wishlist';
 import NoFavORwish from './components/noFavORwish';
 
 import Order from './pages/Order';
@@ -86,16 +86,16 @@ function App() {
 
             {/*  profile */}
              
-               <Route  path="/editProfile" element={<UpdateUserProfile/>}/>
+               {/* <Route  path="/editProfile" element={<UpdateUserProfile/>}/>
                <Route exact path="/" element={<Profile/>}>
                   <Route path="/" element={<Services />} />
                   <Route  path="/update/:id/:userId" element={<UpdateService />} />
                </Route> 
                  <Route path="/" element={<UserProfile/>}>
                      <Route path="/favorite" element={<Favorites/>}/>
-                     <Route path="/wishlist" element={<Wishlist/>}/>
+                     <Route path="/wishlist" element={<Wishlists/>}/>
                      <Route index  element={<NoFavORwish/>}/>
-                </Route>
+                </Route> */}
             <Route path="/auth/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

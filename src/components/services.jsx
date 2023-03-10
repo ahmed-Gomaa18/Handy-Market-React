@@ -1,6 +1,4 @@
 import React, { useState,useEffect } from 'react';
-import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-import "../styles/services.style.css"
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios"

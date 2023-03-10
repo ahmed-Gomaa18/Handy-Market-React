@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useParams } from "react-router-dom";
-import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-import Button from 'react-bootstrap/Button';
-import "../styles/updateservice.css"
+import { useParams } from "react-router-dom";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
@@ -128,8 +125,8 @@ const UpdateService = (props) => {
                     </div>
                 </div>
                 <div className='mb-3 row  justify-content-evenly'>
-                     <Button className='follow_btn col-sm-4  col-sx-10  mt-4' variant='btn btn-outline-primary'  onClick={handleUpdate}>Update</Button>
-                    <Button className='follow_btn col-sm-4  col-sx-10  mt-4' variant='btn btn-outline-primary' onClick={handleDelete}>Delete</Button>
+                     <button className='follow_btn col-sm-4  col-sx-10  mt-4' variant='btn btn-outline-primary'  onClick={handleUpdate}>Update</button>
+                    <button className='follow_btn col-sm-4  col-sx-10  mt-4' variant='btn btn-outline-primary' onClick={handleDelete}>Delete</button>
                 </div>
             </div>
             
@@ -138,4 +135,3 @@ const UpdateService = (props) => {
 }
 
 export default UpdateService;
-// http://localhost:3000/api/v1/product/seller/6404ba1c3a9df51fb781c06f/update/64065e075bbca500ca2ddec7

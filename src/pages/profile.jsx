@@ -1,24 +1,14 @@
-// import React, { Children } from 'react';
 import { MdLocationOn,MdBusinessCenter,MdOutlineStarRate } from "react-icons/md"
-import {IoMdAddCircleOutline} from "react-icons/io"
-import { TfiEmail } from "react-icons/tfi"
 import {BsFillTelephoneFill} from 'react-icons/bs'
 import {MdEmail} from "react-icons/md"
-import Button from 'react-bootstrap/Button';
 import { Link} from 'react-router-dom';
 import { IconContext } from "react-icons";
 import Avatar from '@mui/material/Avatar';
-import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-import "../styles/profile.style.css"
-import { NavLink ,Outlet} from 'react-router-dom';
+import { NavLink, Outlet} from 'react-router-dom';
 import {useEffect,useState} from "react"
 import axios from "axios";
 
-//npm install axios
-const Profile = () => {
-
-   //get user profile data
-  
+const Profile = () => {  
    const [userData,userState]=useState(null);
 
   const sorcImag = 'http://localhost:3000/api/v1/image';

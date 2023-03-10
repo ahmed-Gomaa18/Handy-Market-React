@@ -1,6 +1,5 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
-import "../../node_modules/bootstrap/dist/css/bootstrap.css"
 
 const NoFavORwish = () => {
     return (

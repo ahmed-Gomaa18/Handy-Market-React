@@ -1,10 +1,8 @@
 import React from 'react';
 import {useState,useEffect} from "react"
 import axios from "axios"
-import NoFavORwish from "./noFavORwish"
 import RecipeReviewCard from "./cart"
 import { BiSearch } from "react-icons/bi"
-import { Checkbox } from '@mui/material/Checkbox';
 const Wishlist = () => {
 
     const [wishlistData ,setWishlist]=useState({Data:[]})
