@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import styles from './Register.module.css';
 
 const Register = () => {
     const [form, setForm] = useState({
@@ -104,7 +105,7 @@ const Register = () => {
     };
 
     return (
-        <div className="container-fluid ">
+        <div className="container-fluid">
             <div className="row">
                 <div className='offset-lg-1 col-md-6 pe-lg-5 order-s-frist'>
                     <div className='mt-2'>
@@ -186,17 +187,17 @@ const Register = () => {
                                 <input type="radio" className="form-check-input" id="Male" name="Male" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
                                 <label className="form-check-label" htmlFor="exampleCheck1">Male</label>
                             </div>
-                            <div class="text-danger">
+                            <div className="text-danger">
                                 {formErrors.gender}
                             </div>
-                            <button type="submit" className="btn btn-primary   position-absolute end-50 mb-3">Submit</button>
+                            <button type="submit" className="btn btn-primary position-absolute end-50 mb-3">Submit</button>
                         </form>
                     </div>
                 </div>
                 <div className="col-md-5 ps-lg-5 order-s-last">
-                    <div className="h-100 layer">
-                        <img src="/images/1.jpg" className="img-fluid h-100 " alt=" user img" />
-                        <div className='overlay'>
+                    <div className={`h-100 ${styles.layer}`}>
+                        <img src="images/1.jpg" className="img-fluid h-100 " alt=" user img" />
+                        <div className={styles.overlay}>
                         </div>
                     </div>
                 </div>

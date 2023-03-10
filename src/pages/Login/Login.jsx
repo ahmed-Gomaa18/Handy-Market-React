@@ -3,7 +3,8 @@ import axios from "axios";
 import { FaWpbeginner } from 'react-icons/fa';
 import { AiOutlineUser } from "react-icons/ai";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../guard/Auth";
+import { useAuth } from "../../guard/Auth";
+import styles from './Login.module.css';
 
 const Login = () => {
     const [form, setForm] = useState({
@@ -72,28 +73,28 @@ const Login = () => {
         });
     };
     return (
-        <div className="mycontainer">
-            <div className="forms-container">
-                <div className="signin-signup">
-                    <form onSubmit={onSubmitForm} className="sign-in-form myform">
+        <div className={styles.mycontainer}>
+            <div className={styles.forms_container}>
+                <div className={styles.signin_signup}>
+                    <form onSubmit={onSubmitForm} className={styles.myform}>
                         <h2 className="title">Log in</h2>
-                        <div className="input-field">
+                        <div className={styles.input_field}>
                             <i><AiOutlineUser /></i>
                             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
                         </div>
-                        <div className='err'>
+                        <div className={styles.err}>
                             {formErrors.email}
                         </div>
                         <div className=" text-danger">
                             {errMssg && <p>{errMssg}</p>}
                         </div>
-                        <div className="input-field">
-                            <i > <FaWpbeginner /> </i>
+                        <div className={styles.input_field}>
+                            <i><FaWpbeginner /></i>
                             <input type="password" className="form-control" id="exampleInputPassword1" name="password"
                                 placeholder="Password" value={form.password} onChange={onUpdateField} />
                         </div>
-                        <div className='err'>
+                        <div className={styles.err}>
                             {formErrors.password}
                         </div>
                         <div className="form-check">
@@ -101,25 +102,25 @@ const Login = () => {
                             <label className="form-check-label" htmlFor="exampleCheck1">rememberMe</label>
                         </div>
                         <Link to="/forgetPassword">forget password</Link>
-                        <input type="submit" value="Login" className="mybtn solid" />
+                        <input type="submit" value="Login" className={`solid ${styles.mybtn}`} />
                     </form>
                 </div>
             </div>
-            <div className="panels-container">
-                <div className="panel left-panel">
-                    <div className="content">
-                        <h3>New here ?</h3>
-                        <p>
+            <div className={styles.panels_container}>
+                <div className={`${styles.panel} ${styles.left_panel}`}>
+                    <div className={styles.content}>
+                        <h3 className={styles.panel_h3}>New here ?</h3>
+                        <p className={styles.panel_para}>
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
                             ex ratione. Aliquid!
                         </p>
                         <Link to="/role">
-                            <button className="mybtn transparent" id="sign-up-btn">
+                            <button className={`${styles.mybtn} ${styles.transparent}`} id="sign-up-btn">
                                 Sign up
                             </button>
                         </Link>
                     </div>
-                    <img src="/images/undraw.svg" className="myimage" alt="" />
+                    <img src="/images/undraw.svg" className={styles.myimage} alt="" />
                 </div>
             </div>
         </div>

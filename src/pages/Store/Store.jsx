@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { BsFillSuitHeartFill, BsFillCartFill } from 'react-icons/bs';
 import { MdPageview } from 'react-icons/md';
 import Rating from '@mui/material/Rating';
-import SearchStore from '../components/SearchStore';
-import FilterStore from '../components/FilterStore';
+import SearchStore from '../../components/SearchStore';
+import FilterStore from '../../components/FilterStore';
+import styles from './Store.module.css';
 
 const base_url = "http://localhost:3000/api/v1/product";
 
@@ -62,27 +63,26 @@ const Store = () => {
                             products && products.map((product) => (
 
                                 <div className="col-md-3 col-sm-12" key={product._id}>
-                                    <div className="product-grid">
+                                    <div className={styles.product_grid}>
                                         {console.log(product.ratings_id[0]?.rating)}
-                                        <div className="product-image">
-                                            <Link id='link' to="#" className="image d-flex align-items-center">
-                                                {product.photos && <img className="pic-1" src={product.photos[0]} alt='photoTwo' />}
-                                                {(product.photos[1] && <img className="pic-2" src={product.photos[1]} alt='photoTwo' />) || <img className="pic-2" src={product.photos[0]} alt='photoTwo' />}
-
+                                        <div className={styles.product_image}>
+                                            <Link id='link' to="#" className={`d-flex align-items-center ${styles.product_image}`}>
+                                                {product.photos && <img className={styles.pic_1} src={product.photos[0]} alt='photoTwo' />}
+                                                {(product.photos[1] && <img className={styles.pic_2} src={product.photos[1]} alt='photoTwo' />) || <img className="pic_2" src={product.photos[0]} alt='photoTwo' />}
                                             </Link>
                                             {product.discount ? <span className="product-discount-label">-{product.discount}%</span> : ''}
-                                            <ul className="social">
+                                            <ul className={styles.social}>
                                                 <li><Link id='link' to="/" data-tip="Add to Wishlist"> <i><BsFillSuitHeartFill /></i></Link> </li>
                                                 <li><Link id='link' to="#" data-tip="Quick View"> <i><MdPageview /></i></Link> </li>
                                             </ul>
                                         </div>
 
-                                        <div className="product-content">
-                                            <h3 className="title"><Link id='link' to="#">{product.product_name}</Link></h3>
-                                            {/* <span className="product-category"><Link to="#">Category: {product.categories_id[0].name} {product.categories_id[1] ? ', ' + product.categories_id[1].name : ''}</Link></span> */}
-                                            <div className="price">${product.price}</div>
-                                            <Link className="add-to-cart" to="#" data-tip="add-to-cart">< BsFillCartFill /> ADD TO CART </Link>
-                                            {product.ratings_id.length >= 1 ? <Rating className='rating' name="read-only" value={calculateRating(product.ratings_id)} readOnly /> : <Rating className='rating' name="read-only" value='' readOnly />}
+                                        <div className={styles.product_content}>
+                                            <h3 className={styles.title}><Link id='link' to="#">{product.product_name}</Link></h3>
+                                            {/* <span className={styles.product_category}><Link to="#">Category: {product.categories_id[0].name} {product.categories_id[1] ? ', ' + product.categories_id[1].name : ''}</Link></span> */}
+                                            <div className={styles.price}>${product.price}</div>
+                                            <Link className={styles.add_to_cart} to="/cart" data-tip="add-to-cart">< BsFillCartFill /> ADD TO CART </Link>
+                                            {product.ratings_id.length >= 1 ? <Rating className={styles.rating} name="read-only" value={calculateRating(product.ratings_id)} readOnly /> : <Rating className={styles.rating} name="read-only" value='' readOnly />}
                                         </div>
                                     </div>
                                 </div>

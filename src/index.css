@@ -125,20 +125,23 @@
   
   .btn{
     padding: .6rem 1.5rem;
-    background: var(--gradientColor);
+    background: var(--orange);
     border-radius: 3rem;
     border: none;
-    outline: none;
+    /* outline: none; */
     cursor: pointer;
   }
   
-  .btn a{
-    color: var(--whiteColor);
+  .btn a {
+    /* color: var(--whiteColor); */
     font-weight: 500;
   }
   
-  .btn:hover{
-    background: var(--SecondaryColor);
+  .btn:hover,
+  .btn:active {
+    outline: 1px solid var(--orange) !important;
+    background: transparent !important;
+    color: var(--orange) !important;
   }
   
   image, video{

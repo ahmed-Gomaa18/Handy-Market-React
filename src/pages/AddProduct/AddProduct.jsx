@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { CategoryProduct } from '../components/CategoryProduct';
+import { CategoryProduct } from '../../components/CategoryProduct';
+import styles from './AddProduct.module.css';
 
 let arrayOfCategoryID = [];
 const AddProduct = () => {
@@ -115,7 +116,7 @@ const AddProduct = () => {
 
     return (
         <>
-            <div id="add-product-container" className="container d-flex mt-5 mb-5 rounded-2">
+            <div id={styles.add_product_container} className="container d-flex mt-5 mb-5 rounded-2">
                 <div className="col-lg-6 col-md-12 col-sm-12">
                     <form className="mt-4 ps-3 col-12 row rounded-2" ref={formRef} onSubmit={handelSubmit}>
                         {failAlert && <div className="alert alert-danger text-center" role="alert"> {failAlert}</div>}
@@ -158,7 +159,7 @@ const AddProduct = () => {
                     </form>
                 </div>
                 <div className="col-6 text-center d-lg-flex d-none align-items-center">
-                    <img src="images\addProduct\web_shopping.png" alt="addProduct" height="70%" width="100%" />
+                    <img src="/images/addProduct/web_shopping.png" alt="addProduct" height="70%" width="100%" />
                 </div>
             </div>
         </>

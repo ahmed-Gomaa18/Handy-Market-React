@@ -12,7 +12,7 @@ const UsersTable = () => {
   const [usersData, usersDataState] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:3000/api/v1/admin/allUsers', {
-      headers: { "Authorization": `Bearer ${localStorage.getItem("userToken")}` }
+      headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` }
     }).then((data) => {
       let test = data.data;
       usersDataState(test);
@@ -34,7 +34,7 @@ const UsersTable = () => {
   }
 
   return (
-    <div className={`col-lg-10 col-md-9 ${styles.Table}`}>
+    <div className="col-lg-10 col-md-9">
       <h3>All Users</h3>
       <TableContainer className={styles.tableContainer}>
         <Table>
