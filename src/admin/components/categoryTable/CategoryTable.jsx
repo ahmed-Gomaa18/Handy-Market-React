@@ -64,7 +64,7 @@ const CategoryTable = () => {
         <div className="row">
           <h2>Add a New Category</h2>
           <form onSubmit={handleAddFormSubmit}>
-            <input className="form-control my-2 " type="type" name="category name" placeholder="enter category name.." required="required" onChange={handleAddFormChange}></input>
+            <input className="form-control my-2 " type="type" name="category name" value="" placeholder="enter category name.." required="required" onChange={handleAddFormChange}/>
             <button className="btn btn-success my-2  " type="submit" >ADD</button>
           </form>
         </div>
@@ -84,7 +84,7 @@ const CategoryTable = () => {
                 {categoryData.map((row) => (
                   <TableRow key={row._id} >
                     <TableCell align="left">
-                    <input className={styles.input} type="text" name="categoryName" value={row.name} />
+                    <input className={styles.input} type="text" name="categoryName" value={row.name} onChange={handleAddFormChange} />
                     </TableCell>
                     <TableCell align="left"><button className={`${styles.button} btn btn-sucess`} >Edit</button></TableCell>
                     <TableCell align="left"><button className={`${styles.button} btn btn-sucess`} >Submit</button></TableCell>
