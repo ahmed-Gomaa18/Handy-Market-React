@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {FiShoppingCart} from 'react-icons/fi';
-
+import styles from './CartIcon.module.css';
 
 const CartIcon = () => {
 
@@ -27,13 +27,11 @@ const CartIcon = () => {
   
   return (
     <>
-    <div className="cart d-inline position-relative">
-      <span ><Link to='/cart' className='text-white text-decoration-none'><FiShoppingCart size='30px'/></Link></span>
-      <span className="badeg bg-primary cartBadgeIcon mt-1">{totalQTY}</span>
-    </div>
-
+      <div className={`me-4 ${styles.cart}`}>
+        <Link to='/cart'><FiShoppingCart className={styles.icon} /></Link>
+        <span className={styles.cartBadgeIcon}>{totalQTY}</span>
+      </div>
     </>
-
   )
 }
 

@@ -26,7 +26,7 @@ import AllProductsdetails from './admin/pages/AllProductsdetails';
 import NotFound from './pages/NotFound';
 import Order from './pages/Order';
 import Wishlist from './pages/Wishlist';
-import Cart from './pages/Cart';
+import Cart from './pages/Cart/Cart';
 
 
 function App() {
