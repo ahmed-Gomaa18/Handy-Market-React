@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import AddItemToCart from './../components/AddItemToCart';
 import { BiTrash } from "react-icons/bi";
 
-
-
 const Wishlist = () => {
 
     const sorcImag = 'http://localhost:3000/api/v1/image';

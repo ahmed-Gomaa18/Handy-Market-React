@@ -26,5 +26,6 @@ th {
 }
 
 .status:hover {
-  background-color: #fe5416ad;
+  /* background-color: #fe5416ad; */
+  background-color: #72A499;
 }

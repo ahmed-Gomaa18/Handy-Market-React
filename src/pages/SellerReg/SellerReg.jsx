@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import styles from './SellerReg.module.css';
 
 const SellerSignUp = () => {
     const [form, setForm] = useState({
@@ -246,9 +247,9 @@ const SellerSignUp = () => {
                     </div>
                 </div>
                 <div className="col-md-5 mt-5 ps-lg-5">
-                    <div className="h-100 layer">
-                        <img src="img/1.jpg" className="img-fluid h-100 imgg" alt="" />
-                        <div className='overlay'>
+                    <div className={`h-100 ${styles.layer}`}>
+                        <img src="images/1.jpg" className="img-fluid h-100 imgg" alt="" />
+                        <div className={styles.overlay}>
                         </div>
                     </div>
                 </div>

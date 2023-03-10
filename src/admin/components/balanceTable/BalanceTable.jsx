@@ -23,7 +23,7 @@ const BalanceTable = () => {
   }, [balanceData]);
 
   return (
-    <div className='{styles.Table} col-lg-10 col-md-9'>
+    <div className={`col-lg-10 col-md-9 ${styles.Table}`}>
       <h3>Our Balance</h3>
       <TableContainer className={styles.tableContainer}  >
         <Table >

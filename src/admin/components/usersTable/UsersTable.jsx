@@ -35,7 +35,7 @@ const UsersTable = () => {
   }
 
   return (
-    <div className={`col-lg-10 col-md-9 {styles.Table}`}>
+    <div className={`col-lg-10 col-md-9 ${styles.Table}`}>
       <h3>All Users</h3>
       <TableContainer className={styles.tableContainer}>
         <Table>
