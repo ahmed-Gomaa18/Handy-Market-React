@@ -57,6 +57,9 @@ function App() {
               <Route path="forgetPassword" element={< ForgetPassword/>} />
               <Route path="codeForgetPass" element={< CodeForgetPass/>} />
               <Route path="ChangePassword" element={< ChangePassword/>} />
+              <Route path="profile" element={<UserProfile />} />
+              <Route path="favorite" element={<Favorites/>} />
+              <Route path="wishlist" element={<Wishlists/>} />
               <Route path="order" element={< Order/>} />
               <Route path="wishlist" element={<Wishlist/>} />
               <Route path="cart" element={<Cart/>} />

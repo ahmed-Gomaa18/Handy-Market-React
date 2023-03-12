@@ -231,15 +231,15 @@ const SellerSignUp = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="form-check form-check-inline " >
-                                <input type="radio" className="form-check-input" id="female" name="female" value="Female" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
-                                <label className="form-check-label" htmlFor="exampleCheck">Female</label>
+                            <div className="form-check form-check-inline">
+                                <input type="radio" className="form-check-input" id="female" name="gender" value="Female" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
+                                <label className="form-check-label" htmlFor="female">Female</label>
                             </div>
-                            <div className="form-check form-check-inline " >
-                                <input type="radio" className="form-check-input" id="Male" name="Male" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
-                                <label className="form-check-label" htmlFor="exampleCheck1">Male</label>
+                            <div className="form-check form-check-inline">
+                                <input type="radio" className="form-check-input" id="male" name="gender" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
+                                <label className="form-check-label" htmlFor="male">Male</label>
                             </div>
-                            <div className=" text-danger  ">
+                            <div className=" text-danger">
                                 {formErrors.gender}
                             </div>
                             <button type="submit" className="btn btn-primary position-absolute end-50 mb-2">Submit</button>
