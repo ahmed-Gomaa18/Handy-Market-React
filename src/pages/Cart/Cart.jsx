@@ -1,74 +1,103 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Action_buttons from '../../components/Action_buttons';
+import Action_buttons from "../../components/Action_buttons/Action_buttons";
+import styles from "./Cart.module.css";
 
 const Cart = () => {
 
-  const sorcImag = 'http://localhost:3000/api/v1/image';
+    const sorcImag = 'http://localhost:3000/api/v1/image';
 
-  const [items, itemsState] = useState([]);
+    const [items, itemsState] = useState([]);
 
-  const getData = () => {
-    let dataLocal = JSON.parse(localStorage.getItem('data-cart'));
-    if (dataLocal != null) {
-      itemsState(dataLocal);
+    const getData = () => {
+        let dataLocal = JSON.parse(localStorage.getItem('data-cart'));
+        if (dataLocal != null) {
+            itemsState(dataLocal);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const [totalPrice, totalPriceState] = useState(0);
+
+    useEffect(() => {
+        let arrayItems = items;
+        let totPric = arrayItems.reduce((x, y) => x + (y.price * y.qty), 0);
+        totalPriceState(totPric);
+    }, [items]);
+
+    window.addEventListener("storage", (e) => {
+        getData();
+    });
+
+    const clearCart = () => {
+        localStorage.setItem('data-cart', JSON.stringify([]));
+        itemsState([]);
+        window.dispatchEvent(new Event('storage'));
     }
-  };
+    return (
+        <div className="ux-app">
 
-  useEffect(() => {
-    getData();
-  }, []);
+            <div className="container">
+                <div className="row">
+                    <h2 className='cartItems my-3 text-center pt-5'>Shopping Cart</h2>
+                    {items.length === 0 && <h5 className='text-center h2'>Cart is empty</h5>}
+                </div>
 
-  const [totalPrice, totalPriceState] = useState(0);
+                <div className="row justify-content-between my-5">
+                    <div className="basket col-sm-12 col-md-7 col-md-offset-1">
+                        {items && items.map((item, index) => (
+                            <div className={`${styles.product} ${styles.ux_card}`} key={index}>
+                                <div className="col-3">
+                                    <img src={`${sorcImag}${item.photos[0]}`} alt={item.product_name} className='w-100 h-100' />
+                                </div>
 
-  useEffect(() => {
-    let arrayIteem = items;
-    let totPric = arrayIteem.reduce((x, y) => x + (y.price * y.qty), 0);
-    totalPriceState(totPric);
-  }, [items]);
+                                <div className={`col-9 ${styles.product_info}`}>
+                                    <div className="head d-flex justify-content-between">
+                                        <span className="title pb-2"><Link href="/product/{id}" className='fs-4'>{item.product_name}</Link></span>
+                                        <span className={`pb-2 fs-4 ${styles.price}`}>{item.price} LE</span>
+                                    </div>
 
-  window.addEventListener("storage", (e) => {
-    getData();
-  });
+                                    <div className="content mb-2 d-flex justify-content-between">
+                                        <span className={styles.shop}>Shop Name : {item.created_by.user_name} </span>
+                                        <span className={styles.stock}>In Stock : {item.number_of_items}</span>
+                                    </div>
 
-  const clearCart = () => {
-    localStorage.setItem('data-cart', JSON.stringify([]));
-    itemsState([]);
-    window.dispatchEvent(new Event('storage'));
-  }
-  return (
-    <>
+                                    <div className="action d-flex flex-column">
+                                        <Action_buttons item={item} />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
-      <div className="container my-5 shadow-lg p-3 mb-5 bg-white rounded py-5 ">
+                    <div className={`col-12 col-md-4 ${styles.summary}`}>
+                        <dl className={`d-flex flex-column ${styles.subtotal}`}>
+                            <div className="subtotal_price d-flex justify-content-center fs-3 fw-bold py-2">
+                                <dt>Summary</dt>
+                            </div>
+                        </dl>
 
-        <h2 className='cartItems my-3 text-center pt-5'>Shopping Cart</h2>
-        {items.length === 0 && <h5 className='text-center h2'>Cart is empty</h5>}
-        {items && items.map((item, index) => (
-          <div key={index} className='row py-3'>
-            <div className="col-md-3">
-              <img className='w-100' src={`${sorcImag}${item.photos[0]}`} alt="" />
+                        <dl className={`w-100 py-2 d-flex align-content-center justify-content-between ${styles.total}`}>
+                            <dt>Total</dt>
+                            <dd>{totalPrice} LE</dd>
+                        </dl>
+
+                        <dl className={`w-100 py-4 d-flex align-content-center justify-content-between ${styles.cart_actions}`}>
+                            <button className={`btn w-75 mb-2 ${styles.btn_clear}`} onClick={() => clearCart()}>Clear All</button>
+                            <Link to='/order'>
+                                <button className={`btn w-75 ${styles.btn_checkout}`}>
+                                Checkout
+                                </button>
+                            </Link>
+                        </dl>
+                    </div>
+                </div>
             </div>
-            <div className="col-md-6 offset-md-1 d-flex align-items-center">
-              <div>
-                <h6>{item.product_name}</h6>
-                <p className='price'>{item.price}EL</p>
-                <Action_buttons item={item} />
-              </div>
-            </div>
-          </div>
-        ))}
-
-        <div className="row mt-5">
-          <div className="offset-md-8 col-md-3 mt-5">
-            <p className="text-white text-center btn btn-primary w-75">Total:{ totalPrice } EGP</p>
-            <button className="btn btn-warning w-75 mb-2" onClick={ () => clearCart() }>Clear All</button>
-            <Link to='/order' className="btn btn-success w-75">Checkout</Link>
-          </div>
         </div>
+    )
+};
 
-      </div>
-    </>
-  )
-}
-
-export default Cart
+export default Cart;

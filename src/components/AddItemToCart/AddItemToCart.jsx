@@ -1,19 +1,16 @@
 
 const AddItemToCart = (props) => {
-
     const {item} = props;
     let items = [];
 
-
-
     const addToLocalStorage =(data)=>{
-    localStorage.setItem("data-cart",JSON.stringify(data));
-    window.dispatchEvent(new Event('storage'));
+      localStorage.setItem("data-cart",JSON.stringify(data));
+      window.dispatchEvent(new Event('storage'));
     };
 
     const addItem = (item)=>{
       if (props.removeProduct) {
-       props.removeProduct(item)
+        props.removeProduct(item)
       }
       
       let dataLocal = JSON.parse(localStorage.getItem('data-cart'));
@@ -33,9 +30,12 @@ const AddItemToCart = (props) => {
   
   return (
     <>
-     <button onClick={()=>{addItem(item)}} className='btn mainColor text-white w-100'>Add to cart</button>
+    <button type="button" class="btn mb-2 mb-md-0 btn-round btn-outline" onClick={()=>{addItem(item)}}>
+      Add to cart
+    </button>
+     {/* <button onClick={()=>{addItem(item)}} className='btn mainColor text-white w-100'>Add to cart</button> */}
     </>
   )
 }
 
-export default AddItemToCart
+export default AddItemToCart;

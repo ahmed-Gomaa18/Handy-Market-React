@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { BsList, BsSearch, BsHeart } from 'react-icons/bs';
 import { MdLanguage } from 'react-icons/md';
-import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../guard/Auth';
+import CartIcon from '../../components/CartIcon/CartIcon';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -62,7 +62,7 @@ const Navbar = () => {
                 <div className="d-flex justify-content-end">
                   <div className="d-flex">
                     <BsSearch className="me-4" />
-                    <FiShoppingCart className="me-4" />
+                    <CartIcon className="me-4" />
                     <BsHeart />
                   </div>
                 </div>
@@ -90,11 +90,11 @@ const Navbar = () => {
               </li>
 
               <li className={styles.navItem}>
-                <Link to="/" className={styles.navLink}>Shop</Link>
+                <Link to="/seller/addProduct" className={styles.navLink}>Add Product</Link>
               </li>
 
               <li className={styles.navItem}>
-                <Link to="/seller" className={styles.navLink}>Store</Link>
+                <Link to="/store" className={styles.navLink}>Store</Link>
               </li>
 
               <li className={styles.navItem}>

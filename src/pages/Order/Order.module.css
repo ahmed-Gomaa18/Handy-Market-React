@@ -1,0 +1,48 @@
+.card_body {
+    border-bottom: 1px solid #eee;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.search__title {
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    color: #ff8b88;
+}
+
+.input_control {
+    width: 100%;
+    padding: 8px 15px;
+    color: #575756;
+    background-color: transparent;
+    font-size: 17px;
+    line-height: 15px;
+    border-radius: 7px;
+    border: 1px solid #575756;
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+}
+
+.input_control::placeholder {
+    color: color(#575756 a(0.8));
+    letter-spacing: 1.5px;
+}
+
+.btn_clear {
+    background-color: #e2c275 !important;
+}
+
+.btn_clear:hover {
+    background-color: #f8be32 !important;
+}
+
+.btn_checkout {
+    color: #000;
+    background-color: var(--sea_nymph) !important;
+}
+
+.btn_checkout:hover {
+    color: #000 !important;
+    background-color: #5fd4ba !important;
+}

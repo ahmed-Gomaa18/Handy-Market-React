@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import styles from './FilterStore.module.css';
 
 const FilterStore = ({ getFilterCategory }) => {
     const [categories, setCategories] = useState([]);
@@ -18,10 +19,17 @@ const FilterStore = ({ getFilterCategory }) => {
                 {
                     categories && categories.map((category) => (
                         <div className="form-check m-2" key={category._id}>
-                            <input className="form-check-input" type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
-                            <label className="form-check-label" htmlFor={category._id}>
-                                {category.name}
-                            </label>
+
+                            <div className="col-md-4">
+                                <h2 className="heading-section">
+                                    <small>Checkboxes</small>
+                                </h2>
+
+                                <label className={styles.checkbox}><span>Success</span>
+                                    <input type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
+                                    <span className={styles.checkmark}></span>
+                                </label>
+                            </div>
                         </div>
                     ))
                 }
