@@ -51,7 +51,7 @@ const ChangePassword = () => {
                         <h2 className="title">Forget password</h2>
                         <div className={styles.input_field}>
                             <i > <AiOutlineUser /></i>
-                            <input type="email" classNameName="form-control" id="exampleInputEmail1"
+                            <input type="email" className="form-control" id="exampleInputEmail1"
                                 placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
                         </div>
                         <div className={styles.err}>

@@ -11,14 +11,14 @@ const Services = () => {
     const ProductUrl="http://localhost:3000/api/v1/product/seller/true/";
     const sorcImag = 'http://localhost:3000/api/v1/image';
     
-//authorization
-     useEffect(() => {
+    useEffect(() => {
       let userToken=localStorage.getItem("userToken")
       axios.get(`${ProductUrl}`,{headers:{"authorization":`Bearer ${userToken}`}}).then((data)=>{
          var test=data.data.products;
          console.log(test)
          setProductsState(test);
     })},[]);
+    
    const handleClick=(e,product)=>{
        navigate(`/update/${product._id}/${userId}`)
    }

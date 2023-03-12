@@ -34,7 +34,7 @@ import Favorites from './components/user.favorites';
 import Wishlists from './components/user.wishlist';
 import NoFavORwish from './components/noFavORwish';
 
-import Order from './pages/Order';
+import Order from './pages/Order/Order';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart/Cart';
 
@@ -60,7 +60,7 @@ function App() {
               <Route path="order" element={< Order/>} />
               <Route path="wishlist" element={<Wishlist/>} />
               <Route path="cart" element={<Cart/>} />
-
+              <Route path="store" element={<Store />} />
             </Route>
 
             {/* Admin Routes */}
@@ -79,7 +79,6 @@ function App() {
             {/* Seller Routes */}
             <Route element={<SellerAuth />}>
               <Route path="seller" element={<Layout />}>
-                  <Route index element={<Store />} />
                   <Route path='addProduct' element={<AddProduct />} /> 
               </Route>
             </Route>

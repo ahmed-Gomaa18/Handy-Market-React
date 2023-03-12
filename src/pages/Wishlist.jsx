@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddItemToCart from './../components/AddItemToCart';
+import AddItemToCart from "../components/AddItemToCart/AddItemToCart";
 import { BiTrash } from "react-icons/bi";
 
 const Wishlist = () => {
