@@ -28,7 +28,7 @@ const CartIcon = () => {
   return (
     <>
       <div className={`me-4 ${styles.cart}`}>
-        <Link to='/cart'><FiShoppingCart className={styles.icon} /></Link>
+        <Link to='/cart'><FiShoppingCart className={`fs-4 ${styles.icon}`} /></Link>
         <span className={styles.cartBadgeIcon}>{totalQTY}</span>
       </div>
     </>

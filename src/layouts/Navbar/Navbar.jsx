@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { BsList, BsSearch, BsHeart } from 'react-icons/bs';
+import { MdOutlineAccountCircle } from 'react-icons/md';
 import { MdLanguage } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../guard/Auth';
@@ -59,11 +60,16 @@ const Navbar = () => {
               </div>
 
               <div className="col-5">
-                <div className="d-flex justify-content-end">
-                  <div className="d-flex">
-                    <BsSearch className="me-4" />
+                <div className="d-flex align-content-center justify-content-end">
+                  <div className="d-flex align-items-center">
+                    <BsSearch className="me-4 fs-4" />
                     <CartIcon className="me-4" />
-                    <BsHeart />
+                    <BsHeart className="me-4 fs-4" />
+                    {auth.token && (
+                      <Link to="/profile">
+                        <MdOutlineAccountCircle className="fs-3" />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

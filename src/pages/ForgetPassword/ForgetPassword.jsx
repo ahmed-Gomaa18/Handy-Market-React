@@ -29,7 +29,7 @@ const ForgetPassword = () => {
         axios.post('http://localhost:3000/api/v1/auth/sendCode', form).then((res) => {
             console.log('sucess', res);
             if (res.data.message === "Done , Please cheack Your Email") {
-                navigate('/CodeForgetPass');
+                navigate('/CodeForgetPass', { state: form.email });
             }
         }).catch((err) => console.log(err));
     };

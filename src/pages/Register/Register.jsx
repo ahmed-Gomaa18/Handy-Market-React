@@ -173,19 +173,19 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="form-group col mb-2">
-                                <label htmlFor="examplephone " className='my-2'>phone</label>
+                                <label htmlFor="examplephone" className='my-2'>phone</label>
                                 <input type="text" className="form-control" id="examplephone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
                                 <div className=" text-danger">
                                     {formErrors.phone}
                                 </div>
                             </div>
                             <div className="form-check form-check-inline">
-                                <input type="radio" className="form-check-input" id="female" name="female" value="Female" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
-                                <label className="form-check-label" htmlFor="exampleCheck">Female</label>
+                                <input type="radio" className="form-check-input" id="female" name="gender" value="Female" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
+                                <label className="form-check-label" htmlFor="female">Female</label>
                             </div>
                             <div className="form-check form-check-inline">
-                                <input type="radio" className="form-check-input" id="Male" name="Male" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
-                                <label className="form-check-label" htmlFor="exampleCheck1">Male</label>
+                                <input type="radio" className="form-check-input" id="male" name="gender" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
+                                <label className="form-check-label" htmlFor="male">Male</label>
                             </div>
                             <div className="text-danger">
                                 {formErrors.gender}
@@ -196,7 +196,7 @@ const Register = () => {
                 </div>
                 <div className="col-md-5 ps-lg-5 order-s-last">
                     <div className={`h-100 ${styles.layer}`}>
-                        <img src="images/1.jpg" className="img-fluid h-100 " alt=" user img" />
+                        <img src="images/1.jpg" className="img-fluid h-100" alt="user img" />
                         <div className={styles.overlay}>
                         </div>
                     </div>
