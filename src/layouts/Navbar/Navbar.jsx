@@ -62,7 +62,9 @@ const Navbar = () => {
                 <div className="d-flex justify-content-end">
                   <div className="d-flex">
                     <BsSearch className="me-4" />
-                    <CartIcon className="me-4" />
+
+                    {localStorage.getItem('role') === 'Customer' && <CartIcon className="me-4" />}
+                    
                     <BsHeart />
                   </div>
                 </div>

@@ -38,6 +38,9 @@ import Order from './pages/Order/Order';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart/Cart';
 
+// For React react-toastify
+import 'react-toastify/dist/ReactToastify.css';
+import Payment from './pages/Payment/Payment';
 
 
 function App() {
@@ -58,6 +61,9 @@ function App() {
               <Route path="codeForgetPass" element={< CodeForgetPass/>} />
               <Route path="ChangePassword" element={< ChangePassword/>} />
               <Route path="order" element={< Order/>} />
+
+              <Route path='order/payment' element={<Payment />} />
+
               <Route path="wishlist" element={<Wishlist/>} />
               <Route path="cart" element={<Cart/>} />
               <Route path="store" element={<Store />} />

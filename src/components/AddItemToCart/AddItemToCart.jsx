@@ -1,7 +1,14 @@
+import { BsFillCartFill } from 'react-icons/bs';
+import styles from './AddItemToCart.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const AddItemToCart = (props) => {
+  
     const {item} = props;
+
     let items = [];
+
 
     const addToLocalStorage =(data)=>{
       localStorage.setItem("data-cart",JSON.stringify(data));
@@ -26,16 +33,27 @@ const AddItemToCart = (props) => {
         let itemAraay = [...items , {...item,qty:1}];
         addToLocalStorage(itemAraay);
       }
+
+      toast.info('🛒 This Product was Added To Your Cart', {
+        position: "top-right",
+        autoClose: 3000,
+
+      })
+
     };
   
   return (
     <>
-    <button type="button" class="btn mb-2 mb-md-0 btn-round btn-outline" onClick={()=>{addItem(item)}}>
-      Add to cart
-    </button>
+    <span onClick={()=>{addItem(item)}}>
+    < BsFillCartFill className={styles.add_item} /> Add to cart
+    </span>
+
      {/* <button onClick={()=>{addItem(item)}} className='btn mainColor text-white w-100'>Add to cart</button> */}
     </>
   )
 }
 
 export default AddItemToCart;
+
+
+//class="btn mb-2 mb-md-0 btn-round btn-outline" onClick={()=>{addItem(item)}}

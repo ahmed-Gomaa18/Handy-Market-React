@@ -15,25 +15,25 @@ const FilterStore = ({ getFilterCategory }) => {
 
     return (
         <>
-            <div className="col-md-12 col-sm-12 col-lg-2 d-flex flex-wrap justify-content-center aligin-items-stretch align-content-start border border-end rounded-1">
-                {
-                    categories && categories.map((category) => (
-                        <div className="form-check m-2" key={category._id}>
+            <div className="form-check m-2">
 
-                            <div className="col-md-4">
-                                <h2 className="heading-section">
-                                    <small>Checkboxes</small>
-                                </h2>
+                <div className="col-md-4">
+                    <h2 className="heading-section">
+                        <small>Categories</small>
+                    </h2>
+                    {
+                        categories && categories.map((category) => (
+                            <label key={category._id} className={styles.checkbox}><span>{category.name}</span>
+                                <input type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
+                                <span className={styles.checkmark}></span>
+                            </label>
+                        ))
+                    }
+                    
 
-                                <label className={styles.checkbox}><span>Success</span>
-                                    <input type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
-                                    <span className={styles.checkmark}></span>
-                                </label>
-                            </div>
-                        </div>
-                    ))
-                }
+                </div>
             </div>
+
         </>
     )
 }

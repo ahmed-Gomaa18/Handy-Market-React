@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Action_buttons from "../../components/Action_buttons/Action_buttons";
 import styles from "./Cart.module.css";
 
+
 const Cart = () => {
+
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem('role') === 'Customer' ){
+            console.log('valid')
+        }else{
+            navigate('/')
+        }
+    }, [])
+
 
     const sorcImag = 'http://localhost:3000/api/v1/image';
 
