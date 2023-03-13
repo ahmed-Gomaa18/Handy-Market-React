@@ -32,6 +32,12 @@ import Wishlists from './components/Wishlist/Wishlist';
 
 import Order from './pages/Order/Order';
 import Cart from './pages/Cart/Cart';
+
+
+// For React react-toastify
+import 'react-toastify/dist/ReactToastify.css';
+import Payment from './pages/Payment/Payment';
+
 import Services from './components/SellerProducts/SellerProducts';
 import SellerProducts from './components/SellerProducts/SellerProducts';
 import SellerProfile from './pages/SellerProfile/SellerProfile';
@@ -39,6 +45,7 @@ import UpdateSellerProfile from './pages/UpdateSellerProfile/UpdateSellerProfile
 import UpdateCustomerprofile from './pages/UpdateCustomerProfile/UpdateCustomerProfile';
 import CustomerProfile from './pages/CustomerProfile/CustomerProfile';
 import CustomerAuth from './guard/CustomerAuth';
+
 
 function App() {
   return (
@@ -58,6 +65,7 @@ function App() {
                 </Route>
             
             {/* Customer Routes */}
+
             <Route element={<CustomerAuth />}>
               <Route path="/" element={<Layout />} >
                 <Route index element={<Home />} />
@@ -67,10 +75,14 @@ function App() {
                 <Route path="favorite" element={<Favorites/>} />
                 <Route path="wishlist" element={<Wishlists/>} />
                 <Route path="order" element={< Order/>} />
+                
+                <Route path='order/payment' element={<Payment />} />
+                
                 <Route path="cart" element={<Cart/>} />
                 <Route path="store" element={<Store />} />
                 <Route path="product/:prodId" element={<ProductView />} />
               </Route>
+
             </Route>
 
             {/* Admin Routes */}

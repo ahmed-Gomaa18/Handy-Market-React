@@ -4,12 +4,27 @@ import { Link, useNavigate } from "react-router-dom";
 import Action_buttons from "../../components/Action_buttons/Action_buttons";
 import styles from './Order.module.css';
 
+import { ToastContainer, toast  } from 'react-toastify';
+
 const Order = () => {
     const sorcImag = 'http://localhost:3000/api/v1/image';
 
     const [items, itemsState] = useState([]);
     const [totalPrice, totalPriceState] = useState(0);
     const [formErrors, setFormErrors] = useState({});
+
+    const navigate = useNavigate();
+
+    // First
+    // Check role customer and has cart to go to order
+    useEffect(()=>{
+        if(localStorage.getItem('role') === 'Customer' && JSON.parse(localStorage.getItem('data-cart')).length > 0){
+            console.log('valid')
+        }else{
+            navigate('/')
+        }
+    }, [])
+
 
     const getData = () => {
         let dataLocal = JSON.parse(localStorage.getItem('data-cart'));
@@ -23,9 +38,25 @@ const Order = () => {
     }, []);
 
     useEffect(() => {
-        let arrayIteem = items;
-        let totPric = arrayIteem.reduce((x, y) => x + (y.price * y.qty), 0);
-        totalPriceState(totPric);
+        // let arrayIteem = items;
+        // console.log(items);
+        // let totPric = arrayIteem.reduce((x, y) => x + (y.price * y.qty), 0);
+        // totalPriceState(totPric);
+
+        axios.post('http://localhost:3000/api/v1/order/orderTotalPrice', {items},{
+            headers:{
+                'Content-Type' : 'application/json',
+            }
+        })
+        .then((data)=>{
+
+            totalPriceState(data.data.total);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+
     }, [items]);
 
     window.addEventListener("storage", (e) => {
@@ -95,13 +126,23 @@ const Order = () => {
 
     const token = localStorage.getItem('user-token');
 
-    const navigate = useNavigate();
 
+
+    // Form Need To Be Valid
     const onSubmitForm = e => {
         e.preventDefault();
         getDataForm();
         form.order_address.building_num = +form.order_address.building_num;
-        setFormErrors(validate(form))
+        setFormErrors(validate(form));
+
+        // Stop Submit if has Error
+        if(Object.keys(validate(form)).length > 0){
+            toast.error('Opps your data is not valid', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+            return;
+        }
+
         console.log(form);
         const cofrimOrder = window.confirm("Cofrim Order");
         if (cofrimOrder === true) {
@@ -112,14 +153,26 @@ const Order = () => {
                     }
                 }).then((res) => {
                     console.log(res);
-                    alert("Sucess Creat Your Order");
+                    // alert("Sucess Creat Your Order");
+                    toast.success('Sucess Creat Your Order', {
+                        position: toast.POSITION.TOP_RIGHT
+                    })
                     clearCart();
                     navigate('/');
                 }).catch((err) => {
+                    // Check
+                    toast.error(err.response.data.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    })
                     console.log(err.response.data.message)
                 });
             } else {
-                alert("Visssssa")
+                
+                localStorage.setItem("order-data",JSON.stringify(form));
+
+                navigate('payment');
+
+
             }
         }
 
@@ -128,6 +181,8 @@ const Order = () => {
 
     return (
         <>
+            <ToastContainer />
+
             <div className="conatiner mt-5 pb-5">
                 <div className="row justify-content-center">
                     <div className=" col-md-6  p-5 rounded shadow">

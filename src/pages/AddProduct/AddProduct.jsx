@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { CategoryProduct } from '../../components/CategoryProduct/CategoryProduct';
 import styles from './AddProduct.module.css';
 
+import { ToastContainer, toast  } from 'react-toastify';
+
 let arrayOfCategoryID = [];
 const AddProduct = () => {
     const navigate = useNavigate();
@@ -11,12 +13,17 @@ const AddProduct = () => {
 
     const [formStateData, setStateFormData] = useState({});
     const [formErrors, setFormErrors] = useState({});
-    const [successAlert, setSuccessAlert] = useState(null)
-    const [failAlert, setFailAlert] = useState(null)
 
     const handelSubmit = (e) => {
         e.preventDefault();
+
+        // Check if form is valid or not
         if (Object.values(formErrors).some((error) => error !== null)) {
+
+            toast.error('Error While Add Product.!', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+
             return;
         }
 
@@ -42,14 +49,24 @@ const AddProduct = () => {
                 'authorization': `Bearer ${localStorage.getItem('user-token')}`
             }
         }).then((data) => {
-            console.log(data);
-            setSuccessAlert(() => 'Product Created Successfully...')
+
+
+            toast.success('Add Product Successfully.', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+            // reset form
+
             formRef.current.reset();
+
             setTimeout(() => {
                 navigate('/')
             }, 500)
         }).catch((err) => {
-            setFailAlert(() => 'Bad Request')
+
+            toast.error('Bad request.!', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+
             console.log(err.response);
         })
     }
@@ -125,6 +142,8 @@ const AddProduct = () => {
 
     return (
         <>
+        <ToastContainer />
+
             <div id={styles.add_product_container} className="container mt-5 mb-5 rounded-2">
                 <div className="row">
                     <h2 className="cartItems my-3 text-center pt-5">Add Product</h2>
@@ -149,6 +168,7 @@ const AddProduct = () => {
                                 <label htmlFor="photos" className="form-label my-2 fs-5 text-muted">Product Images:</label>
                                 <input type="file" required name='photos' className="input_control text-muted" onChange={handelPhotoChange} id="photos" multiple />
                                 {formErrors.photos && <div className="h6 pb-2 my-2 text-danger border-bottom border-danger text-center">{formErrors.photos}</div>}
+
                             </div>
 
                             <CategoryProduct handelChange={handelChange} formError={formErrors.categories_id} />

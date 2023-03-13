@@ -60,16 +60,21 @@ const Navbar = () => {
               </div>
 
               <div className="col-5">
-                <div className="d-flex align-content-center justify-content-end">
-                  <div className="d-flex align-items-center">
-                    <BsSearch className="me-4 fs-4" />
-                    <CartIcon className="me-4" />
-                    <BsHeart className="me-4 fs-4" />
+
+                <div className="d-flex justify-content-end">{/*align-content-center*/}
+                  <div className="d-flex"> {/*align-items-center*/}
+                    <BsSearch className="me-4" /> 
+
+                    {localStorage.getItem('role') === 'Customer' && <CartIcon className="me-4" />}
+                    
+
+
                     {auth.token && (
                       <Link to="/CustomerProfile">
                         <MdOutlineAccountCircle className="fs-3" />
                       </Link>
                     )}
+
                   </div>
                 </div>
               </div>
