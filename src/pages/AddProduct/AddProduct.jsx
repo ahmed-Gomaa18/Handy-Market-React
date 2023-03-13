@@ -17,13 +17,10 @@ const AddProduct = () => {
     const handelSubmit = (e) => {
         e.preventDefault();
 
-        // Check if form is valid or not
         if (Object.values(formErrors).some((error) => error !== null)) {
-
             toast.error('Error While Add Product.!', {
                 position: toast.POSITION.TOP_RIGHT
             })
-
             return;
         }
 
@@ -54,7 +51,6 @@ const AddProduct = () => {
             toast.success('Add Product Successfully.', {
                 position: toast.POSITION.TOP_RIGHT
             })
-            // reset form
 
             formRef.current.reset();
 
@@ -153,11 +149,6 @@ const AddProduct = () => {
                     
                     <div className="col-lg-6 col-md-12 col-sm-12">
                         <form className="mt-4 ps-3 col-12 row rounded-2" ref={formRef} onSubmit={handelSubmit}>
-                            
-                            {failAlert && <div className="alert alert-danger text-center" role="alert"> {failAlert}</div>}
-
-                            {successAlert && <div className="alert alert-success text-center" role="alert"> {successAlert}</div>}
-
                             <div className="mb-2 mt-2">
                                 <label htmlFor="productName" className="form-label my-2 fs-5 text-muted">Product Name:</label>
                                 <input type="text" required name='product_name' className="input_control text-muted" onChange={handelChange} id="productName" placeholder='Enter Your Product Name Here...' />
