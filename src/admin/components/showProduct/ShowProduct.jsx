@@ -43,7 +43,7 @@ const ShowProduct = (props) => {
                                 </div>
                                 <div className="product-price price mt-2 mb-4">
                                     <span className=" fs-3 fw-bold me-2">
-                                        <span className="money" data-currency-usd="$60.00" data-currency="USD">{product.price}</span>
+                                        <span className="money" data-currency-usd="60.00LE" data-currency="USD">{product.price} LE</span>
                                     </span>
                                 </div>
                                 <div className="product-inventory fw-bold mb-3">
