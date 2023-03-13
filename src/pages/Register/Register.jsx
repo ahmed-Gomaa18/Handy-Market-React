@@ -107,48 +107,83 @@ const Register = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className='offset-lg-1 col-md-6 pe-lg-5 order-s-frist'>
+                <div className='offset-lg-1 shadow-lg my-5 bg-body-tertiary rounded col-md-6 pe-lg-5 order-s-frist'>
                     <div className='mt-2'>
                         <form onSubmit={onSubmitForm} className='sign-in-form pb-5 ' >
-                            <div className="form-group">
-                                <label htmlFor="exampleInputEmail1" className='my-2'>Email address</label>
-                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} noValidate />
-                                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                                <div className=" text-danger">
-                                    {formErrors.email}
+
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1" className='my-2'>Email address</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} noValidate />
+                                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                        <div className=" text-danger">
+                                            {formErrors.email}
+                                        </div>
+                                        <div className=" text-danger">
+                                            {errMssg && <p>{errMssg}</p>}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className=" text-danger">
-                                    {errMssg && <p>{errMssg}</p>}
-                                </div>
-                            </div>
-                            <div className="form-group ">
-                                <label htmlFor="exampleInputusername" className='my-2'>User Name</label>
-                                <input type="text" className="form-control" id="exampleInputusername" placeholder="user name" name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
-                                <div className=" text-danger">
-                                    {formErrors.user_name}
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleInputusername" className='my-2'>Age </label>
-                                <input type="number" className="form-control" id="exampleInputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onChange={onUpdateField} />
-                                <div className=" text-danger">
-                                    {formErrors.age}
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleInputPassword1" className='my-2'>Password</label>
-                                <input type="password" className="form-control" id="exampleInputPassword1" name="password" placeholder="Password" value={form.password} onChange={onUpdateField} noValidate />
-                                <div className=" text-danger">
-                                    {formErrors.password}
+                                <div className="col-md-6">
+                                    <div className="form-group col mb-2">
+                                        <label htmlFor="examplephone" className='my-2'>phone</label>
+                                        <input type="text" className="form-control" id="examplephone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
+                                        <div className=" text-danger">
+                                            {formErrors.phone}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleInputconfirmPassword1" className='my-2'>confirm Password</label>
-                                <input type="password" className="form-control" id="exampleInputconfirmPassword1" name="confirmPassword" placeholder="confirmPassword" value={form.confirmPassword} onChange={onUpdateField} />
-                                <div className=" text-danger">
-                                    {formErrors.confirmPassword}
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group ">
+                                        <label htmlFor="exampleInputusername" className='my-2'>User Name</label>
+                                        <input type="text" className="form-control" id="exampleInputusername" placeholder="user name" name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
+                                        <div className=" text-danger">
+                                            {formErrors.user_name}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputusername" className='my-2'>Age </label>
+                                        <input type="number" className="form-control" id="exampleInputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onChange={onUpdateField} />
+                                        <div className=" text-danger">
+                                            {formErrors.age}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
+
+
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputPassword1" className='my-2'>Password</label>
+                                        <input type="password" className="form-control" id="exampleInputPassword1" name="password" placeholder="Password" value={form.password} onChange={onUpdateField} noValidate />
+                                        <div className=" text-danger">
+                                            {formErrors.password}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputconfirmPassword1" className='my-2'>confirm Password</label>
+                                        <input type="password" className="form-control" id="exampleInputconfirmPassword1" name="confirmPassword" placeholder="confirmPassword" value={form.confirmPassword} onChange={onUpdateField} />
+                                        <div className=" text-danger">
+                                            {formErrors.confirmPassword}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
                             <div className="row">
                                 <div className="form-group col-md-6">
                                     <label htmlFor="exampleInputaddress" className='my-2'>city</label>
@@ -172,25 +207,19 @@ const Register = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="form-group col mb-2">
-                                <label htmlFor="examplephone" className='my-2'>phone</label>
-                                <input type="text" className="form-control" id="examplephone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
-                                <div className=" text-danger">
-                                    {formErrors.phone}
-                                </div>
-                            </div>
-                            <div className="form-check form-check-inline">
+
+                            <div className="form-check form-check-inline mt-2">
                                 <input type="radio" className="form-check-input" id="female" name="gender" value="Female" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
                                 <label className="form-check-label" htmlFor="female">Female</label>
                             </div>
-                            <div className="form-check form-check-inline">
+                            <div className="form-check form-check-inline mt-2">
                                 <input type="radio" className="form-check-input" id="male" name="gender" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
                                 <label className="form-check-label" htmlFor="male">Male</label>
                             </div>
                             <div className="text-danger">
                                 {formErrors.gender}
                             </div>
-                            <button type="submit" className="btn btn-primary position-absolute end-50 mb-3">Submit</button>
+                            <button type="submit" className={`btn btn-primary  position-absolute end-50 mb-4 ${styles.mybtn}`}>Submit</button>
                         </form>
                     </div>
                 </div>

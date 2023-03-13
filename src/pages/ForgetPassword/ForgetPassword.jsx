@@ -67,7 +67,7 @@ const ForgetPassword = () => {
                             </button>
                         </Link>
                     </div>
-                    <img src="/images/undraw.svg" className={styles.myimage}  alt="" />
+                    <img src="/images/forget.png" className={styles.myimage}  alt="" />
                 </div>
             </div>
         </div>

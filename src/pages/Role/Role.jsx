@@ -16,9 +16,9 @@ const Role = () => {
             <div className={styles.panels_container}>
                 <div className={`${styles.panel} ${styles.left_panel}`}>
                     <div className={styles.content}>
-                        <h3 className={styles.panel_h3}>New here ?</h3>
+                        <h3 className={styles.panel_h3}>already a member !!</h3>
                         <p className={styles.panel_para}>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+                         login from here  amet consectetur adipisicing elit. Debitis,
                             ex ratione. Aliquid!
                         </p>
                         <Link to="/auth/login">
@@ -26,7 +26,7 @@ const Role = () => {
                                 Login
                             </button></Link>
                     </div>
-                    <img src="/images/undraw.svg" className={styles.myimage} alt="" />
+                    <img src="/images/Choice-cuate.png" className={styles.myimage} alt="" />
                 </div>
             </div>
         </div>

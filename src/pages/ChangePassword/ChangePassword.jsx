@@ -48,7 +48,7 @@ const ChangePassword = () => {
             <div className={styles.forms_container}>
                 <div className={styles.signin_signup}>
                     <form onSubmit={onSubmitForm} className={styles.myform}>
-                        <h2 className="title">Forget password</h2>
+                        <h2 className="title">Change Password</h2>
                         <div className={styles.input_field}>
                             <i > <AiOutlineUser /></i>
                             <input type="email" className="form-control" id="exampleInputEmail1"
@@ -89,7 +89,7 @@ const ChangePassword = () => {
                             </button>
                         </Link>
                     </div>
-                    <img src="/images/undraw.svg" className={styles.myimage} alt="" />
+                    <img src="/images/f3.png" className={styles.myimage} alt="" />
                 </div>
             </div>
         </div>
