@@ -46,7 +46,7 @@ const AddProduct = () => {
             setSuccessAlert(() => 'Product Created Successfully...')
             formRef.current.reset();
             setTimeout(() => {
-                navigate('/store')
+                navigate('/')
             }, 500)
         }).catch((err) => {
             setFailAlert(() => 'Bad Request')

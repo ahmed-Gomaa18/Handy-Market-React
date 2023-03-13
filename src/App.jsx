@@ -48,6 +48,13 @@ function App() {
           <Routes>
                 <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
+                  <Route path="register" element={<Register/>} />
+                  <Route path="sellerSignUp" element={<SellerSignUp/>} />
+                  <Route path="role" element={< Role/>} />
+                  <Route path="role/:register" element={<Role/>} />
+                  <Route path="forgetPassword" element={< ForgetPassword/>} />
+                  <Route path="codeForgetPass" element={< CodeForgetPass/>} />
+                  <Route path="ChangePassword" element={< ChangePassword/>} />
                 </Route>
             
             {/* Customer Routes */}
@@ -55,23 +62,14 @@ function App() {
               <Route path="/" element={<Layout />} >
                 <Route index element={<Home />} />
                 <Route path="about" element={<About />} />
-                <Route path="register" element={<Register/>} />
-                <Route path="sellerSignUp" element={<SellerSignUp/>} />
-                <Route path="role" element={< Role/>} />
-                <Route path="role/:register" element={<Role/>} />
-                <Route path="forgetPassword" element={< ForgetPassword/>} />
-                <Route path="codeForgetPass" element={< CodeForgetPass/>} />
-                <Route path="ChangePassword" element={< ChangePassword/>} />
                 <Route path="CustomerProfile" element={<CustomerProfile />} />
                 <Route path="editCustomerProfile" element={<UpdateCustomerprofile />} />
                 <Route path="favorite" element={<Favorites/>} />
                 <Route path="wishlist" element={<Wishlists/>} />
                 <Route path="order" element={< Order/>} />
-                {/* <Route path="wishlist" element={<Wishlist/>} /> */}
                 <Route path="cart" element={<Cart/>} />
                 <Route path="store" element={<Store />} />
                 <Route path="product/:prodId" element={<ProductView />} />
-
               </Route>
             </Route>
 
