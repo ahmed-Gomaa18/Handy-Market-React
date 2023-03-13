@@ -1,0 +1,35 @@
+
+.nav-item{
+  font-size: 24px !important;
+  font-weight: 500;
+}
+
+.nav-link.active{
+  background-color:gainsboro  !important;
+  color:white !important
+}
+
+.active{
+  background-color:#F9F9F9 !important ;
+  color:black;
+}
+.parent{
+  background-color:#F9F9F9;
+}
+#container
+{   
+    display: flex;
+    margin-top: 40px; 
+    flex-wrap: wrap;
+}
+#profileSection
+{
+   background-color:#FFFFFF;
+   border-radius:20px;
+   
+}
+#profileSection p{
+   color:#696969;
+   font-size:15px;
+   
+}
