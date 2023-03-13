@@ -66,14 +66,14 @@ const Store = () => {
                                     <div className={styles.product_grid}>
                                         {console.log(product.ratings_id[0]?.rating)}
                                         <div className={styles.product_image}>
-                                            <Link id='link' to="#" className={`d-flex align-items-center ${styles.product_image}`}>
+                                            <Link id='link' to="/" className={`d-flex align-items-center ${styles.product_image}`}>
                                                 {product.photos && <img className={styles.pic_1} src={product.photos[0]} alt='photoTwo' />}
                                                 {(product.photos[1] && <img className={styles.pic_2} src={product.photos[1]} alt='photoTwo' />) || <img className="pic_2" src={product.photos[0]} alt='photoTwo' />}
                                             </Link>
                                             {product.discount ? <span className="product-discount-label">-{product.discount}%</span> : ''}
                                             <ul className={styles.social}>
                                                 <li><Link id='link' to="/" data-tip="Add to Wishlist"> <i><BsFillSuitHeartFill /></i></Link> </li>
-                                                <li><Link id='link' to="#" data-tip="Quick View"> <i><MdPageview /></i></Link> </li>
+                                                <li><Link id='link' to="/product/:prodId" data-tip="Quick View"> <i><MdPageview /></i></Link> </li>
                                             </ul>
                                         </div>
 

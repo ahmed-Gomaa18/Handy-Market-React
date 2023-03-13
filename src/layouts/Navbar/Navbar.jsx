@@ -38,10 +38,10 @@ const Navbar = () => {
               <p className="text-white mb-0">Free Shipping Over $100& Free Returns</p>
             </div>
             <div className="col-3">
-              <p className="text-end mb-0">
-                <Link className=" text-white">
-                  <MdLanguage className="fs-4 me-1" />EN
-                </Link>
+              <p className="text-end mb-0">                
+                <li className={styles.navItem}>
+                  <Link to="/seller/profile" className={`text-white ${styles.navLink}`}>Login as Seller</Link>
+                </li>
               </p>
             </div>
           </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
                     <CartIcon className="me-4" />
                     <BsHeart className="me-4 fs-4" />
                     {auth.token && (
-                      <Link to="/profile">
+                      <Link to="/CustomerProfile">
                         <MdOutlineAccountCircle className="fs-3" />
                       </Link>
                     )}
@@ -92,7 +92,7 @@ const Navbar = () => {
               </li>
 
               <li className={styles.navItem}>
-                <Link to="/userProfile" className={styles.navLink}>User Profile</Link>
+                <Link to="/CustomerProfile" className={styles.navLink}>User Profile</Link>
               </li>
 
               <li className={styles.navItem}>
@@ -107,9 +107,11 @@ const Navbar = () => {
                 <Link to="/store" className={styles.navLink}>Store</Link>
               </li>
 
-              <li className={styles.navItem}>
-                <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
-              </li>
+              {auth.role === "Admin" && (
+                <li className={styles.navItem}>
+                  <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
+                </li>
+              )}
 
               {!auth.token && (
                 <li className={styles.navItem}>

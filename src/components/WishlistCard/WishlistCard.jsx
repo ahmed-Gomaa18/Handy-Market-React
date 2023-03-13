@@ -7,15 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';   
-import Checkbox from '@mui/material/Checkbox';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
 import {MdAddShoppingCart} from "react-icons/md";
-import "../styles/user.favorites.style.css"
-import {Patch} from "react-axios"
-import {useState} from "react"
-import axios from "axios"
-import Wishlist from './user.wishlist';
 
 const ExpandMore = styled((props) =>{
   const { expand, ...other } = props;
@@ -29,8 +21,6 @@ const ExpandMore = styled((props) =>{
 }));
 
 export default function WishlistCard(props){
-
-  
 
    const {product_name,price,description,photos,discount,_id}=props;
    const sorcImag = 'http://localhost:3000/api/v1/image'

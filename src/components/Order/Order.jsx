@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
+
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';   
 import {MdAddShoppingCart,MdLocationOn,MdOutlinePayment} from "react-icons/md";
 import {BsCalendarDateFill,BsCurrencyDollar,BsTelephoneFill} from "react-icons/bs"
-// import {VscLayoutStatusbar} from "react-icons/vsc"
-import "../styles/user.favorites.style.css"
 
 const ExpandMore = styled((props) =>{
   const { expand, ...other } = props;
@@ -23,7 +19,7 @@ const ExpandMore = styled((props) =>{
   }),
 }));
 
-export default function OrderCard(props){
+export default function Order(props){
    const {products,payment_method,date,order_address,phone,status,totalPrice}=props
   return (
     <Card sx={{minWidth:300 }} className="cart me-1 mb-4 bg-warning">

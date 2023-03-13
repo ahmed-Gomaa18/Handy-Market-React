@@ -78,7 +78,7 @@ const CodeForgetPass = () => {
                                 id="code"
                                 placeholder="Enter your code" 
                                 name="code" 
-                                maxLength="4" 
+                                maxLength="5" 
                                 value={form.code} 
                                 onChange={onUpdateField} />
                         </div>

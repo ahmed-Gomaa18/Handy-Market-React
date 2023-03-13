@@ -11,10 +11,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import {MdAddShoppingCart} from "react-icons/md";
-import "../styles/user.favorites.style.css"
-import {Patch} from "react-axios"
-import {useState} from "react"
-import axios from "axios"
+// import "../styles/user.favorites.style.css"
+// import {Patch} from "react-axios"
+// import {useState} from "react"
+// import axios from "axios"
 
 const ExpandMore = styled((props) =>{
   const { expand, ...other } = props;
@@ -27,7 +27,7 @@ const ExpandMore = styled((props) =>{
   }),
 }));
 
-export default function RecipeReviewCard(props){
+export default function Product(props){
 
    const {product_name,price,description,photos,_id,unFavorite}=props;
    const sorcImag = 'http://localhost:3000/api/v1/image'

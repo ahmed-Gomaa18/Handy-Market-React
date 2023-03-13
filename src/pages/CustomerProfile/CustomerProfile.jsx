@@ -1,34 +1,29 @@
-import React from 'react';
-import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-import "../../node_modules/bootstrap/dist/js/bootstrap"
-// import "../styles/profile.style.css";
+import React, { useState, useEffect } from 'react';
 import { MdLocationOn } from "react-icons/md"
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { MdEmail } from "react-icons/md"
 import { Link } from 'react-router-dom';
 import { IconContext } from "react-icons";
 import Avatar from '@mui/material/Avatar';
-import Wishlist from "./user.wishlist"
-import Favorites from "./user.favorites"
-import { useState, useEffect } from "react"
-import CustomerOrders from "./customer.orders"
+import Wishlist from '../../components/Wishlist/Wishlist';
+import Favorites from '../../components/Favorites/Favorites';
+import OrderList from '../../components/OrderList/OrderList';
 import axios from "axios";
-// import "../styles/profile.style.css"
-import "../styles/customerProfile.css"
+
 const CustomerProfile = () => {
     const [userData, userState] = useState({});
     const sorcImag = 'http://localhost:3000/api/v1/image';
     let userToken = localStorage.getItem("user-token");
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/v1/user/getUserProfile',{ 
-            headers: { "Authorization": `Bearer ${userToken}` } 
-             }).then((data) => {
-             var Data = data.data.user;
-             userState(Data);
+        axios.get('http://localhost:3000/api/v1/user/getUserProfile', {
+            headers: { "Authorization": `Bearer ${userToken}` }
+        }).then((data) => {
+            var Data = data.data.user;
+            userState(Data);
         })
     }, []);
-      
+
     return (
         <>
             {userData && <div className='parent '>
@@ -59,7 +54,7 @@ const CustomerProfile = () => {
                                 <p className=' ms-2 job  mb-0'>{userData.phone}</p>
                             </div>
                         }
-                        <Link className='edit-profile mt-4' to='/customerUpdateProfile'>Edit public profile</Link>
+                        <Link className='edit-profile mt-4' to='/editCustomerProfile' state={userData}>Edit public profile</Link>
                         {userData.description &&
                             <div className='ms-4 mt-5'>
                                 <h4 >About Me</h4>
@@ -80,13 +75,13 @@ const CustomerProfile = () => {
                         </ul>
                         <div className="tab-content " id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <Favorites/>
+                                <Favorites />
                             </div>
                             <div className="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <CustomerOrders />
+                                <OrderList />
                             </div>
                             <div className="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                 <Wishlist />
+                                <Wishlist />
                             </div>
                         </div>
                     </div>

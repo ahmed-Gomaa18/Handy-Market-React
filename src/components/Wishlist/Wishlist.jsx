@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState,useEffect} from "react"
 import axios from "axios"
-import WishlistCard from "./wishlistCard"
+import WishlistCard from '../WishlistCard/WishlistCard';
 
 const Wishlist = () => {
 

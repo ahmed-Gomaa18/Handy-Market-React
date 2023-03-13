@@ -10,6 +10,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import SellerSignUp from './pages/SellerReg/SellerReg';
 import Role from './pages/Role/Role';
+import ProductView from './pages/ProductView/ProductView';
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
 import CodeForgetPass from './pages/CodeForgetPass/CodeForgetPass';
 import ChangePassword from './pages/ChangePassword/ChangePassword';
@@ -25,20 +26,19 @@ import Category from './admin/pages/Category';
 import AllProductsdetails from './admin/pages/AllProductsdetails';
 import NotFound from './pages/NotFound/NotFound';
 
-import UpdateUserProfile from './pages/updateUserProfile';
-import UpdateService from './components/updateService';
-import Profile from './pages/profile';
-import Services from './components/services';
-import UserProfile from './pages/userProfile';
-import Favorites from './components/user.favorites';
-import Wishlists from './components/user.wishlist';
-import NoFavORwish from './components/noFavORwish';
+import UpdateService from './components/UpdateService/UpdateService';
+import Favorites from './components/Favorites/Favorites';
+import Wishlists from './components/Wishlist/Wishlist';
 
 import Order from './pages/Order/Order';
-import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart/Cart';
-
-
+import Services from './components/SellerProducts/SellerProducts';
+import SellerProducts from './components/SellerProducts/SellerProducts';
+import SellerProfile from './pages/SellerProfile/SellerProfile';
+import UpdateSellerProfile from './pages/UpdateSellerProfile/UpdateSellerProfile';
+import UpdateCustomerprofile from './pages/UpdateCustomerProfile/UpdateCustomerProfile';
+import CustomerProfile from './pages/CustomerProfile/CustomerProfile';
+import CustomerAuth from './guard/CustomerAuth';
 
 function App() {
   return (
@@ -46,24 +46,33 @@ function App() {
       <Router>
         <ContextProvider>
           <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />} />
+                </Route>
+            
             {/* Customer Routes */}
-            <Route path="/" element={<Layout />} >
-              <Route index element={<Home />} />
-              <Route path="about" element={<About />} />
-              <Route path="register" element={<Register/>} />
-              <Route path="sellerSignUp" element={<SellerSignUp/>} />
-              <Route path="role" element={< Role/>} />
-              <Route path="role/:register" element={<Role/>} />
-              <Route path="forgetPassword" element={< ForgetPassword/>} />
-              <Route path="codeForgetPass" element={< CodeForgetPass/>} />
-              <Route path="ChangePassword" element={< ChangePassword/>} />
-              <Route path="userProfile" element={<UserProfile />} />
-              <Route path="favorite" element={<Favorites/>} />
-              <Route path="wishlist" element={<Wishlists/>} />
-              <Route path="order" element={< Order/>} />
-              <Route path="wishlist" element={<Wishlist/>} />
-              <Route path="cart" element={<Cart/>} />
-              <Route path="store" element={<Store />} />
+            <Route element={<CustomerAuth />}>
+              <Route path="/" element={<Layout />} >
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="register" element={<Register/>} />
+                <Route path="sellerSignUp" element={<SellerSignUp/>} />
+                <Route path="role" element={< Role/>} />
+                <Route path="role/:register" element={<Role/>} />
+                <Route path="forgetPassword" element={< ForgetPassword/>} />
+                <Route path="codeForgetPass" element={< CodeForgetPass/>} />
+                <Route path="ChangePassword" element={< ChangePassword/>} />
+                <Route path="CustomerProfile" element={<CustomerProfile />} />
+                <Route path="editCustomerProfile" element={<UpdateCustomerprofile />} />
+                <Route path="favorite" element={<Favorites/>} />
+                <Route path="wishlist" element={<Wishlists/>} />
+                <Route path="order" element={< Order/>} />
+                {/* <Route path="wishlist" element={<Wishlist/>} /> */}
+                <Route path="cart" element={<Cart/>} />
+                <Route path="store" element={<Store />} />
+                <Route path="product/:prodId" element={<ProductView />} />
+
+              </Route>
             </Route>
 
             {/* Admin Routes */}
@@ -82,9 +91,12 @@ function App() {
             {/* Seller Routes */}
             <Route element={<SellerAuth />}>
               <Route path="seller" element={<Layout />}>
-                  <Route path="profile" element={<Profile/>} />
-                  <Route path="services" element={<Services />} />
+                  <Route path="profile" element={<SellerProfile />} />
+                  <Route path="editProfile" element={<UpdateSellerProfile />}/>
+                  <Route path="services" element={<SellerProducts />} />
+                  <Route path="update/:id/:userId" element={<UpdateService />} />
                   <Route path='addProduct' element={<AddProduct />} /> 
+                  {/* <Route path="editProfile" element={<UpdateUserProfile/>}/> */}
               </Route>
             </Route>
 

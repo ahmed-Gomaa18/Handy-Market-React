@@ -57,7 +57,7 @@ const Login = () => {
             localStorage.setItem('user-token', token);
             localStorage.setItem('user-id', id);
             localStorage.setItem('role', role);
-            auth.login(token)
+            auth.login(token, role)
             if (res.data.message === 'Login Success') {
                 navigate(redirectPath, { replace: true });
             }
