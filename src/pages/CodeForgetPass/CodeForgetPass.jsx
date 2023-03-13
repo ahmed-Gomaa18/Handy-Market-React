@@ -55,7 +55,7 @@ const CodeForgetPass = () => {
                 <div className={styles.signin_signup}>
                     <form onSubmit={onSubmitForm} className={styles.myform}>
 
-                        <h2 className="title">check your email</h2>
+                        <h2 className="title"> check your email for code </h2>
                         
                         <div className="text-danger">
                             {errMssg && <p>{errMssg}</p>}
@@ -108,7 +108,7 @@ const CodeForgetPass = () => {
                             </button>
                         </Link>
                     </div>
-                    <img src="/images/undraw.svg" className={styles.myimage} alt="" />
+                    <img src="/images/forgett.png" className={styles.myimage} alt="" />
                 </div>
             </div>
         </div>

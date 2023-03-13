@@ -126,14 +126,22 @@ const SellerSignUp = () => {
         });
     };
     return (
-        <div className="container-fluid ">
+        <div className="container ">
             <div className="row">
-                <div className='offset-lg-1 pb-5 col-md-6 pe-lg-5'>
+            <div className=" col-md-4 mt-5 ">
+                    <div className="h-75 mt-5">
+                        <img src="images/a1.jpg" className="img-fluid h-100 imgg" alt="" />
+                        <div className={styles.overlay}>
+                        </div>
+                    </div>
+               
+                </div>
+                <div className='px-3 shadow-lg my-5 bg-body-tertiary rounded pb-5 col-md-8 pe-lg-5'>
                     <div className=' mt-5'>
                         <form onSubmit={onSubmitForm} className='sign-in-form ' >
                             <div className="form-group ">
-                                <label htmlFor="exampleInputEmail1" className='my-2'>Email address</label>
-                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} noValidate />
+                                <label htmlFor="InputEmail1" className='my-2'>Email address</label>
+                                <input type="email" className="form-control mb-1 shadow bg-body-tertiary rounded" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} noValidate />
                                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                 <div className=" text-danger">
                                     {formErrors.email}
@@ -145,15 +153,15 @@ const SellerSignUp = () => {
                             <div className="row">
 
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="exampleInputPassword1" className='my-2'>Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" name="password" placeholder="Password" value={form.password} onChange={onUpdateField} noValidate />
+                                    <label htmlFor="InputPassword1" className='my-2'>Password</label>
+                                    <input type="password" className="form-control mb-1 shadow bg-body-tertiary rounded" id="InputPassword1" name="password" placeholder="Password" value={form.password} onChange={onUpdateField} noValidate />
                                     <div className=" text-danger">
                                         {formErrors.password}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="exampleInputconfirmPassword1" className='my-2'>confirm Password</label>
-                                    <input type="password" className="form-control" id="exampleInputconfirmPassword1" name="confirmPassword" placeholder="confirmPassword" value={form.confirmPassword} onChange={onUpdateField} />
+                                    <label htmlFor="confirmPassword1" className='my-2'>confirm Password</label>
+                                    <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="confirmPassword1" name="confirmPassword" placeholder="confirmPassword" value={form.confirmPassword} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.confirmPassword}
                                     </div>
@@ -161,15 +169,15 @@ const SellerSignUp = () => {
                             </div>
                             <div className="row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="exampleInputusername" className='my-2'>User Name</label>
-                                    <input type="text" className="form-control" id="exampleInputusername" placeholder="user name" name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
+                                    <label htmlFor="Inputusername" className='my-2'>User Name</label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="Inputusername" placeholder="user name" name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
                                     <div className=" text-danger">
                                         {formErrors.user_name}
                                     </div>
                                 </div>
                                 <div className="form-group  col-md-6">
-                                    <label htmlFor="exampleInputuserfullname" className='my-2'>full Name</label>
-                                    <input type="text" className="form-control" id="exampleInputuserfullname" placeholder="full name" name="full_name" value={form.full_name} onChange={onUpdateField} noValidate />
+                                    <label htmlFor="Inputuserfullname" className='my-2'>full Name</label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="Inputuserfullname" placeholder="full name" name="full_name" value={form.full_name} onChange={onUpdateField} noValidate />
 
                                     <div className=" text-danger">
                                         {formErrors.full_name}
@@ -177,16 +185,16 @@ const SellerSignUp = () => {
                                 </div>
 
                                 <div className="form-group  col-md-6">
-                                    <label htmlFor="exampleInputusershop_name" className='my-2'>shop Name</label>
-                                    <input type="text" className="form-control" id="exampleInputusershop_name" placeholder="shop name" name="shop_name" value={form.shop_name} onChange={onUpdateField} noValidate />
+                                    <label htmlFor="Inputusershop_name" className='my-2'>shop Name</label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="Inputusershop_name" placeholder="shop name" name="shop_name" value={form.shop_name} onChange={onUpdateField} noValidate />
 
                                     <div className=" text-danger">
                                         {formErrors.shop_name}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="exampledescription" className='my-2'>description </label>
-                                    <input type="text" className="form-control" id="exampledescription" aria-describedby="description" placeholder="description" name="description" value={form.description} onChange={onUpdateField} />
+                                    <label htmlFor="description" className='my-2'>description </label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="description" aria-describedby="description" placeholder="description" name="description" value={form.description} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.description}
                                     </div>
@@ -194,15 +202,15 @@ const SellerSignUp = () => {
                             </div>
                             <div className="row">
                                 <div className="form-group col col-md-6">
-                                    <label htmlFor="examplephone " className='my-2'>phone</label>
-                                    <input type="text" className="form-control" id="examplephone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
+                                    <label htmlFor="phone " className='my-2'>phone</label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="phone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.phone}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="exampleInputusername" className='my-2'>Age </label>
-                                    <input type="number" className="form-control" id="exampleInputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onChange={onUpdateField} />
+                                    <label htmlFor="Inputusername" className='my-2'>Age </label>
+                                    <input type="number" className="form-control mb-1 shadow bg-body-tertiary rounded" id="InputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.age}
                                     </div>
@@ -210,22 +218,22 @@ const SellerSignUp = () => {
                             </div>
                             <div className="row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="exampleInputaddress" className='my-2'>city</label>
-                                    <input type="text" className="form-control" id="city" name="city" placeholder="city" value={form.address.city} onChange={UpdateAddress} />
+                                    <label htmlFor="Inputaddress" className='my-2'>city</label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="city" name="city" placeholder="city" value={form.address.city} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.address}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="exampleInputaddress" className='my-2'>street</label>
-                                    <input type="text" className="form-control" id="street" name="street" placeholder="street" value={form.address.street} onChange={UpdateAddress} />
+                                    <label htmlFor="Inputaddress" className='my-2'>street</label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="street" name="street" placeholder="street" value={form.address.street} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.address}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6 mb-3">
-                                    <label htmlFor="exampleInputaddress" className='my-2'>building number</label>
-                                    <input type="text" className="form-control" id="building_num" name="building_num" placeholder="building_num" value={form.address.building_num} onChange={UpdateAddress} />
+                                    <label htmlFor="Inputaddress" className='my-2'>building number</label>
+                                    <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="building_num" name="building_num" placeholder="building_num" value={form.address.building_num} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.address}
                                     </div>
@@ -239,20 +247,15 @@ const SellerSignUp = () => {
                                 <input type="radio" className="form-check-input" id="male" name="gender" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
                                 <label className="form-check-label" htmlFor="male">Male</label>
                             </div>
+                            
                             <div className=" text-danger">
                                 {formErrors.gender}
                             </div>
-                            <button type="submit" className="btn btn-primary position-absolute end-50 mb-2">Submit</button>
+                            <button type="submit" className={`btn ${styles.mybtn}`}>Submit</button>
                         </form>
                     </div>
                 </div>
-                <div className="col-md-5 mt-5 ps-lg-5">
-                    <div className={`h-100 ${styles.layer}`}>
-                        <img src="images/1.jpg" className="img-fluid h-100 imgg" alt="" />
-                        <div className={styles.overlay}>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 

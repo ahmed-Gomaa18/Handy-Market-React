@@ -98,8 +98,10 @@ const Login = () => {
                             {formErrors.password}
                         </div>
                         <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" value="true" onChange={(e) => setForm((prev) => ({ ...prev, rememberMe: e.target.value }))} />
-                            <label className="form-check-label" htmlFor="exampleCheck1">rememberMe</label>
+                        <label className={styles.checkbox}><span>Remember Me</span>
+                                    <input type="checkbox" id="rememberMe" name="rememberMe" value="true" onChange={(e) => setForm((prev) => ({ ...prev, rememberMe: e.target.value }))}  />
+                                    <span className={styles.checkmark}></span>
+                                </label>
                         </div>
                         <Link to="/forgetPassword">forget password</Link>
                         <input type="submit" value="Login" className={`solid ${styles.mybtn}`} />
@@ -111,8 +113,9 @@ const Login = () => {
                     <div className={styles.content}>
                         <h3 className={styles.panel_h3}>New here ?</h3>
                         <p className={styles.panel_para}>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                            ex ratione. Aliquid!
+                            Be one of our family. 
+                            Join us now.
+                            sign up from here
                         </p>
                         <Link to="/role">
                             <button className={`${styles.mybtn} ${styles.transparent}`} id="sign-up-btn">
@@ -120,7 +123,7 @@ const Login = () => {
                             </button>
                         </Link>
                     </div>
-                    <img src="/images/undraw.svg" className={styles.myimage} alt="" />
+                    <img src="/images/16.png" className={styles.myimage} alt="" />
                 </div>
             </div>
         </div>
