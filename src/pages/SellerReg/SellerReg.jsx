@@ -1,8 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import styles from './SellerReg.module.css';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SellerSignUp = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const redirectPath = location.state?.path || '/auth/login';
+
+
     const [form, setForm] = useState({
         user_name: "",
         full_name: "",
@@ -22,8 +28,10 @@ const SellerSignUp = () => {
         description: ""
     });
     const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
     const [errMssg, seterrMssg] = useState();
 
+    //====>address obj
     const UpdateAddress = e => {
         form.address.building_num = +form.address.building_num;
         setForm((prev) => {
@@ -35,18 +43,20 @@ const SellerSignUp = () => {
             }
         })
     }
-
+    // =====update field + validations
     const onUpdateField = e => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
     };
 
+    //validation function
     const validate = (val) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const phonenum = /^\d{11}$/;
         const pass = /^[A-Z][1-9]{2,5}$/;
+        //name vaildations
         if (!val.user_name) {
             errors.user_name = "username is required"
         } else if (val.user_name.length < 3) {
@@ -54,6 +64,7 @@ const SellerSignUp = () => {
         } else if (val.user_name.length > 20) {
             errors.user_name = "username is must be less than 20 digits"
         }
+        //fullname vaildations
         if (!val.full_name) {
             errors.full_name = "full name is required"
         } else if (val.full_name.length < 3) {
@@ -61,6 +72,8 @@ const SellerSignUp = () => {
         } else if (val.full_name.length > 20) {
             errors.full_name = "full name is must be less than 20 digits"
         }
+
+        //shopname vaildations
         if (!val.shop_name) {
             errors.shop_name = "shop_name is required"
         } else if (val.shop_name.length < 3) {
@@ -68,6 +81,7 @@ const SellerSignUp = () => {
         } else if (val.shop_name.length > 20) {
             errors.shop_name = "shop_name is must be less than 20 digits"
         }
+        //description vaildations
         if (!val.description) {
             errors.description = "description is required"
         } else if (val.description.length < 3) {
@@ -75,19 +89,23 @@ const SellerSignUp = () => {
         } else if (val.description.length > 20) {
             errors.description = "description is must be less than 20 digits"
         }
+        //email validations
         if (!val.email) {
             errors.email = "email is required"
         } else if (!regex.test(form.email)) {
             errors.email = "this email not vaild! "
         }
+        // age validation
         if (!val.age) {
             errors.age = "age is required"
         } else if (val.age <= 15) {
             errors.age = "un vaild! "
         }
+        // gender 
         if (!val.gender) {
             errors.gender = "gender is required"
         }
+        //password 
         if (!val.password) {
             errors.password = "password is required"
         } else if (val.password < 2) {
@@ -97,44 +115,53 @@ const SellerSignUp = () => {
         } else if (!pass.test(form.password)) {
             errors.password = "Password length must not exceed 5 characters"
         }
+        //confirm pass
         if (!val.confirmPassword) {
             errors.confirmPassword = "confirmPassword is required"
         } else if (val.password !== val.confirmPassword) {
             errors.confirmPassword = "passwords did not match"
         }
+        //address
+
         if (!val.address) {
             errors.address = "address is required"
         }
+
+        //phone
         if (!val.phone) {
             errors.phone = "phone is required"
         } else if (!phonenum.test(form.phone)) {
             errors.phone = "phone is not vaild"
         }
+
         return errors;
     }
 
+    //onsubimt form + validations
     const onSubmitForm = e => {
         form.address.building_num = +form.address.building_num;
         form.age = +form.age;
         e.preventDefault();
         setFormErrors(validate(form));
+        setIsSubmit(true);
+        console.log(form)
         axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
             console.log('sucess', res);
+            navigate(redirectPath, { replace: true });
         }).catch((err) => {
             console.log(err.message)
-            seterrMssg(err)
         });
+
     };
     return (
         <div className="container ">
             <div className="row">
-            <div className=" col-md-4 mt-5 ">
+                <div className=" col-md-4 mt-5 ">
                     <div className="h-75 mt-5">
                         <img src="images/a1.jpg" className="img-fluid h-100 imgg" alt="" />
                         <div className={styles.overlay}>
                         </div>
                     </div>
-               
                 </div>
                 <div className='px-3 shadow-lg my-5 bg-body-tertiary rounded pb-5 col-md-8 pe-lg-5'>
                     <div className=' mt-5'>
@@ -247,7 +274,6 @@ const SellerSignUp = () => {
                                 <input type="radio" className="form-check-input" id="male" name="gender" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
                                 <label className="form-check-label" htmlFor="male">Male</label>
                             </div>
-                            
                             <div className=" text-danger">
                                 {formErrors.gender}
                             </div>
@@ -255,11 +281,9 @@ const SellerSignUp = () => {
                         </form>
                     </div>
                 </div>
-                
+
             </div>
         </div>
-
-
     )
 }
 
