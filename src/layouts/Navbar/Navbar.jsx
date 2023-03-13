@@ -92,7 +92,11 @@ const Navbar = () => {
               </li>
 
               <li className={styles.navItem}>
-                <Link to="/" className={styles.navLink}>Packages</Link>
+                <Link to="/userProfile" className={styles.navLink}>User Profile</Link>
+              </li>
+
+              <li className={styles.navItem}>
+                <Link to="/seller/profile" className={styles.navLink}>Seller Profile</Link>
               </li>
 
               <li className={styles.navItem}>

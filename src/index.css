@@ -11,6 +11,7 @@
   --bright_gray: #3b4149;
   --gray: #7e7e7e;
   --koromiko: #febd69;
+  --bittersweet: #FF735C;
   --quicksand: #baa491;
   --ebony_clay: #232f3e;
   --dawn_pink: #f4ede7;
@@ -24,16 +25,10 @@
 
 .btn {
   padding: .6rem 1.5rem;
-  /* background: var(--koromiko); */
   border-radius: 3rem;
   border: none;
   cursor: pointer;
 }
-
-/* .btn:hover,
-.btn:active {
-  background: var(--koromiko);
-} */
 
 * {
   margin: 0;
@@ -101,6 +96,25 @@ h6 {
   border-color: var(--ebony_clay);
 }
 
+.input_control {
+  width: 100%;
+  padding: 8px 15px;
+  color: #575756;
+  background-color: transparent;
+  font-size: 17px;
+  /* line-height: 15px; */
+  border-radius: 7px;
+  border: 1px solid #575756;
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  box-shadow: 1px 1px 0px #eee;
+}
+
+.input_control::placeholder {
+  color: color(#575756 a(0.8));
+  letter-spacing: 1.5px;
+}
+
 .gap-10 {
   gap: 10px;
 }
@@ -112,7 +126,6 @@ h6 {
 .gap-30 {
   gap: 30px;
 }
-
 
 .section {
   padding: 4rem 0 2rem;
@@ -138,29 +151,15 @@ h6 {
   align-items: center;
 }
 
-
-
 .btn a {
   font-weight: 500;
 }
-
-
 
 image,
 video {
   width: 100%;
   height: auto;
 }
-
-input {
-  font-size: 100%;
-}
-
-body {
-  background: var(--bodyColor);
-}
-
-
 
 /* MEDIA QUERIES */
 

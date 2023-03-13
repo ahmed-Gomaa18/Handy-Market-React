@@ -57,7 +57,7 @@ function App() {
               <Route path="forgetPassword" element={< ForgetPassword/>} />
               <Route path="codeForgetPass" element={< CodeForgetPass/>} />
               <Route path="ChangePassword" element={< ChangePassword/>} />
-              <Route path="profile" element={<UserProfile />} />
+              <Route path="userProfile" element={<UserProfile />} />
               <Route path="favorite" element={<Favorites/>} />
               <Route path="wishlist" element={<Wishlists/>} />
               <Route path="order" element={< Order/>} />
@@ -82,6 +82,8 @@ function App() {
             {/* Seller Routes */}
             <Route element={<SellerAuth />}>
               <Route path="seller" element={<Layout />}>
+                  <Route path="profile" element={<Profile/>} />
+                  <Route path="services" element={<Services />} />
                   <Route path='addProduct' element={<AddProduct />} /> 
               </Route>
             </Route>
