@@ -19,6 +19,7 @@ const Register = () => {
         phone: "",
     });
     const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
     const [errMssg, seterrMssg] = useState();
 
     const UpdateAddress = e => {
@@ -88,6 +89,10 @@ const Register = () => {
         }
         return errors;
     }
+    const navigate = useNavigate();
+    const location = useLocation();
+    const redirectPath = location.state?.path || '/auth/login';
+
 
     const onSubmitForm = e => {
         form.address.building_num = +form.address.building_num;
@@ -95,10 +100,12 @@ const Register = () => {
         setFormErrors(validate(form))
         axios.post('http://localhost:3000/api/v1/auth/singUp', form).then((res) => {
             console.log(res);
+            navigate(redirectPath, { replace: true });
+
         }).catch((err) => {
             if (err.response?.data.message === "Email Exist") {
                 const myError = err.response.data.message;
-                seterrMssg(myError)
+                seterrMssg(myError);
             }
             console.log(err.response.data.message)
         });
