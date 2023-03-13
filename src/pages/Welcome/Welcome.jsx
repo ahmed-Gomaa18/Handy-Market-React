@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './NotFound.module.css';
 
-const NotFound = () => {
+
+const Welcome = () => {
   return (
     <>
     <div className="container">
       <div className="row">
         <div className="col-md-12">
-        <img src="/images/error.png" className='img-fluid ' alt="" />
+        <img src="/images/Welcome-cuate.png" className='img-fluid ' alt="" />
         </div>
       </div>
     </div>
@@ -15,4 +15,4 @@ const NotFound = () => {
   )
 };
 
-export default NotFound;
+export default Welcome;
