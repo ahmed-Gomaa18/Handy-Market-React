@@ -22,14 +22,16 @@ const BasicTable = () => {
     }).catch((err) => {
       console.log("error msg", err);
     });
-  }, [productData]);
+  }, []);
 
   const updateProductState = (param) => {
     axios.patch(`http://localhost:3000/api/v1/admin/Approval/${param}`, {},
       {
-        headers: { "Authorization": `Bearer ${localStorage.getItem("userToken")}` }
+        headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` }
       }).then((res) => {
         console.log("sucess", res);
+        let result = productData.filter((product)=> product._id!==param);
+        productDataState(result);
       }).catch((err) => {
         console.log("error msg", err);
       });

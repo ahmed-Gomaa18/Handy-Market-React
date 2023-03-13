@@ -62,7 +62,7 @@ const ProductTable = () => {
               <TableRow key={row.product_name} >
                 <TableCell >{row.product_name}</TableCell>
                 <TableCell align="left">{row.number_of_items}</TableCell>
-                <TableCell align="left">${row.price}</TableCell>
+                <TableCell align="left">{row.price} LE</TableCell>
                 <TableCell align="left">{row.discount}%</TableCell>
                 <TableCell align="left">{row.sold_items}</TableCell>
                 <TableCell align="left">{row.created_by.user_name}</TableCell>

@@ -10,11 +10,10 @@ import styles from './balanceTable.module.css'
 import moment from "moment";
 
 const BalanceTable = () => {
-  localStorage.setItem("userToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4OWJhZTk3NDViZmY1ZmVkNWE3MCIsImlzTG9nZ2VkSW4iOnRydWUsImlhdCI6MTY3ODE0NDMxMSwiZXhwIjoxNjc4NzQ5MTExfQ.CqnoJteMEIVQVwcj3PJoDF--z_RyDvP5llRH9EykpX4");
   const [balanceData, balanceDataState] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/admin/balance', { headers: { "Authorization": `Bearer ${localStorage.getItem("userToken")}` } }).then((data) => {
+    axios.get('http://localhost:3000/api/v1/admin/balance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }).then((data) => {
       var test = data.data;
       balanceDataState(test);
     }).catch((err) => {
@@ -23,7 +22,7 @@ const BalanceTable = () => {
   }, [balanceData]);
 
   return (
-    <div className={`col-lg-10 col-md-9 ${styles.Table}`}>
+    <div className={` col-lg-10 col-md-9 ${styles.Table}`}>
       <h3>Our Balance</h3>
       <TableContainer className={styles.tableContainer}  >
         <Table >
@@ -38,9 +37,9 @@ const BalanceTable = () => {
           <TableBody>
             {balanceData.map((row) => (
               <TableRow key={row.total_profit}>
-                <TableCell align="left">${row.total_profit}</TableCell>
+                <TableCell align="left">{row.total_profit}  LE</TableCell>
                 <TableCell align="left">{row.order_id.user_id}</TableCell>
-                <TableCell align="left">${row.order_profit}</TableCell>
+                <TableCell align="left">{row.order_profit}  LE</TableCell>
                 <TableCell align="left">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
               </TableRow>
             ))}
