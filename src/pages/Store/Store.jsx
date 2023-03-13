@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { BsFillSuitHeartFill, BsFillCartFill } from 'react-icons/bs';
 import { MdPageview } from 'react-icons/md';
 import Rating from '@mui/material/Rating';
-import SearchStore from '../../components/SearchStore';
-import FilterStore from '../../components/FilterStore';
+import SearchStore from '../../components/SearchStore/SearchStore';
+import FilterStore from '../../components/FilterStore/FilterStore';
 import styles from './Store.module.css';
 
 const base_url = "http://localhost:3000/api/v1/product";
