@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { AiOutlineUser } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from './CodeForgetPass.module.css';
 
 const CodeForgetPass = () => {
@@ -9,8 +9,14 @@ const CodeForgetPass = () => {
         code: "",
         email: ""
     });
+    const location = useLocation();
     const [formErrors, setFormErrors] = useState({});
     const [errMssg, seterrMssg] = useState();
+
+    useEffect(() => {
+        console.log(location.state);
+    }, []);
+
     const onUpdateField = e => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
@@ -25,7 +31,7 @@ const CodeForgetPass = () => {
             errors.email = "this email not vaild! "
         }
         if (!val.code) {
-            errors.email = "code is required"
+            errors.code = "code is required"
         }
         return errors;
     }
@@ -48,28 +54,41 @@ const CodeForgetPass = () => {
             <div className={styles.forms_container}>
                 <div className={styles.signin_signup}>
                     <form onSubmit={onSubmitForm} className={styles.myform}>
-                        <h2 className="title">check your email</h2>
-                        <p></p>
-                        <div className={styles.input_field}>
-                            <i > <AiOutlineUser /></i>
-                            <input type="email" classNameName="form-control" id="exampleInputEmail1"
-                                placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
-                        </div>
-                        <div className={styles.err}>
-                            {formErrors.email}
-                        </div>
-                        <div className=" text-danger">
+
+                        <h2 className="title"> check your email for code </h2>
+                        
+                        <div className="text-danger">
                             {errMssg && <p>{errMssg}</p>}
                         </div>
 
                         <div className={styles.input_field}>
                             <i > <AiOutlineUser /></i>
-                            <input type="text" classNameName="form-control" id="code"
-                                placeholder="Enter your code" name="code" value={form.code} onChange={onUpdateField} />
+                            <input type="email" className="form-control" id="exampleInputEmail1"
+                                placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
                         </div>
+
+                        <div className={styles.err}>
+                            {formErrors.email}
+                        </div>
+
+                        <div className={styles.input_field}>
+                            <i > <AiOutlineUser /></i>
+                            <input type="text" 
+                                className="form-control"
+                                id="code"
+                                placeholder="Enter your code" 
+                                name="code" 
+                                maxLength="5" 
+                                value={form.code} 
+                                onChange={onUpdateField} />
+                        </div>
+
                         <div className={styles.err}>
                             {formErrors.code}
                         </div>
+
+
+
                         <input type="submit" value="next" className={`solid ${styles.mybtn}`} />
                     </form>
                 </div>
@@ -89,7 +108,7 @@ const CodeForgetPass = () => {
                             </button>
                         </Link>
                     </div>
-                    <img src="/images/undraw.svg" className={styles.myimage} alt="" />
+                    <img src="/images/forgett.png" className={styles.myimage} alt="" />
                 </div>
             </div>
         </div>

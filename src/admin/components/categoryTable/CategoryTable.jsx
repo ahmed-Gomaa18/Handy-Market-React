@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from 'axios';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,12 +7,17 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import styles from './CategoryTable.module.css';
+import ReadOnlyRow from "./ReadOnlyRow";
+import EditableRow from "./EditableRow";
 
 const CategoryTable = () => {
 
   const [categoryData, categoryDataState] = useState([]);
   const [addCategory, setAddCategory] = useState("");
   
+  const [editCategoryId, setEditCategoryId] = useState(null);
+
+  const [editCategoryForm, seteditCategoryForm] = useState("");
   const adminId = localStorage.getItem("user-id");
 
   useEffect(() => {
@@ -45,16 +50,36 @@ const CategoryTable = () => {
     });
   }
 
-  const onUpdatecategory = () => {
-    axios.patch('http://localhost:3000/api/v1/category', {}, { 
-      headers: { "Authorization": `Bearer ${localStorage.getItem("userToken")}` } 
+  //function to handle  Edit button
+  const handleEditClick = (event, row)=>{
+    event.preventDefault();
+    setEditCategoryId(row._id); 
+
+  }
+  //function to handle take value from Edit category input
+  const handleEditCategoryForm = (event) =>{
+    event.preventDefault();
+    const newName = event.target.value;
+    seteditCategoryForm(newName);
+  }
+  //function to update value of category name in database
+
+  const handleFormUpdatecategory = (event) => {
+    event.preventDefault();
+    axios.patch(`http://localhost:3000/api/v1/category/${editCategoryId}`, {"name":editCategoryForm}, { 
+      headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } 
     }).then((res) => {
       console.log("Done updated susccesfuly", res)
   
     }).catch((err) => {
       console.log("error msg", err);
     });
+     setEditCategoryId(null);
   };
+  //function handle cancel button
+  const handleCancelButton = () =>{
+    setEditCategoryId(null);
+  }
 
 
   return (
@@ -64,35 +89,38 @@ const CategoryTable = () => {
         <div className="row">
           <h2>Add a New Category</h2>
           <form onSubmit={handleAddFormSubmit}>
-            <input className="form-control my-2 " type="type" name="category name" value="" placeholder="enter category name.." required="required" onChange={handleAddFormChange}/>
+            <input className="form-control my-2 " type="type" name="category name" value={addCategory} placeholder="enter category name.." required="required" onChange={handleAddFormChange}/>
             <button className="btn btn-success my-2  " type="submit" >ADD</button>
           </form>
         </div>
 
         <div className="p-2">
           <h3>Our Categories</h3>
-          <TableContainer className={styles.tableContainer}  >
-            <Table >
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Update</TableCell>
-                </TableRow>
-              </TableHead>
-              <hr />
-              <TableBody >
-                {categoryData.map((row) => (
-                  <TableRow key={row._id} >
-                    <TableCell align="left">
-                    <input className={styles.input} type="text" name="categoryName" value={row.name} onChange={handleAddFormChange} />
-                    </TableCell>
-                    <TableCell align="left"><button className={`${styles.button} btn btn-sucess`} >Edit</button></TableCell>
-                    <TableCell align="left"><button className={`${styles.button} btn btn-sucess`} >Submit</button></TableCell>
+           <form onSubmit={handleFormUpdatecategory}>
+            <TableContainer className={styles.tableContainer}  >
+              <Table >
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Actions</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableHead>
+                <hr />
+                <TableBody >
+                  {categoryData.map((row) => (
+                    <Fragment key={row._id}>
+                      {editCategoryId === row._id ?
+                      (<EditableRow row={row} handleEditCategoryForm={handleEditCategoryForm} handleCancelButton = {handleCancelButton}/>)
+                      :
+                      (<ReadOnlyRow  row={row} handleEditClick={handleEditClick}/>)
+                      }
+                    </Fragment>
+                      
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            </form>
         </div>
 
         

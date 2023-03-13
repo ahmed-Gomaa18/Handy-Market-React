@@ -11,7 +11,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import {MdAddShoppingCart} from "react-icons/md";
-import {useState} from "react"
+// import "../styles/user.favorites.style.css"
+// import {Patch} from "react-axios"
+// import {useState} from "react"
+// import axios from "axios"
 
 const ExpandMore = styled((props) =>{
   const { expand, ...other } = props;
@@ -24,30 +27,21 @@ const ExpandMore = styled((props) =>{
   }),
 }));
 
-export default function RecipeReviewCard(props){
+export default function Product(props){
 
-  
-
-   const {product_name,price,description,photos,_id,unFavorite,favorite,checked}=props;
+   const {product_name,price,description,photos,_id,unFavorite}=props;
    const sorcImag = 'http://localhost:3000/api/v1/image'
    
-  const [checkboxState,setCheckboxState]=useState(checked)
-
    function handleChange(e){
-     console.log(e.target.checked)
-     setCheckboxState(e.target.checked)
      if(!e.target.checked)
         unFavorite(_id)
-    else{
-       favorite(_id)
-      }
    }
    
     let img="";
    if(photos&&photos.length>0)
     img=photos[0]
   return (
-    <Card key={_id} sx={{ maxWidth: 280 }} className="cart me-sm-4 mb-4 row justify-content-center justify-content-sm-start">
+    <Card key={_id} sx={{maxWidth:250 }} className="cart me-1 mb-4 bg-warning">
       <CardHeader
         title={product_name}
       />
@@ -63,11 +57,10 @@ export default function RecipeReviewCard(props){
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-          {/* <FavoriteIcon /> */}
-          <MdAddShoppingCart/>
+          <IconButton aria-label="add to cart">
+            <MdAddShoppingCart/>
           </IconButton>
-          <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite className='custom-checkbox'/>} checked={checkboxState} onChange={handleChange} />
+          <Checkbox icon={<FavoriteBorder/>} checkedIcon={<Favorite className='custom-checkbox'/>} checked onChange={handleChange} />
         <ExpandMore>
             <span className='price fs-4'>$ {price}</span>
         </ExpandMore>
@@ -75,15 +68,3 @@ export default function RecipeReviewCard(props){
     </Card>
   );
 }
-
-
-// const unFavorite=(id)=>{
-//   const userToken=localStorage.getItem("user_token");
-//   const FavoriteUrl="http://localhost:3000/api/v1/user/unfavorit/"; 
-//   axios.patch(`${FavoriteUrl}${id}`,{headers:{"Authorization":`Bearer ${userToken}`}}).then((data)=>{
-//       console.log(data);
-//       // let favorites=data.data.favorites;
-//       // console.log(favorites)
-//       // setFavorites({Data:favorites});
-//   })
-// }

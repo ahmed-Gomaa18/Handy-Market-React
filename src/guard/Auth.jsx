@@ -5,9 +5,11 @@ export const AuthContext = createContext(null);
 
 export const ContextProvider = ({ children }) => {
     const [token, setToken] = useState(null);
+    const [role, setRole ] = useState(null);
 
-    const login = (token) => {
+    const login = (token, role) => {
         setToken(token);
+        setRole(role);
     }
 
     const logout = (token) => {
@@ -18,10 +20,11 @@ export const ContextProvider = ({ children }) => {
         }).then(res => {
             localStorage.clear();
             setToken(null);
+            setRole(null);
         }).catch(err => console.log)
     }
 
-    return <AuthContext.Provider value={{ token,  login, logout }}>{ children }</AuthContext.Provider>
+    return <AuthContext.Provider value={{ token, role, login, logout }}>{ children }</AuthContext.Provider>
 }
 
 export const useAuth = () => {

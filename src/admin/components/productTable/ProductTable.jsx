@@ -24,6 +24,21 @@ const ProductTable = () => {
       console.log("error msg", err);
     });
   }, [productsData]);
+  
+  const deleteProduct = (param) =>{
+    try {
+      axios.delete(`http://localhost:3000/api/v1/admin/delete/${param}`,
+        { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } 
+      }).then((res) =>{
+        console.log("deleted successfuly");
+      }).catch((err) => {
+        console.log("error msg", err);
+      })
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className='{styles.Table} col-lg-10 col-md-9'>
@@ -39,6 +54,7 @@ const ProductTable = () => {
               <TableCell align="left">Sold Items</TableCell>
               <TableCell align="left">Created By</TableCell>
               <TableCell align="left">Details</TableCell>
+              <TableCell align="left">Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody style={{ color: "white" }}>
@@ -55,6 +71,17 @@ const ProductTable = () => {
                     <button className={styles.status}>Details</button>
                   </Link>
                 </TableCell>
+                <TableCell align="left">
+                  <button className={styles.status}
+                    onClick={() => {
+                      const confirmBox = window.confirm("Do you really want to delete this product?");
+                      if (confirmBox === true) {
+                        deleteProduct(row._id);
+                      }
+                    }}
+                    >Delete</button>
+                </TableCell>
+                
               </TableRow>
             ))}
           </TableBody>

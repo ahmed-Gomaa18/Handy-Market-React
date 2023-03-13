@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { BsList, BsSearch, BsHeart } from 'react-icons/bs';
+import { MdOutlineAccountCircle } from 'react-icons/md';
 import { MdLanguage } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../guard/Auth';
@@ -37,10 +38,10 @@ const Navbar = () => {
               <p className="text-white mb-0">Free Shipping Over $100& Free Returns</p>
             </div>
             <div className="col-3">
-              <p className="text-end mb-0">
-                <Link className=" text-white">
-                  <MdLanguage className="fs-4 me-1" />EN
-                </Link>
+              <p className="text-end mb-0">                
+                <li className={styles.navItem}>
+                  <Link to="/seller/profile" className={`text-white ${styles.navLink}`}>Login as Seller</Link>
+                </li>
               </p>
             </div>
           </div>
@@ -59,13 +60,21 @@ const Navbar = () => {
               </div>
 
               <div className="col-5">
-                <div className="d-flex justify-content-end">
-                  <div className="d-flex">
-                    <BsSearch className="me-4" />
+
+                <div className="d-flex justify-content-end">{/*align-content-center*/}
+                  <div className="d-flex"> {/*align-items-center*/}
+                    <BsSearch className="me-4" /> 
 
                     {localStorage.getItem('role') === 'Customer' && <CartIcon className="me-4" />}
                     
-                    <BsHeart />
+
+
+                    {auth.token && (
+                      <Link to="/CustomerProfile">
+                        <MdOutlineAccountCircle className="fs-3" />
+                      </Link>
+                    )}
+
                   </div>
                 </div>
               </div>
@@ -88,7 +97,11 @@ const Navbar = () => {
               </li>
 
               <li className={styles.navItem}>
-                <Link to="/" className={styles.navLink}>Packages</Link>
+                <Link to="/CustomerProfile" className={styles.navLink}>User Profile</Link>
+              </li>
+
+              <li className={styles.navItem}>
+                <Link to="/seller/profile" className={styles.navLink}>Seller Profile</Link>
               </li>
 
               <li className={styles.navItem}>
@@ -99,9 +112,11 @@ const Navbar = () => {
                 <Link to="/store" className={styles.navLink}>Store</Link>
               </li>
 
-              <li className={styles.navItem}>
-                <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
-              </li>
+              {auth.role === "Admin" && (
+                <li className={styles.navItem}>
+                  <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
+                </li>
+              )}
 
               {!auth.token && (
                 <li className={styles.navItem}>

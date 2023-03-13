@@ -10,6 +10,20 @@
     overflow: hidden;
 }
 
+.mycontainer:before {
+    content: "";
+    position: absolute;
+    height: 2000px;
+    width: 2000px;
+    top: -10%;
+    right: 48%;
+    transform: translateY(-50%);
+    background-image: linear-gradient(-45deg, #498679 0%, #e5eaeef7 100%);
+    transition: 1.8s ease-in-out;
+    border-radius: 50%;
+    z-index: 6;
+}
+
 .forms_container {
     position: absolute;
     width: 100%;
@@ -44,9 +58,50 @@
     grid-row: 1 / 2;
 }
 
+.input_field {
+    max-width: 380px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+}
+
+.input_field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+}
+
+.input_field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.input_field input:focus {
+    background-color: transparent;
+}
+
+
+.input_field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+}
+
 .mybtn {
-    width: 250px;
-    background-color: #5995fd;
+    width: 150px;
+    background-color: var(--koromiko) ;
     border: none;
     outline: none;
     height: 49px;
@@ -57,10 +112,11 @@
     margin: 10px 0;
     cursor: pointer;
     transition: 0.5s;
+
 }
 
 .mybtn:hover {
-    background-color: #4d84e2;
+    background-color: #f8be32;
 }
 
 .panels_container {
@@ -71,20 +127,6 @@
     left: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-}
-
-.mycontainer:before {
-    content: "";
-    position: absolute;
-    height: 2000px;
-    width: 2000px;
-    top: -10%;
-    right: 48%;
-    transform: translateY(-50%);
-    background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
-    transition: 1.8s ease-in-out;
-    border-radius: 50%;
-    z-index: 6;
 }
 
 .myimage {
@@ -126,8 +168,8 @@
 
 .transparent {
     margin: 0;
-    background: none;
-    border: 2px solid #fff;
+    background: var(--koromiko);
+    /* border: 2px solid #fff; */
     width: 130px;
     height: 41px;
     font-weight: 600;
@@ -198,6 +240,10 @@
 }
 
 @media (max-width: 570px) {
+    .myform {
+        padding: 0 1.5rem;
+    }
+
     .myimage {
         display: none;
     }

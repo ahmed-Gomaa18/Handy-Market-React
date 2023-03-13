@@ -76,6 +76,7 @@ const Store = () => {
                         {
                             products && products.map((product) => (
 
+
                                 <div className="col-md-4 col-sm-12" key={product._id}>
                                     <div className="product-grid">
                                     {/* {console.log(product.ratings_id[0]?.rating)} */}
@@ -84,13 +85,16 @@ const Store = () => {
                                                 {product.photos && <img className="pic-1" src={ image_url+product.photos[0] } alt='photoTwo'/>}
                                                 {(product.photos[1] && <img className="pic-2" src={ image_url+product.photos[1] } alt='photoTwo'/>) || <img className="pic-2" src={ image_url+product.photos[0] } alt='photoTwo'/>}
                                                 
+
                                             </Link>
                                             {/* For Discound */}
                                             
                                             {product.discount ? <span className="product-discount-label">-{product.discount}%</span> : ''}
+
                                             <ul className="social">
                                                 { localStorage.getItem('role') === 'Customer' && <li><Link id='link' to="/" data-tip="Add to Wishlist"> <i><BsFillSuitHeartFill/></i></Link> </li> }
                                                 { localStorage.getItem('role') === 'Customer' && <li><Link id='link' to={`/product/${product._id}`} data-tip="Quick View"> <i><MdPageview/></i></Link> </li> }
+
                                             </ul>
                                         </div>
                                         
