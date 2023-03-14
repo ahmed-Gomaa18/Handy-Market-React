@@ -64,6 +64,7 @@ function App() {
               <Route path="ChangePassword" element={< ChangePassword />} />
               <Route path="/auth/login" element={<Login />} />
               <Route path="store" element={<Store />} />
+              <Route path="product/:prodId" element={<ProductView />} />
               <Route path="*" element={<NotFound />} />
             </Route>
 
