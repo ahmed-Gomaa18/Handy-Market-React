@@ -19,6 +19,10 @@ th {
 .Table:first-child {
   border-radius: 0.7rem !important;
 }
+.TableContainer{
+  box-shadow: 0px 13px 20px 0px #80808029;
+
+}
 
 .status {
   padding: 8px;
