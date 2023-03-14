@@ -127,7 +127,7 @@ const UpdateCustomerprofile = () => {
     }
     return (
         <>
-            <div className='container d-flex flex-column align-items-center DataContainer '>
+            <div className='container my-5 d-flex flex-column align-items-center DataContainer '>
                 <form onSubmit={updateData} className="FormData  d-flex flex-column align-items-center col-12 col-6 ">
 
                     <Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${imagesSrc}` || "Images/1.1.jpg"} />

@@ -2,6 +2,9 @@ import React from 'react';
 import {useState,useEffect} from "react"
 import axios from "axios"
 import WishlistCard from '../WishlistCard/WishlistCard';
+import styles from './Wishlist.module.css';
+
+ 
 
 const Wishlist = () => {
 
@@ -33,19 +36,29 @@ const Wishlist = () => {
     return (
             <>
             {
-             <div className='d-flex flex-wrap ' >
-                     <div  className="col-12 d-flex justify-content-between flex-wrap mt-3 mb-2 container">
-                         <h1>Wishlist items</h1>
-                         <div className='d-flex col-12  col-sm-3 align-items-center'>
+             <div className='container-fluid ' >
+                     <div  className="row">
+
+                       <div className="col-md-12 mt-3">
+
+                         <h4>Wishlist items </h4>
+                         {/* <div className='d-flex col-12  col-sm-3 align-items-center'>
                              <input className='checkbox me-2 col-4' type="checkbox" onChange={getNotSloidProduct} />
                              <label className='check-label col-8'>Hide sold out items</label>
-                         </div>
+                         </div> */}
+                         <div className="form-check">
+                        <label className={styles.checkbox}><span>Hide sold out items</span>
+                                    <input type="checkbox"  onChange={getNotSloidProduct}/>
+                                    <span className={styles.checkmark}></span>
+                                </label>
+                        </div>
                      </div>
                      <div className='d-flex flex-wrap justify-content-evenly mt-4'>
                          {   
                              filteredData?.map((product)=>(<WishlistCard  key={product._id} {...product}/>))
                          }
                     </div>
+                       </div>
              </div>
            }
          </>
