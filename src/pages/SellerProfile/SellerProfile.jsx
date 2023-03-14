@@ -30,7 +30,10 @@ const SellerProfile = () => {
         <div className='d-flex  container-fluid justify-content-evenly ms-sm-0 justify-content-md-around' id="container">
           <div className='col-12 col-sm-12 col-md-4  d-flex flex-column  align-items-center pb-4 mb-4' id="profileSection">
 
+            {userData.profile_image && 
             <Avatar className='imageProfile' id='avatar' sx={{ width: 140, height: 140 }} alt="your image" src={`${sorcImag}${userData.profile_image}`} />
+
+            }
 
             {userData.full_name && <h4 className='mt-2 name'>{userData.full_name}</h4>}
 
