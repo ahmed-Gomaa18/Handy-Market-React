@@ -5,6 +5,10 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './ProductView.module.css';
 
+import { ToastContainer, toast } from 'react-toastify';
+
+import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
+
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -23,6 +27,12 @@ const ProductView = () => {
     }).then((data) => {
       console.log(data.data);
       setRate(data.data.rate.rating);
+
+      toast.success('Add Rating Successfully.', {
+        position: toast.POSITION.TOP_RIGHT
+      })
+
+
     }).catch((err) => {
       console.log("error msg", err);
     });
@@ -56,8 +66,34 @@ const ProductView = () => {
     return (Math.round(containerNum / ratings.length))
   }
 
+
+  // Add To Favorite
+  const addToFavorite = (product_id)=>{
+    axios.patch(`http://localhost:3000/api/v1/user/favorit/${product_id}`, {}, {
+        headers:{
+            'Content-Type' : 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('user-token')}`
+        }
+    })
+    .then((data)=>{
+        console.log(data);
+        toast.success('Add This Product to Favorite.', {
+            position: toast.POSITION.TOP_RIGHT
+        })
+    }).catch((err)=>{
+        console.log(err)
+        toast.error('Faild while add Product to Favorite.', {
+            position: toast.POSITION.TOP_RIGHT
+        })
+    })
+
+}
+
   return (
     <>
+
+      <ToastContainer />
+
       {product &&
         <section>
           <div className="container">
@@ -83,7 +119,7 @@ const ProductView = () => {
                         <i className="spr-icon spr-icon-star" aria-hidden="true"></i>
 
                         {product.ratings_id.length >= 1 ?
-                          <Rating className="rating" name="simple-controlled" value={calculateRating(product.ratings_id)} onChange={(e) => onUpdateRate(e)} /> : <Rating className='rating' name="simple-controlled" value='' />
+                          <Rating className="rating" name="simple-controlled" value={calculateRating(product.ratings_id)} onChange={(e) => onUpdateRate(e)} /> : <Rating className='rating' name="simple-controlled" value='' onChange={(e) => onUpdateRate(e)} />
                         }
 
                       </span>
@@ -125,9 +161,9 @@ const ProductView = () => {
 
                   <div className={styles.product_buttons}>
                     <a className="action-wishlist btn btn-icon btn-outline btn-hover-dark">
-                      <BsHeart className="fs-3" />
+                      <BsHeart className="fs-3" onClick={()=>addToFavorite(product._id)} />
                     </a>
-                    <button type="submit" className="btn btn-dark btn-outline-hover-dark" id="AddToCart">Add To Cart</button>
+                    <button type="submit" className="btn btn-dark btn-outline-hover-dark" id="AddToCart">  <AddItemToCart item={product} />  </button>
                   </div>
 
                 </div>
