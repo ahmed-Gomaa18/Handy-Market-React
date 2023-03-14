@@ -12,7 +12,6 @@ const Home = () => {
   const imgSrc = 'http://localhost:3000/api/v1/image';
 
   const [products, setProducts] = useState([]);
-  // .slice(0, 4)
 
   useEffect(()=>{
     axios.get("http://localhost:3000/api/v1/product")
@@ -62,7 +61,7 @@ const Home = () => {
                       <span className={styles.text}>YOUR NEXT PURCHASE</span>
                     </div>
                     <div className="col-auto mb-3">
-                      <Link className={`btn-hover-dark ${styles.btn}`} to="/">SHOP NOW</Link>
+                      <Link className={`btn-hover-dark ${styles.btn}`} to="/store">SHOP NOW</Link>
                     </div>
                   </div>
                 </div>
@@ -80,19 +79,18 @@ const Home = () => {
             </div>
           </div>
 
-
-          
-              <div className="col d-flex flex-wrap justify-content-center mb-3">
+            <div className="col d-flex flex-wrap justify-content-center mb-3">
               {products.length > 0 && products.map((product)=>(
-
                   <div key={product._id} className="product single-product m-2">
                     <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
+                      
                       <Link className="image image-wrap" to={`/product/${product._id}`}>
                         <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
                         <div className={styles.product_badges}>
                           <span className={styles.onsale}>-{product.discount}%</span>
                         </div>
                       </Link>
+                      
                       <Link className={`wishlist ${styles.add_to_wishlist}`} data-hint="Add to wishlist" to="/">
                         <BsHeart className="fs-3" />
                       </Link>

@@ -75,9 +75,7 @@ const Navbar = () => {
                   <div className="d-flex"> {/*align-items-center*/}
                     <BsSearch className="me-4" /> 
 
-                    {localStorage.getItem('role') === 'Customer' && <CartIcon className="me-4" />}
-                    
-
+                    {userRole === 'Customer' && <CartIcon className="me-4" />}
 
                     {userToken !== 'undefined' && (
                       

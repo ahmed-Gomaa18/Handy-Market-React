@@ -15,6 +15,7 @@ const ProductView = () => {
   const [rate, setRate] = useState(null);
   let { prodId } = useParams();
   const imgSrc = 'http://localhost:3000/api/v1/image';
+  const userToken = localStorage.getItem('user-token');
 
   const onUpdateRate = (e) => {
     setRate(e.target.value);
@@ -45,14 +46,6 @@ const ProductView = () => {
       let relProducts = data.data.nRelatedProduct;
       setRelatedProducts(relProducts);
       setProduct(productData);
-      // let ratings = 0;
-      // let ProductRate = product.ratings_id.forEach((rate) => {
-      //   ratings += rate.rating;
-      //   return ratings;
-      // });
-
-      // let rates = ProductRate / product.ratings_id.length;
-      // console.log(rates);
     }).catch((err) => {
       console.log("error msg", err);
     });
@@ -68,26 +61,26 @@ const ProductView = () => {
 
 
   // Add To Favorite
-  const addToFavorite = (product_id)=>{
+  const addToFavorite = (product_id) => {
     axios.patch(`http://localhost:3000/api/v1/user/favorit/${product_id}`, {}, {
-        headers:{
-            'Content-Type' : 'application/json',
-            'authorization': `Bearer ${localStorage.getItem('user-token')}`
-        }
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${localStorage.getItem('user-token')}`
+      }
     })
-    .then((data)=>{
+      .then((data) => {
         console.log(data);
         toast.success('Add This Product to Favorite.', {
-            position: toast.POSITION.TOP_RIGHT
+          position: toast.POSITION.TOP_RIGHT
         })
-    }).catch((err)=>{
+      }).catch((err) => {
         console.log(err)
         toast.error('Faild while add Product to Favorite.', {
-            position: toast.POSITION.TOP_RIGHT
+          position: toast.POSITION.TOP_RIGHT
         })
-    })
+      })
 
-}
+  }
 
   return (
     <>
@@ -159,12 +152,17 @@ const ProductView = () => {
 
                   <div className={`mb-4 ${styles.product_desc}`}>{product.description}</div>
 
-                  <div className={styles.product_buttons}>
-                    <a className="action-wishlist btn btn-icon btn-outline btn-hover-dark">
-                      <BsHeart className="fs-3" onClick={()=>addToFavorite(product._id)} />
-                    </a>
-                    <button type="submit" className="btn btn-dark btn-outline-hover-dark" id="AddToCart">  <AddItemToCart item={product} />  </button>
-                  </div>
+                  { }
+
+                  {userToken && (
+
+                    <div className={styles.product_buttons}>
+                      <a className="action-wishlist btn btn-icon btn-outline btn-hover-dark">
+                        <BsHeart className="fs-3" onClick={() => addToFavorite(product._id)} />
+                      </a>
+                      <button type="submit" className="btn btn-dark btn-outline-hover-dark" id="AddToCart">  <AddItemToCart item={product} />  </button>
+                    </div>
+                  )}
 
                 </div>
               </div>
