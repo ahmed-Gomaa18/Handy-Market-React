@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import Avatar from '@mui/material/Avatar';
 import { NavLink, Outlet } from 'react-router-dom';
 import axios from "axios";
+import styles from './SellerProfile.module.css';
 
 const SellerProfile = () => {
   const [userData, userState] = useState({});
@@ -26,74 +27,80 @@ const SellerProfile = () => {
 
   return (
     <>
-      {userData && <div className='parent'>
-        <div className='d-flex  container-fluid justify-content-evenly ms-sm-0 justify-content-md-around' id="container">
-          <div className='col-12 col-sm-12 col-md-4  d-flex flex-column  align-items-center pb-4 mb-4' id="profileSection">
+      {userData && <div className='parent my-5'>
+        <div className={`m-5 container m-auto text-center p-4 ${styles.mainColor}`} id="container">
+          <div className="row">
+            <div className="col-md-6 mx-auto shadow rounded p-4">
+              <div className="row m-auto text-center">
+                <div className=' w-50 h-50 m-auto' >
+                  {userData.profile_image &&
+                    <Avatar className='img-fluid w-100 h-100 m-auto shadow' id='avatar' alt="your image" src={`${sorcImag}${userData.profile_image}`} />
+                  }
+                </div>
 
-            {userData.profile_image && 
-            <Avatar className='imageProfile' id='avatar' sx={{ width: 140, height: 140 }} alt="your image" src={`${sorcImag}${userData.profile_image}`} />
+              </div>
 
-            }
-
-            {userData.full_name && <h4 className='mt-2 name'>{userData.full_name}</h4>}
-
-            {userData.shop_name && <div className='d-flex mt-3 justify-content-center'>
-              <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
-                <MdBusinessCenter />
-              </IconContext.Provider>
-              <p className=' ms-2 job  mb-0'>{userData.shop_name}</p>
-            </div>
-            }
-
-            {userData.address?.city && <div className='d-flex mt-3 justify-content-center'>
-              <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
-                <MdLocationOn />
-              </IconContext.Provider>
-              <p className='ms-2 address'>{userData.address.city}, {userData.address.street} ,{userData.address.building_num}</p>
-            </div>
-            }
-
-            {userData.email && <div className='d-flex mt-3  justify-content-center'>
-              <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
-                < MdEmail />
-              </IconContext.Provider>
-              <p className=' ms-2 job  mb-0'>{userData.email}</p>
-            </div>
-            }
-
-            {userData.phone &&
-              <div className='d-flex mt-3  justify-content-center'>
+              {userData.full_name && <h4 className='mt-2 name '>{userData.full_name}</h4>}
+              {userData.shop_name && <div className='d-flex mt-3 justify-content-center'>
                 <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
-                  < BsFillTelephoneFill />
+                  <MdBusinessCenter />
                 </IconContext.Provider>
-                <p className=' ms-2 job  mb-0'>{userData.phone}</p>
+                <p className=' ms-2 job  mb-0'>{userData.shop_name}</p>
               </div>
-            }
+              }
 
-            <Link className='edit-profile mt-4' to='../editProfile' state={userData}>Edit public profile</Link>
-
-            {userData.description &&
-              <div className='ms-4 mt-5'>
-                <h4 >About Me</h4>
-                <p className='description'>{userData.description}</p>
+              {userData.address?.city && <div className='d-flex mt-3 justify-content-center'>
+                <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
+                  <MdLocationOn />
+                </IconContext.Provider>
+                <p className='ms-2 address'>{userData.address.city}, {userData.address.street} ,{userData.address.building_num}</p>
               </div>
-            }
+              }
 
-          </div>
+              {userData.email && <div className='d-flex mt-3  justify-content-center'>
+                <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
+                  < MdEmail />
+                </IconContext.Provider>
+                <p className=' ms-2 job  mb-0'>{userData.email}</p>
+              </div>
+              }
 
-          <div id='workSection' className='col-11 col-sm-11 col-md-7 d-flex flex-column'>
-            <div className='ms-1 row justify-content-evenly col-12 '>
-              <ul className="nav nav-pills ms-4 mb-3 justify-content-center justify-content-sm-start " id="pills-tab" role="tablist">
-                <li className='mb-2' role="presentation">
-                  <Link className=" custom" to="/seller/services">My Services</Link>
-                </li>
-              </ul>
+              {userData.phone &&
+                <div className='d-flex mt-3  justify-content-center'>
+                  <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
+                    < BsFillTelephoneFill />
+                  </IconContext.Provider>
+                  <p className=' ms-2 job  mb-0'>{userData.phone}</p>
+                </div>
+              }
+
+              <div>
+                <Link className='edit-profile mt-4' to='../editProfile' state={userData}><button className={`${styles.mybtn}`} >Edit public profile</button ></Link>
+              </div>
+              <div>
+
+                <Link className=" custom" to="/seller/services"> 
+                  <button className={`${styles.btn2}`}> My Services</button>
+                 
+                </Link>
+              </div>
+
+              {userData.description &&
+                <div className='ms-4 mt-5'>
+                  <h4 >About Me</h4>
+                  <p className='description'>{userData.description}</p>
+                </div>
+              }
+
             </div>
-            <div className='row justify-content-center   justify-content-sm-evenly '>
-              <Outlet />
-            </div>
+
+
+
+
+
           </div>
         </div>
+
       </div>
       }
     </>

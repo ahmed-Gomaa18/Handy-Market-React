@@ -105,8 +105,8 @@ function App() {
             <Route element={<SellerAuth />}>
               <Route path="seller" element={<Layout />}>
                 <Route path="profile" element={<SellerProfile />} />
-                <Route path="editProfile" element={<UpdateSellerProfile />} />
                 <Route path="services" element={<SellerProducts />} />
+                <Route path="editProfile" element={<UpdateSellerProfile />} />
                 <Route path="update/:id/:userId" element={<UpdateService />} />
                 <Route path='addProduct' element={<AddProduct />} />
                 {/* <Route path="editProfile" element={<UpdateUserProfile/>}/> */}

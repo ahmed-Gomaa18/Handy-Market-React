@@ -37,7 +37,7 @@ const CustomerProfile = () => {
                             {userData.profile_image && <Avatar className="img-fluid w-100 h-100 m-auto shadow" id='avatar'  alt="your image" src={`${sorcImag}${userData.profile_image}`} />}
                             </div>
                             {userData.full_name && <h4 className='mt-2 name'>{userData.full_name}</h4>}
-                            {userData.address?.city && <div className='col-md-12'>
+                            {userData.address?.city && <div className='d-flex mt-3 justify-content-center'>
                                 <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
                                     <MdLocationOn />
                                 </IconContext.Provider>
@@ -45,7 +45,7 @@ const CustomerProfile = () => {
                             </div>
                             }
                             {
-                                userData.email && <div className='col-md-12'>
+                                userData.email && <div className='d-flex mt-3 justify-content-center'>
                                     <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
                                         < MdEmail />
                                     </IconContext.Provider>
@@ -53,7 +53,7 @@ const CustomerProfile = () => {
                                 </div>
                             }
                             {userData.phone &&
-                                <div className='col-md-12'>
+                                <div className='d-flex mt-3 justify-content-center'>
                                     <IconContext.Provider value={{ color: '#696969', size: '18px' }}>
                                         < BsFillTelephoneFill />
                                     </IconContext.Provider>

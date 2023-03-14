@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useParams } from "react-router-dom";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import styles from './UpdateService.module.css';
 
 const UpdateService = (props) => {
     const routeParams = useParams();
@@ -64,12 +65,14 @@ const UpdateService = (props) => {
 
     return (
 
-        <div className='d-flex flex-column align-items-center ' >
-            <div className='col-12 col-sm-8 divImages d-flex justify-content-center '>
-                {productData.Data?.photos[0] && <img className='smallImage' src={`${sorcImag}${productData.Data?.photos[0]}`} />}
+        <div className={`container ${styles.mainColor} shadow`} >
+            <div className="row my-5 p-5">
+
+            <div className='col-md-4 shadow  '>
+                {productData.Data?.photos[0] && <img className='img-fluid w-100 h-100' src={`${sorcImag}${productData.Data?.photos[0]}`}  />}
 
             </div>
-            <div className='container mt-4 align-items-center '>
+            <div className='col-md-8'>
                 <div className='mb-3 row  justify-content-center'>
                     <div className='col-5 col-sm-2'>
                         <label className='labelUpdateService' htmlFor="Name">Name</label>
@@ -118,10 +121,13 @@ const UpdateService = (props) => {
                         <textarea type="text" id="description" className="form-control" name='description' value={productData.Data?.description} onChange={handleDataChange} />
                     </div>
                 </div>
-                <div className='mb-3 row  justify-content-evenly'>
-                    <button className='follow_btn col-sm-4  col-sx-10  mt-4' variant='btn btn-outline-primary' onClick={handleUpdate}>Update</button>
-                    <button className='follow_btn col-sm-4  col-sx-10  mt-4' variant='btn btn-outline-primary' onClick={handleDelete}>Delete</button>
+                <div className='m-auto text-center'>
+
+                    <button className={`${styles.mybtn} mx-5`}  onClick={handleUpdate}>Update</button>
+                    <button className={`${styles.btn2} ms-5`}  onClick={handleDelete}>Delete</button>
                 </div>
+               
+            </div>
             </div>
 
         </div>
