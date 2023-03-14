@@ -158,7 +158,7 @@ const SellerSignUp = () => {
             <div className="row">
                 <div className=" col-md-4 mt-5 ">
                     <div className="h-75 mt-5">
-                        <img src="images/a1.jpg" className="img-fluid h-100 imgg" alt="" />
+                        <img src="images/signup.png" className="img-fluid h-100 imgg" alt="" />
                         <div className={styles.overlay}>
                         </div>
                     </div>

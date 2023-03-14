@@ -233,7 +233,7 @@ const Register = () => {
                 </div>
                 <div className="col-md-5 ps-lg-5 order-s-last">
                     <div className={`h-100 ${styles.layer}`}>
-                        <img src="images/1.jpg" className="img-fluid h-100" alt="user img" />
+                        <img src="images/signup.png" className="img-fluid h-100" alt="user img" />
                         <div className={styles.overlay}>
                         </div>
                     </div>
