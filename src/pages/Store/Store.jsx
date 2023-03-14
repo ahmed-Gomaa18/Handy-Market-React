@@ -8,11 +8,10 @@ import SearchStore from '../../components/SearchStore/SearchStore';
 import FilterStore from '../../components/FilterStore/FilterStore';
 import './Store.css';
 import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
-
 import { ToastContainer } from 'react-toastify';
+// import styles from './Store.module.css';
 
 const image_url = "http://localhost:3000/api/v1/image";
-
 const base_url = "http://localhost:3000/api/v1/product";
 
 const Store = () => {
@@ -51,43 +50,29 @@ const Store = () => {
         })
         return (Math.round(containerNum / ratings.length))
     }
-    // var exam = [{ rating: 4 }, { rating: 1 }, { rating: 5 }]
-    // console.log(calculateRating(exam))
+
     return (
         <>
-
-
-
             <div className='direct-url d-flex container p-3 align-items-center border-bottom'>
-                {/* <h4 className='col-3 fs-5'>Home &gt; Product</h4>
-                <Link to="/seller/addProduct">Add Product</Link> */}
                 <SearchStore setSearch={searchFun} />
             </div>
-            <div className='d-flex flex-lg-row flex-column '>
-                
-                
+
+            <div className='d-flex flex-lg-row flex-column '>    
                 <div className="col-md-12 col-sm-12 col-lg-2 d-flex flex-wrap justify-content-center aligin-items-stretch align-content-start border border-end rounded-1">
                     <FilterStore getFilterCategory={getFilterCategory} />
                 </div>
-
 
                 <div className="col-xxs-12 col-sm-12 col-md-12 col-lg-10 align-items-start d-flex ">
                     <div className='products-container col-12 d-flex flex-wrap justify-content-center p-5'>
                         {
                             products && products.map((product) => (
-
-
                                 <div className="col-md-4 col-sm-12" key={product._id}>
                                     <div className="product-grid">
-                                    {/* {console.log(product.ratings_id[0]?.rating)} */}
                                         <div className="product-image">
                                             <Link id='link' to="#" className="image d-flex align-items-center">
                                                 {product.photos && <img className="pic-1" src={ image_url+product.photos[0] } alt='photoTwo'/>}
                                                 {(product.photos[1] && <img className="pic-2" src={ image_url+product.photos[1] } alt='photoTwo'/>) || <img className="pic-2" src={ image_url+product.photos[0] } alt='photoTwo'/>}
-                                                
-
                                             </Link>
-                                            {/* For Discound */}
                                             
                                             {product.discount ? <span className="product-discount-label">-{product.discount}%</span> : ''}
 
@@ -105,17 +90,12 @@ const Store = () => {
                                             
                                             { localStorage.getItem('role') === 'Customer' && <Link className="add-to-cart" to="" data-tip="add-to-cart"> <AddItemToCart item={product} /> </Link> }
                                             
-                                            {/* Rating */}
-                                            {product.ratings_id.length >= 1 ? <Rating className='rating' name="read-only" value={calculateRating(product.ratings_id)} readOnly /> : <Rating className='rating' name="read-only" value='' readOnly />}
-                                            
-                                        
+                                            {product.ratings_id.length >= 1 ? <Rating className='rating' name="read-only" value={calculateRating(product.ratings_id)} readOnly /> : <Rating className='rating' name="read-only" value='' readOnly />}   
                                         </div>
                                     </div>
                                 </div>
-
                             ))
                         }
-
                         
                     </div>
                 </div>
