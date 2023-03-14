@@ -35,10 +35,10 @@ const BalanceTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {balanceData.map((row) => (
+            {balanceData && balanceData.map((row) => (
               <TableRow key={row.total_profit}>
                 <TableCell align="left">{row.total_profit}  LE</TableCell>
-                <TableCell align="left">{row.order_id.user_id}</TableCell>
+                <TableCell align="left">{row.order_id?.user_id}</TableCell>
                 <TableCell align="left">{row.order_profit}  LE</TableCell>
                 <TableCell align="left">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
               </TableRow>
