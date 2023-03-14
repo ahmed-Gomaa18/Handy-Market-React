@@ -164,7 +164,7 @@ const UpdateUserProfile = (props) => {
                     </div>
                     <div className='col-md-6 ps-lg-5 mx-5 '>
                         <div className='w-100 row'>
-                    <form onSubmit={updateData} className="was-validated FormData  d-flex flex-column align-items-center col-12 col-6 ">
+                    <form onSubmit={updateData} className="was-validated FormData  d-flex flex-column align-items-center col-md-12 col-6 ">
 
                         {imagesSrc && <Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${imagesSrc}`} />}
 

@@ -1,16 +1,18 @@
+//
 import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import styles from './UpdateCustomerProfile.module.css'
 
 const UpdateCustomerprofile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [userData, setUserData] = useState({});
     const [formErrors, setFormErrors] = useState({});
-    const [imagesSrc, setImagePofile] = useState("/images/logo.png");
+    const [imagesSrc, setImagePofile] = useState(null);
     const userToken = localStorage.getItem("user-token");
     const getUserDataURL = "http://localhost:3000/api/v1/user/getUserProfile";
     const userUlrUpdate = "http://localhost:3000/api/v1/user/updateUserWithProfile";
@@ -127,55 +129,72 @@ const UpdateCustomerprofile = () => {
     }
     return (
         <>
-            <div className='container my-5 d-flex flex-column align-items-center DataContainer '>
-                <form onSubmit={updateData} className="FormData  d-flex flex-column align-items-center col-12 col-6 ">
 
-                    <Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${imagesSrc}` || "Images/1.1.jpg"} />
-                    <div className="mb-3  d-flex flex-column align-items-center col-12 col-sm-8">
-                        <label htmlFor="profileImage" className='mt-4 btn btn-outline-primary'>Upload Profile Image</label>
-                        <input type="file" name="profile_image" style={{ display: "none" }} className="form-control text-muted mt-1" accept="image/*" id="profileImage" onChange={handleImageChange} />
-                    </div>
-                    <div className="mb-3 d-flex col-12 col-sm-8  ">
-                        <label htmlFor="userName" className="labelUpdateUser form-label col-4 col-sm-2  mt-1 me-1">User Name</label>
-                        <input type="text" className="form-control" id="userName" placeholder="User Name" required minLength="3" maxLength="20" name="user_name" value={userData?.user_name} onChange={handleChange} />
-                    </div>
-                    {formErrors?.user_name && <div className="h6 pb-2 text-danger border-bottom border-danger text-center">{formErrors.user_name}</div>}
-                    <div className="mb-3 d-flex col-12 col-sm-8  ">
-                        <label htmlFor="fullName" className="labelUpdateUser form-label col-4 col-sm-2  mt-1 me-1">Full Name</label>
-                        <input type="text" className="form-control" id="fullName" placeholder="Full Name" required minLength="3" maxLength="20" name="full_name" value={userData?.full_name} onChange={handleChange} />
-                    </div>
-                    {formErrors?.full_name && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.full_name}</div>}
-                    <div className=" mb-3 d-flex col-12 col-sm-8 ">
-                        <label htmlFor="phone" className="labelUpdateUser form-label col-4 col-sm-2  mt-1 me-1">Phone</label>
-                        <input type="text" className="form-control  " id="phone" placeholder="Phone" required minLength="11" maxLength="11" name="phone" value={userData?.phone} onChange={handleChange} />
-                    </div>
-                    {formErrors.phone && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.phone}</div>}
+             <div className="m-5 py-5 rounded shadow">
+                <div className="row">
+                   <div className='offset-lg-1 shadow-lg my-5 rounded col-md-4 pe-lg-5'>
+                        <div className={`h-100 ${styles.layer}`}>
+                            <img src="/images/Update-pana.png" className="img-fluid h-100" alt="user img" />
+                        </div>
 
-                    <div className="mb-3 d-flex col-12 col-sm-8 ">
-                        <label htmlFor="city" className="labelUpdateUser form-label col-4 col-sm-2  mt-1 me-1">City</label>
-                        <input type="text" className="form-control  " id="city" placeholder="City" minLength="3" maxLength="20" name="city" value={userData?.address?.city} onChange={handleChange} />
                     </div>
-                    {formErrors.city && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.city}</div>}
-                    <div className="mb-3 d-flex col-12 col-sm-8 ">
-                        <label htmlFor="street" className="labelUpdateUser form-label col-4 col-sm-2  mt-1 me-1">Street</label>
-                        <input type="text" className="form-control " id="street" placeholder="Street" minLength="3" maxLength="20" name="street" value={userData?.address?.street} onChange={handleChange} />
-                    </div>
-                    {formErrors.street && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.street}</div>}
+                    <div className='col-md-6 ps-lg-5 mx-5'>
+                        <div className="row w-100">
+                        <form onSubmit={updateData} className="FormData  d-flex flex-column align-items-center col-12 col-6 ">
 
-                    <div className="mb-3 d-flex col-12 col-sm-8 ">
-                        <label htmlFor="buildingNum" className="labelUpdateUser form-label col-4 col-sm-2  mt-1 me-1">Building</label>
-                        <input type="Number" className="form-control " id="buildingNum" placeholder="Building Number" name="building_num" value={userData?.address?.building_num} onChange={handleChange} />
-                    </div>
-                    <div className=" mb-3 d-flex col-12 col-sm-8 justify-content-center">
-                        <button type="submit" className='message_btn col-sm-5 col-sx-10 mt-2 ' variant='btn btn-outline-primary'>
+                          {imagesSrc &&<Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${imagesSrc}` || "Images/1.1.jpg"} />}
+                         <div className="mb-3  d-flex flex-column align-items-center col-md-12 col-sm-8">
+                         <label htmlFor="profileImage" className="form-label fs-6 text-muted">Profile Image:</label>
+                         <input type="file"  name="profile_image" className="form-control  mt-1" accept="image/*" id="profileImage" onChange={handleImageChange} />
+                         </div>
+
+                         <div className="mb-3 d-flex col-md-12 col-sm-8">
+                              <label htmlFor="userName" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">User Name</label>
+                              <input type="text" className="form-control is-valid" id="userName" placeholder="User Name" required minLength="3" maxLength="20" name="user_name" value={userData?.user_name} onChange={handleChange} />
+                         </div>
+                         {formErrors?.user_name && <div className="h6 pb-2 text-danger border-bottom border-danger text-center">{formErrors.user_name}</div>}
+                          <div className="mb-3 d-flex col-md-12 col-sm-8  ">
+                             <label htmlFor="fullName" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">Full Name</label>
+                             <input type="text" className="form-control is-valid" id="fullName" placeholder="Full Name" required minLength="3" maxLength="20" name="full_name" value={userData?.full_name} onChange={handleChange} />
+                         </div>
+                         {formErrors?.full_name && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.full_name}</div>}
+                         <div className=" mb-3 d-flex col-md-12 col-sm-8 ">
+                              <label htmlFor="phone" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">Phone</label>
+                              <input type="text" className="form-control is-valid" id="phone" placeholder="Phone" required minLength="11" maxLength="11" name="phone" value={userData?.phone} onChange={handleChange} />
+                         </div>
+                       {formErrors.phone && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.phone}</div>}
+                        <div className="mb-3 d-flex col-md-12 col-sm-8 ">
+                           <label htmlFor="city" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">City</label>
+                           <input type="text" className="form-control is-valid " id="city" placeholder="City" minLength="3" maxLength="20" name="city" value={userData?.address?.city} onChange={handleChange} />
+                       </div>
+                        {formErrors.city && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.city}</div>}
+                       <div className="mb-3 d-flex col-md-12 col-sm-8 ">
+                          <label htmlFor="street" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">Street</label>
+                          <input type="text" className="form-control is-valid " id="street" placeholder="Street" minLength="3" maxLength="20" name="street" value={userData?.address?.street} onChange={handleChange} />
+                     </div>
+                      {formErrors.street && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.street}</div>}
+
+                    <div className="mb-3 d-flex col-md-12 col-sm-8 ">
+                      <label htmlFor="buildingNum" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">Building</label>
+                      <input type="Number" className="form-control is-valid" id="buildingNum" placeholder="Building Number" name="building_num" value={userData?.address?.building_num} onChange={handleChange} />
+                 </div>
+                   <div className=" mb-3 d-flex col-md-12 col-sm-8 justify-content-center">
+                       <button type="submit" className={`btn m-2  col-md-6 px-l-5 px-3 ${styles.btn_clear}`} variant='btn btn-outline-primary'>
                             Upadate
-                        </button>
+                      </button>
+                  </div>
+           </form>
+
+                        </div>
+
                     </div>
-                </form>
+
+                </div>
+             </div>
+
                 <div>
                     <ToastContainer />
                 </div>
-            </div>
         </>
     );
 }
