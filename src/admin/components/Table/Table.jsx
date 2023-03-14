@@ -41,8 +41,8 @@ const BasicTable = () => {
     <div className={`container ${styles.Table}`}>
       <div className="row">
         <h3>Recent Product</h3>
-        <TableContainer style={{ boxShadow: "0px 13px 20px 0px #80808029" }} >
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableContainer className={styles.TableContainer} >
+          <Table  aria-label="simple table">
             <TableHead >
               <TableRow>
                 <TableCell>Product Name</TableCell>
@@ -51,11 +51,11 @@ const BasicTable = () => {
                 <TableCell align="left">Status</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody style={{ color: "white" }}>
+            <TableBody >
               {productData.map((row) => (
                 <TableRow
                   key={row.product_name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  
                 >
                   <TableCell component="th" scope="row">
                     {row.product_name}
