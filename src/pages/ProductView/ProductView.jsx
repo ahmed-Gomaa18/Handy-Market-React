@@ -45,13 +45,13 @@ const ProductView = () => {
       let relProducts = data.data.nRelatedProduct;
       setRelatedProducts(relProducts);
       setProduct(productData);
-      let ratings = 0;
-      let ProductRate = product.ratings_id.forEach((rate) => {
-        ratings += rate.rating;
-        return ratings;
-      });
+      // let ratings = 0;
+      // let ProductRate = product.ratings_id.forEach((rate) => {
+      //   ratings += rate.rating;
+      //   return ratings;
+      // });
 
-      let rates = ProductRate / product.ratings_id.length;
+      // let rates = ProductRate / product.ratings_id.length;
       // console.log(rates);
     }).catch((err) => {
       console.log("error msg", err);
@@ -150,7 +150,7 @@ const ProductView = () => {
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Category: </span> <span className="variant-inventory">{product.categories_id[0].name}</span>
+                    <span className={styles.inventory_title}>Category: </span> <span className="variant-inventory">{product.categories_id[0]?.name}</span>
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>

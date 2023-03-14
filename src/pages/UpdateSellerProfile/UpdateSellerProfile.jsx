@@ -104,7 +104,7 @@ const UpdateUserProfile = (props) => {
         }
         const formData = new FormData();
         
-        if (userData.profile_image && userData.profile_image != imagesSrc) {
+        if (userData.profile_image && userData.profile_image !== imagesSrc) {
             formData.append("profile_image", userData.profile_image);
         }
         if (userData.full_name)

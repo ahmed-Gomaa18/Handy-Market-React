@@ -12,8 +12,8 @@ const EditableRow = ({handleEditCategoryForm , handleCancelButton ,row}) => {
         </TableCell>
 
         <TableCell align="left">
-        <button className={`${styles.button} btn btn-sucess`} type="submit" >Submit</button>
-        <button className={`${styles.button} btn btn-sucess`} onClick={handleCancelButton} >Cancel</button>
+        <button className={`${styles.mybtn}`} type="submit" >Submit</button>
+        <button className={`${styles.mybtn}`} onClick={handleCancelButton} >Cancel</button>
         </TableCell>
 
         </TableRow>

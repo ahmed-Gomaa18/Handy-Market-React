@@ -35,3 +35,23 @@ th {
 h3 {
   margin-top: 20px;
 }
+
+.mybtn {
+  width: 150px;
+  background-color: var(--sea_nymph) ;
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+
+}
+
+.mybtn:hover {
+  background-color: #5ed5bb;
+}
