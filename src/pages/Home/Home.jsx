@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from '../../components/Slider/Slider';
 import { Link } from 'react-router-dom';
 import { BsHeart } from 'react-icons/bs';
 import styles from './Home.module.css';
+import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+
 
 const Home = () => {
+
+  const imgSrc = 'http://localhost:3000/api/v1/image';
+
+  const [products, setProducts] = useState([]);
+  // .slice(0, 4)
+
+  useEffect(()=>{
+    axios.get("http://localhost:3000/api/v1/product")
+    .then((data)=>{
+      console.log(data.data.slice(0, 4));
+      setProducts(data.data.slice(0, 4));
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }, [])
+
   return (
     <>
+      <ToastContainer />
       <Slider />
       <section className="py-3">
         <div className="container">
@@ -58,124 +79,44 @@ const Home = () => {
               <h2 className={`${styles.title} ${styles.title_icon_both}`}>Shop our best sellers</h2>
             </div>
           </div>
-          <div className="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 mb-5 d-flex justify-content-center position-relative">
-            <div className="col d-flex justify-content-center mb-3">
-              <div className="product single-product">
-                <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
-                  <Link className="image image-wrap" to={`/products/id`}>
-                    <img className="responsive-image__image popup_cart_image w-100" src="/images/watch.jpg" tabIndex="-1" alt="product name" />
-                    <div className={styles.product_badges}>
-                      <span className={styles.onsale}>-15%</span>
+
+
+          
+              <div className="col d-flex flex-wrap justify-content-center mb-3">
+              {products.length > 0 && products.map((product)=>(
+
+                  <div key={product._id} className="product single-product m-2">
+                    <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
+                      <Link className="image image-wrap" to={`/product/${product._id}`}>
+                        <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
+                        <div className={styles.product_badges}>
+                          <span className={styles.onsale}>-{product.discount}%</span>
+                        </div>
+                      </Link>
+                      <Link className={`wishlist ${styles.add_to_wishlist}`} data-hint="Add to wishlist" to="/">
+                        <BsHeart className="fs-3" />
+                      </Link>
                     </div>
-                  </Link>
-                  <Link className={styles.add_to_wishlist} data-hint="Add to wishlist" to="/">
-                    <BsHeart className="fs-3" />
-                  </Link>
-                </div>
-                <div className={`single-product__content text-center mt-3 ${styles.product_info}`}>
-                  <h6>
-                    <Link to="/products/id" className={styles.product_title}>Dark Brown Leather Watch</Link>
-                  </h6>
-                  <span className={styles.price}>
-                    <span id="product_current_price" className={styles.new}>
-                      <span className="money" data-currency-usd="$110.00">$110.00</span>
-                    </span>
-                    <span className={styles.old}>
-                      <span className="money" data-currency-usd="$130.00">$130.00</span>
-                    </span>
-                    <div className="product-cart-action"></div>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="col d-flex justify-content-center mb-3">
-              <div className="product single-product">
-                <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
-                  <Link className="image image-wrap" to={`/products/id`}>
-                    <img className="responsive-image__image popup_cart_image w-100" src="/images/watch.jpg" tabIndex="-1" alt="product name" />
-                    <div className={styles.product_badges}>
-                      <span className={styles.onsale}>-15%</span>
+                    <div className={`single-product__content text-center mt-3 ${styles.product_info}`}>
+                      <h6 className="title popup_cart_title">
+                        <Link to={`/product/${product._id}`}>{product.product_name}</Link>
+                      </h6>
+                      <span className={styles.price}>
+                        <span id="product_current_price" className={`discounted-price ${styles.new}`}>
+                          <span className="money">{product.price - (product.price * product.discount / 100)}LE</span>
+                        </span>
+                        <span className={`main-price discounted ${styles.old}`}>
+                          <span className="money">{product.price}LE</span>
+                        </span>
+                        <div className="product-cart-action"></div>
+                      </span>
                     </div>
-                  </Link>
-                  <Link className={styles.add_to_wishlist} data-hint="Add to wishlist" to="/">
-                    <BsHeart className="fs-3" />
-                  </Link>
-                </div>
-                <div className={`single-product__content text-center mt-3 ${styles.product_info}`}>
-                  <h6>
-                    <Link to="/products/id" className={styles.product_title}>Dark Brown Leather Watch</Link>
-                  </h6>
-                  <span className={styles.price}>
-                    <span id="product_current_price" className={styles.new}>
-                      <span className="money" data-currency-usd="$110.00">$110.00</span>
-                    </span>
-                    <span className={styles.old}>
-                      <span className="money" data-currency-usd="$130.00">$130.00</span>
-                    </span>
-                    <div className="product-cart-action"></div>
-                  </span>
-                </div>
-              </div>
+                  </div>
+                ))}
+
             </div>
-            <div className="col d-flex justify-content-center mb-3">
-              <div className="product single-product">
-                <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
-                  <Link className="image image-wrap" to={`/products/id`}>
-                    <img className="responsive-image__image popup_cart_image w-100" src="/images/watch.jpg" tabIndex="-1" alt="product name" />
-                    <div className={styles.product_badges}>
-                      <span className={styles.onsale}>-15%</span>
-                    </div>
-                  </Link>
-                  <Link className={styles.add_to_wishlist} data-hint="Add to wishlist" to="/">
-                    <BsHeart className="fs-3" />
-                  </Link>
-                </div>
-                <div className={`single-product__content text-center mt-3 ${styles.product_info}`}>
-                  <h6>
-                    <Link to="/products/id" className={styles.product_title}>Dark Brown Leather Watch</Link>
-                  </h6>
-                  <span className={styles.price}>
-                    <span id="product_current_price" className={styles.new}>
-                      <span className="money" data-currency-usd="$110.00">$110.00</span>
-                    </span>
-                    <span className={styles.old}>
-                      <span className="money" data-currency-usd="$130.00">$130.00</span>
-                    </span>
-                    <div className="product-cart-action"></div>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="col d-flex justify-content-center mb-3">
-              <div className="product single-product">
-                <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
-                  <Link className="image image-wrap" to={`/products/id`}>
-                    <img className="responsive-image__image popup_cart_image w-100" src="/images/watch.jpg" tabIndex="-1" alt="product name" />
-                    <div className={styles.product_badges}>
-                      <span className={styles.onsale}>-15%</span>
-                    </div>
-                  </Link>
-                  <Link className={styles.add_to_wishlist} data-hint="Add to wishlist" to="/">
-                    <BsHeart className="fs-3" />
-                  </Link>
-                </div>
-                <div className={`single-product__content text-center mt-3 ${styles.product_info}`}>
-                  <h6>
-                    <Link to="/products/id" className={styles.product_title}>Dark Brown Leather Watch</Link>
-                  </h6>
-                  <span className={styles.price}>
-                    <span id="product_current_price" className={styles.new}>
-                      <span className="money" data-currency-usd="$110.00">$110.00</span>
-                    </span>
-                    <span className={styles.old}>
-                      <span className="money" data-currency-usd="$130.00">$130.00</span>
-                    </span>
-                    <div className="product-cart-action"></div>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          
+
         </div>
       </section>
     </>

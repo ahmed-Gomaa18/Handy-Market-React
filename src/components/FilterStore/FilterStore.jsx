@@ -18,9 +18,9 @@ const FilterStore = ({ getFilterCategory }) => {
             <div className="form-check m-2">
 
                 <div className="col-md-4">
-                    <h2 className="heading-section">
+                    <h3 className="heading-section">
                         <small>Categories</small>
-                    </h2>
+                    </h3>
                     {
                         categories && categories.map((category) => (
                             <label key={category._id} className={styles.checkbox}><span>{category.name}</span>
