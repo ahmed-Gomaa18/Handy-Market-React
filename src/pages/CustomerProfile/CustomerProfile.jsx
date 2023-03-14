@@ -34,7 +34,7 @@ const CustomerProfile = () => {
                     <div className={`col-md-4 shadow rounded p-4 `} id="profileSection">
                         <div className="row m-auto text-center">
                             <div className=' w-50 h-50 m-auto' >
-                            <Avatar className="img-fluid w-100 h-100 m-auto shadow" id='avatar'  alt="your image" src={`${sorcImag}${userData.profile_image}`} />
+                            {userData.profile_image && <Avatar className="img-fluid w-100 h-100 m-auto shadow" id='avatar'  alt="your image" src={`${sorcImag}${userData.profile_image}`} />}
                             </div>
                             {userData.full_name && <h4 className='mt-2 name'>{userData.full_name}</h4>}
                             {userData.address?.city && <div className='col-md-12'>
