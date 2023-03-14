@@ -84,13 +84,13 @@ const CategoryTable = () => {
 
   return (
     <>
-      <div className='${styles.Table} col-lg-5 col-md-9'>
+      <div className='${styles.Table} col-lg-9 col-md-9'>
         
         <div className="row">
           <h2>Add a New Category</h2>
-          <form onSubmit={handleAddFormSubmit}>
-            <input className="form-control my-2 " type="type" name="category name" value={addCategory} placeholder="enter category name.." required="required" onChange={handleAddFormChange}/>
-            <button className="btn btn-success my-2  " type="submit" >ADD</button>
+          <form className="d-flex align-items-center" onSubmit={handleAddFormSubmit}>
+            <input className="form-control my-2 me-3" type="type" name="category name" value={addCategory} placeholder="enter category name.." required="required" onChange={handleAddFormChange}/>
+            <button className={` my-2 ${styles.mybtn}`}  type="submit" >ADD</button>
           </form>
         </div>
 

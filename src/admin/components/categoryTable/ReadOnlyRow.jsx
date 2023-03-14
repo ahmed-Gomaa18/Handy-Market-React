@@ -6,7 +6,7 @@ const ReadOnlyRow = ({row ,handleEditClick}) => {
     return (
        <TableRow key={row._id} >
             <TableCell align="left">{row.name}</TableCell>
-            <TableCell align="left"><button className={`btn btn-sucess ${styles.button} `} onClick={(event)=>handleEditClick(event,row)}>Edit</button></TableCell>
+            <TableCell align="left"><button className={`${styles.mybtn} `} onClick={(event)=>handleEditClick(event,row)}>Edit</button></TableCell>
         </TableRow>
     );
 };
