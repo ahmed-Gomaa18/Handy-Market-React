@@ -4,14 +4,13 @@ import { BsList, BsSearch, BsHeart } from 'react-icons/bs';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { MdLanguage } from 'react-icons/md';
 import { Link ,useNavigate } from 'react-router-dom';
-import { useAuth } from '../../guard/Auth';
 import CartIcon from '../../components/CartIcon/CartIcon';
 import styles from './Navbar.module.css';
+import axios from "axios";
 
 
 const Navbar = () => {
   const [active, setActive] = useState(`${styles.navBar}`);
-  const auth = useAuth();
 
   const [token,setToken]= useState(false);
   const userToken = localStorage.getItem('user-token');
@@ -19,11 +18,18 @@ const Navbar = () => {
 
   const navigate = useNavigate()
 
-  const handleLogout = () => {
-    auth.logout();
-    setToken(true)
-    navigate('/')
-    window.location.reload(false)
+  const handleLogout = async() => {
+    console.log("annnnnnnnnnaBelllllla")
+    await axios.patch('http://localhost:3000/api/v1/auth/logOut', {}, {
+      headers: {
+          "authorization": `Bearer ${userToken}`
+      }
+    }).then(res => {
+      localStorage.clear();
+      setToken(true)
+      navigate('/')
+      
+   }).catch(err => console.log(err))
   }
 
   const showNav = () => {
@@ -106,17 +112,18 @@ const Navbar = () => {
                 <Link to="/" className={styles.navLink}>Home</Link>
               </li>
 
-
-
-              <li className={styles.navItem}>
-                <Link to="/seller/addProduct" className={styles.navLink}>Add Product</Link>
-              </li>
+              {userRole === "Seller" && (
+                  <li className={styles.navItem}>
+                       <Link to="/seller/addProduct" className={styles.navLink}>Add Product</Link>
+                    </li>
+              
+              )}
 
               <li className={styles.navItem}>
                 <Link to="/store" className={styles.navLink}>Store</Link>
               </li>
 
-              {auth.role === "Admin" && (
+              {userRole === "Admin" && (
                 <li className={styles.navItem}>
                   <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
                 </li>
@@ -124,13 +131,13 @@ const Navbar = () => {
 
               {!userToken && (
                 <li className={styles.navItem}>
-                  <Link to="/auth/login" onClick={()=>{setToken(false)}} className={styles.navLink}>Login</Link>
+                  <Link to="/auth/login"  className={styles.navLink}>Login</Link>
                 </li>
               )}
 
               {userToken && (
                 <li className={styles.navItem}>
-                  <Link to="/" className={styles.navLink} onClick={handleLogout}>Logout</Link>
+                  <Link className={styles.navLink} onClick={()=>handleLogout()}>Logout</Link>
                 </li>
               )}
             </ul>

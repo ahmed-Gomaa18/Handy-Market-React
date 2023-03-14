@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BsFillSuitHeartFill } from 'react-icons/bs';
+import {FaClipboardList} from 'react-icons/fa'
 import { MdPageview } from 'react-icons/md';
 import Rating from '@mui/material/Rating';
 import SearchStore from '../../components/SearchStore/SearchStore';
 import FilterStore from '../../components/FilterStore/FilterStore';
 import './Store.css';
 import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 // import styles from './Store.module.css';
 
 const image_url = "http://localhost:3000/api/v1/image";
@@ -51,6 +52,50 @@ const Store = () => {
         return (Math.round(containerNum / ratings.length))
     }
 
+    // Add To Wishlist
+    const addToWishList = (product_id)=>{
+        axios.patch(`http://localhost:3000/api/v1/user/whishlist/${product_id}`, {}, {
+            headers:{
+                'Content-Type' : 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('user-token')}`
+            }
+        })
+        .then((data)=>{
+            console.log(data);
+            toast.success('Add This Product to wishlist.', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+        }).catch((err)=>{
+            console.log(err)
+            toast.error('Faild while add Product to wishlist.', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+        })
+
+    }
+
+    // Add To Favorite
+    const addToFavorite = (product_id)=>{
+        axios.patch(`http://localhost:3000/api/v1/user/favorit/${product_id}`, {}, {
+            headers:{
+                'Content-Type' : 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('user-token')}`
+            }
+        })
+        .then((data)=>{
+            console.log(data);
+            toast.success('Add This Product to Favorite.', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+        }).catch((err)=>{
+            console.log(err)
+            toast.error('Faild while add Product to Favorite.', {
+                position: toast.POSITION.TOP_RIGHT
+            })
+        })
+
+    }
+
     return (
         <>
             <div className='direct-url d-flex container p-3 align-items-center border-bottom'>
@@ -76,8 +121,9 @@ const Store = () => {
                                             
                                             {product.discount ? <span className="product-discount-label">-{product.discount}%</span> : ''}
 
-                                            <ul className="social">
-                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' to="/" data-tip="Add to Wishlist"> <i><BsFillSuitHeartFill/></i></Link> </li> }
+                                            <ul className="social"> 
+                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' data-tip="Add to Favorite" onClick={()=>addToFavorite(product._id)} > <i><BsFillSuitHeartFill/></i></Link> </li> }  
+                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' data-tip="Add to Wishlist" onClick={()=>addToWishList(product._id)}> <i><FaClipboardList/></i></Link> </li> }
                                                 { localStorage.getItem('role') === 'Customer' && <li><Link id='link' to={`/product/${product._id}`} data-tip="Quick View"> <i><MdPageview/></i></Link> </li> }
 
                                             </ul>
