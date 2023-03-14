@@ -10,7 +10,7 @@ const SellerAuth = ({ children }) => {
   const userToken = localStorage.getItem('user-token');
   const userRole = localStorage.getItem('role');
 
-  if (!auth.token || userToken === 'undefined') {
+  if (userToken === 'undefined' && userRole === 'undefined') {
     return <Navigate to="/auth/login" state={{ path: location.pathname }} />;
   } else if(userRole === 'Seller') {
     return <Outlet />;

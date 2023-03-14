@@ -15,7 +15,7 @@ import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
 import CodeForgetPass from './pages/CodeForgetPass/CodeForgetPass';
 import ChangePassword from './pages/ChangePassword/ChangePassword';
 import { ContextProvider } from './guard/Auth';
-import RequireAuth from './guard/RequireAuth';
+import AdminAuth from './guard/AdminAuth';
 import SellerAuth from './guard/SellerAuth';
 import Dashboard from "./admin/pages/Dashboard";
 import ProductDetails from "./admin/pages/ProductDetails";
@@ -63,6 +63,7 @@ function App() {
               <Route path="codeForgetPass" element={< CodeForgetPass />} />
               <Route path="ChangePassword" element={< ChangePassword />} />
               <Route path="/auth/login" element={<Login />} />
+              <Route path="store" element={<Store />} />
               <Route path="*" element={<NotFound />} />
             </Route>
 
@@ -86,7 +87,7 @@ function App() {
             </Route>
 
             {/* Admin Routes */}
-            <Route element={<RequireAuth />}>
+            <Route element={<AdminAuth />}>
               <Route path="dashboard" element={<Layout />}>
                 <Route index element={<Dashboard />} />
                 <Route path="dashboardProductDetails/:id" element={<ProductDetails />} />
@@ -95,6 +96,8 @@ function App() {
                 <Route path="users" element={<UserData />} />
                 <Route path="dashboardcategory" element={<Category />} />
                 <Route path="dashboardALLProductDetails/:id" element={<AllProductsdetails />} />
+                <Route path="store" element={<Store />} />
+
               </Route>
             </Route>
 

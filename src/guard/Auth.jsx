@@ -12,15 +12,17 @@ export const ContextProvider = ({ children }) => {
         setRole(role);
     }
 
-    const logout = (token) => {
+    const userToken = localStorage.getItem('user-token');
+
+
+    const logout = () => {
         axios.patch('http://localhost:3000/api/v1/auth/logOut', {}, {
             headers: {
-                "authorization": `Bearer ${token}`
+                "authorization": `Bearer ${userToken}`
             }
         }).then(res => {
             localStorage.clear();
-            setToken(null);
-            setRole(null);
+            
         }).catch(err => console.log)
     }
 

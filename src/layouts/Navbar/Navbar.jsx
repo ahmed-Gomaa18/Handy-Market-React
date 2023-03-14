@@ -3,17 +3,27 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { BsList, BsSearch, BsHeart } from 'react-icons/bs';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { MdLanguage } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
 import { useAuth } from '../../guard/Auth';
 import CartIcon from '../../components/CartIcon/CartIcon';
 import styles from './Navbar.module.css';
+
 
 const Navbar = () => {
   const [active, setActive] = useState(`${styles.navBar}`);
   const auth = useAuth();
 
+  const [token,setToken]= useState(false);
+  const userToken = localStorage.getItem('user-token');
+  const userRole = localStorage.getItem('role');
+
+  const navigate = useNavigate()
+
   const handleLogout = () => {
-    auth.logout(auth.token);
+    auth.logout();
+    setToken(true)
+    navigate('/')
+    window.location.reload(false)
   }
 
   const showNav = () => {
@@ -37,13 +47,7 @@ const Navbar = () => {
             <div className="col-9">
               <p className="text-white mb-0">Free Shipping Over $100& Free Returns</p>
             </div>
-            <div className="col-3">
-              <p className="text-end mb-0">                
-                <li className={styles.navItem}>
-                  <Link to="/seller/profile" className={`text-white ${styles.navLink}`}>Login as Seller</Link>
-                </li>
-              </p>
-            </div>
+
           </div>
         </div>
       </header>
@@ -69,10 +73,16 @@ const Navbar = () => {
                     
 
 
-                    {auth.token && (
-                      <Link to="/CustomerProfile">
+                    {userToken !== 'undefined' && (
+                      <>
+                        <Link to="/CustomerProfile">
                         <MdOutlineAccountCircle className="fs-3" />
                       </Link>
+                       {userRole === 'Customer' && <Link to="/CustomerProfile" className={styles.navLink}>User Profile</Link>}
+                       {userRole === 'Seller' && <Link to="/seller/profile" className={styles.navLink}>Seller Profile</Link>}
+
+
+                      </>
                     )}
 
                   </div>
@@ -96,13 +106,7 @@ const Navbar = () => {
                 <Link to="/" className={styles.navLink}>Home</Link>
               </li>
 
-              <li className={styles.navItem}>
-                <Link to="/CustomerProfile" className={styles.navLink}>User Profile</Link>
-              </li>
 
-              <li className={styles.navItem}>
-                <Link to="/seller/profile" className={styles.navLink}>Seller Profile</Link>
-              </li>
 
               <li className={styles.navItem}>
                 <Link to="/seller/addProduct" className={styles.navLink}>Add Product</Link>
@@ -118,13 +122,13 @@ const Navbar = () => {
                 </li>
               )}
 
-              {!auth.token && (
+              {!userToken && (
                 <li className={styles.navItem}>
-                  <Link to="/auth/login" className={styles.navLink}>Login</Link>
+                  <Link to="/auth/login" onClick={()=>{setToken(false)}} className={styles.navLink}>Login</Link>
                 </li>
               )}
 
-              {auth.token && (
+              {userToken && (
                 <li className={styles.navItem}>
                   <Link to="/" className={styles.navLink} onClick={handleLogout}>Logout</Link>
                 </li>

@@ -85,7 +85,7 @@ const Store = () => {
                                         
                                         <div className="product-content">
                                             <h3 className="title"><Link id='link' to="#">{product.product_name}</Link></h3>
-                                            <span className="product-category"><Link to="#">Category: {product.categories_id[0].name} {product.categories_id[1]? ', ' + product.categories_id[1].name : ''}</Link></span>
+                                            <span className="product-category"><Link to="#">Category: {product.categories_id[0]?.name} {product.categories_id[1]? ', ' + product.categories_id[1].name : ''}</Link></span>
                                             <div className="price">${product.price}</div>
                                             
                                             { localStorage.getItem('role') === 'Customer' && <Link className="add-to-cart" to="" data-tip="add-to-cart"> <AddItemToCart item={product} /> </Link> }
