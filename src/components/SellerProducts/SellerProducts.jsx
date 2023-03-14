@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-// import "../styles/services.style.css"
 import { useNavigate } from "react-router-dom";
+import styles from './SellerProducts.module.css';
 
 import axios from "axios"
 const SellerProducts = () => {
@@ -26,12 +25,16 @@ const SellerProducts = () => {
     navigate(`/seller/update/${product._id}/${userId}`)
   }
   return (
-    <div className='row justify-content-center justify-content-sm-evenly '>
-      {
-        allProducts?.map((product) => {
-          return ((product.photos[0] && <img key={product._id} className='col-sm-6 col-11 col-md-6 col-lg-4 mb-4 ' alt='not has photo' src={`${sorcImag}${product.photos[0]}`} onClick={((e) => handleClick(e, product))}></img>));
-        })
+    <div className={`container my-5 shadow ${styles.mainColor}`}>
+      <div className="row my-5 p-5">
+      {allProducts && allProducts?.map((product,index) =>(
+                <div className="col-md-4">
+                  {(product.photos[0] && <img key={product._id} className='img-fluid w-100 h-100' alt='not has photo' src={`${sorcImag}${product.photos[0]}`} onClick={((e) => handleClick(e, product))}></img>)}
+                </div>
+      ))
       }
+
+      </div>
     </div>
   );
 };
