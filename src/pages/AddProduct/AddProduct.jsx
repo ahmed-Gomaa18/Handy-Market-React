@@ -179,7 +179,7 @@ const AddProduct = () => {
 
                                 <div className="col-4">
                                     <label htmlFor="discount" className="form-label my-2 fs-5 text-muted">Discount:</label>
-                                    <input type="number" required name='discount' className="input_control text-muted" onChange={handelChange} min='1' max='100' id="discount" placeholder='%' />
+                                    <input type="number" required name='discount' className="input_control text-muted" onChange={handelChange} min='0' max='100' id="discount" placeholder='%' />
                                     {formErrors.discount && <div className="h6 pb-2 my-2 text-danger border-bottom border-danger text-center">{formErrors.discount}</div>}
                                 </div>
                             </div>

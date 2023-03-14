@@ -22,7 +22,7 @@ const ExpandMore = styled((props) =>{
 export default function Order(props){
    const {products,payment_method,date,order_address,phone,status,totalPrice}=props
   return (
-    <Card sx={{minWidth:300 }} className="cart me-1 mb-4 bg-warning">
+    <Card sx={{minWidth:300 }} className="cart me-1 mb-4 rounded shadow ">
      
       <CardContent>
         <Typography component={'span'}>

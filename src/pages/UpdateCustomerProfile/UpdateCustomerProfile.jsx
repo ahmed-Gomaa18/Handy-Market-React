@@ -129,12 +129,14 @@ const UpdateCustomerprofile = () => {
     }
     return (
         <>
+
              <div className="m-5 py-5 rounded shadow">
                 <div className="row">
                    <div className='offset-lg-1 shadow-lg my-5 rounded col-md-4 pe-lg-5'>
                         <div className={`h-100 ${styles.layer}`}>
                             <img src="/images/Update-pana.png" className="img-fluid h-100" alt="user img" />
                         </div>
+
                     </div>
                     <div className='col-md-6 ps-lg-5 mx-5'>
                         <div className="row w-100">

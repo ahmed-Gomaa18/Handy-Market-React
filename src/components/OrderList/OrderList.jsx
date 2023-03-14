@@ -20,9 +20,9 @@ const OrderList = () => {
     return (
         <div>
            {
-        <div className='d-flex flex-wrap ' >
-                    <h1>Orders</h1>
-                <div className='d-flex flex-wrap justify-content-evenly mt-4'>
+        <div className='container-fluid mt-3 ' >
+                <div className='row'>
+                    <h4>Orders</h4>
                     {   
                     Orders?.map((order)=>(
                         <Order  key={order._id} {...order}/> ))

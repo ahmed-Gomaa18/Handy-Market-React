@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Product from '../Product/Product';
+import styles from './Favorites.module.css';
+
 
 const Favorites = () => {
 
@@ -52,20 +54,29 @@ const Favorites = () => {
     return (
         <div>
             {
-                <div className='d-flex flex-wrap ' >
-                    <div className="col-12 d-flex justify-content-between flex-wrap mt-3 mb-2 container">
-                        <h1>Favorite items</h1>
-                        <div className='d-flex col-12  col-sm-3 align-items-center'>
-                            <input className='checkbox me-2 col-4' type="checkbox" onChange={getNotSloidProduct} value={checkedSolid} />
-                            <label className='check-label col-8'>Hide sold out items</label>
+                <div className='container-fluid ' >
+                    <div className="row mt-3">
+                        <div className="col-md-12">
+
+                            <h4>Favorite items</h4>
+                            {/* <div className='d-flex col-12  col-sm-3 align-items-center'>
+                                <input className='checkbox me-2 col-4' type="checkbox" onChange={getNotSloidProduct} value={checkedSolid} />
+                                <label className='check-label col-8'>Hide sold out items</label>
+                            </div> */}
+                            <div className="form-check">
+                        <label className={styles.checkbox}><span>Hide sold out items</span>
+                                    <input type="checkbox"  onChange={getNotSloidProduct} value={checkedSolid}/>
+                                    <span className={styles.checkmark}></span>
+                                </label>
                         </div>
-                    </div>
-                    <div className='d-flex flex-wrap justify-content-evenly mt-4'>
-                        {
-                            filteredData?.map((product) => (
-                                <Product key={product._id} {...product} unFavorite={unFavorite} />
-                            ))
-                        }
+                        </div>
+                        <div className='d-flex flex-wrap justify-content-evenly mt-4'>
+                            {
+                                filteredData?.map((product) => (
+                                    <Product key={product._id} {...product} unFavorite={unFavorite} />
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
             }
