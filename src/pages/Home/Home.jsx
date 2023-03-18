@@ -85,7 +85,7 @@ const Home = () => {
                     <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
                       
                       <Link className="image image-wrap" to={`/product/${product._id}`}>
-                        <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
+                        <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product?.photos[0]}`} alt={product?.product_name} />
                         <div className={styles.product_badges}>
                           <span className={styles.onsale}>-{product.discount}%</span>
                         </div>
