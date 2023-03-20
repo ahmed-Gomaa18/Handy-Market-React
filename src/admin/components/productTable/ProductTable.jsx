@@ -47,26 +47,26 @@ const ProductTable = () => {
         <Table >
           <TableHead>
             <TableRow>
-              <TableCell>Product Name</TableCell>
-              <TableCell align="left">Amount</TableCell>
-              <TableCell align="left">Price</TableCell>
-              <TableCell align="left">Discount</TableCell>
-              <TableCell align="left">Sold Items</TableCell>
-              <TableCell align="left">Created By</TableCell>
-              <TableCell align="left">Details</TableCell>
-              <TableCell align="left">Delete</TableCell>
+              <TableCell className="fw-bold" align="left">Product Name</TableCell>
+              <TableCell className="fw-bold" align="center">Amount</TableCell>
+              <TableCell className="fw-bold" align="center">Price</TableCell>
+              <TableCell className="fw-bold" align="center">Discount</TableCell>
+              <TableCell className="fw-bold" align="center">Sold Items</TableCell>
+              <TableCell className="fw-bold" align="center">Created By</TableCell>
+              <TableCell className="fw-bold" align="center">Details</TableCell>
+              <TableCell className="fw-bold" align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody style={{ color: "white" }}>
             {productsData.map((row) => (
               <TableRow key={row.product_name} >
-                <TableCell >{row.product_name}</TableCell>
-                <TableCell align="left">{row.number_of_items}</TableCell>
-                <TableCell align="left">{row.price} LE</TableCell>
-                <TableCell align="left">{row.discount}%</TableCell>
-                <TableCell align="left">{row.sold_items}</TableCell>
-                <TableCell align="left">{row.created_by.user_name}</TableCell>
-                <TableCell align="left" className={styles.Details}>
+                <TableCell align="left">{row.product_name}</TableCell>
+                <TableCell align="center">{row.number_of_items}</TableCell>
+                <TableCell align="center">{row.price} LE</TableCell>
+                <TableCell align="center">{row.discount}%</TableCell>
+                <TableCell align="center">{row.sold_items}</TableCell>
+                <TableCell align="center">{row.created_by.user_name}</TableCell>
+                <TableCell align="center" className={styles.Details}>
                   <Link to={`/dashboard/dashboardALLProductDetails/${row._id}`}>
                     <button className={styles.status}>Details</button>
                   </Link>

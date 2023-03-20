@@ -13,7 +13,15 @@ th {
 
 .status {
   padding: 8px;
+  border: none; 
+  outline: none;
   border-radius: 9px;
+  background-color: var(--sea_nymph) ;
+  
+}
+.status:hover {
+
+  background-color: #5ed5bb;
 }
 
 .Details {

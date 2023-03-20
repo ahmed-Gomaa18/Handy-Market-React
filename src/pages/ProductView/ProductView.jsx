@@ -59,7 +59,7 @@ const ProductView = () => {
     }).catch((err) => {
       console.log("error msg", err);
     });
-  }, []);
+  }, [prodId]);
 
   const calculateRating = (ratings) => {
     let containerNum = 0;
@@ -190,7 +190,7 @@ const ProductView = () => {
               <div key={product._id} className="col d-flex justify-content-center mb-3">
                 <div className="product single-product">
                   <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
-                    <Link className="image image-wrap" to={`/product/${product._id}`}>
+                    <Link className="image image-wrap" to={`../product/${product._id}`}>
                       <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
                       <div className={styles.product_badges}>
                         <span className={styles.onsale}>-{product.discount}%</span>
@@ -202,7 +202,7 @@ const ProductView = () => {
                   </div>
                   <div className={`single-product__content text-center mt-3 ${styles.product_info}`}>
                     <h6 className="title popup_cart_title">
-                      <Link to={`/product/${product._id}`}>{product.product_name}</Link>
+                      <Link to={`../product/${product._id}`}>{product.product_name}</Link>
                     </h6>
                     <span className={styles.price}>
                       <span id="product_current_price" className={`discounted-price ${styles.new}`}>

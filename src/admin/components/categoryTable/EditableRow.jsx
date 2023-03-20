@@ -8,14 +8,15 @@ const EditableRow = ({handleEditCategoryForm , handleCancelButton ,row}) => {
     return (
        <TableRow >
         
-        <TableCell align="left">
-        <input className={styles.input} type="text" placeholder={row.name_en} name="categoryNameEn" required="required" onChange={handleEditCategoryForm} />
-        <input className={styles.input} type="text" placeholder={row.name_ar} name="categoryNameAr" required="required" onChange={handleEditCategoryForm} />
+        <TableCell align="center">
+        <input className={` mx-auto ${styles.input}`} type="text" placeholder={row.name_en} name="categoryNameEn" required="required" onChange={handleEditCategoryForm} />
+        <input className={` mx-auto ${styles.input}`} type="text" placeholder={row.name_ar} name="categoryNameAr" required="required" onChange={handleEditCategoryForm} />
+
         </TableCell>
 
-        <TableCell align="left">
-        <button className={`${styles.mybtn}`} type="submit" >Submit</button>
-        <button className={`${styles.mybtn}`} onClick={handleCancelButton} >Cancel</button>
+        <TableCell align="center">
+        <button className={` ${styles.btnSubmit}`} type="submit" >Submit</button>
+        <button className={` ${styles.mybtn}`} onClick={handleCancelButton} >Cancel</button>
         </TableCell>
 
         </TableRow>

@@ -25,20 +25,33 @@ const Navbar = () => {
 
   const navigate = useNavigate()
 
+
   // Add Language to localStorage By defualt english
 
+  const logOut = ()=>{
+    localStorage.clear();
+    setToken(true)
+    navigate('/')
+
+  }
+
   const handleLogout = async() => {
-    console.log("annnnnnnnnnaBelllllla")
     await axios.patch('http://localhost:3000/api/v1/auth/logOut', {}, {
       headers: {
           "authorization": `Bearer ${userToken}`
       }
     }).then(res => {
-      localStorage.clear();
-      setToken(true)
-      navigate('/')
+      logOut();
+
       
-   }).catch(err => console.log(err))
+   }).catch(err => {
+    console.log(err);
+    if(err.response?.data.message === 'Please Login aggen'){
+      logOut()
+      console.log("bella test exp");
+
+    }
+    })
   }
 
   const showNav = () => {
