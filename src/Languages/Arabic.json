@@ -4,6 +4,37 @@
     "Add Product": "إضافة منتج جديد",
     "Store": "المتجر",
     "Logout": "تسجيل الخروج",
+
+    "Just for you": "فقط لك",
+    "Making & crafting": "صنع وصياغة",
+    "10% off": "خصم %10",
+    "YOUR NEXT PURCHASE": "عملية الشراء التالية",
+    "Shop Now": "تسوق الآن",
+    "Shop our best sellers": "تسوق لدينا أفضل البائعين",
+    "Product View": "عرض المنتج",
+    "reviews": "المراجعات",
+    "Discount": "تخفيض",
+    "Owner": "مالك المنتج",
+    "Shop Name": "اسم المحل",
+    "Category": "النوع",
+    "Availability": "المتوفر",
+    "You Might Also Like": "قد يعجبك أيضاً",
+    "Add to cart": "أضاف إلى العربة",
+    "Sign Up for Newsletter": "إشترك في النشرة الإخبارية",
+    "Subscribe": "إشترك",
+    "Your Email Address": "إدخل بريدك الإلكترونى",
+    "Contact Us": "تواصل معنا",
+    "Information": "المعلومات",
+    "Privacy Policy": "سياسة الخصوصية",
+    "Shipping Policy": "سياسة الشحن",
+    "Terms & Conditions": "البنود و الظروف",
+    "Account": "حساب",
+    "About us": "معلومات عنا",
+    "Support": "الدعم",
+    "FAQs": "أسئلة وأجوبة متكررة",
+    "Quick Links": "روابط سريعة",
+    "All Rights Reserved": "كل الحقوق محفوظة"
+
     "Choose Categories": "أختر من الفئات",
     "Category": "الفئة",
     "Add to cart": "أضف إلي السلة",
@@ -48,4 +79,5 @@
     "check your email for code": "تحقق من بريدك الإلكتروني للحصول على رمز",
     "Change Password": "تغيير كلمة المرور"
     
+
 }

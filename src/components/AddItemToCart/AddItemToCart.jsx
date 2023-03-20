@@ -1,16 +1,17 @@
 import { BsFillCartFill } from 'react-icons/bs';
 import styles from './AddItemToCart.module.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { useTranslation } from 'react-i18next';
 
 const AddItemToCart = (props) => {
 
     const { t } = useTranslation();
+
     const {item} = props;
-
     let items = [];
-
+    const { t } = useTranslation();
 
     const addToLocalStorage =(data)=>{
       localStorage.setItem("data-cart",JSON.stringify(data));
@@ -47,7 +48,10 @@ const AddItemToCart = (props) => {
   return (
     <>
     <span onClick={()=>{addItem(item)}}>
+
+
     < BsFillCartFill className={styles.add_item} /> {t("Add to cart")}
+
     </span>
 
      {/* <button onClick={()=>{addItem(item)}} className='btn mainColor text-white w-100'>Add to cart</button> */}
