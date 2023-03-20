@@ -9,11 +9,13 @@ import { ToastContainer, toast  } from 'react-toastify';
 const Order = () => {
     const sorcImag = 'http://localhost:3000/api/v1/image';
 
+    
     const [items, itemsState] = useState([]);
     const [totalPrice, totalPriceState] = useState(0);
     const [formErrors, setFormErrors] = useState({});
 
     const navigate = useNavigate();
+
 
     // First
     // Check role customer and has cart to go to order
@@ -138,7 +140,8 @@ const Order = () => {
         // Stop Submit if has Error
         if(Object.keys(validate(form)).length > 0){
             toast.error('Opps your data is not valid', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
             return;
         }
@@ -154,15 +157,21 @@ const Order = () => {
                 }).then((res) => {
                     console.log(res);
                     // alert("Sucess Creat Your Order");
-                    toast.success('Sucess Creat Your Order', {
-                        position: toast.POSITION.TOP_RIGHT
+                    toast.success('Success Creat Your Order', {
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 1000
                     })
                     clearCart();
-                    navigate('/');
+
+                    setTimeout(()=>{
+                        navigate('/');
+                    }, 2000)
+                    
                 }).catch((err) => {
                     // Check
                     toast.error(err.response.data.message, {
-                        position: toast.POSITION.TOP_RIGHT
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 1000
                     })
                     console.log(err.response.data.message)
                 });
@@ -186,7 +195,7 @@ const Order = () => {
             <div className="conatiner mt-5 pb-5">
                 <div className="row justify-content-center">
                     <div className=" col-md-6  p-5 rounded shadow">
-                        <form className='mb-5' onSubmit={onSubmitForm}>
+                        <form className='mb-5' onSubmit={onSubmitForm} >
                             <div className=" row my-2">
                                 <div className="form-group col-md-12 pb-3">
                                     <label className="my-2 fs-5" htmlFor="phone">Phone</label>
