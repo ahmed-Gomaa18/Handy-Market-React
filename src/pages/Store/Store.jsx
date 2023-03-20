@@ -67,12 +67,14 @@ const Store = () => {
         .then((data)=>{
             console.log(data);
             toast.success('Add This Product to wishlist.', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
         }).catch((err)=>{
             console.log(err)
             toast.error('Faild while add Product to wishlist.', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
         })
 
@@ -89,12 +91,14 @@ const Store = () => {
         .then((data)=>{
             console.log(data);
             toast.success('Add This Product to Favorite.', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
         }).catch((err)=>{
             console.log(err)
             toast.error('Faild while add Product to Favorite.', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
         })
 
