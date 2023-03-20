@@ -12,6 +12,8 @@ import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
 import { toast, ToastContainer } from 'react-toastify';
 // import styles from './Store.module.css';
 
+import { useTranslation } from 'react-i18next';
+
 const image_url = "http://localhost:3000/api/v1/image";
 const base_url = "http://localhost:3000/api/v1/product";
 
@@ -19,6 +21,8 @@ const Store = () => {
     const [search, setSearch] = useState('');
     const [filterCategory, setFilterCategory] = useState([]);
     const [products, setProducts] = useState([]);
+
+    const { t ,i18n } = useTranslation();
 
     const getFilterCategory = (e) => {
         if (e.target.checked) {
@@ -131,7 +135,11 @@ const Store = () => {
                                         
                                         <div className="product-content">
                                             <h3 className="title"><Link id='link' to="#">{product.product_name}</Link></h3>
-                                            <span className="product-category"><Link to="#">Category: {product.categories_id[0]?.name} {product.categories_id[1]? ', ' + product.categories_id[1].name : ''}</Link></span>
+                                            <span className="product-category"><Link to="#">Category:
+                                                
+                                                { i18n.language === 'en' ? product.categories_id[0]?.name_en :  product.categories_id[0]?.name_ar} { i18n.language === 'en' ? product.categories_id[1]? ', ' + product.categories_id[1].name_en : ''       : product.categories_id[1]? ', ' + product.categories_id[1].name_ar : ''}
+                                                
+                                                </Link></span>
                                             <div className="price">{product.price} LE</div>
                                             
                                             { localStorage.getItem('role') === 'Customer' && <Link className="add-to-cart" to="" data-tip="add-to-cart"> <AddItemToCart item={product} /> </Link> }

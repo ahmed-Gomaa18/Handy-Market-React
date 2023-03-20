@@ -9,7 +9,14 @@ import styles from './Navbar.module.css';
 import axios from "axios";
 
 
+import { useTranslation } from 'react-i18next';
+
+
 const Navbar = () => {
+
+
+  const { t, i18n } = useTranslation();
+
   const [active, setActive] = useState(`${styles.navBar}`);
 
   const [token,setToken]= useState(false);
@@ -17,6 +24,8 @@ const Navbar = () => {
   const userRole = localStorage.getItem('role');
 
   const navigate = useNavigate()
+
+  // Add Language to localStorage By defualt english
 
   const handleLogout = async() => {
     console.log("annnnnnnnnnaBelllllla")
@@ -52,8 +61,13 @@ const Navbar = () => {
           <div className="row align-items-center">
             <div className="col-9">
               <p className="text-white mb-0">Free Shipping Over $100& Free Returns</p>
-            </div>
 
+              {/* For test */}
+              <button onClick={()=>(i18n.changeLanguage("en"))}> English </button>
+              <button onClick={()=>(i18n.changeLanguage("ar"))}> Arabic </button>
+
+            </div>
+            
           </div>
         </div>
       </header>
@@ -114,18 +128,18 @@ const Navbar = () => {
             <ul className={`d-flex ${styles.navLists}`}>
 
               <li className={styles.navItem}>
-                <Link to="/" className={styles.navLink}>Home</Link>
+                <Link to="/" className={styles.navLink}> {t("Home")} </Link>
               </li>
 
               {userRole === "Seller" && (
                   <li className={styles.navItem}>
-                       <Link to="/seller/addProduct" className={styles.navLink}>Add Product</Link>
+                       <Link to="/seller/addProduct" className={styles.navLink}>{t("Add Product")}</Link>
                     </li>
               
               )}
 
               <li className={styles.navItem}>
-                <Link to="/store" className={styles.navLink}>Store</Link>
+                <Link to="/store" className={styles.navLink}> {t("Store")} </Link>
               </li>
 
               {userRole === "Admin" && (
@@ -142,7 +156,7 @@ const Navbar = () => {
 
               {userToken && (
                 <li className={styles.navItem}>
-                  <Link className={styles.navLink} onClick={()=>handleLogout()}>Logout</Link>
+                  <Link className={styles.navLink} onClick={()=>handleLogout()}>{t("Logout")}</Link>
                 </li>
               )}
             </ul>

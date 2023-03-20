@@ -5,7 +5,8 @@ import styles from './CategoryTable.module.css';
 const ReadOnlyRow = ({row ,handleEditClick}) => {
     return (
        <TableRow key={row._id} >
-            <TableCell align="left">{row.name}</TableCell>
+            <TableCell align="left">{row.name_en} <br /> {row.name_ar}</TableCell>
+            
             <TableCell align="left"><button className={`${styles.mybtn} `} onClick={(event)=>handleEditClick(event,row)}>Edit</button></TableCell>
         </TableRow>
     );

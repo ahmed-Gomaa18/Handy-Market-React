@@ -4,11 +4,13 @@ import TableRow from "@mui/material/TableRow";
 import styles from './CategoryTable.module.css';
 
 const EditableRow = ({handleEditCategoryForm , handleCancelButton ,row}) => {
+
     return (
        <TableRow >
-
+        
         <TableCell align="left">
-        <input className={styles.input} type="text" placeholder='Enter category name' name="categoryName" required="required" onChange={handleEditCategoryForm} />
+        <input className={styles.input} type="text" placeholder={row.name_en} name="categoryNameEn" required="required" onChange={handleEditCategoryForm} />
+        <input className={styles.input} type="text" placeholder={row.name_ar} name="categoryNameAr" required="required" onChange={handleEditCategoryForm} />
         </TableCell>
 
         <TableCell align="left">
