@@ -11,7 +11,7 @@ import moment from "moment";
 
 const BalanceTable = () => {
   const [balanceData, balanceDataState] = useState([]);
-
+  
   useEffect(() => {
     axios.get('http://localhost:3000/api/v1/admin/balance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }).then((data) => {
       var test = data.data;
@@ -19,7 +19,7 @@ const BalanceTable = () => {
     }).catch((err) => {
       console.log("error msg", err);
     });
-  }, [balanceData]);
+  }, []);
 
   return (
     <div className={` col-lg-10 col-md-9 ${styles.Table}`}>
@@ -28,19 +28,22 @@ const BalanceTable = () => {
         <Table >
           <TableHead>
             <TableRow>
-              <TableCell>Total Profit</TableCell>
-              <TableCell align="left">User ID</TableCell>
-              <TableCell align="left">Order Profit</TableCell>
-              <TableCell align="left">Date</TableCell>
+              <TableCell className="fw-bold" align="center">Created By</TableCell>
+              <TableCell className="fw-bold" align="center">User Email</TableCell>
+              <TableCell className="fw-bold" align="center">Order Profit</TableCell>
+              <TableCell className="fw-bold" align="center">Date</TableCell>
+              <TableCell className="fw-bold" align="center">Total Profit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {balanceData && balanceData.map((row) => (
+        
               <TableRow key={row.total_profit}>
-                <TableCell align="left">{row.total_profit}  LE</TableCell>
-                <TableCell align="left">{row.order_id?.user_id}</TableCell>
-                <TableCell align="left">{row.order_profit}  LE</TableCell>
-                <TableCell align="left">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
+                <TableCell align="center">{row.order_id?.user_id?.user_name}</TableCell>
+                <TableCell align="center">{row.order_id?.user_id?.email}</TableCell>
+                <TableCell align="center">{row.order_profit}  LE</TableCell>
+                <TableCell align="center">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
+                <TableCell align="center">{row.total_profit}  LE</TableCell>
               </TableRow>
             ))}
           </TableBody>

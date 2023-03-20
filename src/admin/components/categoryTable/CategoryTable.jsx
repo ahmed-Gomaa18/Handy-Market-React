@@ -84,25 +84,26 @@ const CategoryTable = () => {
 
   return (
     <>
-      <div className='${styles.Table} col-lg-9 col-md-9'>
+      <div className={` col-lg-9 col-md-9`}>
         
         <div className="row">
           <h2>Add a New Category</h2>
           <form className="d-flex align-items-center" onSubmit={handleAddFormSubmit}>
-            <input className="form-control my-2 me-3" type="type" name="category name" value={addCategory} placeholder="enter category name.." required="required" onChange={handleAddFormChange}/>
+            <input className="form-control my-2 me-3" type="type" name="category name" value={addCategory} placeholder="enter category name in english.." required="required" onChange={handleAddFormChange}/>
+            <input className="form-control my-2 me-3" type="type" name="category name" value={addCategory} placeholder="enter category name in arabic.." required="required" onChange={handleAddFormChange}/>
             <button className={` my-2 ${styles.mybtn}`}  type="submit" >ADD</button>
           </form>
         </div>
 
-        <div className="p-2">
+        <div className={` p-2 ${styles.Table}`}>
           <h3>Our Categories</h3>
            <form onSubmit={handleFormUpdatecategory}>
-            <TableContainer className={styles.tableContainer}  >
+            <TableContainer className={`${styles.tableContainer} `} >
               <Table >
                 <TableHead>
                   <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Actions</TableCell>
+                    <TableCell className="fw-bold" align="center">Name</TableCell>
+                    <TableCell className="fw-bold" align="center">Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <hr />

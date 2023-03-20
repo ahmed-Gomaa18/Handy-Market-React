@@ -1,8 +1,6 @@
-.Table {
-  margin-top: 15rem;
-  margin-left: 5rem;
-
-}
+ /* .Table {
+ display: flex;
+}  */
 
 .tableContainer {
   box-shadow: 0px 13px 20px 0px #80808029;
@@ -17,15 +15,52 @@ th {
 .Table:first-child {
   border-radius: 0.7rem !important;
 }
-
-.status {
+.btnEdit{
+  width: 150px;
   padding: 8px;
+  border: none; 
+  outline: none;
   border-radius: 9px;
+  background-color: var(--sea_nymph) ;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btnEdit:hover {
+
+  background-color: #5ed5bb;
+}
+.mybtn {
+  padding: 8px;
+  border: none; 
+  outline: none;
+  border-radius: 9px;
+  background-color: var(--sea_nymph) ;
+  
+}
+.mybtn:hover {
+
+  background-color: #5ed5bb;
+}
+.btnSubmit{
+  padding: 8px;
+  border: none; 
+  outline: none;
+  margin-right: 10px;
+  border-radius: 9px;
+  background-color: var(--sea_nymph) ;
+  
+}
+.btnSubmit:hover {
+
+  background-color: #5ed5bb;
 }
 
 .input {
+  align-self:center;
+  width: auto;
   background-color: transparent;
   border: none;
+  
 }
 
 .Details {
@@ -36,22 +71,3 @@ h3 {
   margin-top: 20px;
 }
 
-.mybtn {
-  width: 150px;
-  background-color: var(--sea_nymph) ;
-  border: none;
-  outline: none;
-  height: 49px;
-  border-radius: 49px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 10px 0;
-  cursor: pointer;
-  transition: 0.5s;
-
-}
-
-.mybtn:hover {
-  background-color: #5ed5bb;
-}

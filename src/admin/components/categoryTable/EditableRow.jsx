@@ -7,13 +7,13 @@ const EditableRow = ({handleEditCategoryForm , handleCancelButton ,row}) => {
     return (
        <TableRow >
 
-        <TableCell align="left">
-        <input className={styles.input} type="text" placeholder='Enter category name' name="categoryName" required="required" onChange={handleEditCategoryForm} />
+        <TableCell align="center">
+        <input className={` mx-auto ${styles.input}`} type="text" placeholder='Enter category name' name="categoryName" required="required" onChange={handleEditCategoryForm} />
         </TableCell>
 
-        <TableCell align="left">
-        <button className={`${styles.mybtn}`} type="submit" >Submit</button>
-        <button className={`${styles.mybtn}`} onClick={handleCancelButton} >Cancel</button>
+        <TableCell align="center">
+        <button className={` ${styles.btnSubmit}`} type="submit" >Submit</button>
+        <button className={` ${styles.mybtn}`} onClick={handleCancelButton} >Cancel</button>
         </TableCell>
 
         </TableRow>
