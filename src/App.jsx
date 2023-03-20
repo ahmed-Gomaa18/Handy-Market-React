@@ -46,6 +46,8 @@ import UpdateCustomerprofile from './pages/UpdateCustomerProfile/UpdateCustomerP
 import CustomerProfile from './pages/CustomerProfile/CustomerProfile';
 import CustomerAuth from './guard/CustomerAuth';
 
+// For Localization
+import "./i18n";
 
 function App() {
   return (
