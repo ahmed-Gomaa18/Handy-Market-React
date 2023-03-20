@@ -22,7 +22,7 @@ const BasicTable = () => {
     }).catch((err) => {
       console.log("error msg", err);
     });
-  }, []);
+  }, [productData]);
 
   const updateProductState = (param) => {
     axios.patch(`http://localhost:3000/api/v1/admin/Approval/${param}`, {},
@@ -36,6 +36,20 @@ const BasicTable = () => {
         console.log("error msg", err);
       });
   }
+  const deleteProduct = (param) => {
+    try {
+      axios.delete(`http://localhost:3000/api/v1/admin/delete/notApproval/${param}`,
+        { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } 
+      }).then((res) =>{
+        console.log("deleted successfuly");
+      }).catch((err) => {
+        console.log("error msg", err);
+      })
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className={`container ${styles.Table}`}>
@@ -43,12 +57,14 @@ const BasicTable = () => {
         <h3>Recent Product</h3>
         <TableContainer className={styles.TableContainer} >
           <Table  aria-label="simple table">
-            <TableHead >
-              <TableRow>
-                <TableCell>Product Name</TableCell>
-                <TableCell align="left">Created by</TableCell>
-                <TableCell align="left">Date</TableCell>
-                <TableCell align="left">Status</TableCell>
+            <TableHead  >
+              <TableRow >
+                <TableCell className="fw-bold" align="center">Product Name</TableCell>
+                <TableCell className="fw-bold" align="center">Created By</TableCell>
+                <TableCell className="fw-bold" align="center">Date</TableCell>
+                <TableCell className="fw-bold"align="center">Status</TableCell>
+                <TableCell className="fw-bold"align="center">Product Details</TableCell>
+                <TableCell className="fw-bold" align="center">Delete Product</TableCell>
               </TableRow>
             </TableHead>
             <TableBody >
@@ -61,8 +77,8 @@ const BasicTable = () => {
                     {row.product_name}
                   </TableCell>
                   <TableCell align="left">{row.created_by.user_name}</TableCell>
-                  <TableCell align="left">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
-                  <TableCell align="left">
+                  <TableCell align="center">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
+                  <TableCell align="center">
                     <button className={styles.status} onClick={() => {
                       const confirmBox = window.confirm("Do you really want to approve this product?");
                       if (confirmBox === true) {
@@ -70,10 +86,18 @@ const BasicTable = () => {
                       }
                     }}>Approve</button>
                   </TableCell>
-                  <TableCell align="left">
+                  <TableCell align="center">
                     <Link to={`/dashboard/dashboardProductDetails/${row._id}`}>
                       <button className={styles.status}>Details</button>
                     </Link>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button className={styles.status} onClick={() => {
+                      const confirmBox = window.confirm("Do you really want to delete this product?");
+                      if (confirmBox === true) {
+                        deleteProduct(row._id);
+                      }
+                    }}>Delete</button>
                   </TableCell>
                 </TableRow>
               ))}
