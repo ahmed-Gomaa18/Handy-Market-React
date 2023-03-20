@@ -4,7 +4,13 @@ import { AiOutlineUser } from "react-icons/ai";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from './CodeForgetPass.module.css';
 
+import { useTranslation } from 'react-i18next';
+
 const CodeForgetPass = () => {
+
+
+    const { t } = useTranslation();
+
     const [form, setForm] = useState({
         code: "",
         email: ""
@@ -55,7 +61,7 @@ const CodeForgetPass = () => {
                 <div className={styles.signin_signup}>
                     <form onSubmit={onSubmitForm} className={styles.myform}>
 
-                        <h2 className="title"> check your email for code </h2>
+                        <h2 className="title"> {t("check your email for code")} </h2>
                         
                         <div className="text-danger">
                             {errMssg && <p>{errMssg}</p>}
@@ -89,7 +95,7 @@ const CodeForgetPass = () => {
 
 
 
-                        <input type="submit" value="next" className={`solid ${styles.mybtn}`} />
+                        <input type="submit" value={t("next")} className={`solid ${styles.mybtn}`} />
                     </form>
                 </div>
             </div>
@@ -97,14 +103,13 @@ const CodeForgetPass = () => {
             <div className={styles.panels_container}>
                 <div className={`${styles.panel} ${styles.left_panel}`}>
                     <div className={styles.content}>
-                        <h3 className={styles.panel_h3}>New here ?</h3>
+                        <h3 className={styles.panel_h3}>{t("New here ?")}</h3>
                         <p className={styles.panel_para}>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                            ex ratione. Aliquid!
+                            {t("Be one of our family. Join us now.sign up from here")}
                         </p>
                         <Link to="/role">
                             <button className={`${styles.mybtn} ${styles.transparent}`} id="sign-up-btn">
-                                Sign up
+                                {t("Sign up")}
                             </button>
                         </Link>
                     </div>

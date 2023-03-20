@@ -126,16 +126,16 @@ const Store = () => {
                                             {product.discount ? <span className="product-discount-label">-{product.discount}%</span> : ''}
 
                                             <ul className="social"> 
-                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' data-tip="Add to Favorite" onClick={()=>addToFavorite(product._id)} > <i><BsFillSuitHeartFill/></i></Link> </li> }  
-                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' data-tip="Add to Wishlist" onClick={()=>addToWishList(product._id)}> <i><FaClipboardList/></i></Link> </li> }
-                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' to={`/product/${product._id}`} data-tip="Quick View"> <i><MdPageview/></i></Link> </li> }
+                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' data-tip={t("Add to Favorite")} onClick={()=>addToFavorite(product._id)} > <i><BsFillSuitHeartFill/></i></Link> </li> }  
+                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' data-tip={t("Add to Wishlist")} onClick={()=>addToWishList(product._id)}> <i><FaClipboardList/></i></Link> </li> }
+                                                { localStorage.getItem('role') === 'Customer' && <li><Link id='link' to={`/product/${product._id}`} data-tip={t("Quick View")}> <i><MdPageview/></i></Link> </li> }
 
                                             </ul>
                                         </div>
                                         
                                         <div className="product-content">
                                             <h3 className="title"><Link id='link' to="#">{product.product_name}</Link></h3>
-                                            <span className="product-category"><Link to="#">Category:
+                                            <span className="product-category"><Link to="#">{t("Category")}:
                                                 
                                                 { i18n.language === 'en' ? product.categories_id[0]?.name_en :  product.categories_id[0]?.name_ar} { i18n.language === 'en' ? product.categories_id[1]? ', ' + product.categories_id[1].name_en : ''       : product.categories_id[1]? ', ' + product.categories_id[1].name_ar : ''}
                                                 

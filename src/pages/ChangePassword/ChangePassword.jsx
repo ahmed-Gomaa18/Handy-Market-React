@@ -5,7 +5,12 @@ import { AiOutlineUser } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import styles from './ChangePassword.module.css';
 
+import { useTranslation } from 'react-i18next';
+
 const ChangePassword = () => {
+
+    const { t } = useTranslation();
+
     const [form, setForm] = useState({
         email: "",
         newPassword: ""
@@ -48,7 +53,7 @@ const ChangePassword = () => {
             <div className={styles.forms_container}>
                 <div className={styles.signin_signup}>
                     <form onSubmit={onSubmitForm} className={styles.myform}>
-                        <h2 className="title">Change Password</h2>
+                        <h2 className="title">{t("Change Password")}</h2>
                         <div className={styles.input_field}>
                             <i > <AiOutlineUser /></i>
                             <input type="email" className="form-control" id="exampleInputEmail1"
@@ -70,7 +75,7 @@ const ChangePassword = () => {
                             {formErrors.newPassword}
                         </div>
 
-                        <input type="submit" value="next" className={`solid ${styles.mybtn}`} />
+                        <input type="submit" value={t("next")} className={`solid ${styles.mybtn}`} />
                     </form>
                 </div>
             </div>
@@ -78,14 +83,13 @@ const ChangePassword = () => {
             <div className={styles.panels_container}>
                 <div className={`${styles.panel} ${styles.left_panel}`}>
                     <div className={styles.content}>
-                        <h3 className={styles.panel_h3}>New here ?</h3>
+                        <h3 className={styles.panel_h3}>{t("New here ?")}</h3>
                         <p className={styles.panel_para}>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                            ex ratione. Aliquid!
+                            {t("Be one of our family. Join us now.sign up from here")}
                         </p>
                         <Link to="/role">
                             <button className={`${styles.mybtn} ${styles.transparent}`} id="sign-up-btn">
-                                Sign up
+                                {t("Sign up")}
                             </button>
                         </Link>
                     </div>
