@@ -36,60 +36,139 @@ const Register = () => {
     }
     const onUpdateField = e => {
         form.age = +form.age;
-        const { name, value } = e.target;
-        const nextFormState = { ...form, [name]: value };
-        setForm(nextFormState);
+        setForm((prev) => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        }
+        );
     };
-
-    const validate = (val) => {
-        const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const phonenum = /^\d{11}$/;
-        const pass = /^[A-Z][1-9]{2,5}$/;
-        if (!val.user_name) {
-            errors.user_name = "username is required"
-        } else if (val.user_name.length < 3) {
-            errors.user_name = "username is must be more than three digits"
-        } else if (val.user_name.length > 20) {
-            errors.user_name = "username is must be less than 20 digits"
-        }
-        if (!val.email) {
-            errors.email = "email is required"
-        } else if (!regex.test(form.email)) {
-            errors.email = "this email not vaild! "
-        }
-        if (!val.age) {
-            errors.age = "age is required"
-        } else if (val.age <= 15) {
-            errors.age = "un vaild! "
-        }
-        if (!val.gender) {
-            errors.gender = "gender is required"
-        }
-        if (!val.password) {
-            errors.password = "password is required"
-        } else if (val.password < 2) {
-            errors.password = "Password length must be atleast 2 characters"
-        } else if (val.password > 5) {
-            errors.password = "Password length must not exceed 5 characters"
-        } else if (!pass.test(form.password)) {
-            errors.password = "Password length must not exceed 5 characters"
-        }
-        if (!val.confirmPassword) {
-            errors.confirmPassword = "confirmPassword is required"
-        } else if (val.password === val.confirmPassword) {
-            errors.confirmPassword = "passwords did not match"
-        }
-        if (!val.address) {
-            errors.address = "address is required"
-        }
-        if (!val.phone) {
-            errors.phone = "phone is required"
-        } else if (!phonenum.test(form.phone)) {
-            errors.phone = "phone is not vaild"
-        }
-        return errors;
+    const onHandleBlur = e => {
+        const { name, value } = e.target;
+        validate(name, value)
     }
+    const validate = (name, value) => {
+        if (!value) {
+            setFormErrors({ ...formErrors, [name]: "Please, Enter required data" })
+            return
+        };
+        switch (name) {
+            case "user_name":
+                {
+                    if (value.length <= 3) {
+                        setFormErrors({ ...formErrors, user_name: 'username should be more than three digits' });
+                    } else if (value.length >= 20) {
+                        setFormErrors({ ...formErrors, user_name: 'username maximum 20 digits' });
+                    } else {
+                        setFormErrors({ ...formErrors, user_name: null });
+                    }
+                }
+                break;
+
+            case "email":
+                {
+                    if (!new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i).test(value)) {
+                        setFormErrors({ ...formErrors, email: 'please check your email' });
+                        return
+                    } else {
+                        setFormErrors({ ...formErrors, email: null });
+                    }
+                }
+                break;
+
+            case "age":
+                {
+                    setFormErrors({ ...formErrors, age: value <= 15 ? 'users age should be fifteen years old or more' : null });
+                }
+                break;
+            case "password":
+                {
+                    if (value.length < 6) {
+                        setFormErrors({ ...formErrors, password: 'Your password should be more than 6 digits' });
+                    } else if (value.length > 16) {
+                        setFormErrors({ ...formErrors, password: 'Your password shouldnt exceed 16 digits' });
+                    } else if (!new RegExp(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/).test(value)) {
+                        setFormErrors({ ...formErrors, password: 'Your password should contain at least one number and one special character' });
+                    } else {
+                        setFormErrors({ ...formErrors, password: null });
+                    }
+                }
+                break;
+            case "confirmPassword":
+                {
+                    console.log("hii");
+
+                    if (form.password !== value) {
+                        console.log(false);
+                        setFormErrors({ ...formErrors, confirmPassword: 'Your password is miss match ' });
+                    } else {
+                        console.log(true);
+                        setFormErrors({ ...formErrors, confirmPassword: null });
+                    }
+
+                }
+                break;
+
+
+            case "phone":
+                {
+                    if (!new RegExp(/^\d{11}$/).test(value)) {
+                        setFormErrors({ ...formErrors, phone: 'phone must be number of eleven digits' });
+                    } else if (value.length != 11) {
+                        setFormErrors({ ...formErrors, phone: 'phone must be eleven digits' });
+                    } else {
+                        setFormErrors({ ...formErrors, phone: null });
+                    }
+                }
+                break;
+
+            case "city":
+                {
+                    if (!value) {
+                        setFormErrors({ ...formErrors, city: 'city is required ' });
+
+                    } else {
+                        setFormErrors({ ...formErrors, city: null });
+                    }
+                }
+                break;
+            case " building_num":
+                {
+                    if (!value) {
+                        setFormErrors({ ...formErrors, building_num: ' building_num is required ' });
+
+                    } else {
+                        setFormErrors({ ...formErrors, building_num: null });
+                    }
+                }
+                break;
+            case " street":
+                {
+                    if (!value) {
+                        setFormErrors({ ...formErrors, street: ' street is required ' });
+
+                    } else {
+                        setFormErrors({ ...formErrors, street: null });
+                    }
+                }
+                break;
+            case " gender":
+                {
+                    if (!value) {
+                        setFormErrors({ ...formErrors, gender: ' gender is required ' });
+
+                    } else {
+                        setFormErrors({ ...formErrors, gender: null });
+                    }
+                }
+                break;
+
+
+        }
+    }
+
+
     const navigate = useNavigate();
     const location = useLocation();
     const redirectPath = location.state?.path || '/auth/login';
@@ -98,7 +177,14 @@ const Register = () => {
     const onSubmitForm = e => {
         form.address.building_num = +form.address.building_num;
         e.preventDefault();
-        setFormErrors(validate(form))
+        console.log(form);
+        if (Object.keys(formErrors).some((error) => error !== null)) {
+            setIsSubmit(true);
+        } else {
+            alert("please fill the form corectly");
+            return;
+        }
+
         axios.post('http://localhost:3000/api/v1/auth/singUp', form).then((res) => {
             console.log(res);
             navigate(redirectPath, { replace: true });
@@ -112,18 +198,29 @@ const Register = () => {
         });
     };
 
+
+
+
+
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className='offset-lg-1 shadow-lg my-5 bg-body-tertiary rounded col-md-6 pe-lg-5 order-s-frist'>
+                <div className="col-md-5 ps-lg-5 order-s-last">
+                    <div className={`${styles.layer}`}>
+                        <img src="images/sellerReg.png" className="img-fluid h-100 w-100" alt="user img" />
+                        <div className={styles.overlay}>
+                        </div>
+                    </div>
+                </div>
+                <div className='offset-lg-1 shadow-lg p-4 my-5 bg-body-tertiary rounded col-md-6 pe-lg-5 order-s-frist'>
                     <div className='mt-2'>
                         <form onSubmit={onSubmitForm} className='sign-in-form pb-5 ' >
 
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-6 ">
                                     <div className="form-group">
                                         <label htmlFor="exampleInputEmail1" className='my-2'>Email address</label>
-                                        <input type="email" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} noValidate />
+                                        <input type="email" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} onBlur={onHandleBlur} noValidate />
                                         <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                         <div className=" text-danger">
                                             {formErrors.email}
@@ -136,7 +233,7 @@ const Register = () => {
                                 <div className="col-md-6">
                                     <div className="form-group col mb-2">
                                         <label htmlFor="examplephone" className='my-2'>phone</label>
-                                        <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="examplephone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
+                                        <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="examplephone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} onBlur={onHandleBlur} />
                                         <div className=" text-danger">
                                             {formErrors.phone}
                                         </div>
@@ -148,7 +245,7 @@ const Register = () => {
                                 <div className="col-md-6">
                                     <div className="form-group ">
                                         <label htmlFor="exampleInputusername" className='my-2'>User Name</label>
-                                        <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputusername" placeholder="user name" name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
+                                        <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputusername" placeholder="user name" onBlur={onHandleBlur} name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
                                         <div className=" text-danger">
                                             {formErrors.user_name}
                                         </div>
@@ -158,7 +255,7 @@ const Register = () => {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label htmlFor="exampleInputusername" className='my-2'>Age </label>
-                                        <input type="number" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onChange={onUpdateField} />
+                                        <input type="number" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onBlur={onHandleBlur} onChange={onUpdateField} />
                                         <div className=" text-danger">
                                             {formErrors.age}
                                         </div>
@@ -171,8 +268,8 @@ const Register = () => {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputPassword1" className='my-2'>Password</label>
-                                        <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputPassword1" name="password" placeholder="Password" value={form.password} onChange={onUpdateField} noValidate />
+                                        <label htmlFor="password" className='my-2'>Password</label>
+                                        <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="password" name="password" placeholder="enter at least one capital and 1 (@_#_%_&_*) " value={form.password} onChange={onUpdateField} onBlur={onHandleBlur} noValidate />
                                         <div className=" text-danger">
                                             {formErrors.password}
                                         </div>
@@ -181,8 +278,8 @@ const Register = () => {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputconfirmPassword1" className='my-2'>confirm Password</label>
-                                        <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputconfirmPassword1" name="confirmPassword" placeholder="confirmPassword" value={form.confirmPassword} onChange={onUpdateField} />
+                                        <label htmlFor="confirmPassword" className='my-2'>confirm Password</label>
+                                        <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="confirmPassword" name="confirmPassword" placeholder="confirmPassword" value={form.confirmPassword} onChange={onUpdateField} onBlur={onHandleBlur} />
                                         <div className=" text-danger">
                                             {formErrors.confirmPassword}
                                         </div>
@@ -195,23 +292,23 @@ const Register = () => {
                             <div className="row">
                                 <div className="form-group col-md-6">
                                     <label htmlFor="exampleInputaddress" className='my-2'>city</label>
-                                    <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="city" name="city" placeholder="city" value={form.address.city} onChange={UpdateAddress} />
+                                    <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="city" name="city" placeholder="city" value={form.address.city} onChange={UpdateAddress} onBlur={onHandleBlur} />
                                     <div className=" text-danger">
-                                        {formErrors.address}
+                                        {formErrors.city}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="exampleInputaddress" className='my-2'>street</label>
-                                    <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="street" name="street" placeholder="street" value={form.address.street} onChange={UpdateAddress} />
+                                    <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="street" name="street" placeholder="street" value={form.address.street} onChange={UpdateAddress} onBlur={onHandleBlur} />
                                     <div className=" text-danger">
-                                        {formErrors.address}
+                                        {formErrors.street}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="exampleInputaddress" className='my-2'>building number</label>
-                                    <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="building_num" name="building_num" placeholder="building_num" value={form.address.building_num} onChange={UpdateAddress} />
+                                    <input type="text" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="building_num" name="building_num" placeholder="building_num" value={form.address.building_num} onChange={UpdateAddress} onBlur={onHandleBlur} />
                                     <div className=" text-danger">
-                                        {formErrors.address}
+                                        {formErrors.building_num}
                                     </div>
                                 </div>
                             </div>
@@ -227,17 +324,11 @@ const Register = () => {
                             <div className="text-danger">
                                 {formErrors.gender}
                             </div>
-                            <button type="submit" className={`btn btn-primary position-absolute end-50 mb-5 ${styles.mybtn}`}>Submit</button>
+                            <button type="submit" className={` ${styles.mybtn}`}>Submit</button>
                         </form>
                     </div>
                 </div>
-                <div className="col-md-5 ps-lg-5 order-s-last">
-                    <div className={`h-100 ${styles.layer}`}>
-                        <img src="images/signup.png" className="img-fluid h-100" alt="user img" />
-                        <div className={styles.overlay}>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     )
