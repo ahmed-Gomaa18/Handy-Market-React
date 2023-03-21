@@ -132,10 +132,8 @@ const Navbar = () => {
                         </Link>
                         }
 
-                        {userRole === 'Customer' && <Link to="/CustomerProfile" className={styles.navLink}>User Profile</Link>}
-                        {userRole === 'Seller' && <Link to="/seller/profile" className={styles.navLink}>Seller Profile</Link>}
-
-
+                        {userRole === 'Customer' && <Link to="/CustomerProfile" className={styles.navLink}>{t("Profile")}</Link>}
+                        {userRole === 'Seller' && <Link to="/seller/profile" className={styles.navLink}>{t("Profile")}</Link>}
                       </>
 
                     

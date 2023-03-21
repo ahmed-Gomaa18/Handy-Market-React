@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import {FaClipboardList} from 'react-icons/fa';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { FaClipboardList } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ExpandMore = styled((props) =>{
   const { expand, ...other } = props;
@@ -20,32 +19,17 @@ export default function WishlistCard(props){
 
   const { t, i18n } = useTranslation();
   // const userToken = localStorage.getItem("user-token");
-   const {product_name,price,description,photos,discount,_id}=props;
-   const sorcImag = 'http://localhost:3000/api/v1/image'
+   const {product_name,price,description,photos,discount,_id, unWishlist } = props;
+   const sorcImag = 'http://localhost:3000/api/v1/image';
    
+    function handleChange() {
+      // if (!e.target.checked)
+        unWishlist(_id)
+    }
+    
     let img="";
    if(photos&&photos.length>0)
     img=photos[0]
-
-  //   const unWhishlist = (id) => {
-  //     const unWhishlistUrl = "http://localhost:3000/api/v1/user/unWhishlist/";
-
-  //     axios.patch(`${unWhishlistUrl}${id}`, null, { headers: { "authorization": `Bearer ${userToken}` } })
-  //         .then((data) => {
-  //             let allWishlist = [];
-  //             if (data.status === 200)
-
-  //               allWishlist = favoritesData.filter((product) => {
-  //                     return product._id !== id;
-  //                 })
-  //             const allfavoritesFiltered = filteredData.filter((product) => {
-  //                 return product._id !== id;
-  //             })
-  //             setFavorites(allWishlist);
-  //             setFiltered(allWishlistFiltered);
-  //         })
-  // }
-
    
   return (
     // <Card key={_id} sx={{maxWidth:250 }} className="cart me-1 mb-4 bg-warning">
@@ -80,14 +64,14 @@ export default function WishlistCard(props){
     
 
 
-    <div className="product-grid col-md-4 mx-1 ">
+    <div className="product-grid col-md-4">
         <div className="product-image">
           <Link id='link' to="#" className="image h-100 d-flex align-items-center">
             {photos && <img className="h-100" src={`${sorcImag}${img}`} alt='photoTwo' />}
           </Link>
-          {/* <ul className="social"> 
-          <li><Link id='link' data-tip={t("Remove from Wishlist")}> <i><FaClipboardList onClick={handleChange}/></i></Link></li>
-          </ul> */}
+          <ul className="social"> 
+          <li><Link id='link' onClick={handleChange} data-tip={t("Remove from Wishlist")}> <i><FaClipboardList /></i></Link></li>
+          </ul>
 
           {discount ? <span className="product-discount-label">-{discount}%</span> : ''}
 

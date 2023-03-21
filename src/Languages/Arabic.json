@@ -4,8 +4,6 @@
     "Add Product": "إضافة منتج جديد",
     "Store": "المتجر",
     "Logout": "تسجيل الخروج",
-
-
     "Edit public profile": " تعديل الملف الشخصى ",
     "Orders": "الطلبات",
     "Wishlist":"قائمة الرغبات",
@@ -16,7 +14,6 @@
     "Profile Image:":"صورة الملف الشخصى",
     "Full Name":"الاسم كامل",
     "Phone" : "التلفون",
-
     "Building" : "المبنى",
     "Update" : "تعديل",
     "User Name must be at least 3 characters" : "اسم المستخدم يجب ان لا يقل عن 3 حروف",
@@ -28,9 +25,6 @@
     "Shop Name" : "اسم المتجر",
     "About Me" : "اعرف المزيد عنا",
     "Products" : "المنتاجات",
-    
-
-
     "Just for you": "فقط لك",
     "Making & crafting": "صنع وصياغة",
     "10% off": "خصم %10",
@@ -39,14 +33,11 @@
     "Shop our best sellers": "تسوق لدينا أفضل البائعين",
     "Product View": "عرض المنتج",
     "reviews": "المراجعات",
-
     "Owner": "مالك المنتج",
-
-
     "Availability": "المتوفر",
     "You Might Also Like": "قد يعجبك أيضاً",
     "Add to cart": "أضاف إلى العربة",
-    "Sign Up for Newsletter": "إشترك في النشرة الإخبارية",
+    "Sign Up for Newsletter": "سجل لمتابعة أخر الأخبار",
     "Subscribe": "إشترك",
     "Your Email Address": "إدخل بريدك الإلكترونى",
     "Contact Us": "تواصل معنا",
@@ -59,7 +50,6 @@
     "Support": "الدعم",
     "FAQs": "أسئلة وأجوبة متكررة",
     "Quick Links": "روابط سريعة",
-
     "All Rights Reserved": "كل الحقوق محفوظة",
     "Shopping Cart": "عربة التسوق",
     "Cart is empty": "لا يوجد منتجات فالعربة",
@@ -68,7 +58,6 @@
     "Total": "الإجمالى",
     "Clear All": "امسح الكل",
     "Checkout": "الدفع",
-
     "City": "المدينة",
     "Street": "الشارع",
     "Building_num": "رقم المبنى",
@@ -80,10 +69,8 @@
     "Pay Your Orders": "إدفع طلباتك",
     "Please Fill Your Card": "برجاء إدخال بيانات البطاقة",
     "Pay now": "إدفع الآن",
-
     "Choose Categories": "أختر من الفئات",
     "Category": "الفئة",
-
     "Add to Favorite": "أضف إلي قائمة المفضلة",
     "Add to Wishlist": "أضف إلي قائمة المشاهدة لاحقاً",
     "Quick View": "نظرة سريعة",
@@ -125,7 +112,14 @@
     "check your email for code": "تحقق من بريدك الإلكتروني للحصول على رمز",
     "Change Password": "تغيير كلمة المرور",
     "Remove": "مسح",
-    "User Profile": "الملف الشخصى",
-    "Remove from Favorite" :"ازاله من المفضلات"
-
+    "Profile": "الملف الشخصى",
+    "Remove from Favorite" :"ازاله من المفضلات",
+    "Name": "الأسم",
+    "Sold Items": "المنتجات المباعة",
+    "available Items": "المنتجات المتوفره",
+    "Delete": "حذف البيانات",
+    "Accessories": "إكسسوارات",
+    "Arts": "فنون",
+    "Clay": "فخار",
+    "Clothes": "ملابس"
 }

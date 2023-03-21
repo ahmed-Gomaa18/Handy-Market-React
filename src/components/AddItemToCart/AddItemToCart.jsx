@@ -1,7 +1,8 @@
-import { BsFillCartFill } from 'react-icons/bs';
-import styles from './AddItemToCart.module.css';
-import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { BsFillCartFill } from 'react-icons/bs';
+import { toast } from 'react-toastify';
+
+import styles from './AddItemToCart.module.css';
 
 
 const AddItemToCart = (props) => {
@@ -58,6 +59,3 @@ const AddItemToCart = (props) => {
 }
 
 export default AddItemToCart;
-
-
-//class="btn mb-2 mb-md-0 btn-round btn-outline" onClick={()=>{addItem(item)}}
