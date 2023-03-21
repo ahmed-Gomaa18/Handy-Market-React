@@ -23,8 +23,10 @@ const OrderList = () => {
         <div>
            {
         <div className='container-fluid mt-3 ' >
-                <div className='row'>
+
                     <h4>{t("Orders")}</h4>
+                <div className='container'>
+
                     {   
                     Orders?.map((order)=>(
                         <Order  key={order._id} {...order}/> ))

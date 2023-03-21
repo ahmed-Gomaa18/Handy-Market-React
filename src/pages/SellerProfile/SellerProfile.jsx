@@ -30,9 +30,9 @@ const SellerProfile = () => {
   return (
     <>
       {userData && <div className='parent my-5'>
-        <div className={`m-5 container m-auto text-center p-4 ${styles.mainColor}`} id="container">
+        <div className={`m-5 container ${styles.mainColor} p-5 m-auto text-center shadow-lg`} id="container">
           <div className="row">
-            <div className="col-md-6 mx-auto shadow rounded p-4">
+            <div className={`col-md-6   m-2 mx-auto shadow rounded p-4`}>
               <div className="row m-auto text-center">
                 <div className=' w-50 h-50 m-auto' >
                   {userData.profile_image &&
@@ -81,8 +81,10 @@ const SellerProfile = () => {
               </div>
               <div>
 
-                <Link className=" custom" to="/seller/services"> 
-                  <button className={`${styles.btn2}`}> {t("Products")}</button>
+
+                <Link className="custom" to="/seller/services"> 
+                  <button className={`${styles.btn2}`}>  {t("Products")}</button>
+
                  
                 </Link>
               </div>

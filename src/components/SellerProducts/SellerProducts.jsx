@@ -25,15 +25,17 @@ const SellerProducts = () => {
     navigate(`/seller/update/${product._id}/${userId}`)
   }
   return (
-    <div className={`container my-5 shadow ${styles.mainColor}`}>
-      <div className="row my-5 p-5">
-      {allProducts && allProducts?.map((product,index) =>(
-                <div className="col-md-4">
-                  {(product.photos[0] && <img key={product._id} className='img-fluid w-100 h-100' alt='not has photo' src={`${sorcImag}${product.photos[0]}`} onClick={((e) => handleClick(e, product))}></img>)}
-                </div>
-      ))
-      }
+    <div className={` container my-5 shadow ${styles.mainColor}`}>
+      <div className={`row my-5 p-5 `} >
 
+        {allProducts && allProducts?.map((product, index) => (
+          <div className="product-grid col-md-4 mt-4  ">
+            <div className="product-image">
+                {(product.photos[0] && <img key={product._id} className='img-fluid w-100 h-100' alt='not has photo' src={`${sorcImag}${product.photos[0]}`} onClick={((e) => handleClick(e, product))}></img>)}
+            </div>
+          </div>
+              ))
+        }
       </div>
     </div>
   );

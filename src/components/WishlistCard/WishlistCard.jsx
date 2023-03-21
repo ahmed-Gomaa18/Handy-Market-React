@@ -1,14 +1,6 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';   
-import {MdAddShoppingCart} from "react-icons/md";
-
 const ExpandMore = styled((props) =>{
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -29,32 +21,51 @@ export default function WishlistCard(props){
    if(photos&&photos.length>0)
     img=photos[0]
   return (
-    <Card key={_id} sx={{maxWidth:250 }} className="cart me-1 mb-4 bg-warning">
-      <CardHeader
-        title={product_name}
-      />
-      <CardMedia
-        component="img"
-        height="150"
-        image={`${sorcImag}${img}`}
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-          <IconButton aria-label="add to cart">
-          <MdAddShoppingCart/>
-          </IconButton>
-        <ExpandMore>
-            <span className='price fs-4'>$ {price}</span>
-        </ExpandMore>
-        <ExpandMore>
-       { <span className='price fs-4  text-success '>{discount} off</span>}
-        </ExpandMore>
-      </CardActions>
-    </Card>
+    // <Card key={_id} sx={{maxWidth:250 }} className="cart me-1 mb-4 bg-warning">
+    //   <CardHeader
+    //     title={product_name}
+    //   />
+    //   <CardMedia
+    //     component="img"
+    //     height="150"
+    //     image={`${sorcImag}${img}`}
+    //     alt="Paella dish"
+    //   />
+    //   <CardContent>
+    //     <Typography variant="body2" color="text.secondary">
+    //       {description}
+    //     </Typography>
+    //   </CardContent>
+    //   <CardActions disableSpacing>
+    //       <IconButton aria-label="add to cart">
+    //       <MdAddShoppingCart/>
+    //       </IconButton>
+    //     <ExpandMore>
+    //         <span className='price fs-4'>$ {price}</span>
+    //     </ExpandMore>
+    //     <ExpandMore>
+    //    { <span className='price fs-4  text-success '>{discount} off</span>}
+    //     </ExpandMore>
+    //   </CardActions>
+    // </Card>
+
+
+    
+
+
+    <div className="product-grid col-md-4 mx-1 ">
+        <div className="product-image">
+          <Link id='link' to="#" className="image h-100 d-flex align-items-center">
+            {photos && <img className="h-100" src={`${sorcImag}${img}`} alt='photoTwo' />}
+          </Link>
+          {discount ? <span className="product-discount-label">-{discount}%</span> : ''}
+
+        </div>
+
+        <div className="product-content">
+          <h3 className="title"><Link id='link' to="#">{product_name.split(" ").splice(0, 2).concat(" ").join(" ")}</Link></h3>
+          <div className="price">{price}LE</div>
+        </div>
+      </div>
   );
 }

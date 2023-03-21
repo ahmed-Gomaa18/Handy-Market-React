@@ -9,3 +9,22 @@
     background-color: var(--quicksand);
  
 }
+.mybtn {
+    width: 150px;
+    background-color: var(--koromiko) ;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 1px;
+
+}
+
+.mybtn:hover {
+    background-color: #f8be32;
+}

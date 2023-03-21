@@ -59,25 +59,35 @@ const Favorites = () => {
                     <div className="row mt-3">
                         <div className="col-md-12">
 
+                            <div className="row">
+                           <div className="col-md-8">
                             <h4>{t("Favorite items")}</h4>
-                            {/* <div className='d-flex col-12  col-sm-3 align-items-center'>
-                                <input className='checkbox me-2 col-4' type="checkbox" onChange={getNotSloidProduct} value={checkedSolid} />
-                                <label className='check-label col-8'>Hide sold out items</label>
-                            </div> */}
+                            </div> 
+                            <div className="col-md-4">
+
                             <div className="form-check">
-                        <label className={styles.checkbox}><span>{t("Hide sold out items")}</span>
-                                    <input type="checkbox"  onChange={getNotSloidProduct} value={checkedSolid}/>
+                                <label className={styles.checkbox}><span>{t("Hide sold out items")</span>
+                                    <input type="checkbox" onChange={getNotSloidProduct} value={checkedSolid} />
+
                                     <span className={styles.checkmark}></span>
                                 </label>
+                            </div>
+                            </div>
+
+                            </div>
+
+                            <div className='row'>
+                                {
+                                    filteredData?.map((product) => (
+
+                                        <Product key={product._id} {...product} unFavorite={unFavorite} />
+
+                                    ))
+                                }
+                            </div>
                         </div>
-                        </div>
-                        <div className='d-flex flex-wrap justify-content-evenly mt-4'>
-                            {
-                                filteredData?.map((product) => (
-                                    <Product key={product._id} {...product} unFavorite={unFavorite} />
-                                ))
-                            }
-                        </div>
+
+
                     </div>
                 </div>
             }

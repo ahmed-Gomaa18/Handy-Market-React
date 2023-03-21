@@ -9,7 +9,7 @@
     overflow: hidden;
     position: relative;
     z-index: 1;
-
+    height: 250px;
     max-height: 250px;
     min-height: 250px
 }
