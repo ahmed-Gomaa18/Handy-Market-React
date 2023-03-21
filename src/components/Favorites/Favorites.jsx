@@ -66,7 +66,7 @@ const Favorites = () => {
                             <div className="col-md-4">
 
                             <div className="form-check">
-                                <label className={styles.checkbox}><span>{t("Hide sold out items")</span>
+                                <label className={styles.checkbox}><span>{t("Hide sold out items")}</span>
                                     <input type="checkbox" onChange={getNotSloidProduct} value={checkedSolid} />
 
                                     <span className={styles.checkmark}></span>
