@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { BsList, BsSearch, BsHeart } from 'react-icons/bs';
 import { MdOutlineAccountCircle } from 'react-icons/md';
@@ -13,18 +13,14 @@ import { useTranslation } from 'react-i18next';
 
 
 const Navbar = () => {
-
-
   const { t, i18n } = useTranslation();
 
   const [active, setActive] = useState(`${styles.navBar}`);
-
   const [token,setToken]= useState(false);
   const userToken = localStorage.getItem('user-token');
   const userRole = localStorage.getItem('role');
 
   const navigate = useNavigate()
-
 
   // Add Language to localStorage By defualt english
 
@@ -67,6 +63,20 @@ const Navbar = () => {
     setActive(`${styles.navBar}`)
   }
 
+  const detectDirection = () => {
+    if(i18n.language == "en") {
+      i18n.changeLanguage("ar");
+      document.querySelector('#navbar').style.direction = "rtl";
+      // document.querySelector('#add-product').style.direction = "rtl";
+      // document.querySelector('#store').style.direction = "rtl";
+    } else {
+      i18n.changeLanguage("en");
+      document.querySelector('#navbar').style.direction = "ltr";
+      // document.querySelector('#add-product').style.direction = "ltr";
+      // document.querySelector('#store').style.direction = "ltr";
+    }
+  }
+
   return (
     <>
       <header className={`py-2 d-none d-md-block ${styles.header_top_strip}`}>
@@ -75,16 +85,26 @@ const Navbar = () => {
             <div className="col-9">
               {/* <p className="text-white mb-0">Free Shipping Over $100& Free Returns</p> */}
 
-              {/* For test */}
-              <button onClick={()=>(i18n.changeLanguage("en"))}> English </button>
-              <button onClick={()=>(i18n.changeLanguage("ar"))}> Arabic </button>
+              <div className="col-3">
+                <p className="text-end mb-0">
+                  <Link className="text-white">
+                    { i18n.language == "en" && 
+                      <span> <MdLanguage onClick={detectDirection} className="fs-4 me-1" /> EN</span>
+                    }
+                    {
+                      i18n.language == "ar" && 
+                      <span> <MdLanguage onClick={detectDirection} className="fs-4 me-1" /> Ar </span>
+                    }
+                  </Link>
+                </p>
+              </div>
 
             </div>
             
           </div>
         </div>
       </header>
-      <section className={styles.navBarSection}>
+      <section id="navbar" className={styles.navBarSection}>
         <header className={styles.header}>
           <div className="container-xxl">
             <div className="row align-items-center">
@@ -100,8 +120,6 @@ const Navbar = () => {
 
                 <div className="d-flex justify-content-end">{/*align-content-center*/}
                   <div className="d-flex"> {/*align-items-center*/}
-                    <BsSearch className="me-4" /> 
-
                     {userRole === 'Customer' && <CartIcon className="me-4" />}
 
                     {userToken !== 'undefined' && (
@@ -146,7 +164,7 @@ const Navbar = () => {
 
               {userRole === "Seller" && (
                   <li className={styles.navItem}>
-                       <Link to="/seller/addProduct" className={styles.navLink}>{t("Add Product")}</Link>
+                      <Link to="/seller/addProduct" className={styles.navLink}>{t("Add Product")}</Link>
                     </li>
               
               )}
@@ -180,6 +198,7 @@ const Navbar = () => {
           </div>
         </header>
       </section>
+
     </>
   )
 }

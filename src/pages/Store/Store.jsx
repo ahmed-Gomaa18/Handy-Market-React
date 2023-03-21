@@ -110,12 +110,12 @@ const Store = () => {
                 <SearchStore setSearch={searchFun} />
             </div>
 
-            <div className='d-flex flex-lg-row flex-column '>    
+            <div id="store" className='d-flex flex-lg-row flex-column'>    
                 <div className="col-md-12 col-sm-12 col-lg-2 d-flex flex-wrap justify-content-center aligin-items-stretch align-content-start border border-end rounded-1">
                     <FilterStore getFilterCategory={getFilterCategory} />
                 </div>
 
-                <div className="col-xxs-12 col-sm-12 col-md-12 col-lg-10 align-items-start d-flex ">
+                <div className="col-xxs-12 col-sm-12 col-md-12 col-lg-10 align-items-start d-flex">
                     <div className='products-container col-12 d-flex flex-wrap justify-content-center p-5'>
                         {
                             products && products.map((product) => (

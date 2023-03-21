@@ -51,7 +51,7 @@ const Cart = () => {
         window.dispatchEvent(new Event('storage'));
     }
     return (
-        <div className="ux-app">
+        <section className="ux-app">
 
             <div className="container">
                 <div className="row">
@@ -109,7 +109,7 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 };
 
