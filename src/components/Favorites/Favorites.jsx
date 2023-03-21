@@ -54,7 +54,7 @@ const Favorites = () => {
     }
     return (
         <div>
-            {
+            { 
                 <div className='container-fluid ' >
                     <div className="row mt-3">
                         <div className="col-md-12">
@@ -66,7 +66,7 @@ const Favorites = () => {
                             <div className="col-md-4">
 
                             <div className="form-check">
-                                <label className={styles.checkbox}><span>{t("Hide sold out items")</span>
+                                <label className={styles.checkbox}><span>{t("Hide sold out items")}</span>
                                     <input type="checkbox" onChange={getNotSloidProduct} value={checkedSolid} />
 
                                     <span className={styles.checkmark}></span>
@@ -77,10 +77,10 @@ const Favorites = () => {
                             </div>
 
                             <div className='row'>
-                                {
+                                {filteredData &&
                                     filteredData?.map((product) => (
 
-                                        <Product key={product._id} {...product} unFavorite={unFavorite} />
+                                        <Product key={product._id} {...product}  unFavorite={unFavorite} />
 
                                     ))
                                 }

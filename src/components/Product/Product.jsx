@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { BsFillSuitHeartFill } from 'react-icons/bs';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
+import { useTranslation } from 'react-i18next';
+
 const ExpandMore = styled((props) => {
+ 
+
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -15,7 +20,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function Product(props) {
-
+  const { t, i18n } = useTranslation();
   const { product_name, price, description, photos, _id, unFavorite } = props;
   const sorcImag = 'http://localhost:3000/api/v1/image'
 
@@ -34,7 +39,11 @@ export default function Product(props) {
           <Link id='link' to="#" className="image h-100 d-flex align-items-center">
             {photos && <img className="h-100" src={`${sorcImag}${img}`} alt='photoTwo' />}
           </Link>
+          <ul className="social"> 
+          <li><Link id='link' data-tip={t("Remove from Favorite")}> <i><BsFillSuitHeartFill onClick={handleChange}/></i></Link></li>
+          </ul>
         </div>
+
 
         <div className="product-content">
           <h3 className="title"><Link id='link' to="#">{product_name.split(" ").splice(0, 2).concat(" ").join(" ")}</Link></h3>
@@ -44,3 +53,4 @@ export default function Product(props) {
     </>
   );
 }
+

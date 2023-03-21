@@ -31,7 +31,7 @@ const CustomerProfile = () => {
         <>
             {userData && <div className='parent my-5 '>
                 <div className={`m-5 container m-auto p-4 shadow-lg`} id="container">
-                    <di className="row">
+                    <div className="row">
 
                         <div className={`col-md-4  shadow rounded p-4 `} id="profileSection">
                             <div className="row m-auto text-center">
@@ -67,7 +67,7 @@ const CustomerProfile = () => {
                                         <p className=' ms-2 job  mb-0'>{userData.phone}</p>
                                     </div>
                                 }
-                                <Link to="//editCustomerProfile">
+                                <Link to="/editCustomerProfile">
                                     <button className={`${styles.mybtn} ${styles.transparent}`} state={userData} id="sign-up-btn">
                                     {t("Edit public profile")}
                                     </button>
@@ -108,7 +108,7 @@ const CustomerProfile = () => {
                                 </div>
                             </div>
                         </div>
-                    </di>
+                    </div>
                 </div>
             </div>
             }
