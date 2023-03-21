@@ -103,7 +103,7 @@
     "Sign up": "إشتراك",
     "Login": "تسجيل الدخول",
     "Roles": "الأدوار",
-    "Customer": "زبون",
+    "Customer": "مشترى",
     "Seller": "بائع",
     "already a member !!": "عضوا فعلا !!",
     "login from here  amet consectetur adipisicing elit. Debitis, ex ratione. Aliquid!": "تسجيل الدخول من هنا عليك إختيار دورك من هنا",
@@ -123,7 +123,8 @@
     "shop Name": "أسم المتجر",
     "next": "التالي",
     "check your email for code": "تحقق من بريدك الإلكتروني للحصول على رمز",
-    "Change Password": "تغيير كلمة المرور"
-    
+    "Change Password": "تغيير كلمة المرور",
+    "Remove": "مسح",
+    "User Profile": "الملف الشخصى"
 
 }

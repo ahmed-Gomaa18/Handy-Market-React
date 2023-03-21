@@ -1,5 +1,6 @@
 .add_product_container{
-    box-shadow: 0px 1px 10px #0000004a
+    box-shadow: 0px 1px 10px #0000004a;
+    margin: 5rem auto !important;
 }
 
 .textarea {

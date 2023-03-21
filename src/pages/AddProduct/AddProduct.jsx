@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { CategoryProduct } from '../../components/CategoryProduct/CategoryProduct';
 import styles from './AddProduct.module.css';
@@ -11,10 +11,18 @@ import { useTranslation } from 'react-i18next';
 let arrayOfCategoryID = [];
 const AddProduct = () => {
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const navigate = useNavigate();
     let formRef = useRef(null);
+
+    useEffect(() => {
+        if(i18n.language == "en") {
+            document.querySelector('#add-product').style.direction = "rtl";
+        } else {
+            document.querySelector('#add-product').style.direction = "ltr";
+        }
+    }, []);
 
     const [formStateData, setStateFormData] = useState({});
     const [formErrors, setFormErrors] = useState({});
@@ -148,7 +156,8 @@ const AddProduct = () => {
         <>
         <ToastContainer />
 
-            <div id={styles.add_product_container} className="container mt-5 mb-5 rounded-2">
+        <div className="mt-5 mb-5">
+            <div id="add-product" className={`container rounded-2 ${styles.add_product_container}`}>
                 <div className="row">
                     <h2 className="cartItems my-3 text-center pt-5">{t("Add Product")}</h2>
                 </div>
@@ -209,6 +218,8 @@ const AddProduct = () => {
 
                 </div>
             </div>
+        </div>
+
         </>
     )
 }

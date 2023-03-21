@@ -2,9 +2,11 @@ import { IoAdd } from "react-icons/io5";
 import { AiOutlineMinus } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import styles from './Action_buttons.module.css';
+import { useTranslation } from "react-i18next";
 
 const Action_buttons = (props) => {
   let items = [];
+  const { t } = useTranslation();
   const { item } = props;
   const addToLocalStorage = (data) => {
     localStorage.setItem("data-cart", JSON.stringify(data));
@@ -61,7 +63,7 @@ const Action_buttons = (props) => {
 
       <div className="btn_remove">
       <button onClick={() => { removeProduct(item) }} className={`text-center ${styles.action_btn} ${styles.btn_delete}`}>
-        <BiTrash className="me-1" /> Remove
+        <BiTrash className="me-1" /> {t("Remove")}
       </button>
       </div>
 
