@@ -1,5 +1,5 @@
 
-
+/* 
 .button_payment {
     background-color: #635bff;
 }
@@ -15,10 +15,30 @@
     cursor: pointer;
     transition: all 0.2s ease;
     display: block;
-}
-.button_payment:hover {
+} */
+/* .button_payment:hover {
     filter: contrast(115%);
+} */
+
+.mybtn {
+    width: 150px;
+    background-color: var(--koromiko) ;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
 }
+
+.mybtn:hover {
+    background-color: #f8be32;
+}
+
 .button_payment:active {
     transform: translateY(0px) scale(0.98);
     filter: brightness(0.9);

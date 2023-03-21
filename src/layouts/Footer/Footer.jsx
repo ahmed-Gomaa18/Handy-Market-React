@@ -101,7 +101,7 @@ const Footer = () => {
         <div className="col-12">
           <div className="text-center">
             <p className="copyright">
-              © {new Date().getFullYear()} Handy Market. {t("All Rights Reserved")} | <a href="mailto:handymarket@demo.com">handymarket@demo.com</a></p>
+              © {new Date().getFullYear()} Handy Market. {t("All Rights Reserved")} | <a href="mailto:handymarketshop@gmail.com">handymarketshop@gmail.com</a></p>
           </div>
         </div>
       </div>
