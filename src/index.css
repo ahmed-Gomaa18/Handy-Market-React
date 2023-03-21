@@ -192,3 +192,6 @@ video {
     zoom: 1.7;
   }
 }
+textarea{
+  resize: none;
+}

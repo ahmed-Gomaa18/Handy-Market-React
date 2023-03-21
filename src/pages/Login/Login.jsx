@@ -27,7 +27,7 @@ const Login = () => {
     const validate = (val) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const pass = /^[A-Z][1-9]{2,5}$/;
+        const pass = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
         if (!val.email) {
             errors.email = "email is required"
         } else if (!regex.test(form.email)) {
@@ -35,12 +35,12 @@ const Login = () => {
         }
         if (!val.password) {
             errors.password = "password is required"
-        } else if (val.password < 2) {
-            errors.password = "Password length must be atleast 2 characters"
-        } else if (val.password > 5) {
-            errors.password = "Password length must not exceed 5 characters"
+        } else if (val.password < 6) {
+            errors.password = "Password length must be atleast 6 characters"
+        } else if (val.password > 16) {
+            errors.password = "Password length must not exceed 16 characters"
         } else if (!pass.test(form.password)) {
-            errors.password = "Password length must not exceed 5 characters"
+            errors.password = "please recheck your password"
         }
         return errors;
     }
