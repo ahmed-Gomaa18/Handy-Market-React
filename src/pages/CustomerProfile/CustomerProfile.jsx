@@ -67,7 +67,7 @@ const CustomerProfile = () => {
                                         <p className=' ms-2 job  mb-0'>{userData.phone}</p>
                                     </div>
                                 }
-                                <Link to="//editCustomerProfile">
+                                <Link to="/editCustomerProfile">
                                     <button className={`${styles.mybtn} ${styles.transparent}`} state={userData} id="sign-up-btn">
                                     {t("Edit public profile")}
                                     </button>
