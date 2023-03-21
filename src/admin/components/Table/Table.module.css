@@ -26,10 +26,15 @@ th {
 
 .status {
   padding: 8px;
+  border: none; 
+  outline: none;
   border-radius: 9px;
+  background-color: var(--sea_nymph) ;
+  
 }
 
 .status:hover {
   /* background-color: #fe5416ad; */
-  background-color: #72A499;
+  /* background-color: #72A499; */
+  background-color: #5ed5bb;
 }

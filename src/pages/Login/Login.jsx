@@ -6,7 +6,13 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../guard/Auth";
 import styles from './Login.module.css';
 
+
+import { useTranslation } from 'react-i18next';
+
 const Login = () => {
+
+    const { t } = useTranslation();
+
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -76,7 +82,7 @@ const Login = () => {
             <div className={styles.forms_container}>
                 <div className={styles.signin_signup}>
                     <form onSubmit={onSubmitForm} className={styles.myform}>
-                        <h2 className="title">Log in</h2>
+                        <h2 className="title">{t("Log in")}</h2>
                         <div className={styles.input_field}>
                             <i><AiOutlineUser /></i>
                             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -97,28 +103,26 @@ const Login = () => {
                             {formErrors.password}
                         </div>
                         <div className="form-check">
-                        <label className={styles.checkbox}><span>Remember Me</span>
+                        <label className={styles.checkbox}><span>{t("Remember Me")}</span>
                                     <input type="checkbox" id="rememberMe" name="rememberMe" value="true" onChange={(e) => setForm((prev) => ({ ...prev, rememberMe: e.target.value }))}  />
                                     <span className={styles.checkmark}></span>
                                 </label>
                         </div>
-                        <Link to="/forgetPassword">forget password</Link>
-                        <input type="submit" value="Login" className={`solid ${styles.mybtn}`} />
+                        <Link to="/forgetPassword">{t("Forget password")}</Link>
+                        <input type="submit" value={t("Login")} className={`solid ${styles.mybtn}`} />
                     </form>
                 </div>
             </div>
             <div className={styles.panels_container}>
                 <div className={`${styles.panel} ${styles.left_panel}`}>
                     <div className={styles.content}>
-                        <h3 className={styles.panel_h3}>New here ?</h3>
+                        <h3 className={styles.panel_h3}>{t("New here ?")}</h3>
                         <p className={styles.panel_para}>
-                            Be one of our family. 
-                            Join us now.
-                            sign up from here
+                            {t("Be one of our family. Join us now.sign up from here")}
                         </p>
                         <Link to="/role">
                             <button className={`${styles.mybtn} ${styles.transparent}`} id="sign-up-btn">
-                                Sign up
+                                {t("Sign up")}
                             </button>
                         </Link>
                     </div>

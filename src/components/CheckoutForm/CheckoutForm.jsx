@@ -8,9 +8,10 @@ import { toast } from 'react-toastify';
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const CheckoutForm = () => {
-
+    const { t } = useTranslation();
     const stripe = useStripe();
     const elements = useElements();
 
@@ -50,10 +51,13 @@ const CheckoutForm = () => {
 
             // localStorage.removeItem('order-data');
             toast.error('Opps Error While Pay', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
 
-            navigate('/order')
+            setTimeout(()=>{
+                navigate('/order');
+            }, 2000)
 
 
         // setMessage(error.message);
@@ -73,10 +77,13 @@ const CheckoutForm = () => {
                 clearCart()
 
                 toast.success('Your Order completed successfully', {
-                    position: toast.POSITION.TOP_RIGHT
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 1000
                 })
 
-                navigate('/')
+                setTimeout(()=>{
+                    navigate('/');
+                }, 2000)
 
                 console.log(data)
 
@@ -90,9 +97,13 @@ const CheckoutForm = () => {
 
             // localStorage.removeItem('order-data');
             toast.error('Opps Error While Pay', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
-            navigate('/order')
+            
+            setTimeout(()=>{
+                navigate('/order');
+            }, 2000)
             // redirect
         }
 
@@ -102,9 +113,9 @@ const CheckoutForm = () => {
     return (
         <form className={styles.payment_form} onSubmit={handleSubmit}>
         <PaymentElement />
-        <button className={styles.button_payment} disabled={isProcessing || !stripe || !elements} id="submit">
+        <button className={`mt-4 ${styles.mybtn}`} disabled={isProcessing || !stripe || !elements} id="submit">
             <span >
-            {isProcessing ? "Processing ... " : "Pay now"}
+            {isProcessing ? `${t("Processing ...")}` : `${t("Pay now")}`}
             </span>
         </button>
         {/* Show any error or success messages */}

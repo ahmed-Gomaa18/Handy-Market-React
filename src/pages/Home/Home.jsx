@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Slider from '../../components/Slider/Slider';
-import { Link } from 'react-router-dom';
-import { BsHeart } from 'react-icons/bs';
-import styles from './Home.module.css';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BsHeart } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+
+import Slider from '../../components/Slider/Slider';
+import styles from './Home.module.css';
 
 
 const Home = () => {
-
+  const { t } = useTranslation();
   const imgSrc = 'http://localhost:3000/api/v1/image';
 
   const [products, setProducts] = useState([]);
@@ -32,8 +34,8 @@ const Home = () => {
         <div className="container">
           <div className="row align-items-center py-5">
             <div className="section-title text-center">
-              <h3 className={styles.sub_title}>Just for you</h3>
-              <h2 className={`${styles.title} ${styles.title_icon_both}`}>Making & crafting</h2>
+              <h3 className={styles.sub_title}>{t("Just for you")}</h3>
+              <h2 className={`${styles.title} ${styles.title_icon_both}`}>{t("Making & crafting")}</h2>
             </div>
           </div>
           <div className="row mb-4 align-items-center justify-content-between">
@@ -57,11 +59,11 @@ const Home = () => {
                   </div>
                   <div className={`row justify-content-between mb-n3 ${styles.content}`}>
                     <div className="col-auto mb-3">
-                      <h2 className={styles.sale_percent}>10% off</h2>
-                      <span className={styles.text}>YOUR NEXT PURCHASE</span>
+                      <h2 className={styles.sale_percent}>{t("10% off")}</h2>
+                      <span className={styles.text}>{t("YOUR NEXT PURCHASE")}</span>
                     </div>
                     <div className="col-auto mb-3">
-                      <Link className={`btn-hover-dark ${styles.btn}`} to="/store">SHOP NOW</Link>
+                      <Link className={`btn-hover-dark ${styles.btn}`} to="/store">{t("Shop Now")}</Link>
                     </div>
                   </div>
                 </div>
@@ -74,8 +76,8 @@ const Home = () => {
         <div className="container">
           <div className="row align-items-center py-5">
             <div className="section-title text-center">
-              <h3 className={styles.sub_title}>Shop now</h3>
-              <h2 className={`${styles.title} ${styles.title_icon_both}`}>Shop our best sellers</h2>
+              <h3 className={styles.sub_title}>{t("Shop Now")}</h3>
+              <h2 className={`${styles.title} ${styles.title_icon_both}`}>{t("Shop our best sellers")}</h2>
             </div>
           </div>
 

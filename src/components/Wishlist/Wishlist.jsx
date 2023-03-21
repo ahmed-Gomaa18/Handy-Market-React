@@ -3,10 +3,11 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import WishlistCard from '../WishlistCard/WishlistCard';
 import styles from './Wishlist.module.css';
-
+import { useTranslation } from 'react-i18next'; 
 
 
 const Wishlist = () => {
+    const { t, i18n } = useTranslation();
 
     const [wishlistData, setWishlist] = useState([]);
     const [filteredData, setFiltered] = useState([]);
@@ -42,13 +43,15 @@ const Wishlist = () => {
 
                         <div className="row">
                            <div className="col-md-8">
-                           <h4>Wishlist items </h4>
+                           <h4>{t("Wishlist items") } </h4>
                             </div> 
                             <div className="col-md-4">
 
+
                             <div className="form-check">
-                            <label className={styles.checkbox}><span>Hide sold out items</span>
+                            <label className={styles.checkbox}><span>{t("Hide sold out items")}</span>
                                     <input type="checkbox" onChange={getNotSloidProduct} />
+
                                     <span className={styles.checkmark}></span>
                                 </label>
                             </div>

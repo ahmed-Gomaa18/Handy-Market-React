@@ -8,12 +8,14 @@ import styles from './ProductView.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
+import { useTranslation } from 'react-i18next';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [rate, setRate] = useState(null);
   let { prodId } = useParams();
+  const { t } = useTranslation();
   const imgSrc = 'http://localhost:3000/api/v1/image';
 
   const onUpdateRate = async(e) => {
@@ -59,7 +61,7 @@ const ProductView = () => {
     }).catch((err) => {
       console.log("error msg", err);
     });
-  }, []);
+  }, [prodId]);
 
   const calculateRating = (ratings) => {
     let containerNum = 0;
@@ -102,7 +104,7 @@ const ProductView = () => {
           <div className="container">
             <div className="row my-5">
               <div className="section-title text-center">
-                <h2 className="title title-icon-both">Product View</h2>
+                <h2 className="title title-icon-both">{t("Product View")}</h2>
               </div>
             </div>
 
@@ -126,13 +128,13 @@ const ProductView = () => {
                         }
 
                       </span>
-                      <span className="rating-caption ms-2">{product.ratings_id.length} review</span>
+                      <span className="rating-caption ms-2">{product.ratings_id.length} {t("reviews")}</span>
                     </span>
                   </div>
 
                   <h3 className={`my-3 ${styles.product_title}`}>{product.product_name}</h3>
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Discount: </span> <span className={styles.variant_inventory}>{product.discount}%</span>
+                    <span className={styles.inventory_title}>{t("Discount")}: </span> <span className={styles.variant_inventory}>{product.discount}%</span>
                   </div>
 
                   <div className={`price mt-2 mb-4 ${styles.product_price}`}>
@@ -145,19 +147,19 @@ const ProductView = () => {
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Owner: </span> <span className={styles.variant_inventory}>{product.created_by.user_name}</span>
+                    <span className={styles.inventory_title}>{t("Owner")}: </span> <span className={styles.variant_inventory}>{product.created_by.user_name}</span>
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Shop Name: </span> <span className="variant-inventory">{product.created_by.shop_name}</span>
+                    <span className={styles.inventory_title}>{t("Shop Name")}: </span> <span className="variant-inventory">{product.created_by.shop_name}</span>
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Category: </span> <span className="variant-inventory">{product.categories_id[0]?.name}</span>
+                    <span className={styles.inventory_title}>{t("Category")}: </span> <span className="variant-inventory">{product.categories_id[0]?.name}</span>
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Availability: </span> <span className="variant-inventory">{product.number_of_items}</span>
+                    <span className={styles.inventory_title}>{t("Availability")}: </span> <span className="variant-inventory">{product.number_of_items}</span>
                   </div>
 
                   <div className={`mb-4 ${styles.product_desc}`}>{product.description}</div>
@@ -180,7 +182,7 @@ const ProductView = () => {
         <div className="container">
           <div className="row align-items-center py-5">
             <div className="section-title text-center">
-              <h2 className="title title-icon-both">You Might Also Like</h2>
+              <h2 className="title title-icon-both">{t("You Might Also Like")}</h2>
             </div>
           </div>
 
@@ -190,7 +192,7 @@ const ProductView = () => {
               <div key={product._id} className="col d-flex justify-content-center mb-3">
                 <div className="product single-product">
                   <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
-                    <Link className="image image-wrap" to={`/product/${product._id}`}>
+                    <Link className="image image-wrap" to={`../product/${product._id}`}>
                       <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
                       <div className={styles.product_badges}>
                         <span className={styles.onsale}>-{product.discount}%</span>
@@ -202,7 +204,7 @@ const ProductView = () => {
                   </div>
                   <div className={`single-product__content text-center mt-3 ${styles.product_info}`}>
                     <h6 className="title popup_cart_title">
-                      <Link to={`/product/${product._id}`}>{product.product_name}</Link>
+                      <Link to={`../product/${product._id}`}>{product.product_name}</Link>
                     </h6>
                     <span className={styles.price}>
                       <span id="product_current_price" className={`discounted-price ${styles.new}`}>

@@ -10,8 +10,10 @@ import Favorites from '../../components/Favorites/Favorites';
 import OrderList from '../../components/OrderList/OrderList';
 import axios from "axios";
 import styles from './CustomerProfile.module.css';
+import { useTranslation } from 'react-i18next';
 
 const CustomerProfile = () => {
+    const { t, i18n } = useTranslation();
     const [userData, userState] = useState({});
     const sorcImag = 'http://localhost:3000/api/v1/image';
     let userToken = localStorage.getItem("user-token");
@@ -67,13 +69,13 @@ const CustomerProfile = () => {
                                 }
                                 <Link to="//editCustomerProfile">
                                     <button className={`${styles.mybtn} ${styles.transparent}`} state={userData} id="sign-up-btn">
-                                    Edit public profile
+                                    {t("Edit public profile")}
                                     </button>
                                 </Link>
 
                                 {userData.description &&
                                     <div className='ms-4 mt-5'>
-                                        <h4 >About Me</h4>
+                                        <h4 >{t("About Me")}</h4>
                                         <p className='description'>{userData.description}</p>
                                     </div>
                                 }
@@ -85,12 +87,12 @@ const CustomerProfile = () => {
                             <div className=''>
                                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                                     <li className="nav-item " role="presentation">
-                                        <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Favorites</button>     </li>
+                                        <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{t("Favorites")}</button>     </li>
                                     <li className="nav-item" role="presentation">
-                                        <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Orders</button>
+                                        <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">{t("Orders")}</button>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">wishlist</button>
+                                        <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">{t("Wishlist")}</button>
                                     </li>
                                 </ul>
                                 <div className="tab-content " id="myTabContent">

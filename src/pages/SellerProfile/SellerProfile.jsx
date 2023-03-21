@@ -8,8 +8,10 @@ import Avatar from '@mui/material/Avatar';
 import { NavLink, Outlet } from 'react-router-dom';
 import axios from "axios";
 import styles from './SellerProfile.module.css';
+import { useTranslation } from 'react-i18next';
 
 const SellerProfile = () => {
+  const { t, i18n } = useTranslation();
   const [userData, userState] = useState({});
   const sorcImag = 'http://localhost:3000/api/v1/image';
 
@@ -75,19 +77,21 @@ const SellerProfile = () => {
               }
 
               <div>
-                <Link className='edit-profile mt-4' to='../editProfile' state={userData}><button className={`${styles.mybtn}`} >Edit public profile</button ></Link>
+                <Link className='edit-profile mt-4' to='../editProfile' state={userData}><button className={`${styles.mybtn}`} >{t("Edit public profile")}</button ></Link>
               </div>
               <div>
 
+
                 <Link className="custom" to="/seller/services"> 
-                  <button className={`${styles.btn2}`}>  Products</button>
+                  <button className={`${styles.btn2}`}>  {t("Products")}</button>
+
                  
                 </Link>
               </div>
 
               {userData.description &&
                 <div className='ms-4 mt-5'>
-                  <h4 >About Me</h4>
+                  <h4 >{t("About Me")}</h4>
                   <p className='description'>{userData.description}</p>
                 </div>
               }

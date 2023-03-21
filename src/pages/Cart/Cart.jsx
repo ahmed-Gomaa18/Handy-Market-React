@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import Action_buttons from "../../components/Action_buttons/Action_buttons";
 import styles from "./Cart.module.css";
 
 
 const Cart = () => {
-
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -50,12 +51,12 @@ const Cart = () => {
         window.dispatchEvent(new Event('storage'));
     }
     return (
-        <div className="ux-app">
+        <section className="ux-app">
 
             <div className="container">
                 <div className="row">
-                    <h2 className='cartItems my-3 text-center pt-5'>Shopping Cart</h2>
-                    {items.length === 0 && <h5 className='text-center h2'>Cart is empty</h5>}
+                    <h2 className='cartItems my-3 text-center pt-5'>{t("Shopping Cart")}</h2>
+                    {items.length === 0 && <h5 className='text-center h2'>{t("Cart is empty")}</h5>}
                 </div>
 
                 <div className="row justify-content-between my-5">
@@ -73,8 +74,8 @@ const Cart = () => {
                                     </div>
 
                                     <div className="content mb-2 d-flex justify-content-between">
-                                        <span className={styles.shop}>Shop Name : {item.created_by.user_name} </span>
-                                        <span className={styles.stock}>In Stock : {item.number_of_items}</span>
+                                        <span className={styles.shop}>{t("Shop Name")} : {item.created_by.user_name} </span>
+                                        <span className={styles.stock}>{t("In Stock")} : {item.number_of_items}</span>
                                     </div>
 
                                     <div className="action d-flex flex-column">
@@ -88,27 +89,27 @@ const Cart = () => {
                     <div className={`col-12 col-md-4 ${styles.summary}`}>
                         <dl className={`d-flex flex-column ${styles.subtotal}`}>
                             <div className="subtotal_price d-flex justify-content-center fs-3 fw-bold py-2">
-                                <dt>Summary</dt>
+                                <dt>{t("Summary")}</dt>
                             </div>
                         </dl>
 
                         <dl className={`w-100 py-2 d-flex align-content-center justify-content-between ${styles.total}`}>
-                            <dt>Total</dt>
+                            <dt>{t("Total")}</dt>
                             <dd>{totalPrice} LE</dd>
                         </dl>
 
                         <dl className={`w-100 py-4 d-flex align-content-center justify-content-between ${styles.cart_actions}`}>
-                            <button className={`btn w-75 mb-2 ${styles.btn_clear}`} onClick={() => clearCart()}>Clear All</button>
+                            <button className={`btn w-75 mb-2 ${styles.btn_clear}`} onClick={() => clearCart()}>{t("Clear All")}</button>
                             <Link to='/order'>
                                 <button className={`btn w-75 ${styles.btn_checkout}`}>
-                                Checkout
+                                {t("Checkout")}
                                 </button>
                             </Link>
                         </dl>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 };
 

@@ -3,8 +3,9 @@ import axios from "axios";
 import Product from '../Product/Product';
 import styles from './Favorites.module.css';
 
-
+import { useTranslation } from 'react-i18next';
 const Favorites = () => {
+    const { t, i18n } = useTranslation();
 
     const userToken = localStorage.getItem("user-token");
 
@@ -57,15 +58,17 @@ const Favorites = () => {
                 <div className='container-fluid ' >
                     <div className="row mt-3">
                         <div className="col-md-12">
+
                             <div className="row">
                            <div className="col-md-8">
-                            <h4>Favorite items</h4>
+                            <h4>{t("Favorite items")}</h4>
                             </div> 
                             <div className="col-md-4">
 
                             <div className="form-check">
-                                <label className={styles.checkbox}><span>Hide sold out items</span>
+                                <label className={styles.checkbox}><span>{t("Hide sold out items")</span>
                                     <input type="checkbox" onChange={getNotSloidProduct} value={checkedSolid} />
+
                                     <span className={styles.checkmark}></span>
                                 </label>
                             </div>
