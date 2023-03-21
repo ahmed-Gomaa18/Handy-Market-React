@@ -7,6 +7,7 @@ import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
 
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -14,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 var key = true;
 
 const Payment = () => {
-
+    const { t } = useTranslation();
     const [items, setItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -98,17 +99,17 @@ const Payment = () => {
 
                 <div className=" ms-5 col-lg-3 col-md-5 ">
                     <div className="card p-4 w-100">
-                        <h4 className='p-1 ms-2 text-center'>Pay Your Orders</h4> <hr />
+                        <h4 className='p-1 ms-2 text-center'>{t("Pay Your Orders")}</h4> <hr />
                         
                         <img src="/images/payment/onlinePayment.png" alt="Payment Image" width="100%" />
                         {/* #635bff */}
-                        <p className="text-white text-center bg-dark mt-5 p-1 mx-auto  w-50 rounded">Total: {totalPrice} EGP</p>
+                        <p className="text-white text-center bg-dark mt-5 p-1 mx-auto  w-50 rounded">{t("Total")}: {totalPrice} EGP</p>
                     </div>
 
                 </div>
 
                 <div className=" col-md-6  p-5 rounded shadow">
-                <h4 className='text-center'>Please Fill Your Card</h4>
+                <h4 className='text-center'>{t("Please Fill Your Card")}</h4>
                 {clientSecret && stripePromise && (
                 <Elements stripe={stripePromise} options={{ clientSecret }}>
                     <CheckoutForm />

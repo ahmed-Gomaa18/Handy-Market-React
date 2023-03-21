@@ -5,10 +5,11 @@ import Action_buttons from "../../components/Action_buttons/Action_buttons";
 import styles from './Order.module.css';
 
 import { ToastContainer, toast  } from 'react-toastify';
+import { useTranslation } from "react-i18next";
 
 const Order = () => {
     const sorcImag = 'http://localhost:3000/api/v1/image';
-
+    const { t } = useTranslation();
     const [items, itemsState] = useState([]);
     const [totalPrice, totalPriceState] = useState(0);
     const [formErrors, setFormErrors] = useState({});
@@ -38,11 +39,6 @@ const Order = () => {
     }, []);
 
     useEffect(() => {
-        // let arrayIteem = items;
-        // console.log(items);
-        // let totPric = arrayIteem.reduce((x, y) => x + (y.price * y.qty), 0);
-        // totalPriceState(totPric);
-
         axios.post('http://localhost:3000/api/v1/order/orderTotalPrice', {items},{
             headers:{
                 'Content-Type' : 'application/json',
@@ -189,7 +185,7 @@ const Order = () => {
                         <form className='mb-5' onSubmit={onSubmitForm}>
                             <div className=" row my-2">
                                 <div className="form-group col-md-12 pb-3">
-                                    <label className="my-2 fs-5" htmlFor="phone">Phone</label>
+                                    <label className="my-2 fs-5" htmlFor="phone">{t("Phone")}</label>
                                     <input type="text" name="phone" className={styles.input_control} id="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.phone}
@@ -197,7 +193,7 @@ const Order = () => {
                                 </div>
 
                                 <div className="form-group col-md-12 pb-3">
-                                    <label className='my-2 fs-5' htmlFor="city">City</label>
+                                    <label className='my-2 fs-5' htmlFor="city">{t("City")}</label>
                                     <input type="text" name="city" className={styles.input_control} id="city" placeholder="city" value={form.order_address.city} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.order_address?.city}
@@ -205,7 +201,7 @@ const Order = () => {
                                 </div>
                             </div>
                             <div className="form-group my-2 pb-3">
-                                <label className='my-2 fs-5' htmlFor="street">Street</label>
+                                <label className='my-2 fs-5' htmlFor="street">{t("Street")}</label>
                                 <input type="text" name="street" className={styles.input_control} id="street" placeholder="street" value={form.order_address.street} onChange={UpdateAddress} />
                                 <div className=" text-danger">
                                     {formErrors.order_address?.street}
@@ -214,7 +210,7 @@ const Order = () => {
                             <div className="row mb-4">
 
                                 <div className="form-group col-md-12 pb-3">
-                                    <label className='my-2 fs-5' htmlFor="building_num">Building_num</label>
+                                    <label className='my-2 fs-5' htmlFor="building_num">{t("Building_num")}</label>
                                     <input type="text" className={styles.input_control} name="building_num" id="building_num" placeholder="building_num" value={form.order_address.building_num} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.order_address?.building_num}
@@ -225,11 +221,11 @@ const Order = () => {
                             <div className="">
                                 <div className="form-check form-check-inline">
                                     <input type="radio" className="form-check-input" id="cash" name="payment_method" value="Cash" onChange={(e) => setForm((prev) => ({ ...prev, payment_method: e.target.value }))} />
-                                    <label className="form-check-label" htmlFor="cash">Cash</label>
+                                    <label className="form-check-label" htmlFor="cash">{t("Cash")}</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input type="radio" className="form-check-input" id="visa" name="payment_method" value="Visa" onChange={(e) => setForm((prev) => ({ ...prev, payment_method: e.target.value }))} />
-                                    <label className="form-check-label" htmlFor="visa">Visa</label>
+                                    <label className="form-check-label" htmlFor="visa">{t("Visa")}</label>
                                 </div>
                                 {formErrors.payment_method && <div class="text-danger">
                                     {formErrors.payment_method}
@@ -240,12 +236,12 @@ const Order = () => {
 
                             <div className=''>
                                 <button type="submit" className={`btn m-2 px-l-5 px-3 ${styles.btn_clear}`}>
-                                    Save and Deliver
+                                    {t("Save and Deliver")}
                                 </button>
 
                                 <button type="reset" className={`btn m-3 px-l-5 px-4 ${styles.btn_checkout}`}>
                                     <Link className="text-decoration-none text-white" to='/store'>
-                                        Cancle
+                                        {t("Cancel")}
                                     </Link>
                                 </button>
                             </div>
@@ -254,7 +250,7 @@ const Order = () => {
 
                     <div className=" ms-5 col-lg-3 col-md-5 ">
                         <div className="card p-4 w-100">
-                            <h4 className='p-1 ms-2 text-center'>your Orders</h4> <hr />
+                            <h4 className='p-1 ms-2 text-center'>{t("your Orders")}</h4> <hr />
                             {items && items.map((item, index) => (
                                 <div key={index} className={styles.card_body}>
 
@@ -275,7 +271,7 @@ const Order = () => {
                                 </div>
                             ))}
 
-                            <p className="text-white text-center btn btn-dark mt-5 mx-auto  w-50">Total:{totalPrice} EGP</p>
+                            <p className="text-white text-center btn btn-dark mt-5 mx-auto  w-50">{t("Total")}:{totalPrice} EGP</p>
                         </div>
 
                     </div>
