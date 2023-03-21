@@ -5,7 +5,7 @@
     "Store": "المتجر",
     "Logout": "تسجيل الخروج",
 
-    "Choose Categories": "أختر من الاصناف",
+
     "Edit public profile": " تعديل الملف الشخصى ",
     "Orders": "الطلبات",
     "Wishlist":"قائمة الرغبات",
@@ -14,11 +14,9 @@
     "Wishlist items":"عناصر قائمة الرغبات",
     "Hide sold out items": "اخفاء العناصر الغير متوفرة ",
     "Profile Image:":"صورة الملف الشخصى",
-    "User Name":"اسم المستخدم",
     "Full Name":"الاسم كامل",
     "Phone" : "التلفون",
-    "City" : "المدينة",
-    "Street" : "الشارع",
+
     "Building" : "المبنى",
     "Update" : "تعديل",
     "User Name must be at least 3 characters" : "اسم المستخدم يجب ان لا يقل عن 3 حروف",
@@ -41,10 +39,10 @@
     "Shop our best sellers": "تسوق لدينا أفضل البائعين",
     "Product View": "عرض المنتج",
     "reviews": "المراجعات",
-    "Discount": "تخفيض",
+
     "Owner": "مالك المنتج",
-    "Shop Name": "اسم المحل",
-    "Category": "النوع",
+
+
     "Availability": "المتوفر",
     "You Might Also Like": "قد يعجبك أيضاً",
     "Add to cart": "أضاف إلى العربة",
@@ -70,7 +68,7 @@
     "Total": "الإجمالى",
     "Clear All": "امسح الكل",
     "Checkout": "الدفع",
-    "Phone": "رقم الهاتف",
+
     "City": "المدينة",
     "Street": "الشارع",
     "Building_num": "رقم المبنى",
@@ -83,11 +81,9 @@
     "Please Fill Your Card": "برجاء إدخال بيانات البطاقة",
     "Pay now": "إدفع الآن",
 
-
-
     "Choose Categories": "أختر من الفئات",
     "Category": "الفئة",
-    "Add to cart": "أضف إلي السلة",
+
     "Add to Favorite": "أضف إلي قائمة المفضلة",
     "Add to Wishlist": "أضف إلي قائمة المشاهدة لاحقاً",
     "Quick View": "نظرة سريعة",
@@ -129,6 +125,5 @@
     "check your email for code": "تحقق من بريدك الإلكتروني للحصول على رمز",
     "Change Password": "تغيير كلمة المرور"
     
-
 
 }

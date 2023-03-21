@@ -16,8 +16,7 @@
     "User Name":"User Name",
     "Full Name":"Full Name",
     "Phone" : "Phone",
-    "City" : "City",
-    "Street" : "Street",
+
     "Building" : "Building",
     "Update" : "Update",
     "User Name must be at least 3 characters" : "User Name must be at least 3 characters",
@@ -26,13 +25,10 @@
     "City must be at least 3 characters" : "City must be at least 3 characters",
     "Street must be at least 3 characters" : "Street must be at least 3 characters",
     "Shop Name must be at least 3 characters" : "Shop Name must be at least 3 characters",
-    "Shop Name" : "Shop Name",
+
     "About Me" : "About Me",
-    "Products" : "Products",
-    
+    "Products" : "Products",   
 
-
-    "Choose Categories": "Choose Categories",
 
     "Just for you": "Just for you",
     "Making & crafting": "Making & crafting",
@@ -42,10 +38,8 @@
     "Shop our best sellers": "Shop our best sellers",
     "Product View": "Product View",
     "reviews": "reviews",
-    "Discount": "Discount",
     "Owner": "Owner",
-    "Shop Name": "Shop Name",
-    "Category": "Category",
+
     "Availability": "Availability",
     "You Might Also Like": "You Might Also Like",
     "Add to cart": "Add to cart",
@@ -62,7 +56,6 @@
     "Support": "Support",
     "FAQs": "FAQs",
     "Quick Links": "Quick Links",
-
     "All Rights Reserved": "All Rights Reserved",
     "Shopping Cart": "Shopping Cart",
     "Cart is empty": "Cart is empty",
@@ -71,8 +64,7 @@
     "Summary": "Summary",
     "Total": "Total",
     "Clear All": "Clear All",
-    "Checkout": "Checkout",
-    "Phone": "Phone",
+    "Checkout": "Checkout",  
     "City": "City",
     "Street": "Street",
     "Building_num": "Building_num",
@@ -84,10 +76,7 @@
     "Pay Your Orders": "Pay Your Orders",
     "Please Fill Your Card": "Please Fill Your Card",
     "Pay now": "Pay now",
-
-
     "Category": "Category",
-    "Add to cart": "Add to cart",
     "Add to Favorite": "Add to Favorite",
     "Add to Wishlist": "Add to Wishlist",
     "Quick View": "Quick View",
@@ -114,7 +103,6 @@
     "Email address": "Email address",
     "We'll never share your email with anyone else.": "We'll never share your email with anyone else.",
     "phone": "phone",
-    "User Name": "User Name",
     "Age": "Age",
     "Password": "Password",
     "confirm Password": "confirm Password",
@@ -128,6 +116,5 @@
     "next": "next",
     "check your email for code": "check your email for code",
     "Change Password": "Change Password"
-    
 
 }
