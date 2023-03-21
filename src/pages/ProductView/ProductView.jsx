@@ -8,12 +8,14 @@ import styles from './ProductView.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
+import { useTranslation } from 'react-i18next';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [rate, setRate] = useState(null);
   let { prodId } = useParams();
+  const { t } = useTranslation();
   const imgSrc = 'http://localhost:3000/api/v1/image';
 
   const onUpdateRate = async(e) => {
@@ -102,7 +104,7 @@ const ProductView = () => {
           <div className="container">
             <div className="row my-5">
               <div className="section-title text-center">
-                <h2 className="title title-icon-both">Product View</h2>
+                <h2 className="title title-icon-both">{t("Product View")}</h2>
               </div>
             </div>
 
@@ -126,13 +128,13 @@ const ProductView = () => {
                         }
 
                       </span>
-                      <span className="rating-caption ms-2">{product.ratings_id.length} review</span>
+                      <span className="rating-caption ms-2">{product.ratings_id.length} {t("reviews")}</span>
                     </span>
                   </div>
 
                   <h3 className={`my-3 ${styles.product_title}`}>{product.product_name}</h3>
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Discount: </span> <span className={styles.variant_inventory}>{product.discount}%</span>
+                    <span className={styles.inventory_title}>{t("Discount")}: </span> <span className={styles.variant_inventory}>{product.discount}%</span>
                   </div>
 
                   <div className={`price mt-2 mb-4 ${styles.product_price}`}>
@@ -145,19 +147,19 @@ const ProductView = () => {
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Owner: </span> <span className={styles.variant_inventory}>{product.created_by.user_name}</span>
+                    <span className={styles.inventory_title}>{t("Owner")}: </span> <span className={styles.variant_inventory}>{product.created_by.user_name}</span>
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Shop Name: </span> <span className="variant-inventory">{product.created_by.shop_name}</span>
+                    <span className={styles.inventory_title}>{t("Shop Name")}: </span> <span className="variant-inventory">{product.created_by.shop_name}</span>
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Category: </span> <span className="variant-inventory">{product.categories_id[0]?.name}</span>
+                    <span className={styles.inventory_title}>{t("Category")}: </span> <span className="variant-inventory">{product.categories_id[0]?.name}</span>
                   </div>
 
                   <div className={`fw-bold mb-3 ${styles.product_inventory}`}>
-                    <span className={styles.inventory_title}>Availability: </span> <span className="variant-inventory">{product.number_of_items}</span>
+                    <span className={styles.inventory_title}>{t("Availability")}: </span> <span className="variant-inventory">{product.number_of_items}</span>
                   </div>
 
                   <div className={`mb-4 ${styles.product_desc}`}>{product.description}</div>
@@ -180,7 +182,7 @@ const ProductView = () => {
         <div className="container">
           <div className="row align-items-center py-5">
             <div className="section-title text-center">
-              <h2 className="title title-icon-both">You Might Also Like</h2>
+              <h2 className="title title-icon-both">{t("You Might Also Like")}</h2>
             </div>
           </div>
 

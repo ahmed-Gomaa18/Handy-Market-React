@@ -73,7 +73,7 @@ const Navbar = () => {
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-9">
-              <p className="text-white mb-0">Free Shipping Over $100& Free Returns</p>
+              {/* <p className="text-white mb-0">Free Shipping Over $100& Free Returns</p> */}
 
               {/* For test */}
               <button onClick={()=>(i18n.changeLanguage("en"))}> English </button>
