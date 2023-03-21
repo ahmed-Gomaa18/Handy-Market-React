@@ -2,7 +2,12 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styles from './FilterStore.module.css';
 
+import { useTranslation } from 'react-i18next';
+
 const FilterStore = ({ getFilterCategory }) => {
+
+    const { t ,i18n } = useTranslation();
+
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -19,14 +24,22 @@ const FilterStore = ({ getFilterCategory }) => {
 
                 <div className="col-md-4">
                     <h3 className="heading-section">
-                        <small>Categories</small>
+                        <small>{t("Categories")}</small>
                     </h3>
                     {
                         categories && categories.map((category) => (
-                            <label key={category._id} className={styles.checkbox}><span>{category.name}</span>
+
+                            i18n.language === "en" ? 
+                            <label key={category._id} className={styles.checkbox}><span>{category.name_en}</span>
                                 <input type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
                                 <span className={styles.checkmark}></span>
                             </label>
+                            :
+                            <label key={category._id} className={styles.checkbox}><span>{category.name_ar}</span>
+                                <input type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
+                                <span className={styles.checkmark}></span>
+                            </label>
+                            
                         ))
                     }
                     
