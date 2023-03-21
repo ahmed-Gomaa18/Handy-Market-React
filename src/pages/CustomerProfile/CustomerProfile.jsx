@@ -31,7 +31,7 @@ const CustomerProfile = () => {
         <>
             {userData && <div className='parent my-5 '>
                 <div className={`m-5 container m-auto p-4 shadow-lg`} id="container">
-                    <di className="row">
+                    <div className="row">
 
                         <div className={`col-md-4  shadow rounded p-4 `} id="profileSection">
                             <div className="row m-auto text-center">
@@ -108,7 +108,7 @@ const CustomerProfile = () => {
                                 </div>
                             </div>
                         </div>
-                    </di>
+                    </div>
                 </div>
             </div>
             }

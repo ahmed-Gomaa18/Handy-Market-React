@@ -54,7 +54,7 @@ const Favorites = () => {
     }
     return (
         <div>
-            {
+            { 
                 <div className='container-fluid ' >
                     <div className="row mt-3">
                         <div className="col-md-12">
@@ -77,10 +77,10 @@ const Favorites = () => {
                             </div>
 
                             <div className='row'>
-                                {
+                                {filteredData &&
                                     filteredData?.map((product) => (
 
-                                        <Product key={product._id} {...product} unFavorite={unFavorite} />
+                                        <Product key={product._id} {...product}  unFavorite={unFavorite} />
 
                                     ))
                                 }

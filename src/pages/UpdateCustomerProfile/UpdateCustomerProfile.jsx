@@ -23,7 +23,7 @@ const UpdateCustomerprofile = () => {
 
     useEffect(() => {
         setUserData({ ...location.state })
-        setImagePofile(location.state.profile_image);
+        // setImagePofile(location.state.profile_image);
     }, []);
     const handleChange = (event) => {
         let name = event.target.name;
