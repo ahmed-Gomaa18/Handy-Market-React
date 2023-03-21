@@ -51,10 +51,13 @@ const CheckoutForm = () => {
 
             // localStorage.removeItem('order-data');
             toast.error('Opps Error While Pay', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
 
-            navigate('/order')
+            setTimeout(()=>{
+                navigate('/order');
+            }, 2000)
 
 
         // setMessage(error.message);
@@ -74,10 +77,13 @@ const CheckoutForm = () => {
                 clearCart()
 
                 toast.success('Your Order completed successfully', {
-                    position: toast.POSITION.TOP_RIGHT
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 1000
                 })
 
-                navigate('/')
+                setTimeout(()=>{
+                    navigate('/');
+                }, 2000)
 
                 console.log(data)
 
@@ -91,9 +97,13 @@ const CheckoutForm = () => {
 
             // localStorage.removeItem('order-data');
             toast.error('Opps Error While Pay', {
-                position: toast.POSITION.TOP_RIGHT
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 1000
             })
-            navigate('/order')
+            
+            setTimeout(()=>{
+                navigate('/order');
+            }, 2000)
             // redirect
         }
 

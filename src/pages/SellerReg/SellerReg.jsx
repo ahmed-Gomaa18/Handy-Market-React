@@ -3,7 +3,13 @@ import axios from "axios";
 import styles from './SellerReg.module.css';
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { useTranslation } from 'react-i18next';
+
 const SellerSignUp = () => {
+
+
+    const { t } = useTranslation();
+
     const navigate = useNavigate();
     const location = useLocation();
     const redirectPath = location.state?.path || '/auth/login';
@@ -48,6 +54,7 @@ const SellerSignUp = () => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
+        console.log(form);
     };
 
     //validation function
@@ -144,7 +151,7 @@ const SellerSignUp = () => {
         e.preventDefault();
         setFormErrors(validate(form));
         setIsSubmit(true);
-        console.log(form)
+        // console.log(form)
         axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
             console.log('sucess', res);
             navigate(redirectPath, { replace: true });
@@ -167,9 +174,9 @@ const SellerSignUp = () => {
                     <div className=' mt-5'>
                         <form onSubmit={onSubmitForm} className='sign-in-form ' >
                             <div className="form-group ">
-                                <label htmlFor="InputEmail1" className='my-2'>Email address</label>
+                                <label htmlFor="InputEmail1" className='my-2'>{t("Email address")}</label>
                                 <input type="email" className="form-control mb-1 shadow bg-body-tertiary rounded" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} noValidate />
-                                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <small id="emailHelp" className="form-text text-muted">{t("We'll never share your email with anyone else.")}</small>
                                 <div className=" text-danger">
                                     {formErrors.email}
                                 </div>
@@ -180,14 +187,14 @@ const SellerSignUp = () => {
                             <div className="row">
 
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="InputPassword1" className='my-2'>Password</label>
+                                    <label htmlFor="InputPassword1" className='my-2'>{t("Password")}</label>
                                     <input type="password" className="form-control mb-1 shadow bg-body-tertiary rounded" id="InputPassword1" name="password" placeholder="Password" value={form.password} onChange={onUpdateField} noValidate />
                                     <div className=" text-danger">
                                         {formErrors.password}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="confirmPassword1" className='my-2'>confirm Password</label>
+                                    <label htmlFor="confirmPassword1" className='my-2'>{t("confirm Password")}</label>
                                     <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="confirmPassword1" name="confirmPassword" placeholder="confirmPassword" value={form.confirmPassword} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.confirmPassword}
@@ -196,14 +203,14 @@ const SellerSignUp = () => {
                             </div>
                             <div className="row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="Inputusername" className='my-2'>User Name</label>
+                                    <label htmlFor="Inputusername" className='my-2'>{t("User Name")}</label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="Inputusername" placeholder="user name" name="user_name" value={form.user_name} onChange={onUpdateField} noValidate />
                                     <div className=" text-danger">
                                         {formErrors.user_name}
                                     </div>
                                 </div>
                                 <div className="form-group  col-md-6">
-                                    <label htmlFor="Inputuserfullname" className='my-2'>full Name</label>
+                                    <label htmlFor="Inputuserfullname" className='my-2'>{t("full Name")}</label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="Inputuserfullname" placeholder="full name" name="full_name" value={form.full_name} onChange={onUpdateField} noValidate />
 
                                     <div className=" text-danger">
@@ -212,7 +219,7 @@ const SellerSignUp = () => {
                                 </div>
 
                                 <div className="form-group  col-md-6">
-                                    <label htmlFor="Inputusershop_name" className='my-2'>shop Name</label>
+                                    <label htmlFor="Inputusershop_name" className='my-2'>{t("shop Name")}</label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="Inputusershop_name" placeholder="shop name" name="shop_name" value={form.shop_name} onChange={onUpdateField} noValidate />
 
                                     <div className=" text-danger">
@@ -220,7 +227,7 @@ const SellerSignUp = () => {
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="description" className='my-2'>description </label>
+                                    <label htmlFor="description" className='my-2'>{t("Description")} </label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="description" aria-describedby="description" placeholder="description" name="description" value={form.description} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.description}
@@ -229,14 +236,14 @@ const SellerSignUp = () => {
                             </div>
                             <div className="row">
                                 <div className="form-group col col-md-6">
-                                    <label htmlFor="phone " className='my-2'>phone</label>
+                                    <label htmlFor="phone " className='my-2'>{t("phone")}</label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="phone" name="phone" placeholder="phone" value={form.phone} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.phone}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="Inputusername" className='my-2'>Age </label>
+                                    <label htmlFor="Inputusername" className='my-2'>{t("Age")} </label>
                                     <input type="number" className="form-control mb-1 shadow bg-body-tertiary rounded" id="InputAge" aria-describedby="age" placeholder="age" name="age" value={form.age} onChange={onUpdateField} />
                                     <div className=" text-danger">
                                         {formErrors.age}
@@ -245,21 +252,21 @@ const SellerSignUp = () => {
                             </div>
                             <div className="row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="Inputaddress" className='my-2'>city</label>
+                                    <label htmlFor="Inputaddress" className='my-2'>{t("city")}</label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="city" name="city" placeholder="city" value={form.address.city} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.address}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="Inputaddress" className='my-2'>street</label>
+                                    <label htmlFor="Inputaddress" className='my-2'>{t("street")}</label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="street" name="street" placeholder="street" value={form.address.street} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.address}
                                     </div>
                                 </div>
                                 <div className="form-group col-md-6 mb-3">
-                                    <label htmlFor="Inputaddress" className='my-2'>building number</label>
+                                    <label htmlFor="Inputaddress" className='my-2'>{t("building number")}</label>
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="building_num" name="building_num" placeholder="building_num" value={form.address.building_num} onChange={UpdateAddress} />
                                     <div className=" text-danger">
                                         {formErrors.address}
@@ -268,16 +275,16 @@ const SellerSignUp = () => {
                             </div>
                             <div className="form-check form-check-inline">
                                 <input type="radio" className="form-check-input" id="female" name="gender" value="Female" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
-                                <label className="form-check-label" htmlFor="female">Female</label>
+                                <label className="form-check-label" htmlFor="female">{t("Female")}</label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input type="radio" className="form-check-input" id="male" name="gender" value="Male" onChange={(e) => setForm((prev) => ({ ...prev, gender: e.target.value }))} />
-                                <label className="form-check-label" htmlFor="male">Male</label>
+                                <label className="form-check-label" htmlFor="male">{t("Male")}</label>
                             </div>
                             <div className=" text-danger">
                                 {formErrors.gender}
                             </div>
-                            <button type="submit" className={`btn ${styles.mybtn}`}>Submit</button>
+                            <button type="submit" className={`btn ${styles.mybtn}`}>{t("Submit")}</button>
                         </form>
                     </div>
                 </div>
