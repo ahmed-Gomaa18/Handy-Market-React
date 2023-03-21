@@ -28,7 +28,7 @@
     "Shop Name must be at least 3 characters" : "Shop Name must be at least 3 characters",
     "Shop Name" : "Shop Name",
     "About Me" : "About Me",
-    "Products" : "Products"
+    "Products" : "Products",
     
 
 
@@ -83,7 +83,7 @@
     "your Orders": "your Orders",
     "Pay Your Orders": "Pay Your Orders",
     "Please Fill Your Card": "Please Fill Your Card",
-    "Pay now": "Pay now"
+    "Pay now": "Pay now",
 
 
     "Category": "Category",

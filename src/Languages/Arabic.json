@@ -29,7 +29,7 @@
     "Shop Name must be at least 3 characters" : "اسم المتجر يجب ان لا يقل عن 3 حروف",
     "Shop Name" : "اسم المتجر",
     "About Me" : "اعرف المزيد عنا",
-    "Products" : "المنتاجات"
+    "Products" : "المنتاجات",
     
 
 
@@ -81,7 +81,7 @@
     "your Orders": "طلباتك",
     "Pay Your Orders": "إدفع طلباتك",
     "Please Fill Your Card": "برجاء إدخال بيانات البطاقة",
-    "Pay now": "إدفع الآن"
+    "Pay now": "إدفع الآن",
 
 
 
