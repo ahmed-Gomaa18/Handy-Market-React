@@ -4,6 +4,34 @@
     "Add Product": "Add Product",
     "Store": "Store",
     "Logout": "Logout",
+
+    "Choose Categories": "Choose Categories" ,
+    "Edit public profile": "Edit public profile",
+    "Orders": "Orders",
+    "Wishlist":"Wishlist",
+    "Favorites":"Favorites",
+    "Favorite items":"Favorite items",
+    "Hide sold out items":"Hide sold out items",
+    "Profile Image:":"Profile Image:",
+    "User Name":"User Name",
+    "Full Name":"Full Name",
+    "Phone" : "Phone",
+    "City" : "City",
+    "Street" : "Street",
+    "Building" : "Building",
+    "Update" : "Update",
+    "User Name must be at least 3 characters" : "User Name must be at least 3 characters",
+    "Full Name must be at least 3 characters" : "Full Name must be at least 3 characters",
+    "Phone  must be 11 number" : "Phone  must be 11 number",
+    "City must be at least 3 characters" : "City must be at least 3 characters",
+    "Street must be at least 3 characters" : "Street must be at least 3 characters",
+    "Shop Name must be at least 3 characters" : "Shop Name must be at least 3 characters",
+    "Shop Name" : "Shop Name",
+    "About Me" : "About Me",
+    "Products" : "Products"
+    
+
+
     "Choose Categories": "Choose Categories",
 
     "Just for you": "Just for you",
@@ -100,6 +128,6 @@
     "next": "next",
     "check your email for code": "check your email for code",
     "Change Password": "Change Password"
-
     
+
 }

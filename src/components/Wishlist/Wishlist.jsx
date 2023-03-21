@@ -4,9 +4,10 @@ import axios from "axios"
 import WishlistCard from '../WishlistCard/WishlistCard';
 import styles from './Wishlist.module.css';
 
- 
+import { useTranslation } from 'react-i18next'; 
 
 const Wishlist = () => {
+    const { t, i18n } = useTranslation();
 
     const [wishlistData,setWishlist]=useState([]);
     const [filteredData, setFiltered]=useState([]);
@@ -41,13 +42,13 @@ const Wishlist = () => {
 
                        <div className="col-md-12 mt-3">
 
-                         <h4>Wishlist items </h4>
+                         <h4>{t("Wishlist items") }</h4>
                          {/* <div className='d-flex col-12  col-sm-3 align-items-center'>
                              <input className='checkbox me-2 col-4' type="checkbox" onChange={getNotSloidProduct} />
                              <label className='check-label col-8'>Hide sold out items</label>
                          </div> */}
                          <div className="form-check">
-                        <label className={styles.checkbox}><span>Hide sold out items</span>
+                        <label className={styles.checkbox}><span>{t("Hide sold out items")}</span>
                                     <input type="checkbox"  onChange={getNotSloidProduct}/>
                                     <span className={styles.checkmark}></span>
                                 </label>
