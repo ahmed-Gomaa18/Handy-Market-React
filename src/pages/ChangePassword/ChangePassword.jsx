@@ -60,7 +60,6 @@ const ChangePassword = () => {
         }
       
         axios.post('http://localhost:3000/api/v1/auth/forgetPassword', form).then((res) => {
-            // console.log('sucess', res);
             if (res.data.message === 'Done update Your Password , Login now') {
                 setIsSubmit(true);
                 navigate('/auth/login');

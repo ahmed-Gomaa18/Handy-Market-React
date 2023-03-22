@@ -102,13 +102,9 @@ const Register = () => {
                 break;
             case "confirmPassword":
                 {
-                    console.log("hii");
-
                     if (form.password !== value) {
-                        console.log(false);
                         setFormErrors({ ...formErrors, confirmPassword: 'Your password is miss match ' });
                     } else {
-                        console.log(true);
                         setFormErrors({ ...formErrors, confirmPassword: null });
                     }
 
@@ -182,7 +178,6 @@ const Register = () => {
     const onSubmitForm = e => {
         form.address.building_num = +form.address.building_num;
         e.preventDefault();
-        console.log(form);
         if (Object.keys(formErrors).some((error) => error !== null)) {
             setIsSubmit(true);
         } else {
@@ -191,7 +186,6 @@ const Register = () => {
         }
 
         axios.post('http://localhost:3000/api/v1/auth/singUp', form).then((res) => {
-            console.log(res);
             navigate(redirectPath, { replace: true });
 
         }).catch((err) => {

@@ -54,7 +54,6 @@ const SellerSignUp = () => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
-        console.log(form);
     };
     const onHandleBlur = e => {
         const { name, value } = e.target;
@@ -217,11 +216,9 @@ const SellerSignUp = () => {
         form.address.building_num = +form.address.building_num;
         form.age = +form.age;
         e.preventDefault();
-        // setFormErrors(validate(form));
-        // setIsSubmit(true);
-        // console.log(form)
+        setFormErrors(validate(form));
+        setIsSubmit(true);
         axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
-            console.log('sucess', res);
             navigate(redirectPath, { replace: true });
         }).catch((err) => {
             console.log(err.message)

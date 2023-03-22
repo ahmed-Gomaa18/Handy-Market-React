@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { BsFillSuitHeartFill } from 'react-icons/bs';
-import {FaClipboardList} from 'react-icons/fa'
-import { MdPageview } from 'react-icons/md';
-import Rating from '@mui/material/Rating';
-import SearchStore from '../../components/SearchStore/SearchStore';
-import FilterStore from '../../components/FilterStore/FilterStore';
 import './Store.css';
-import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
-import { toast, ToastContainer } from 'react-toastify';
-// import styles from './Store.module.css';
 
+import Rating from '@mui/material/Rating';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { BsFillSuitHeartFill } from 'react-icons/bs';
+import { FaClipboardList } from 'react-icons/fa';
+import { MdPageview } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+
+import AddItemToCart from '../../components/AddItemToCart/AddItemToCart';
+import FilterStore from '../../components/FilterStore/FilterStore';
+import SearchStore from '../../components/SearchStore/SearchStore';
+
+// import styles from './Store.module.css';
 
 const image_url = "http://localhost:3000/api/v1/image";
 const base_url = "http://localhost:3000/api/v1/product";
@@ -65,7 +67,6 @@ const Store = () => {
             }
         })
         .then((data)=>{
-            console.log(data);
             toast.success('Add This Product to wishlist.', {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 1000
@@ -89,7 +90,6 @@ const Store = () => {
             }
         })
         .then((data)=>{
-            console.log(data);
             toast.success('Add This Product to Favorite.', {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 1000

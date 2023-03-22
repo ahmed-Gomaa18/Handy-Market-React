@@ -84,12 +84,10 @@ const Footer = () => {
           <div className="col-4 col-md-3 col-lg-3">
             <h4 className="mb-4">{t("Quick Links")}</h4>
             <div className="footer-links d-flex flex-column">
-              <Link className="py-2 mb-1">Baskets</Link>
-              <Link className="py-2 mb-1">Bags & Clutches</Link>
-              <Link className="py-2 mb-1">Cushions</Link>
-              <Link className="py-2 mb-1">Dresses</Link>
-              <Link className="py-2 mb-1">Mats & Rugs</Link>
-              <Link className="py-2 mb-1">Seats & Banquettes</Link>
+              <Link className="py-2 mb-1">{t("Accessories")}</Link>
+              <Link className="py-2 mb-1">{t("Arts")}</Link>
+              <Link className="py-2 mb-1">{t("Clay")}</Link>
+              <Link className="py-2 mb-1">{t("Clothes")}</Link>
             </div>
           </div>
         </div>

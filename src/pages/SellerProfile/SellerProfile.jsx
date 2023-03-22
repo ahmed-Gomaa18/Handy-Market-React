@@ -1,14 +1,13 @@
-import { MdLocationOn, MdBusinessCenter, MdOutlineStarRate } from "react-icons/md"
-import { BsFillTelephoneFill } from 'react-icons/bs'
-import { MdEmail } from "react-icons/md";
-import { Link } from 'react-router-dom';
-import { IconContext } from "react-icons";
-import { useEffect, useState } from "react"
 import Avatar from '@mui/material/Avatar';
-import { NavLink, Outlet } from 'react-router-dom';
-import axios from "axios";
-import styles from './SellerProfile.module.css';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IconContext } from 'react-icons';
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import { MdBusinessCenter, MdEmail, MdLocationOn } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+
+import styles from './SellerProfile.module.css';
 
 const SellerProfile = () => {
   const { t, i18n } = useTranslation();
@@ -98,11 +97,6 @@ const SellerProfile = () => {
              
 
             </div>
-
-
-
-
-
           </div>
         </div>
 

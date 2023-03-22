@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useParams } from "react-router-dom";
-import axios from "axios"
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import styles from './UpdateService.module.css';
 
 const UpdateService = (props) => {
@@ -9,7 +10,8 @@ const UpdateService = (props) => {
     const deleteItem = props.deleteItem
     const productId = routeParams['id'];
     const userId = routeParams['userId'];
-    const [productData, setProductsState] = useState({ Data: null })
+    const [productData, setProductsState] = useState({ Data: null });
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
     const ProductUrl = "http://localhost:3000/api/v1/product/";
@@ -24,10 +26,7 @@ const UpdateService = (props) => {
             setProductsState({ Data: product });
         })
     }, []);
-
-    function handleFileSelect(event) {
-        console.log(event.target.value)
-    }
+    
     const handleDelete = () => {
         axios.delete(`${ProductUrlDelete}${userId}/delete/${productId}`, { headers: { "authorization": `Bearer ${userToken}` } })
             .then((data) => {
@@ -75,7 +74,7 @@ const UpdateService = (props) => {
                 <div className='col-md-8'>
                     <div className='mb-3 row  justify-content-center'>
                         <div className='col-5 col-sm-2'>
-                            <label className='labelUpdateService' htmlFor="Name">Name</label>
+                            <label className='labelUpdateService' htmlFor="Name">{t("Name")}</label>
                         </div>
                         <div className='col-7'>
                             <input type="text" id="Name" className="form-control col-auto" name='product_name' value={productData.Data?.product_name} onChange={handleDataChange} />
@@ -83,15 +82,16 @@ const UpdateService = (props) => {
                     </div>
                     <div className='mb-3 row  justify-content-center'>
                         <div className='col-5 col-sm-2'>
-                            <label htmlFor="solid" className='labelUpdateService'>Solid Items</label>
+                            <label htmlFor="sold" className='labelUpdateService'>{t(
+                            "Sold Items")}</label>
                         </div>
                         <div className='col-7'>
-                            <input type="text" id="solid" className="form-control col-auto" name='sold_items' value={productData.Data?.sold_items} disabled />
+                            <input type="text" id="sold" className="form-control col-auto" name='sold_items' value={productData.Data?.sold_items} disabled />
                         </div>
                     </div>
                     <div className='mb-3 row  justify-content-center'>
                         <div className='col-5 col-sm-2'>
-                            <label className='labelUpdateService' htmlFor="price" >Price</label>
+                            <label className='labelUpdateService' htmlFor="price" >{t("Price")}</label>
                         </div>
                         <div className='col-7'>
                             <input type="text" id="price" className="form-control" name='price' value={productData.Data?.price} onChange={handleDataChange} />
@@ -99,7 +99,7 @@ const UpdateService = (props) => {
                     </div>
                     <div className='mb-3 row  justify-content-center'>
                         <div className='col-5 col-sm-2'>
-                            <label htmlFor="discount" className='labelUpdateService'>Discount</label>
+                            <label htmlFor="discount" className='labelUpdateService'>{t("Discount")}</label>
                         </div>
                         <div className='col-7'>
                             <input type="text" id="discount" className="form-control" name='discount' value={productData.Data?.discount} onChange={handleDataChange} />
@@ -107,7 +107,7 @@ const UpdateService = (props) => {
                     </div>
                     <div className='mb-3 row  justify-content-center'>
                         <div className='col-5 col-sm-2'>
-                            <label htmlFor="itemsAvailable" className='labelUpdateService'>available Items</label>
+                            <label htmlFor="itemsAvailable" className='labelUpdateService'>{t("available Items")}</label>
                         </div>
                         <div className='col-7'>
                             <input type="text" id="itemsAvailable" className="form-control" name='number_of_items' value={productData.Data?.number_of_items} onChange={handleDataChange} />
@@ -115,7 +115,7 @@ const UpdateService = (props) => {
                     </div>
                     <div className='mb-3 row  justify-content-center'>
                         <div className='col-5 col-sm-2'>
-                            <label htmlFor="description" className='labelUpdateService'>Description</label>
+                            <label htmlFor="description" className='labelUpdateService'>{t("Description")}</label>
                         </div>
                         <div className='col-7'>
                             <textarea type="text" id="description" cols="4" rows="5" className="form-control" name='description' value={productData.Data?.description} onChange={handleDataChange} />
@@ -123,9 +123,9 @@ const UpdateService = (props) => {
                     </div>
                     <div className='d-flex justify-content-center'>
 
-                        <button className={`${styles.mybtn} ms-5 `} onClick={handleUpdate}>Update</button>
+                        <button className={`${styles.mybtn} ms-5 `} onClick={handleUpdate}>{t("Update")}</button>
 
-                        <button className={`${styles.btn2} mx-1`} onClick={handleDelete}>Delete</button>
+                        <button className={`${styles.btn2} mx-1`} onClick={handleDelete}>{t("Delete")}</button>
 
                     </div>
 
@@ -137,4 +137,3 @@ const UpdateService = (props) => {
 }
 
 export default UpdateService;
-// http://localhost:3000/api/v1/product/seller/6404ba1c3a9df51fb781c06f/update/64065e075bbca500ca2ddec7
