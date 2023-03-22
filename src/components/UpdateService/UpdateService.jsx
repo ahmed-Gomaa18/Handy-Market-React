@@ -14,10 +14,10 @@ const UpdateService = (props) => {
     const { t } = useTranslation();
 
     const navigate = useNavigate();
-    const ProductUrl = "http://localhost:3000/api/v1/product/";
-    const sorcImag = 'http://localhost:3000/api/v1/image';
-    const productUpdateUrl = " http://localhost:3000/api/v1/product/seller/"
-    const ProductUrlDelete = `http://localhost:3000/api/v1/product/seller/`;
+    const ProductUrl = "https://handy-market-api.onrender.com/api/v1/product/";
+    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+    const productUpdateUrl = "https://handy-market-api.onrender.com/api/v1/product/seller/"
+    const ProductUrlDelete = `https://handy-market-api.onrender.com/api/v1/product/seller/`;
 
     const userToken = localStorage.getItem("user-token");
     useEffect(() => {
@@ -137,3 +137,4 @@ const UpdateService = (props) => {
 }
 
 export default UpdateService;
+

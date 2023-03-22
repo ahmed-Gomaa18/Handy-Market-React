@@ -34,7 +34,9 @@ const CodeForgetPass = () => {
     const onSubmitForm = e => {
         e.preventDefault();
         setFormErrors(validate(form));
-        axios.post('http://localhost:3000/api/v1/auth/checkCode', form).then((res) => {
+
+        axios.post('https://handy-market-api.onrender.com/api/v1/auth/checkCode', form).then((res) => {
+
             if (res.data.message === "Done Right code  to Your Email") {
                 navigate('/changePassword', { state: location.state });
                 

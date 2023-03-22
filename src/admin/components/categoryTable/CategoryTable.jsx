@@ -27,7 +27,7 @@ const CategoryTable = () => {
   const adminId = localStorage.getItem("user-id");
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/category', { 
+    axios.get('https://handy-market-api.onrender.com/api/v1/category', { 
       headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` 
     }}).then((data) => {
       let test = data.data.allCategories;
@@ -54,7 +54,7 @@ const CategoryTable = () => {
  //function to add new category 
   const handleAddFormSubmit = event =>{
     event.preventDefault();
-    axios.post('http://localhost:3000/api/v1/category', {"name_en":addCategoryEn,"name_ar":addCategoryAr ,"user_id":adminId},{ 
+    axios.post('https://handy-market-api.onrender.com/api/v1/category', {"name_en":addCategoryEn,"name_ar":addCategoryAr ,"user_id":adminId},{ 
       headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` 
     }}).then((res) => {
       // Show Success
@@ -105,7 +105,7 @@ const CategoryTable = () => {
   const handleFormUpdatecategory = (event) => {
     event.preventDefault();
 
-    axios.patch(`http://localhost:3000/api/v1/category/${editCategoryId}`, {"name_en":editCategoryFormEn, "name_ar": editCategoryFormAr}, { 
+    axios.patch(`https://handy-market-api.onrender.com/api/v1/category/${editCategoryId}`, {"name_en":editCategoryFormEn, "name_ar": editCategoryFormAr}, { 
       headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } 
     }).then((res) => {
       // Show Success

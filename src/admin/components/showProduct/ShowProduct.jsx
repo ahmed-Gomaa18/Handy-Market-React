@@ -5,10 +5,10 @@ import axios from 'axios';
 const ShowProduct = (props) => {
     const [product, setProduct] = useState(null);
     let { prodId } = props;
-    const imgSrc = 'http://localhost:3000/api/v1/image';
+    const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/admin/notApproval/${prodId}`, {
+        axios.get(`https://handy-market-api.onrender.com/api/v1/admin/notApproval/${prodId}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("user-token")}`
             }

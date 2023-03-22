@@ -46,6 +46,7 @@ const ChangePassword = () => {
     const navigate = useNavigate();
     const onSubmitForm = (e) => {
         e.preventDefault();
+
         const myEmail = form;
         myEmail.email = location.state;
         setForm(myEmail);
@@ -59,7 +60,8 @@ const ChangePassword = () => {
             return;
         }
       
-        axios.post('http://localhost:3000/api/v1/auth/forgetPassword', form).then((res) => {
+        axios.post('https://handy-market-api.onrender.com/api/v1/auth/forgetPassword', form).then((res) => {
+
             if (res.data.message === 'Done update Your Password , Login now') {
                 setIsSubmit(true);
                 navigate('/auth/login');

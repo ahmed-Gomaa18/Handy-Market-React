@@ -232,7 +232,7 @@ const SellerSignUp = () => {
         form.address.building_num = +form.address.building_num;
         form.age = +form.age;
         e.preventDefault();
-        console.log(form);
+
         if (Object.keys(formErrors).some((error) => error !== null)) {
             setIsSubmit(true);
             
@@ -240,7 +240,8 @@ const SellerSignUp = () => {
             alert("please fill the form corectly");
             return;
         }
-        axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
+        axios.post('https://handy-market-api.onrender.com/api/v1/auth/seller/singUp', form).then((res) => {
+
             navigate(redirectPath, { replace: true });
         }).catch((err) => {
             if (err.response?.data.message === "Email Exist") {

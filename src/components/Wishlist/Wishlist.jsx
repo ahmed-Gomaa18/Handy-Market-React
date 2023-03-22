@@ -16,7 +16,7 @@ const Wishlist = () => {
     const userToken = localStorage.getItem("user-token");
 
     // get wishlist
-    const userWishlistUrl = "http://localhost:3000/api/v1/user/whishlist";
+    const userWishlistUrl = "https://handy-market-api.onrender.com/api/v1/user/whishlist";
     // get all data 
     useEffect(() => {
         axios.get(userWishlistUrl, { headers: { "authorization": `Bearer ${userToken}` } }).then((data) => {

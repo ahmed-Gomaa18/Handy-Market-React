@@ -12,7 +12,7 @@ const UsersTable = () => {
 
   const [usersData, usersDataState] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/admin/allUsers',{
+    axios.get('https://handy-market-api.onrender.com/api/v1/admin/allUsers',{
       headers: {"authorization": `Bearer ${localStorage.getItem("user-token")}` }
     }).then((data) => {
       let test = data.data;
@@ -24,7 +24,7 @@ const UsersTable = () => {
 
   const BlockUser = async (param, stateblock) => {
     try {
-      let result = await axios.patch(`http://localhost:3000/api/v1/admin/user/block/${!stateblock}/${param}`, {},
+      let result = await axios.patch(`https://handy-market-api.onrender.com/api/v1/admin/user/block/${!stateblock}/${param}`, {},
         { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } })
       if (result) {
         return;

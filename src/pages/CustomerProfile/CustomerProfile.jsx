@@ -15,11 +15,11 @@ import { useTranslation } from 'react-i18next';
 const CustomerProfile = () => {
     const { t, i18n } = useTranslation();
     const [userData, userState] = useState({});
-    const sorcImag = 'http://localhost:3000/api/v1/image';
+    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
     let userToken = localStorage.getItem("user-token");
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/v1/user/getUserProfile', {
+        axios.get('https://handy-market-api.onrender.com/api/v1/user/getUserProfile', {
             headers: { "Authorization": `Bearer ${userToken}` }
         }).then((data) => {
             var Data = data.data.user;

@@ -16,7 +16,7 @@ export const ContextProvider = ({ children }) => {
 
 
     const logout = () => {
-        axios.patch('http://localhost:3000/api/v1/auth/logOut', {}, {
+        axios.patch('https://handy-market-api.onrender.com/api/v1/auth/logOut', {}, {
             headers: {
                 "authorization": `Bearer ${userToken}`
             }

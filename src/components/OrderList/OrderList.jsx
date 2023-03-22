@@ -9,7 +9,7 @@ const OrderList = () => {
 
     const [Orders, setOrders] = useState([]);
     const userToken=localStorage.getItem("user-token");
-    const ordersUrl="http://localhost:3000/api/v1/user/orders"
+    const ordersUrl="https://handy-market-api.onrender.com/api/v1/user/orders"
 
 
     useEffect(() => {

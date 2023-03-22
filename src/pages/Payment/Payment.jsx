@@ -45,7 +45,7 @@ const Payment = () => {
     }, [])
 
     useEffect(()=>{
-        axios.post('http://localhost:3000/api/v1/order/orderTotalPrice', {items},{
+        axios.post('https://handy-market-api.onrender.com/api/v1/order/orderTotalPrice', {items},{
             headers:{
                 'Content-Type' : 'application/json',
             }
@@ -55,7 +55,7 @@ const Payment = () => {
             if(data.data.total && key){
 
                 let total = data.data.total
-                axios.post('http://localhost:3000/api/v1/payment', {total}, {
+                axios.post('https://handy-market-api.onrender.com/api/v1/payment', {total}, {
                     headers:{
                         'Content-Type' : 'application/json',
 

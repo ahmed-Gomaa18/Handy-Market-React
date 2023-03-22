@@ -16,8 +16,10 @@ import SearchStore from '../../components/SearchStore/SearchStore';
 
 // import styles from './Store.module.css';
 
-const image_url = "http://localhost:3000/api/v1/image";
-const base_url = "http://localhost:3000/api/v1/product";
+
+
+const image_url = "https://handy-market-api.onrender.com/api/v1/image";
+const base_url = "https://handy-market-api.onrender.com/api/v1/product";
 
 const Store = () => {
     const [search, setSearch] = useState('');
@@ -60,7 +62,7 @@ const Store = () => {
 
     // Add To Wishlist
     const addToWishList = (product_id)=>{
-        axios.patch(`http://localhost:3000/api/v1/user/whishlist/${product_id}`, {}, {
+        axios.patch(`https://handy-market-api.onrender.com/api/v1/user/whishlist/${product_id}`, {}, {
             headers:{
                 'Content-Type' : 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('user-token')}`
@@ -83,7 +85,7 @@ const Store = () => {
 
     // Add To Favorite
     const addToFavorite = (product_id)=>{
-        axios.patch(`http://localhost:3000/api/v1/user/favorit/${product_id}`, {}, {
+        axios.patch(`https://handy-market-api.onrender.com/api/v1/user/favorit/${product_id}`, {}, {
             headers:{
                 'Content-Type' : 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('user-token')}`

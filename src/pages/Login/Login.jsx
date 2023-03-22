@@ -71,7 +71,11 @@ const Login = () => {
     }
     const onSubmitForm = e => {
         e.preventDefault();
-        axios.post('http://localhost:3000/api/v1/auth/login', form).then((res) => {
+
+        setFormErrors(validate(form));
+
+        axios.post('https://handy-market-api.onrender.com/api/v1/auth/login', form).then((res) => {
+
             const data = res.data
             const token = data.token;
             const id = data.userId;

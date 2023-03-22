@@ -65,7 +65,7 @@ const CheckoutForm = () => {
 
             // Create Order Here
 
-            axios.post('http://localhost:3000/api/v1/order/create', JSON.parse(localStorage.getItem('order-data')), {
+            axios.post('https://handy-market-api.onrender.com/api/v1/order/create', JSON.parse(localStorage.getItem('order-data')), {
                 headers:{
                     'Content-Type' : 'application/json',
                     'authorization': `Bearer ${localStorage.getItem('user-token')} `

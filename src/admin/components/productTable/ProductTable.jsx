@@ -14,7 +14,7 @@ const ProductTable = () => {
   const [productsData, productsDataState] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/product', {
+    axios.get('https://handy-market-api.onrender.com/api/v1/product', {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("user-token")}`
       }
@@ -28,7 +28,7 @@ const ProductTable = () => {
   
   const deleteProduct = (param) =>{
     try {
-      axios.delete(`http://localhost:3000/api/v1/admin/delete/${param}`,
+      axios.delete(`https://handy-market-api.onrender.com/api/v1/admin/delete/${param}`,
         { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } 
       }).then((res) =>{
         toast.success("Deleted Successfuly", {

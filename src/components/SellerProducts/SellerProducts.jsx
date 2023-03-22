@@ -9,8 +9,8 @@ const SellerProducts = () => {
   const userId = localStorage.getItem("user-id");
   const [allProducts, setProductsState] = useState(null);
 
-  const ProductUrl = "http://localhost:3000/api/v1/product/seller/true/";
-  const sorcImag = 'http://localhost:3000/api/v1/image';
+  const ProductUrl = "https://handy-market-api.onrender.com/api/v1/product/seller/true/";
+  const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
 
   //authorization
   useEffect(() => {
