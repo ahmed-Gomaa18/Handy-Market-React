@@ -13,7 +13,6 @@ const CodeForgetPass = () => {
 
     const [form, setForm] = useState({
         code: "",
-        email: ""
     });
     const location = useLocation();
     const [formErrors, setFormErrors] = useState({});
@@ -21,6 +20,7 @@ const CodeForgetPass = () => {
 
     useEffect(() => {
         console.log(location.state);
+       
     }, []);
 
     const onUpdateField = e => {
@@ -30,12 +30,6 @@ const CodeForgetPass = () => {
     };
     const validate = (val) => {
         const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        if (!val.email) {
-            errors.email = "email is required"
-        } else if (!regex.test(form.email)) {
-            errors.email = "this email not vaild! "
-        }
         if (!val.code) {
             errors.code = "code is required"
         }
@@ -48,7 +42,8 @@ const CodeForgetPass = () => {
         axios.post('http://localhost:3000/api/v1/auth/checkCode', form).then((res) => {
             console.log('sucess', res);
             if (res.data.message === "Done Right code  to Your Email") {
-                navigate('/changePassword');
+                navigate('/changePassword', { state: location.state });
+                
             }
         }).catch((err) => {
             const myError = err.response.data.message;
@@ -62,30 +57,18 @@ const CodeForgetPass = () => {
                     <form onSubmit={onSubmitForm} className={styles.myform}>
 
                         <h2 className="title"> {t("check your email for code")} </h2>
-                        
-                        <div className="text-danger">
-                            {errMssg && <p>{errMssg}</p>}
-                        </div>
+
+
 
                         <div className={styles.input_field}>
                             <i > <AiOutlineUser /></i>
-                            <input type="email" className="form-control" id="exampleInputEmail1"
-                                placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
-                        </div>
-
-                        <div className={styles.err}>
-                            {formErrors.email}
-                        </div>
-
-                        <div className={styles.input_field}>
-                            <i > <AiOutlineUser /></i>
-                            <input type="text" 
+                            <input type="text"
                                 className="form-control"
                                 id="code"
-                                placeholder="Enter your code" 
-                                name="code" 
-                                maxLength="5" 
-                                value={form.code} 
+                                placeholder="Enter your code"
+                                name="code"
+                                maxLength="5"
+                                value={form.code}
                                 onChange={onUpdateField} />
                         </div>
 
