@@ -22,9 +22,11 @@ const UpdateCustomerprofile = () => {
     const sorcImag = 'http://localhost:3000/api/v1/image';
 
     useEffect(() => {
-        setUserData({ ...location.state })
+        const userDataT = location.state;
+        setUserData(userDataT)
+        console.log(userDataT);
         // setImagePofile(location.state.profile_image);
-    }, []);
+    },[]);
     const handleChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -143,7 +145,7 @@ const UpdateCustomerprofile = () => {
                         <div className="row w-100">
                         <form onSubmit={updateData} className="FormData  d-flex flex-column align-items-center col-12 col-6 ">
 
-                          {imagesSrc &&<Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${imagesSrc}` || "Images/1.1.jpg"} />}
+                          {userData.profile_image &&<Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${userData.profile_image}`} />}
                          <div className="mb-3  d-flex flex-column align-items-center col-md-12 col-sm-8">
                          <label htmlFor="profileImage" className="form-label fs-6 text-muted">{t("Profile Image:")}</label>
                          <input type="file"  name="profile_image" className="form-control  mt-1" accept="image/*" id="profileImage" onChange={handleImageChange} />
