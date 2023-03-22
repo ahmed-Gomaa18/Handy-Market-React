@@ -86,7 +86,6 @@ const UpdateCustomerprofile = () => {
             return;
         }
         const formData = new FormData()
-        console.log(userData)
         if (userData.profile_image && userData.profile_image !== imagesSrc) {
             formData.append("profile_image", userData.profile_image);
         }
@@ -109,7 +108,6 @@ const UpdateCustomerprofile = () => {
             });
             return;
         }
-        console.log(formData.entries)
         axios.patch(`${userUlrUpdate}`, formData, {
             headers: {
                 "Authorization": `Bearer ${userToken}`,

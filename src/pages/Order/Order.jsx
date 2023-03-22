@@ -22,13 +22,10 @@ const Order = () => {
     // First
     // Check role customer and has cart to go to order
     useEffect(()=>{
-        if(localStorage.getItem('role') === 'Customer' && JSON.parse(localStorage.getItem('data-cart')).length > 0){
-            console.log('valid')
-        }else{
+        if(localStorage.getItem('role') !== 'Customer'){
             navigate('/')
         }
     }, [])
-
 
     const getData = () => {
         let dataLocal = JSON.parse(localStorage.getItem('data-cart'));
@@ -143,7 +140,6 @@ const Order = () => {
             return;
         }
 
-        console.log(form);
         const cofrimOrder = window.confirm("Cofrim Order");
         if (cofrimOrder === true) {
             if (form.payment_method === "Cash") {
@@ -165,7 +161,6 @@ const Order = () => {
                     }, 2000)
                     
                 }).catch((err) => {
-                    // Check
                     toast.error(err.response.data.message, {
                         position: toast.POSITION.TOP_RIGHT,
                         autoClose: 1000

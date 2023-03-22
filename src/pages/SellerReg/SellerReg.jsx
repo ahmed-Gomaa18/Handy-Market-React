@@ -54,7 +54,6 @@ const SellerSignUp = () => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
-        console.log(form);
     };
 
     //validation function
@@ -151,9 +150,7 @@ const SellerSignUp = () => {
         e.preventDefault();
         setFormErrors(validate(form));
         setIsSubmit(true);
-        // console.log(form)
         axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
-            console.log('sucess', res);
             navigate(redirectPath, { replace: true });
         }).catch((err) => {
             console.log(err.message)

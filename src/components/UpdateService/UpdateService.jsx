@@ -26,10 +26,6 @@ const UpdateService = (props) => {
             setProductsState({ Data: product });
         })
     }, []);
-
-    // function handleFileSelect(event) {
-    //     console.log(event.target.value)
-    // }
     
     const handleDelete = () => {
         axios.delete(`${ProductUrlDelete}${userId}/delete/${productId}`, { headers: { "authorization": `Bearer ${userToken}` } })

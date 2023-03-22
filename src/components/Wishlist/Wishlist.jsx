@@ -31,7 +31,6 @@ const Wishlist = () => {
 
         axios.patch(`${unWhishlistUrl}${id}`, null, { headers: { "authorization": `Bearer ${userToken}` } })
             .then((data) => {
-                // console.log(data.data.message);
                 let allWishlist = [];
                 if (data.status === 200)
 

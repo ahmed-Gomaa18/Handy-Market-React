@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
+import { ToastContainer, toast } from 'react-toastify';
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -30,7 +31,10 @@ const ProductTable = () => {
       axios.delete(`http://localhost:3000/api/v1/admin/delete/${param}`,
         { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } 
       }).then((res) =>{
-        console.log("deleted successfuly");
+        toast.success("Deleted Successfuly", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+        });
       }).catch((err) => {
         console.log("error msg", err);
       })

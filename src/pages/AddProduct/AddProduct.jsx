@@ -52,15 +52,12 @@ const AddProduct = () => {
             formData.append('categories_id', formStateData.categories_id[i]);
         }
 
-        console.log(formStateData);
-
         axios.post('http://localhost:3000/api/v1/product', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'authorization': `Bearer ${localStorage.getItem('user-token')}`
             }
         }).then((data) => {
-
 
             toast.success('Add Product Successfully.', {
                 position: toast.POSITION.TOP_RIGHT,
@@ -93,7 +90,6 @@ const AddProduct = () => {
                 arrayOfCategoryID.splice(catInd, 1);
                 setStateFormData({ ...formStateData, [e.target.name]: arrayOfCategoryID });
             }
-            console.log(formStateData);
         } else {
             setStateFormData({ ...formStateData, [e.target.name]: e.target.value });
         }
