@@ -38,6 +38,18 @@ const SellerSignUp = () => {
     const [errMssg, seterrMssg] = useState();
 
     //====>address obj
+    // const UpdateAddress = e => {
+    //     form.address.building_num = +form.address.building_num;
+    //     setForm((prev) => {
+    //         return {
+    //             ...prev, address: {
+    //                 ...prev.address,
+    //                 [e.target.name]: e.target.value
+    //             }
+    //         }
+    //     })
+    // }
+    // =====update field + validations
     const UpdateAddress = e => {
         form.address.building_num = +form.address.building_num;
         setForm((prev) => {
@@ -49,11 +61,15 @@ const SellerSignUp = () => {
             }
         })
     }
-    // =====update field + validations
     const onUpdateField = e => {
-        const { name, value } = e.target;
-        const nextFormState = { ...form, [name]: value };
-        setForm(nextFormState);
+        form.age = +form.age;
+        setForm((prev) => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        }
+        );
     };
     const onHandleBlur = e => {
         const { name, value } = e.target;
@@ -100,8 +116,8 @@ const SellerSignUp = () => {
                 break;
             case "description":
                 {
-                    if (value.length <= 3) {
-                        setFormErrors({ ...formErrors, description: 'description should be more than three digits' });
+                    if (value.length <= 15) {
+                        setFormErrors({ ...formErrors, description: 'description minmum 15 digits' });
                     } else if (value.length >= 20) {
                         setFormErrors({ ...formErrors, description: 'description maximum 20 digits' });
                     } else {
@@ -176,7 +192,7 @@ const SellerSignUp = () => {
                     }
                 }
                 break;
-            case " building_num":
+            case "building_num":
                 {
                     if (!value) {
                         setFormErrors({ ...formErrors, building_num: ' building_num is required ' });
@@ -186,7 +202,7 @@ const SellerSignUp = () => {
                     }
                 }
                 break;
-            case " street":
+            case "street":
                 {
                     if (!value) {
                         setFormErrors({ ...formErrors, street: ' street is required ' });
@@ -196,7 +212,7 @@ const SellerSignUp = () => {
                     }
                 }
                 break;
-            case " gender":
+            case "gender":
                 {
                     if (!value) {
                         setFormErrors({ ...formErrors, gender: ' gender is required ' });
@@ -216,12 +232,24 @@ const SellerSignUp = () => {
         form.address.building_num = +form.address.building_num;
         form.age = +form.age;
         e.preventDefault();
-        setFormErrors(validate(form));
-        setIsSubmit(true);
+        console.log(form);
+        if (Object.keys(formErrors).some((error) => error !== null)) {
+            setIsSubmit(true);
+            
+        } else {
+            alert("please fill the form corectly");
+            return;
+        }
         axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
             navigate(redirectPath, { replace: true });
         }).catch((err) => {
-            console.log(err.message)
+            if (err.response?.data.message === "Email Exist") {
+                const myError = err.response.data.message;
+                seterrMssg(myError);
+            }
+            console.log(err.response.data.message)
+            console.log(err);
+
         });
 
     };
@@ -273,7 +301,7 @@ const SellerSignUp = () => {
                                     <input type="text" className="form-control mb-1 shadow bg-body-tertiary rounded" id="Inputuserfullname" placeholder="full name" name="full_name" value={form.full_name} onChange={onUpdateField} onBlur={onHandleBlur} noValidate />
 
                                     <div className=" text-danger">
-                                        {formErrors.full_name}
+                                        {formErrors?.full_name}
                                     </div>
                                 </div>
 
