@@ -27,7 +27,7 @@ const Wishlist = () => {
 
 
     const unWishlist = (id) => {
-        const unWhishlistUrl = "http://localhost:3000/api/v1/user/unWhishlist/";
+        const unWhishlistUrl = "https://handy-market-api.onrender.com/api/v1/user/unWhishlist/";
 
         axios.patch(`${unWhishlistUrl}${id}`, null, { headers: { "authorization": `Bearer ${userToken}` } })
             .then((data) => {
