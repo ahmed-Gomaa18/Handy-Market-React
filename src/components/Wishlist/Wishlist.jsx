@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import WishlistCard from '../WishlistCard/WishlistCard';
 import styles from './Wishlist.module.css';
 
+import { ToastContainer, toast  } from 'react-toastify';
 
 const Wishlist = () => {
     const { t, i18n } = useTranslation();
@@ -42,6 +43,12 @@ const Wishlist = () => {
                 })
                 setWishlist(allWishlist);
                 setFiltered(allwishlistFiltered);
+                
+                toast.success('Remove this product from Wishlist Successfully.', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 1000,
+                })
+            
             })
     }
     
@@ -56,6 +63,7 @@ const Wishlist = () => {
     }
     return (
         <>
+            <ToastContainer />
             {
                 <div className='container-fluid ' >
                     <div className="row">
