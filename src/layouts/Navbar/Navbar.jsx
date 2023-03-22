@@ -120,7 +120,7 @@ const Navbar = () => {
                   <div className="d-flex"> {/*align-items-center*/}
                     {userRole === 'Customer' && <CartIcon className="me-4" />}
 
-                    {userToken !== 'undefined' && (
+                    {userToken && (
 
                       <>
 
