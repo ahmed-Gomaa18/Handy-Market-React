@@ -1,14 +1,13 @@
-import { MdLocationOn, MdBusinessCenter, MdOutlineStarRate } from "react-icons/md"
-import { BsFillTelephoneFill } from 'react-icons/bs'
-import { MdEmail } from "react-icons/md";
-import { Link } from 'react-router-dom';
-import { IconContext } from "react-icons";
-import { useEffect, useState } from "react"
 import Avatar from '@mui/material/Avatar';
-import { NavLink, Outlet } from 'react-router-dom';
-import axios from "axios";
-import styles from './SellerProfile.module.css';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IconContext } from 'react-icons';
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import { MdBusinessCenter, MdEmail, MdLocationOn } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+
+import styles from './SellerProfile.module.css';
 
 const SellerProfile = () => {
   const { t, i18n } = useTranslation();
@@ -75,9 +74,15 @@ const SellerProfile = () => {
                   <p className=' ms-2 job  mb-0'>{userData.phone}</p>
                 </div>
               }
+               {userData.description &&
+                <div className=' mt-3'>
+                  <h6 className='text-primary'>{t("About Me")}</h6>
+                  <p className='description'>{userData.description}</p>
+                </div>
+              }
 
               <div>
-                <Link className='edit-profile mt-4' to='../editProfile' state={userData}><button className={`${styles.mybtn}`} >{t("Edit public profile")}</button ></Link>
+                <Link className='edit-profile ' to='../editProfile' state={userData}><button className={`${styles.mybtn}`} >{t("Edit public profile")}</button ></Link>
               </div>
               <div>
 
@@ -89,19 +94,9 @@ const SellerProfile = () => {
                 </Link>
               </div>
 
-              {userData.description &&
-                <div className='ms-4 mt-5'>
-                  <h4 >{t("About Me")}</h4>
-                  <p className='description'>{userData.description}</p>
-                </div>
-              }
+             
 
             </div>
-
-
-
-
-
           </div>
         </div>
 

@@ -102,13 +102,9 @@ const Register = () => {
                 break;
             case "confirmPassword":
                 {
-                    console.log("hii");
-
                     if (form.password !== value) {
-                        console.log(false);
                         setFormErrors({ ...formErrors, confirmPassword: 'Your password is miss match ' });
                     } else {
-                        console.log(true);
                         setFormErrors({ ...formErrors, confirmPassword: null });
                     }
 
@@ -182,7 +178,6 @@ const Register = () => {
     const onSubmitForm = e => {
         form.address.building_num = +form.address.building_num;
         e.preventDefault();
-        console.log(form);
         if (Object.keys(formErrors).some((error) => error !== null)) {
             setIsSubmit(true);
         } else {
@@ -190,8 +185,9 @@ const Register = () => {
             return;
         }
 
+
         axios.post('https://handy-market-api.onrender.com/api/v1/auth/singUp', form).then((res) => {
-            console.log(res);
+
             navigate(redirectPath, { replace: true });
 
         }).catch((err) => {
@@ -208,16 +204,14 @@ const Register = () => {
 
 
     return (
-        <div className="container-fluid">
+        <div className="container">
             <div className="row">
-                <div className="col-md-5 ps-lg-5 order-s-last">
-                    <div className={`${styles.layer}`}>
-                        <img src="images/sellerReg.png" className="img-fluid h-100 w-100" alt="user img" />
-                        <div className={styles.overlay}>
-                        </div>
+                <div className="col-md-5">
+                    <div className="w-100 h-100">
+                        <img src="images/Creativity-cuate.png" className="img-fluid h-100 w-100" alt="user img" />
                     </div>
                 </div>
-                <div className='offset-lg-1 shadow-lg p-4 my-5 bg-body-tertiary rounded col-md-6 pe-lg-5 order-s-frist'>
+                <div className=' shadow-lg p-4 my-5  bg-body-tertiary rounded col-md-7 pe-lg-5'>
                     <div className='mt-2'>
                         <form onSubmit={onSubmitForm} className='sign-in-form pb-5 ' >
 
@@ -347,9 +341,9 @@ const Register = () => {
                             <div className="text-danger">
                                 {formErrors.gender}
                             </div>
-
-                            <button type="submit" className={` ${styles.mybtn}`}>{t("Submit")}</button>
-
+                            <div className="d-flex justify-content-end">
+                                <button type="submit" className={` ${styles.mybtn}`}>{t("Submit")}</button>
+                            </div>
                         </form>
                     </div>
                 </div>

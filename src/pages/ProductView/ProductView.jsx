@@ -19,11 +19,13 @@ const ProductView = () => {
   const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
 
   const onUpdateRate = async(e) => {
+
     console.log(+e.target.defaultValue)
     // setRate(e.target.defaultValue);
     // console.log(rate);
    await axios.post('https://handy-market-api.onrender.com/api/v1/review/rating', {
       'product_id': product._id, 'rating': +e.target.defaultValue
+
     }, {
       headers: {
         'authorization': `Bearer ${localStorage.getItem('user-token')}`
@@ -44,20 +46,13 @@ const ProductView = () => {
   }
 
   useEffect(() => {
+
     axios.get(`https://handy-market-api.onrender.com/api/v1/product/${prodId}`).then((data) => {
-      console.log(data.data);
+
       let productData = data.data.product;
       let relProducts = data.data.nRelatedProduct;
       setRelatedProducts(relProducts);
       setProduct(productData);
-      // let ratings = 0;
-      // let ProductRate = product.ratings_id.forEach((rate) => {
-      //   ratings += rate.rating;
-      //   return ratings;
-      // });
-
-      // let rates = ProductRate / product.ratings_id.length;
-      // console.log(rates);
     }).catch((err) => {
       console.log("error msg", err);
     });
@@ -71,7 +66,6 @@ const ProductView = () => {
     return (Math.round(containerNum / ratings.length))
   }
 
-
   // Add To Favorite
   const addToFavorite = (product_id)=>{
     axios.patch(`https://handy-market-api.onrender.com/api/v1/user/favorit/${product_id}`, {}, {
@@ -81,7 +75,6 @@ const ProductView = () => {
         }
     })
     .then((data)=>{
-        console.log(data);
         toast.success('Add This Product to Favorite.', {
             position: toast.POSITION.TOP_RIGHT
         })

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -29,7 +30,10 @@ const BasicTable = () => {
       {
         headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` }
       }).then((res) => {
-        console.log("sucess", res);
+        toast.success("Updated Successfuly", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+        });
         let result = productData.filter((product)=> product._id!==param);
         productDataState(result);
       }).catch((err) => {
@@ -41,7 +45,10 @@ const BasicTable = () => {
       axios.delete(`https://handy-market-api.onrender.com/api/v1/admin/delete/notApproval/${param}`,
         { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } 
       }).then((res) =>{
-        console.log("deleted successfuly");
+        toast.success("Deleted Successfuly", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+        });
       }).catch((err) => {
         console.log("error msg", err);
       })

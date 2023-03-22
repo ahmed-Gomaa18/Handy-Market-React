@@ -1,11 +1,12 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
+import { FaClipboardList } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ExpandMore = styled((props) =>{
   const { expand, ...other } = props;
-  return <IconButton {...other} />;
+  // return <IconButton {...other} />;
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
@@ -16,12 +17,22 @@ const ExpandMore = styled((props) =>{
 
 export default function WishlistCard(props){
 
-   const {product_name,price,description,photos,discount,_id}=props;
-   const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image'
+
+  const { t, i18n } = useTranslation();
+  // const userToken = localStorage.getItem("user-token");
+   const {product_name,price,description,photos,discount,_id, unWishlist } = props;
+   const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+
    
+    function handleChange() {
+      // if (!e.target.checked)
+        unWishlist(_id)
+    }
+    
     let img="";
    if(photos&&photos.length>0)
     img=photos[0]
+   
   return (
     // <Card key={_id} sx={{maxWidth:250 }} className="cart me-1 mb-4 bg-warning">
     //   <CardHeader
@@ -55,11 +66,15 @@ export default function WishlistCard(props){
     
 
 
-    <div className="product-grid col-md-4 mx-1 ">
+    <div className="product-grid col-md-4">
         <div className="product-image">
           <Link id='link' to="#" className="image h-100 d-flex align-items-center">
             {photos && <img className="h-100" src={`${sorcImag}${img}`} alt='photoTwo' />}
           </Link>
+          <ul className="social"> 
+          <li><Link id='link' onClick={handleChange} data-tip={t("Remove from Wishlist")}> <i><FaClipboardList /></i></Link></li>
+          </ul>
+
           {discount ? <span className="product-discount-label">-{discount}%</span> : ''}
 
         </div>

@@ -43,8 +43,6 @@ const CategoryTable = () => {
 //take value from input
   const handleAddFormChange = (event) => {
     const {name, value} = event.target;
-
-    console.log(name, value)
     if(name == 'category_name_en'){
       setAddCategoryEn(value)
     }else if(name == 'category_name_ar'){
@@ -59,7 +57,6 @@ const CategoryTable = () => {
     axios.post('https://handy-market-api.onrender.com/api/v1/category', {"name_en":addCategoryEn,"name_ar":addCategoryAr ,"user_id":adminId},{ 
       headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` 
     }}).then((res) => {
-      console.log("Done created susccesfuly",res);
       // Show Success
       toast.success("Done created susccesfuly", {
         position: toast.POSITION.TOP_RIGHT,
@@ -100,8 +97,6 @@ const CategoryTable = () => {
     }else if(name === 'categoryNameAr'){
       seteditCategoryFormAr(value)
     }
-    console.log(name, value)
-
   }
 
 
@@ -113,7 +108,6 @@ const CategoryTable = () => {
     axios.patch(`https://handy-market-api.onrender.com/api/v1/category/${editCategoryId}`, {"name_en":editCategoryFormEn, "name_ar": editCategoryFormAr}, { 
       headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } 
     }).then((res) => {
-      console.log("Done updated susccesfuly", res)
       // Show Success
       toast.success("Done Updated susccesfuly", {
         position: toast.POSITION.TOP_RIGHT,
@@ -138,10 +132,6 @@ const CategoryTable = () => {
   const handleCancelButton = () =>{
     setEditCategoryId(null);
   }
-
-  console.log(editCategoryFormAr)
-  console.log(editCategoryFormEn)
-
 
   return (
     <>

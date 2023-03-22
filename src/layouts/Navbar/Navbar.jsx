@@ -3,7 +3,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { BsList, BsSearch, BsHeart } from 'react-icons/bs';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { MdLanguage } from 'react-icons/md';
-import { Link ,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartIcon from '../../components/CartIcon/CartIcon';
 import styles from './Navbar.module.css';
 import axios from "axios";
@@ -16,7 +16,7 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
 
   const [active, setActive] = useState(`${styles.navBar}`);
-  const [token,setToken]= useState(false);
+  const [token, setToken] = useState(false);
   const userToken = localStorage.getItem('user-token');
   const userRole = localStorage.getItem('role');
 
@@ -24,29 +24,29 @@ const Navbar = () => {
 
   // Add Language to localStorage By defualt english
 
-  const logOut = ()=>{
+  const logOut = () => {
     localStorage.clear();
     setToken(true)
     navigate('/')
 
   }
 
+
   const handleLogout = async() => {
     await axios.patch('https://handy-market-api.onrender.com/api/v1/auth/logOut', {}, {
+
       headers: {
-          "authorization": `Bearer ${userToken}`
+        "authorization": `Bearer ${userToken}`
       }
     }).then(res => {
       logOut();
 
-      
-   }).catch(err => {
-    console.log(err);
-    if(err.response?.data.message === 'Please Login aggen'){
-      logOut()
-      console.log("bella test exp");
 
-    }
+    }).catch(err => {
+      console.log(err);
+      if (err.response?.data.message === 'Please Login again') {
+        logOut()
+      }
     })
   }
 
@@ -64,7 +64,7 @@ const Navbar = () => {
   }
 
   const detectDirection = () => {
-    if(i18n.language == "en") {
+    if (i18n.language == "en") {
       i18n.changeLanguage("ar");
       document.querySelector('#navbar').style.direction = "rtl";
       // document.querySelector('#add-product').style.direction = "rtl";
@@ -88,11 +88,11 @@ const Navbar = () => {
               <div className="col-3">
                 <p className="text-end mb-0">
                   <Link className="text-white">
-                    { i18n.language == "en" && 
+                    {i18n.language == "en" &&
                       <span> <MdLanguage onClick={detectDirection} className="fs-4 me-1" /> EN</span>
                     }
                     {
-                      i18n.language == "ar" && 
+                      i18n.language == "ar" &&
                       <span> <MdLanguage onClick={detectDirection} className="fs-4 me-1" /> Ar </span>
                     }
                   </Link>
@@ -100,7 +100,7 @@ const Navbar = () => {
               </div>
 
             </div>
-            
+
           </div>
         </div>
       </header>
@@ -111,7 +111,7 @@ const Navbar = () => {
               <div className="col-6">
                 <div className={styles.logoDiv}>
                   <Link to='/' className="d-flex align-items-center">
-                      <img className={styles.logo_img} src="/images/logo_img.png" alt="logo" /> <span className={`d-none d-sm-block ${styles.title}`}>Handy Market</span>
+                    <img className={styles.logo_img} src="/images/logo_img.png" alt="logo" /> <span className={`d-none d-sm-block ${styles.title}`}>Handy Market</span>
                   </Link>
                 </div>
               </div>
@@ -122,23 +122,23 @@ const Navbar = () => {
                   <div className="d-flex"> {/*align-items-center*/}
                     {userRole === 'Customer' && <CartIcon className="me-4" />}
 
-                    {userToken !== 'undefined' && (
-                      
+                    {userToken && (
+
                       <>
-                      
-                        {userRole !== 'Admin' && 
-                          <Link>
+
+
+                        {userRole !== 'Admin' &&
+                          <Link to="/CustomerProfile">
+
                             <MdOutlineAccountCircle className="fs-3" />
                           </Link>
                         }
 
-                        {userRole === 'Customer' && <Link to="/CustomerProfile" className={styles.navLink}>User Profile</Link>}
-                        {userRole === 'Seller' && <Link to="/seller/profile" className={styles.navLink}>Seller Profile</Link>}
-
-
+                        {userRole === 'Customer' && <Link to="/CustomerProfile" className={styles.navLink}>{t("Profile")}</Link>}
+                        {userRole === 'Seller' && <Link to="/seller/profile" className={styles.navLink}>{t("Profile")}</Link>}
                       </>
 
-                    
+
                     )}
 
                   </div>
@@ -163,10 +163,10 @@ const Navbar = () => {
               </li>
 
               {userRole === "Seller" && (
-                  <li className={styles.navItem}>
-                      <Link to="/seller/addProduct" className={styles.navLink}>{t("Add Product")}</Link>
-                    </li>
-              
+                <li className={styles.navItem}>
+                  <Link to="/seller/addProduct" className={styles.navLink}>{t("Add Product")}</Link>
+                </li>
+
               )}
 
               <li className={styles.navItem}>
@@ -181,13 +181,15 @@ const Navbar = () => {
 
               {!userToken && (
                 <li className={styles.navItem}>
+
                   <Link to="/auth/login"  className={styles.navLink}>{t("Login")}</Link>
+
                 </li>
               )}
 
               {userToken && (
                 <li className={styles.navItem}>
-                  <Link className={styles.navLink} onClick={()=>handleLogout()}>{t("Logout")}</Link>
+                  <Link className={styles.navLink} onClick={() => handleLogout()}>{t("Logout")}</Link>
                 </li>
               )}
             </ul>
