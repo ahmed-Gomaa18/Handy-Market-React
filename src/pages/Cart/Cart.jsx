@@ -10,9 +10,7 @@ const Cart = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(localStorage.getItem('role') === 'Customer' ){
-            console.log('valid')
-        }else{
+        if(localStorage.getItem('role') !== 'Customer' ){
             navigate('/')
         }
     }, [])

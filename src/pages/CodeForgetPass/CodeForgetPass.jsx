@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { AiOutlineUser } from "react-icons/ai";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -18,10 +18,6 @@ const CodeForgetPass = () => {
     const location = useLocation();
     const [formErrors, setFormErrors] = useState({});
     const [errMssg, seterrMssg] = useState();
-
-    useEffect(() => {
-        console.log(location.state);
-    }, []);
 
     const onUpdateField = e => {
         const { name, value } = e.target;
@@ -46,7 +42,6 @@ const CodeForgetPass = () => {
         e.preventDefault();
         setFormErrors(validate(form));
         axios.post('http://localhost:3000/api/v1/auth/checkCode', form).then((res) => {
-            console.log('sucess', res);
             if (res.data.message === "Done Right code  to Your Email") {
                 navigate('/changePassword');
             }

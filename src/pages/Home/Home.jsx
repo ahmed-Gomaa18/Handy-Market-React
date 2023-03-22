@@ -18,7 +18,6 @@ const Home = () => {
   useEffect(()=>{
     axios.get("http://localhost:3000/api/v1/product")
     .then((data)=>{
-      console.log(data.data.slice(0, 4));
       setProducts(data.data.slice(0, 4));
     })
     .catch((err)=>{
