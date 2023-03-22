@@ -8,7 +8,7 @@ import { ToastContainer, toast  } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 
 const Order = () => {
-    const sorcImag = 'http://localhost:3000/api/v1/image';
+    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
 
     const { t } = useTranslation();
 
@@ -42,7 +42,7 @@ const Order = () => {
     }, []);
 
     useEffect(() => {
-        axios.post('http://localhost:3000/api/v1/order/orderTotalPrice', {items},{
+        axios.post('https://handy-market-api.onrender.com/api/v1/order/orderTotalPrice', {items},{
             headers:{
                 'Content-Type' : 'application/json',
             }
@@ -147,7 +147,7 @@ const Order = () => {
         const cofrimOrder = window.confirm("Cofrim Order");
         if (cofrimOrder === true) {
             if (form.payment_method === "Cash") {
-                axios.post('http://localhost:3000/api/v1/order/create', form, {
+                axios.post('https://handy-market-api.onrender.com/api/v1/order/create', form, {
                     headers: {
                         'authorization': `Bearer ${token}`
                     }

@@ -32,7 +32,7 @@ const Navbar = () => {
   }
 
   const handleLogout = async() => {
-    await axios.patch('http://localhost:3000/api/v1/auth/logOut', {}, {
+    await axios.patch('https://handy-market-api.onrender.com/api/v1/auth/logOut', {}, {
       headers: {
           "authorization": `Bearer ${userToken}`
       }
@@ -127,9 +127,9 @@ const Navbar = () => {
                       <>
                       
                         {userRole !== 'Admin' && 
-                          <Link to="/CustomerProfile">
-                          <MdOutlineAccountCircle className="fs-3" />
-                        </Link>
+                          <Link>
+                            <MdOutlineAccountCircle className="fs-3" />
+                          </Link>
                         }
 
                         {userRole === 'Customer' && <Link to="/CustomerProfile" className={styles.navLink}>User Profile</Link>}
@@ -175,13 +175,13 @@ const Navbar = () => {
 
               {userRole === "Admin" && (
                 <li className={styles.navItem}>
-                  <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
+                  <Link to="/dashboard" className={styles.navLink}>{t("Dashboard")}</Link>
                 </li>
               )}
 
               {!userToken && (
                 <li className={styles.navItem}>
-                  <Link to="/auth/login"  className={styles.navLink}>Login</Link>
+                  <Link to="/auth/login"  className={styles.navLink}>{t("Login")}</Link>
                 </li>
               )}
 

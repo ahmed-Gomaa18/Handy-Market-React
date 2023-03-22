@@ -190,7 +190,7 @@ const Register = () => {
             return;
         }
 
-        axios.post('http://localhost:3000/api/v1/auth/singUp', form).then((res) => {
+        axios.post('https://handy-market-api.onrender.com/api/v1/auth/singUp', form).then((res) => {
             console.log(res);
             navigate(redirectPath, { replace: true });
 

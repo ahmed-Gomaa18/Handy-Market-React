@@ -14,7 +14,7 @@ const BasicTable = () => {
   const [productData, productDataState] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/admin/notApproval', {
+    axios.get('https://handy-market-api.onrender.com/api/v1/admin/notApproval', {
       headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` }
     }).then((data) => {
       let test = data.data.products;
@@ -25,7 +25,7 @@ const BasicTable = () => {
   }, [productData]);
 
   const updateProductState = (param) => {
-    axios.patch(`http://localhost:3000/api/v1/admin/Approval/${param}`, {},
+    axios.patch(`https://handy-market-api.onrender.com/api/v1/admin/Approval/${param}`, {},
       {
         headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` }
       }).then((res) => {
@@ -38,7 +38,7 @@ const BasicTable = () => {
   }
   const deleteProduct = (param) => {
     try {
-      axios.delete(`http://localhost:3000/api/v1/admin/delete/notApproval/${param}`,
+      axios.delete(`https://handy-market-api.onrender.com/api/v1/admin/delete/notApproval/${param}`,
         { headers: { "authorization": `Bearer ${localStorage.getItem("user-token")}` } 
       }).then((res) =>{
         console.log("deleted successfuly");

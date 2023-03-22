@@ -5,10 +5,10 @@ const AllProductDetails = (props) => {
     const [product, setProduct] = useState(null);
     let { prodId } = props;
    
-    const imgSrc = 'http://localhost:3000/api/v1/image';
+    const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
   
     useEffect(() => {
-      axios.get(`http://localhost:3000/api/v1/product/${prodId}`).then((data) => {
+      axios.get(`https://handy-market-api.onrender.com/api/v1/product/${prodId}`).then((data) => {
       let productData = data.data.product;
         setProduct(productData);
       }).catch((err) => {

@@ -11,7 +11,7 @@ export const CategoryProduct = ({ handelChange, formError }) => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/category")
+        axios.get("https://handy-market-api.onrender.com/api/v1/category")
             .then((data) => {
                 setCategories(() => data.data.allCategories)
             })

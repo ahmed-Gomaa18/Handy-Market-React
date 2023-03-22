@@ -17,7 +17,7 @@ const ExpandMore = styled((props) => {
 export default function Product(props) {
 
   const { product_name, price, description, photos, _id, unFavorite } = props;
-  const sorcImag = 'http://localhost:3000/api/v1/image'
+  const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image'
 
   function handleChange(e) {
     if (!e.target.checked)

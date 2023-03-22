@@ -14,7 +14,7 @@ const Favorites = () => {
     const [checkedSolid, setSolidChecked] = useState(false)
 
     // get all favorites
-    const userFavoriteUrl = "http://localhost:3000/api/v1/user/favorit";
+    const userFavoriteUrl = "https://handy-market-api.onrender.com/api/v1/user/favorit";
     useEffect(() => {
         axios.get(userFavoriteUrl, { headers: { "Authorization": `Bearer ${userToken}` } }).then((data) => {
             let favorites = data.data.favoriteProducts;
@@ -25,7 +25,7 @@ const Favorites = () => {
 
     //  remove  product  to Favorites list 
     const unFavorite = (id) => {
-        const unFavoriteUrl = "http://localhost:3000/api/v1/user/unfavorit/";
+        const unFavoriteUrl = "https://handy-market-api.onrender.com/api/v1/user/unfavorit/";
         axios.patch(`${unFavoriteUrl}${id}`, null, { headers: { "authorization": `Bearer ${userToken}` } })
             .then((data) => {
                 console.log(data.data.message);

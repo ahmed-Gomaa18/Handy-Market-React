@@ -13,7 +13,7 @@ const BalanceTable = () => {
   const [balanceData, balanceDataState] = useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/admin/balance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }).then((data) => {
+    axios.get('https://handy-market-api.onrender.com/api/v1/admin/balance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }).then((data) => {
       var test = data.data;
       balanceDataState(test);
     }).catch((err) => {

@@ -31,7 +31,7 @@ const ForgetPassword = () => {
     const onSubmitForm = e => {
         e.preventDefault();
         setFormErrors(validate(form));
-        axios.post('http://localhost:3000/api/v1/auth/sendCode', form).then((res) => {
+        axios.post('https://handy-market-api.onrender.com/api/v1/auth/sendCode', form).then((res) => {
             console.log('sucess', res);
             if (res.data.message === "Done , Please cheack Your Email") {
                 navigate('/CodeForgetPass', { state: form.email });

@@ -18,7 +18,7 @@ const Card = () => {
 const CompactCard = () => {
   const [balanceData, balanceDataState] = useState([]);
 
-  axios.get('http://localhost:3000/api/v1/admin/lastBalance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }
+  axios.get('https://handy-market-api.onrender.com/api/v1/admin/lastBalance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }
   ).then((data) => {
     var test = data.data.message;
     balanceDataState(...test);
@@ -29,7 +29,7 @@ const CompactCard = () => {
   
   const [totalOrders, totalOrdersState] = useState([]);
 
-  axios.get('http://localhost:3000/api/v1/admin/NumberOfBalance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }
+  axios.get('https://handy-market-api.onrender.com/api/v1/admin/NumberOfBalance', { headers: { "Authorization": `Bearer ${localStorage.getItem("user-token")}` } }
   ).then((data) => {
     var test = data.data.message;
     totalOrdersState(test);
@@ -39,7 +39,7 @@ const CompactCard = () => {
 
   const [totalSeller, totalSellerState] = useState([]);
 
-  axios.get('http://localhost:3000/api/v1/admin/allSellers',{
+  axios.get('https://handy-market-api.onrender.com/api/v1/admin/allSellers',{
       headers: {"authorization": `Bearer ${localStorage.getItem("user-token")}` }
     }).then((data) => {
       let test = data.data.length;

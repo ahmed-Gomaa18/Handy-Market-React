@@ -11,12 +11,12 @@ import styles from './Home.module.css';
 
 const Home = () => {
   const { t } = useTranslation();
-  const imgSrc = 'http://localhost:3000/api/v1/image';
+  const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
 
   const [products, setProducts] = useState([]);
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/api/v1/product")
+    axios.get("https://handy-market-api.onrender.com/api/v1/product")
     .then((data)=>{
       console.log(data.data.slice(0, 4));
       setProducts(data.data.slice(0, 4));

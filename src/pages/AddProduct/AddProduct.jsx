@@ -54,7 +54,7 @@ const AddProduct = () => {
 
         console.log(formStateData);
 
-        axios.post('http://localhost:3000/api/v1/product', formData, {
+        axios.post('https://handy-market-api.onrender.com/api/v1/product', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'authorization': `Bearer ${localStorage.getItem('user-token')}`

@@ -152,7 +152,7 @@ const SellerSignUp = () => {
         setFormErrors(validate(form));
         setIsSubmit(true);
         // console.log(form)
-        axios.post('http://localhost:3000/api/v1/auth/seller/singUp', form).then((res) => {
+        axios.post('https://handy-market-api.onrender.com/api/v1/auth/seller/singUp', form).then((res) => {
             console.log('sucess', res);
             navigate(redirectPath, { replace: true });
         }).catch((err) => {

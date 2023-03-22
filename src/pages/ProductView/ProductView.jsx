@@ -13,17 +13,17 @@ import { useTranslation } from 'react-i18next';
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [rate, setRate] = useState(null);
+  const [rate, setRate] = useState();
   let { prodId } = useParams();
   const { t } = useTranslation();
-  const imgSrc = 'http://localhost:3000/api/v1/image';
+  const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
 
   const onUpdateRate = async(e) => {
-    
-    setRate(e.target.value);
-    console.log(rate);
-   await axios.post('http://localhost:3000/api/v1/review/rating', {
-      'product_id': product._id, 'rating': +rate
+    console.log(+e.target.defaultValue)
+    // setRate(e.target.defaultValue);
+    // console.log(rate);
+   await axios.post('https://handy-market-api.onrender.com/api/v1/review/rating', {
+      'product_id': product._id, 'rating': +e.target.defaultValue
     }, {
       headers: {
         'authorization': `Bearer ${localStorage.getItem('user-token')}`
@@ -44,7 +44,7 @@ const ProductView = () => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/v1/product/${prodId}`).then((data) => {
+    axios.get(`https://handy-market-api.onrender.com/api/v1/product/${prodId}`).then((data) => {
       console.log(data.data);
       let productData = data.data.product;
       let relProducts = data.data.nRelatedProduct;
@@ -74,7 +74,7 @@ const ProductView = () => {
 
   // Add To Favorite
   const addToFavorite = (product_id)=>{
-    axios.patch(`http://localhost:3000/api/v1/user/favorit/${product_id}`, {}, {
+    axios.patch(`https://handy-market-api.onrender.com/api/v1/user/favorit/${product_id}`, {}, {
         headers:{
             'Content-Type' : 'application/json',
             'authorization': `Bearer ${localStorage.getItem('user-token')}`

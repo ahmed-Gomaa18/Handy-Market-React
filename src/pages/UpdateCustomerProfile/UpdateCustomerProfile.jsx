@@ -17,9 +17,9 @@ const UpdateCustomerprofile = () => {
     const [formErrors, setFormErrors] = useState({});
     const [imagesSrc, setImagePofile] = useState(null);
     const userToken = localStorage.getItem("user-token");
-    const getUserDataURL = "http://localhost:3000/api/v1/user/getUserProfile";
-    const userUlrUpdate = "http://localhost:3000/api/v1/user/updateUserWithProfile";
-    const sorcImag = 'http://localhost:3000/api/v1/image';
+    const getUserDataURL = "https://handy-market-api.onrender.com/api/v1/user/getUserProfile";
+    const userUlrUpdate = "https://handy-market-api.onrender.com/api/v1/user/updateUserWithProfile";
+    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
 
     useEffect(() => {
         setUserData({ ...location.state })
