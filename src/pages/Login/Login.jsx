@@ -112,7 +112,7 @@ const Login = () => {
                                 placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} onBlur={onHandleBlur} />
                         </div>
                         <div className={styles.err}>
-                            {/* { formErrors.email } */}
+                            { formErrors.email }
                         </div>
                         <div className=" text-danger">
                             {errMssg && <p>{errMssg}</p>}
@@ -123,7 +123,7 @@ const Login = () => {
                                 placeholder="Password" value={form.password} onChange={onUpdateField} onBlur={onHandleBlur}  />
                         </div>
                         <div className={styles.err}>
-                           {/* { formErrors.password } */}
+                           { formErrors.password } 
                         </div>
                         <div className="form-check">
                         <label className={styles.checkbox}><span>{t("Remember Me")}</span>
