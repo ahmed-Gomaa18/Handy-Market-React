@@ -1,44 +1,67 @@
 import { useState } from "react";
 import axios from "axios";
 import { FaWpbeginner } from 'react-icons/fa';
-import { AiOutlineUser } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from './ChangePassword.module.css';
-
 import { useTranslation } from 'react-i18next';
 
 const ChangePassword = () => {
-
     const { t } = useTranslation();
-
     const [form, setForm] = useState({
-        email: "",
-        newPassword: ""
+        newPassword: "", email: ""
     });
+    const location = useLocation();
     const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
     const [errMssg, seterrMssg] = useState();
+
     const onUpdateField = e => {
         const { name, value } = e.target;
         const nextFormState = { ...form, [name]: value };
         setForm(nextFormState);
+        // setFormErrors(validate(form));
+        validate(name, value)
     };
-    const validate = (val) => {
-        const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-        if (!val.email) {
-            errors.email = "email is required"
-        } else if (!regex.test(form.email)) {
-            errors.email = "this email not vaild! "
+    const validate = (name, value) => {
+        if (!value) {
+            setFormErrors({ ...formErrors, [name]: "Please, Enter required data" })
+            return
+        };
+        switch (name) {
+            case "newPassword":
+                {
+                    if (value.length < 6) {
+                        setFormErrors({ ...formErrors, newPassword: 'Your newPassword should be more than 6 digits' });
+                    } else if (value.length > 16) {
+                        setFormErrors({ ...formErrors, newPassword: 'Your newPassword shouldnt exceed 16 digits' });
+                    } else if (!new RegExp(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/).test(value)) {
+                        setFormErrors({ ...formErrors, newPassword: 'Your newPassword should contain at least one number and one special character' });
+                    } else {
+                        setFormErrors({ ...formErrors, newPassword: null });
+                    }
+                }
+                break;
         }
-        return errors;
     }
     const navigate = useNavigate();
-    const onSubmitForm = e => {
+    const onSubmitForm = (e) => {
         e.preventDefault();
-        setFormErrors(validate(form));
+        const myEmail = form;
+        myEmail.email = location.state;
+        setForm(myEmail);
+        const { name, value } = e.target;
+        validate(name, value)
+        // setFormErrors(validate(myEmail));
+        if (Object.keys(formErrors).some((error) => error !== null)) {
+            setIsSubmit(true);
+        } else {
+            alert("please fill the form corectly");
+            return;
+        }
+      
         axios.post('http://localhost:3000/api/v1/auth/forgetPassword', form).then((res) => {
             if (res.data.message === 'Done update Your Password , Login now') {
+                setIsSubmit(true);
                 navigate('/auth/login');
             }
         }).catch((err) => {
@@ -54,21 +77,9 @@ const ChangePassword = () => {
                     <form onSubmit={onSubmitForm} className={styles.myform}>
                         <h2 className="title">{t("Change Password")}</h2>
                         <div className={styles.input_field}>
-                            <i > <AiOutlineUser /></i>
-                            <input type="email" className="form-control" id="exampleInputEmail1"
-                                placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} />
-                        </div>
-                        <div className={styles.err}>
-                            {formErrors.email}
-                        </div>
-                        <div className=" text-danger">
-                            {errMssg && <p>{errMssg}</p>}
-                        </div>
-
-                        <div className={styles.input_field}>
                             <i > <FaWpbeginner /> </i>
-                            <input type="password" classNameName="form-control" id="exampleInputPassword1" name="newPassword"
-                                placeholder="newPassword" value={form.newPassword} onChange={onUpdateField} />
+                            <input type="password" className="form-control" id="exampleInputPassword1" name="newPassword"
+                                placeholder="enter at least one capital and 1 (@_#_%_&_*) " value={form.newPassword} onChange={onUpdateField} />
                         </div>
                         <div className={styles.err}>
                             {formErrors.newPassword}
