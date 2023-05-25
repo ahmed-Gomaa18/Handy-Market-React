@@ -11,6 +11,8 @@ const UpdateService = (props) => {
     const productId = routeParams['id'];
     const userId = routeParams['userId'];
 
+    const { t } = useTranslation();
+    
     const [productData, setProductsState] = useState({ Data: null })
     
 
