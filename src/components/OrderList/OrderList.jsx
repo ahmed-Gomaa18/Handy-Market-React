@@ -1,9 +1,11 @@
-import React,{useState,useEffect} from 'react';
-import axios from "axios";
-import Order from '../Order/Order';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import Order from '../Order/Order';
+
 const OrderList = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const [Orders, setOrders] = useState([]);
     const userToken=localStorage.getItem("user-token");

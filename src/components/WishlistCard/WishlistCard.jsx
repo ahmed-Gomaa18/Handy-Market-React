@@ -21,7 +21,9 @@ export default function WishlistCard(props){
   const { t, i18n } = useTranslation();
   // const userToken = localStorage.getItem("user-token");
    const {product_name,price,description,photos,discount,_id, unWishlist } = props;
+
    //const sorcImag = 'http://localhost:3000/api/v1/image';
+
 
    
     function handleChange() {

@@ -27,9 +27,7 @@ const Payment = () => {
     // First
     // Check role customer and has order data 
     useEffect(()=>{
-        if(localStorage.getItem('role') === 'Customer' && localStorage.getItem('order-data')){
-            console.log('valid')
-        }else{
+        if(localStorage.getItem('role') !== 'Customer') {
             navigate('/')
         }
     }, [])
@@ -83,10 +81,7 @@ const Payment = () => {
         .catch((err)=>{
             console.log(err)
         })
-    } ,)
-
-
-    //console.log(JSON.parse(localStorage.getItem('order-data')))
+    })
 
   return (
         <>

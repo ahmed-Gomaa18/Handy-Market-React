@@ -29,7 +29,6 @@ const Favorites = () => {
         const unFavoriteUrl = "https://handy-market-api.onrender.com/api/v1/user/unfavorit/";
         axios.patch(`${unFavoriteUrl}${id}`, null, { headers: { "authorization": `Bearer ${userToken}` } })
             .then((data) => {
-                console.log(data.data.message);
                 let allfavorites = [];
                 if (data.status === 200)
 
@@ -60,8 +59,12 @@ const Favorites = () => {
     }
     return (
         <div>
+
         <ToastContainer/>
-            {
+
+
+            { 
+
                 <div className='container-fluid ' >
                     <div className="row mt-3">
                         <div className="col-md-12">
@@ -84,10 +87,10 @@ const Favorites = () => {
                             </div>
 
                             <div className='row'>
-                                {
+                                {filteredData &&
                                     filteredData?.map((product) => (
 
-                                        <Product key={product._id} {...product} unFavorite={unFavorite} />
+                                        <Product key={product._id} {...product}  unFavorite={unFavorite} />
 
                                     ))
                                 }

@@ -4,7 +4,6 @@
     "Add Product": "Add Product",
     "Store": "Store",
     "Logout": "Logout",
-
     "Choose Categories": "Choose Categories" ,
     "Edit public profile": "Edit public profile",
     "Orders": "Orders",
@@ -16,20 +15,15 @@
     "User Name":"User Name",
     "Full Name":"Full Name",
     "Phone" : "Phone",
-
     "Building" : "Building",
-    "Update" : "Update",
-    "User Name must be at least 3 characters" : "User Name must be at least 3 characters",
+    "User Name must be at lst 3 characters" : "User Name must be at least 3 characters",
     "Full Name must be at least 3 characters" : "Full Name must be at least 3 characters",
     "Phone  must be 11 number" : "Phone  must be 11 number",
     "City must be at least 3 characters" : "City must be at least 3 characters",
     "Street must be at least 3 characters" : "Street must be at least 3 characters",
     "Shop Name must be at least 3 characters" : "Shop Name must be at least 3 characters",
-
     "About Me" : "About Me",
-    "Products" : "Products",   
-
-
+    "Products" : "Products",
     "Just for you": "Just for you",
     "Making & crafting": "Making & crafting",
     "10% off": "10% off",
@@ -39,7 +33,6 @@
     "Product View": "Product View",
     "reviews": "reviews",
     "Owner": "Owner",
-
     "Availability": "Availability",
     "You Might Also Like": "You Might Also Like",
     "Add to cart": "Add to cart",
@@ -86,7 +79,6 @@
     "Product Qun": "Product Qun",
     "Price": "Price",
     "Discount": "Discount",
-    "Description": "Description",
     "Submit": "Submit",
     "Log in": "Log in",
     "Remember Me": "Remember Me",
@@ -117,7 +109,20 @@
     "check your email for code": "check your email for code",
     "Change Password": "Change Password",
     "Remove": "Remove",
+
     "User Profile": "User Profile",
     "Dashboard": "Dashboard"
+
+
+    "Profile": "Profile",
+    "Remove from Favorite" : "Remove from Favorite",
+    "Name": "Name",
+    "Sold Items": "Sold Items",
+    "available Items": "available Items",
+    "Delete": "Delete",
+    "Accessories": "Accessories",
+    "Arts": "Arts",
+    "Clay": "Clay",
+    "Clothes": "Clothes"
 
 }

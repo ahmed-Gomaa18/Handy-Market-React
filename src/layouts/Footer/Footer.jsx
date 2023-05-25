@@ -84,12 +84,14 @@ const Footer = () => {
           <div className="col-4 col-md-3 col-lg-3">
             <h4 className="mb-4" data-aos="fade-left">{t("Quick Links")}</h4>
             <div className="footer-links d-flex flex-column">
+
               <Link className="py-2 mb-1" data-aos="fade-up">Baskets</Link>
               <Link className="py-2 mb-1" data-aos="fade-up">Bags & Clutches</Link>
               <Link className="py-2 mb-1" data-aos="fade-up">Cushions</Link>
               <Link className="py-2 mb-1" data-aos="fade-up">Dresses</Link>
               <Link className="py-2 mb-1" data-aos="fade-up">Mats & Rugs</Link>
               <Link className="py-2 mb-1" data-aos="fade-up">Seats & Banquettes</Link>
+
             </div>
           </div>
         </div>

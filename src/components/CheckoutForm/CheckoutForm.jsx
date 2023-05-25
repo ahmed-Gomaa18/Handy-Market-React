@@ -73,9 +73,7 @@ const CheckoutForm = () => {
             })
             .then((data)=>{
                 localStorage.removeItem('order-data');
-                
                 clearCart()
-
                 toast.success('Your Order completed successfully', {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 1000
@@ -84,9 +82,6 @@ const CheckoutForm = () => {
                 setTimeout(()=>{
                     navigate('/');
                 }, 2000)
-
-                console.log(data)
-
             }).catch((err)=>{
                 console.log(err) ; 
             })

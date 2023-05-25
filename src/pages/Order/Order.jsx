@@ -25,13 +25,13 @@ const Order = () => {
     // First
     // Check role customer and has cart to go to order
     useEffect(()=>{
+
         if(localStorage.getItem('role') === 'Customer' && JSON.parse(localStorage.getItem('data-cart'))?.length > 0){
             console.log('valid')
         }else{
             navigate('/')
         }
     }, [])
-
 
     const getData = () => {
         let dataLocal = JSON.parse(localStorage.getItem('data-cart'));
@@ -149,7 +149,7 @@ const Order = () => {
             return;
         }
 
-        console.log(form);
+        //console.log(form);
         Swal.fire({
             title: 'Complete Order?',
             showCancelButton: true,

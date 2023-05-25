@@ -92,7 +92,6 @@ const UpdateCustomerprofile = () => {
             return;
         }
         const formData = new FormData()
-        console.log(userData)
         if (userData.profile_image && userData.profile_image !== imagesSrc) {
             formData.append("profile_image", userData.profile_image);
         }
@@ -148,7 +147,7 @@ const UpdateCustomerprofile = () => {
     const handleImageChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.files[0] })
     }
-    return (
+return (
         <>
             <TailSpin
             height="300"
@@ -231,3 +230,4 @@ const UpdateCustomerprofile = () => {
 }
 
 export default UpdateCustomerprofile;
+
