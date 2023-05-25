@@ -10,12 +10,13 @@ const UpdateService = (props) => {
     const deleteItem = props.deleteItem
     const productId = routeParams['id'];
     const userId = routeParams['userId'];
-    const [productData, setProductsState] = useState({ Data: null });
-    const { t } = useTranslation();
+
+    const [productData, setProductsState] = useState({ Data: null })
+    
 
     const navigate = useNavigate();
     const ProductUrl = "https://handy-market-api.onrender.com/api/v1/product/";
-    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+    //const sorcImag = 'http://localhost:3000/api/v1/image';
     const productUpdateUrl = "https://handy-market-api.onrender.com/api/v1/product/seller/"
     const ProductUrlDelete = `https://handy-market-api.onrender.com/api/v1/product/seller/`;
 
@@ -68,7 +69,7 @@ const UpdateService = (props) => {
             <div className="row my-5 p-5">
 
                 <div className='col-md-4 shadow  '>
-                    {productData.Data?.photos[0] && <img className='img-fluid w-100 h-100' src={`${sorcImag}${productData.Data?.photos[0]}`} />}
+                    {productData.Data?.photos[0] && <img className='img-fluid w-100 h-100' src={`${productData.Data?.photos[0]}`} />}
 
                 </div>
                 <div className='col-md-8'>

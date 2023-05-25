@@ -5,6 +5,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { useTranslation } from 'react-i18next';
 
+import Swal from "sweetalert2";
+
 const Register = () => {
 
     const { t } = useTranslation();
@@ -55,7 +57,7 @@ const Register = () => {
     }
     const validate = (name, value) => {
         if (!value) {
-            setFormErrors({ ...formErrors, [name]: "Please, Enter required data" })
+            setFormErrors({ ...formErrors, [name]: `Please, Enter required ${name}. ` })
             return
         };
         switch (name) {
@@ -75,7 +77,7 @@ const Register = () => {
                 {
                     if (!new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i).test(value)) {
                         setFormErrors({ ...formErrors, email: 'please check your email' });
-                        return
+                        //return
                     } else {
                         setFormErrors({ ...formErrors, email: null });
                     }
@@ -116,7 +118,7 @@ const Register = () => {
                 {
                     if (!new RegExp(/^\d{11}$/).test(value)) {
                         setFormErrors({ ...formErrors, phone: 'phone must be number of eleven digits' });
-                    } else if (value.length != 11) {
+                    } else if (value.length !== 11) {
                         setFormErrors({ ...formErrors, phone: 'phone must be eleven digits' });
                     } else {
                         setFormErrors({ ...formErrors, phone: null });
@@ -176,26 +178,68 @@ const Register = () => {
 
 
     const onSubmitForm = e => {
-        form.address.building_num = +form.address.building_num;
         e.preventDefault();
-        if (Object.keys(formErrors).some((error) => error !== null)) {
-            setIsSubmit(true);
-        } else {
-            alert("please fill the form corectly");
+
+        if(form.email.length > 1 && form.user_name.length > 1 
+            && form.password.length > 1 && form.confirmPassword.length > 1 
+            && form.age > 0 && form.address.city.length > 1
+            && form.address.street.length > 1 && form.address.building_num > 0
+            && form.gender.length > 1 && form.phone.length > 1
+        )
+        {
+            
+        }
+        else{
+            Swal.fire('Please Fill Your All data Correctly');
+            return;
+        }
+
+        form.address.building_num = +form.address.building_num;
+        
+
+        if(Object.values(formErrors).some((error) => error !== null))
+        {
+            Swal.fire("Can't Register With this in-valid data");
+
             return;
         }
 
 
+
+
+
+
+        // console.log(Object.keys(formErrors).length);
+        // if (Object.keys(formErrors).some((error) => error !== null)) {
+        //     //setIsSubmit(true);
+        //     console.log('ahmedadsasdasddas')
+        // } else {
+        //     alert("please fill the form corectly");
+        //     return;
+        // }
+
         axios.post('https://handy-market-api.onrender.com/api/v1/auth/singUp', form).then((res) => {
 
-            navigate(redirectPath, { replace: true });
+            Swal.fire(
+                'You Register Successfully',
+                'Please Check Your Email to Active You Account',
+                'success'
+            )
+            setTimeout(()=>{
+                navigate(redirectPath, { replace: true });
+            }, 2000)
+            
 
         }).catch((err) => {
-            if (err.response?.data.message === "Email Exist") {
-                const myError = err.response.data.message;
-                seterrMssg(myError);
-            }
-            console.log(err.response.data.message)
+
+            seterrMssg(err.response?.data.message);
+
+            // if (err.response?.data.message === "Email Exist") {
+            //     const myError = err.response.data.message;
+            //     seterrMssg(myError);
+            // }
+            // console.log(err.response.data.message)
+
         });
     };
 
@@ -221,11 +265,14 @@ const Register = () => {
 
                                         <label htmlFor="exampleInputEmail1" className='my-2'>Email address</label>
                                         <input type="email" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={form.email} onChange={onUpdateField} onBlur={onHandleBlur} noValidate />
-                                        <small id="emailHelp" className="form-text text-muted">{t("We'll never share your email with anyone else.")}</small>
-
+                                        
                                         <div className=" text-danger">
                                             {formErrors.email}
                                         </div>
+
+                                        <small id="emailHelp" className="form-text text-muted">{t("We'll never share your email with anyone else.")}</small>
+
+
                                         <div className=" text-danger">
                                             {errMssg && <p>{errMssg}</p>}
                                         </div>
@@ -277,11 +324,14 @@ const Register = () => {
                                     <div className="form-group">
 
                                         <label htmlFor="password" className='my-2'>{t("Password")}</label>
-                                        <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="password" name="password" placeholder="enter at least one capital and 1 (@_#_%_&_*) " value={form.password} onChange={onUpdateField} onBlur={onHandleBlur} noValidate />
+                                        <input type="password" className="form-control  mb-1 shadow bg-body-tertiary rounded" id="password" name="password" placeholder="Password" value={form.password} onChange={onUpdateField} onBlur={onHandleBlur} noValidate />
 
                                         <div className=" text-danger">
                                             {formErrors.password}
                                         </div>
+
+                                        <small id="emailHelp" className="form-text text-muted">{t("Enter at least one Capital Letter and One(@_#_%_&_*)")}</small>
+
                                     </div>
 
                                 </div>

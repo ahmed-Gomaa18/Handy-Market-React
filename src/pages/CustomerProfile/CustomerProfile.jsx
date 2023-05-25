@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 const CustomerProfile = () => {
     const { t, i18n } = useTranslation();
     const [userData, userState] = useState({});
-    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+    //const sorcImag = 'http://localhost:3000/api/v1/image';
     let userToken = localStorage.getItem("user-token");
 
     useEffect(() => {
@@ -23,7 +23,11 @@ const CustomerProfile = () => {
             headers: { "Authorization": `Bearer ${userToken}` }
         }).then((data) => {
             var Data = data.data.user;
+            console.log(data);
             userState(Data);
+        })
+        .catch((err)=>{
+            console.log(err);
         })
     }, []);
 
@@ -36,7 +40,7 @@ const CustomerProfile = () => {
                         <div className={`col-md-4  shadow rounded p-4 `} id="profileSection">
                             <div className="row m-auto text-center">
                                 <div className=' w-50 h-50 m-auto' >
-                                    {userData.profile_image && <Avatar className="img-fluid w-100 h-100 m-auto shadow" id='avatar' alt="your image" src={`${sorcImag}${userData.profile_image}`} />}
+                                    {userData.profile_image && <Avatar className="img-fluid w-100 h-100 m-auto shadow" id='avatar' alt="your image" src={`${userData.profile_image}`} />}
                                 </div>
 
                                 {userData.full_name && <h4 className='mt-3 name'>{userData.full_name}</h4>}
@@ -68,7 +72,9 @@ const CustomerProfile = () => {
                                     </div>
                                 }
                                 <Link to="/editCustomerProfile" state={userData}>
-                                    <button className={`${styles.mybtn} ${styles.transparent}`}  id="sign-up-btn">
+
+                                    <button className={`${styles.mybtn} ${styles.transparent}`} id="sign-up-btn">
+
                                     {t("Edit public profile")}
                                     </button>
                                 </Link>

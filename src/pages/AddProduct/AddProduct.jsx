@@ -8,21 +8,32 @@ import { ToastContainer, toast  } from 'react-toastify';
 
 import { useTranslation } from 'react-i18next';
 
+import AOS from 'aos';
+
+import { CirclesWithBar } from 'react-loader-spinner'
+
 let arrayOfCategoryID = [];
 const AddProduct = () => {
+
+    const [avalForm, setAvalForm] = useState('block')
+    const [avalLoading, setavalLoading] = useState(false)
 
     const { t, i18n } = useTranslation();
 
     const navigate = useNavigate();
     let formRef = useRef(null);
 
+    useEffect(()=>{
+        AOS.init({duration: 1500});
+    }, [])
+
     useEffect(() => {
         if(i18n.language == "en") {
-            document.querySelector('#add-product').style.direction = "rtl";
-        } else {
             document.querySelector('#add-product').style.direction = "ltr";
+        } else {
+            document.querySelector('#add-product').style.direction = "rtl";
         }
-    }, []);
+    }, [i18n.language]);
 
     const [formStateData, setStateFormData] = useState({});
     const [formErrors, setFormErrors] = useState({});
@@ -53,6 +64,12 @@ const AddProduct = () => {
         }
 
 
+        // --------------------
+        setAvalForm('none')
+        setavalLoading(true)
+        //---------------------
+
+
         axios.post('https://handy-market-api.onrender.com/api/v1/product', formData, {
 
             headers: {
@@ -72,13 +89,23 @@ const AddProduct = () => {
                 navigate('/')
             }, 500)
         }).catch((err) => {
-
-            toast.error('Bad request.!', {
+            // --------------------
+            setAvalForm('block')
+            setavalLoading(false)
+            //---------------------
+            toast.error(err.response.data.message, {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 1000,
             })
+            // If token expire
+            if (err.response.data.message == 'Please Login again'){
+                setTimeout(()=>{
+                    localStorage.clear();
+                    navigate('/auth/login');
+                }, 1000)
 
-            console.log(err.response);
+            } 
+
         })
     }
 
@@ -153,17 +180,30 @@ const AddProduct = () => {
     return (
         <>
         <ToastContainer />
+        
+        <CirclesWithBar
+        height="150"
+        width="150"
+        ariaLabel='circles-with-bar-loading'
+        radius="10"
+        wrapperStyle={{with: '50%', margin: '15% 20% 15%  43%' }}
+        wrapperClass=""
+        outerCircleColor="#72a499"
+        innerCircleColor="#f31237"
+        barColor="#ff6c02"
+        visible={avalLoading}
+        />
 
-        <div className="mt-5 mb-5">
+        <div className="mt-5 mb-5" style={{display: avalForm}}>
             <div id="add-product" className={`container rounded-2 ${styles.add_product_container}`}>
                 <div className="row">
-                    <h2 className="cartItems my-3 text-center pt-5">{t("Add Product")}</h2>
+                    <h2 className="cartItems my-3 text-center pt-5" data-aos="fade-down">{t("Add Product")}</h2>
                 </div>
 
                 <div className="row">
                     
                     <div className="col-lg-6 col-md-12 col-sm-12">
-                        <form className="mt-4 ps-3 col-12 row rounded-2" ref={formRef} onSubmit={handelSubmit}>
+                        <form className="mt-4 ps-3 col-12 row rounded-2" ref={formRef} onSubmit={handelSubmit} data-aos="fade-up">
                             <div className="mb-2 mt-2">
                                 <label htmlFor="productName" className="form-label my-2 fs-5 text-muted">{t("Product Name")}:</label>
                                 <input type="text" required name='product_name' className="input_control text-muted" onChange={handelChange} id="productName" placeholder='Enter Your Product Name Here...' />
@@ -211,7 +251,7 @@ const AddProduct = () => {
                     </div>
 
                     <div className="col-6 text-center d-lg-flex d-none align-items-center">
-                        <img src="/images/addProduct/add_product.jpg" alt="addProduct" height="70%" width="100%" />
+                        <img src="/images/addProduct/add_product.jpg" alt="addProduct" height="70%" width="100%" data-aos="zoom-in" />
                     </div>
 
                 </div>

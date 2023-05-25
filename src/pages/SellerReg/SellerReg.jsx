@@ -372,10 +372,10 @@ const SellerSignUp = () => {
                             <div className=" text-danger">
                                 {formErrors.gender}
                             </div>
-                            <div className="d-flex justify-content-end">
+                            
+                            <button type="submit" className={` ${styles.mybtn}`}>{t("Submit")}</button>
+                        
 
-                                <button type="submit" className={`${styles.mybtn}`}>{t("Submit")}</button>
-                            </div>
                         </form>
                     </div>
                 </div>

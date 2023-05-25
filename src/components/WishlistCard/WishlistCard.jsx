@@ -21,7 +21,9 @@ export default function WishlistCard(props){
   const { t, i18n } = useTranslation();
   // const userToken = localStorage.getItem("user-token");
    const {product_name,price,description,photos,discount,_id, unWishlist } = props;
-   const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+
+   //const sorcImag = 'http://localhost:3000/api/v1/image';
+
 
    
     function handleChange() {
@@ -69,7 +71,7 @@ export default function WishlistCard(props){
     <div className="product-grid col-md-4">
         <div className="product-image">
           <Link id='link' to="#" className="image h-100 d-flex align-items-center">
-            {photos && <img className="h-100" src={`${sorcImag}${img}`} alt='photoTwo' />}
+            {photos && <img className="h-100" src={`${img}`} alt='photoTwo' />}
           </Link>
           <ul className="social"> 
           <li><Link id='link' onClick={handleChange} data-tip={t("Remove from Wishlist")}> <i><FaClipboardList /></i></Link></li>

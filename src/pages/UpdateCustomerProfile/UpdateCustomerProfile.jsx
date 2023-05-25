@@ -8,6 +8,8 @@ import axios from "axios";
 import styles from './UpdateCustomerProfile.module.css'
 import { useTranslation } from 'react-i18next';
 
+import { TailSpin } from 'react-loader-spinner'
+
 const UpdateCustomerprofile = () => {
     const { t, i18n } = useTranslation();
 
@@ -19,14 +21,16 @@ const UpdateCustomerprofile = () => {
     const userToken = localStorage.getItem("user-token");
     const getUserDataURL = "https://handy-market-api.onrender.com/api/v1/user/getUserProfile";
     const userUlrUpdate = "https://handy-market-api.onrender.com/api/v1/user/updateUserWithProfile";
-    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+    //const sorcImag = 'http://localhost:3000/api/v1/image';
+
+    const [avalForm, setAvalForm] = useState('block')
+    const [avalLoading, setavalLoading] = useState(false)
 
     useEffect(() => {
-        const userDataT = location.state;
-        setUserData(userDataT)
-        console.log(userDataT);
-        // setImagePofile(location.state.profile_image);
-    },[]);
+        setUserData({ ...location.state })
+        setImagePofile(location.state?.profile_image); //Change from -> location.state?.profile_image
+        console.log(location.state)
+    }, []);
     const handleChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -110,6 +114,12 @@ const UpdateCustomerprofile = () => {
             });
             return;
         }
+
+        //------------------
+        setAvalForm('none')
+        setavalLoading(true)
+        //------------------
+
         axios.patch(`${userUlrUpdate}`, formData, {
             headers: {
                 "Authorization": `Bearer ${userToken}`,
@@ -121,7 +131,14 @@ const UpdateCustomerprofile = () => {
             });
             navigate("/CustomerProfile")
         }).catch((error) => {
-            console.log(error)
+
+
+            // --------------------
+            setAvalForm('block')
+            setavalLoading(false)
+            //---------------------
+
+
             toast.error("Something went wrong !!! ", {
                 position: toast.POSITION.TOP_RIGHT
             });
@@ -130,10 +147,20 @@ const UpdateCustomerprofile = () => {
     const handleImageChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.files[0] })
     }
-    return (
+return (
         <>
+            <TailSpin
+            height="300"
+            width="300"
+            color="#72a499bd"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{width: '100%', margin: '10% 20% 20% 40%'}}
+            wrapperClass=""
+            visible={avalLoading}
+            />
 
-             <div className="m-5 py-5 rounded shadow">
+             <div className="m-5 py-5 rounded shadow" style={{display: avalForm}}>
                 <div className="row">
                    <div className='offset-lg-1 shadow-lg my-5 rounded col-md-4 pe-lg-5'>
                         <div className={`h-100 ${styles.layer}`}>
@@ -145,48 +172,48 @@ const UpdateCustomerprofile = () => {
                         <div className="row w-100">
                         <form onSubmit={updateData} className="FormData  d-flex flex-column align-items-center col-12 col-6 ">
 
-                          {userData.profile_image &&<Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${userData.profile_image}`} />}
-                         <div className="mb-3  d-flex flex-column align-items-center col-md-12 col-sm-8">
-                         <label htmlFor="profileImage" className="form-label fs-6 text-muted">{t("Profile Image:")}</label>
-                         <input type="file"  name="profile_image" className="form-control  mt-1" accept="image/*" id="profileImage" onChange={handleImageChange} />
-                         </div>
+                            {imagesSrc &&<Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${imagesSrc}` || "Images/1.1.jpg"} />}
+                            <div className="mb-3  d-flex flex-column align-items-center col-md-12 col-sm-8">
+                            <label htmlFor="profileImage" className="form-label fs-6 text-muted">{t("Profile Image:")}</label>
+                            <input type="file"  name="profile_image" className="form-control  mt-1" accept="image/*" id="profileImage" onChange={handleImageChange} />
+                            </div>
 
-                         <div className="mb-3 d-flex col-md-12 col-sm-8">
-                              <label htmlFor="userName" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("User Name")}</label>
-                              <input type="text" className="form-control is-valid" id="userName" placeholder="User Name" required minLength="3" maxLength="20" name="user_name" value={userData?.user_name} onChange={handleChange} />
-                         </div>
-                         {formErrors?.user_name && <div className="h6 pb-2 text-danger border-bottom border-danger text-center">{formErrors.user_name}</div>}
-                          <div className="mb-3 d-flex col-md-12 col-sm-8  ">
-                             <label htmlFor="fullName" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Full Name")}</label>
-                             <input type="text" className="form-control is-valid" id="fullName" placeholder="Full Name" required minLength="3" maxLength="20" name="full_name" value={userData?.full_name} onChange={handleChange} />
-                         </div>
-                         {formErrors?.full_name && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.full_name}</div>}
-                         <div className=" mb-3 d-flex col-md-12 col-sm-8 ">
-                              <label htmlFor="phone" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Phone")}</label>
-                              <input type="text" className="form-control is-valid" id="phone" placeholder="Phone" required minLength="11" maxLength="11" name="phone" value={userData?.phone} onChange={handleChange} />
-                         </div>
-                       {formErrors.phone && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.phone}</div>}
+                            <div className="mb-3 d-flex col-md-12 col-sm-8">
+                                <label htmlFor="userName" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("User Name")}</label>
+                                <input type="text" className="form-control is-valid" id="userName" placeholder="User Name" required minLength="3" maxLength="20" name="user_name" value={userData?.user_name} onChange={handleChange} />
+                            </div>
+                            {formErrors?.user_name && <div className="h6 pb-2 text-danger border-bottom border-danger text-center">{formErrors.user_name}</div>}
+                            <div className="mb-3 d-flex col-md-12 col-sm-8  ">
+                                <label htmlFor="fullName" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Full Name")}</label>
+                                <input type="text" className="form-control is-valid" id="fullName" placeholder="Full Name" required minLength="3" maxLength="20" name="full_name" value={userData?.full_name} onChange={handleChange} />
+                            </div>
+                            {formErrors?.full_name && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.full_name}</div>}
+                            <div className=" mb-3 d-flex col-md-12 col-sm-8 ">
+                                <label htmlFor="phone" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Phone")}</label>
+                                <input type="text" className="form-control is-valid" id="phone" placeholder="Phone" required minLength="11" maxLength="11" name="phone" value={userData?.phone} onChange={handleChange} />
+                            </div>
+                        {formErrors.phone && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.phone}</div>}
+                            <div className="mb-3 d-flex col-md-12 col-sm-8 ">
+                            <label htmlFor="city" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("City")}</label>
+                            <input type="text" className="form-control is-valid " id="city" placeholder="City" minLength="3" maxLength="20" name="city" value={userData?.address?.city} onChange={handleChange} />
+                        </div>
+                            {formErrors.city && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.city}</div>}
                         <div className="mb-3 d-flex col-md-12 col-sm-8 ">
-                           <label htmlFor="city" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("City")}</label>
-                           <input type="text" className="form-control is-valid " id="city" placeholder="City" minLength="3" maxLength="20" name="city" value={userData?.address?.city} onChange={handleChange} />
-                       </div>
-                        {formErrors.city && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.city}</div>}
-                       <div className="mb-3 d-flex col-md-12 col-sm-8 ">
-                          <label htmlFor="street" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Street")}</label>
-                          <input type="text" className="form-control is-valid " id="street" placeholder="Street" minLength="3" maxLength="20" name="street" value={userData?.address?.street} onChange={handleChange} />
-                     </div>
-                      {formErrors.street && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.street}</div>}
+                            <label htmlFor="street" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Street")}</label>
+                            <input type="text" className="form-control is-valid " id="street" placeholder="Street" minLength="3" maxLength="20" name="street" value={userData?.address?.street} onChange={handleChange} />
+                        </div>
+                        {formErrors.street && <div className="h6 pb-2 mb-2 text-danger border-bottom border-danger text-center">{formErrors.street}</div>}
 
-                    <div className="mb-3 d-flex col-md-12 col-sm-8 ">
-                      <label htmlFor="buildingNum" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Building")}</label>
-                      <input type="Number" className="form-control is-valid" id="buildingNum" placeholder="Building Number" name="building_num" value={userData?.address?.building_num} onChange={handleChange} />
-                 </div>
-                   <div className=" mb-3 d-flex col-md-12 col-sm-8 justify-content-center">
-                       <button type="submit" className={`btn m-2  col-md-6 px-l-5 px-3 ${styles.btn_clear}`} variant='btn btn-outline-primary'>
-                            {t("Update")}
-                      </button>
-                  </div>
-           </form>
+                        <div className="mb-3 d-flex col-md-12 col-sm-8 ">
+                        <label htmlFor="buildingNum" className="labelUpdateUser form-label col-md-2 col-sm-2  mt-1 me-1">{t("Building")}</label>
+                        <input type="Number" className="form-control is-valid" id="buildingNum" placeholder="Building Number" name="building_num" value={userData?.address?.building_num} onChange={handleChange} />
+                    </div>
+                    <div className=" mb-3 d-flex col-md-12 col-sm-8 justify-content-center">
+                        <button type="submit" className={`btn m-2  col-md-6 px-l-5 px-3 ${styles.btn_clear}`} variant='btn btn-outline-primary'>
+                                {t("Update")}
+                        </button>
+                    </div>
+            </form>
 
                         </div>
 
@@ -203,3 +230,4 @@ const UpdateCustomerprofile = () => {
 }
 
 export default UpdateCustomerprofile;
+

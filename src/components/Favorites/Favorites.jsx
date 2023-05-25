@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Product from '../Product/Product';
 import styles from './Favorites.module.css';
+import { ToastContainer, toast  } from 'react-toastify';
 
 import { useTranslation } from 'react-i18next';
 const Favorites = () => {
@@ -39,6 +40,11 @@ const Favorites = () => {
                 })
                 setFavorites(allfavorites);
                 setFiltered(allfavoritesFiltered);
+
+                toast.success('Remove this product from Favorite List Successfully.', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 1000,
+                })
             })
     }
     const getNotSloidProduct = (e) => {
@@ -53,7 +59,12 @@ const Favorites = () => {
     }
     return (
         <div>
+
+        <ToastContainer/>
+
+
             { 
+
                 <div className='container-fluid ' >
                     <div className="row mt-3">
                         <div className="col-md-12">

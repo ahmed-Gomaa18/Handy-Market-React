@@ -112,6 +112,10 @@
     "check your email for code": "تحقق من بريدك الإلكتروني للحصول على رمز",
     "Change Password": "تغيير كلمة المرور",
     "Remove": "مسح",
+
+    "User Profile": "الملف الشخصى",
+    "Dashboard": "لوحة التحكم"
+
     "Profile": "الملف الشخصى",
     "Remove from Favorite" :"ازاله من المفضلات",
     "Name": "الأسم",
@@ -122,4 +126,5 @@
     "Arts": "فنون",
     "Clay": "فخار",
     "Clothes": "ملابس"
+
 }

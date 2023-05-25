@@ -11,13 +11,16 @@ import styles from './Home.module.css';
 
 const Home = () => {
   const { t } = useTranslation();
-  const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
+  //const imgSrc = 'http://localhost:3000/api/v1/image';
 
   const [products, setProducts] = useState([]);
 
   useEffect(()=>{
     axios.get("https://handy-market-api.onrender.com/api/v1/product")
     .then((data)=>{
+
+      // console.log(data.data.slice(0, 4));
+
       setProducts(data.data.slice(0, 4));
     })
     .catch((err)=>{
@@ -33,41 +36,45 @@ const Home = () => {
         <div className="container">
           <div className="row align-items-center py-5">
             <div className="section-title text-center">
-              <h3 className={styles.sub_title}>{t("Just for you")}</h3>
-              <h2 className={`${styles.title} ${styles.title_icon_both}`}>{t("Making & crafting")}</h2>
+              <h3 className={styles.sub_title} data-aos="fade-up" >{t("Just for you")}</h3>
+              <h2 className={`${styles.title} ${styles.title_icon_both}`} data-aos="fade-up">{t("Making & crafting")}</h2>
             </div>
           </div>
-          <div className="row mb-4 align-items-center justify-content-between">
-            <div className="col-md-6 col-12 mb-5">
+
+          <div className="row mb-4 align-items-center justify-content-between" >
+
+            <div className="col-md-6 col-12 mb-5" data-aos="fade-right">
               <div className={styles.sale_banner1}>
                 <div className={styles.inner}>
-                  <img src="/images/sale-banner1.png" alt="sale-banner1" />
-                  <span className={styles.title}>Spring sale</span>
-                  <h2 className={styles.sale_percen}>
+                  <img src="/images/sale-banner1.png" alt="sale-banner1" data-aos="zoom-in"/>
+                  <span className={styles.title} data-aos="fade-up">Spring sale</span>
+                  <h2 className={styles.sale_percen} data-aos="fade-up">
                     <span className={styles.number}>40</span> % <br /> off
                   </h2>
-                  <Link to="/" className={styles.link}>SHOP NOW</Link>
+                  <Link to="/" className={styles.link} data-aos="fade-up">SHOP NOW</Link>
                 </div>
               </div>
             </div>
-            <div className="col-md-6 col-12">
+
+            <div className="col-md-6 col-12" data-aos="fade-left">
               <div className={styles.sale_banner2}>
-                <div className={styles.inner}>
+                <div className={styles.inner} >
                   <div className={styles.image}>
-                    <img className="w-100" data-aos="zoom-in" src="/images/sale-banner2.jpg" alt="sale-banner2" />
+                    <img className="w-100"  data-aos="zoom-in" src="/images/sale-banner2.jpg" alt="sale-banner2" />
                   </div>
                   <div className={`row justify-content-between mb-n3 ${styles.content}`}>
                     <div className="col-auto mb-3">
-                      <h2 className={styles.sale_percent}>{t("10% off")}</h2>
-                      <span className={styles.text}>{t("YOUR NEXT PURCHASE")}</span>
+                      <h2 className={styles.sale_percent} data-aos="fade-up">{t("10% off")}</h2>
+                      <span className={styles.text} >{t("YOUR NEXT PURCHASE")}</span>
                     </div>
                     <div className="col-auto mb-3">
-                      <Link className={`btn-hover-dark ${styles.btn}`} to="/store">{t("Shop Now")}</Link>
+                      <Link className={`btn-hover-dark ${styles.btn}`} to="/store"  data-aos="fade-up">{t("Shop Now")}</Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -75,8 +82,8 @@ const Home = () => {
         <div className="container">
           <div className="row align-items-center py-5">
             <div className="section-title text-center">
-              <h3 className={styles.sub_title}>{t("Shop Now")}</h3>
-              <h2 className={`${styles.title} ${styles.title_icon_both}`}>{t("Shop our best sellers")}</h2>
+              <h3 className={styles.sub_title} data-aos="fade-left">{t("Shop Now")}</h3>
+              <h2 className={`${styles.title} ${styles.title_icon_both}`} data-aos="fade-right">{t("Shop our best sellers")}</h2>
             </div>
           </div>
 
@@ -86,9 +93,9 @@ const Home = () => {
                     <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
                       
                       <Link className="image image-wrap" to={`/product/${product._id}`}>
-                        <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product?.photos[0]}`} alt={product?.product_name} />
+                        <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${product?.photos[0]}`} alt={product?.product_name} data-aos="zoom-in" />
                         <div className={styles.product_badges}>
-                          <span className={styles.onsale}>-{product.discount}%</span>
+                          { product.discount > 0 && <span className={styles.onsale}>-{product.discount}%</span> }
                         </div>
                       </Link>
                       

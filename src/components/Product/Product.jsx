@@ -21,7 +21,7 @@ const ExpandMore = styled((props) => {
 export default function Product(props) {
   const { t, i18n } = useTranslation();
   const { product_name, price, description, photos, _id, unFavorite } = props;
-  const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image'
+  //const sorcImag = 'http://localhost:3000/api/v1/image'
 
   function handleChange() {
     // if (!e.target.checked)
@@ -36,7 +36,7 @@ export default function Product(props) {
       <div className="product-grid col-md-4">
         <div className="product-image">
           <Link id='link' to="#" className="image h-100 d-flex align-items-center">
-            {photos && <img className="h-100" src={`${sorcImag}${img}`} alt='photoTwo' />}
+            {photos && <img className="h-100" src={`${img}`} alt='photoTwo' />}
           </Link>
           <ul className="social"> 
            <li><Link id='link' onClick={handleChange} data-tip={t("Remove from Favorite")}> <i><BsFillSuitHeartFill /></i></Link></li>

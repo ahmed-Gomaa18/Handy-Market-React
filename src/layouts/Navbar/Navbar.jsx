@@ -24,8 +24,12 @@ const Navbar = () => {
 
   // Add Language to localStorage By defualt english
 
-  const logOut = () => {
-    localStorage.clear();
+  const logOut = ()=>{
+    //localStorage.clear();
+    localStorage.removeItem('user-token');
+    localStorage.removeItem('user-id');
+    localStorage.removeItem('role');
+
     setToken(true)
     navigate('/')
 
@@ -41,12 +45,13 @@ const Navbar = () => {
     }).then(res => {
       logOut();
 
+      
+   }).catch(err => {
+    console.log(err);
+    if(err.response?.data.message == "Please Login again"){
+      logOut()
+    }
 
-    }).catch(err => {
-      console.log(err);
-      if (err.response?.data.message === 'Please Login again') {
-        logOut()
-      }
     })
   }
 

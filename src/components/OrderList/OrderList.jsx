@@ -29,8 +29,9 @@ const OrderList = () => {
                     <h4>{t("Orders")}</h4>
                 <div className='container'>
 
-                    {   
-                    Orders?.map((order)=>(
+                    {
+                    Orders.length > 0 &&   
+                    Orders.map((order)=>(
                         <Order  key={order._id} {...order}/> ))
                     }
                 </div>

@@ -12,7 +12,7 @@ import styles from './SellerProfile.module.css';
 const SellerProfile = () => {
   const { t, i18n } = useTranslation();
   const [userData, userState] = useState({});
-  const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+  //const sorcImag = 'http://localhost:3000/api/v1/image';
 
   let userToken = localStorage.getItem("user-token");
 
@@ -35,7 +35,7 @@ const SellerProfile = () => {
               <div className="row m-auto text-center">
                 <div className=' w-50 h-50 m-auto' >
                   {userData.profile_image &&
-                    <Avatar className='img-fluid w-100 h-100 m-auto shadow' id='avatar' alt="your image" src={`${sorcImag}${userData.profile_image}`} />
+                    <Avatar className='img-fluid w-100 h-100 m-auto shadow' id='avatar' alt="your image" src={`${userData.profile_image}`} />
                   }
                 </div>
 

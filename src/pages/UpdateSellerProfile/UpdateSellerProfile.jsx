@@ -6,6 +6,9 @@ import axios from "axios";
 import styles from './UpdateSellerProfile.module.css'
 import { useTranslation } from 'react-i18next';
 
+
+import { TailSpin } from 'react-loader-spinner'
+
 const UpdateUserProfile = (props) => {
 
     const { t, i18n } = useTranslation();
@@ -18,12 +21,17 @@ const UpdateUserProfile = (props) => {
 
     const getUserDataURL = "https://handy-market-api.onrender.com/api/v1/user/getUserProfile";
     const userUlrUpdate = "https://handy-market-api.onrender.com/api/v1/user/updateUserWithProfile";
-    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+    //const sorcImag = 'http://localhost:3000/api/v1/image';
+
+
+    const [avalForm, setAvalForm] = useState('block');
+    const [avalLoading, setavalLoading] = useState(false);
+
 
     useEffect(() => {
         setUserData({ ...location.state });
         setImagePofile(location.state.profile_image);
-
+        console.log(location)
         // axios.get(getUserDataURL, 
         //     { 
         //         headers: { "authorization": `Bearer ${userToken}`} 
@@ -130,6 +138,11 @@ const UpdateUserProfile = (props) => {
             return;
         }
 
+        //------------------
+        setAvalForm('none')
+        setavalLoading(true)
+        //------------------
+
         axios.patch(`${userUlrUpdate}`, formData, {
             headers: {
                 "Authorization": `Bearer ${userToken}`,
@@ -139,8 +152,15 @@ const UpdateUserProfile = (props) => {
             toast.success(data.data.message, {
                 position: toast.POSITION.TOP_RIGHT
             });
-            navigate("/seller/profile")
+            navigate("/seller/profile");
+
         }).catch((error) => {
+
+            // --------------------
+            setAvalForm('block')
+            setavalLoading(false)
+            //---------------------
+
             console.log(error)
             toast.error("Something went wrong !!! ", {
                 position: toast.POSITION.TOP_RIGHT
@@ -156,7 +176,19 @@ const UpdateUserProfile = (props) => {
 
     return (
         <>
-            <div className='m-5 py-5 rounded shadow'>
+        
+        <TailSpin
+        height="200"
+        width="200"
+        color="#72a499bd"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{width: '100%', margin: '10% 20% 20% 40%'}}
+        wrapperClass=""
+        visible={avalLoading}
+        />
+        
+            <div className='m-5 py-5 rounded shadow' style={{display: avalForm}}>
                 <div className='row'>
                     <div className='offset-lg-1 shadow-lg my-5 rounded col-md-4 pe-lg-5'>
                         <div className={`h-100 ${styles.layer}`}>
@@ -169,11 +201,11 @@ const UpdateUserProfile = (props) => {
                         <div className='w-100 row'>
                     <form onSubmit={updateData} className="was-validated FormData  d-flex flex-column align-items-center col-md-12 col-6 ">
 
-                        {imagesSrc && <Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${sorcImag}${imagesSrc}`} />}
+                        {imagesSrc && <Avatar className='imageProfile p-0' id='avatar' sx={{ width: 170, height: 140 }} alt="your Image" src={`${imagesSrc}`} />}
 
                       <div className="mb-3  d-flex flex-column align-items-center col-md-12 col-sm-8">
                           <label htmlFor="profileImage" className="form-label fs-6 text-muted">{t("Profile Image:")}</label>
-                         <input type="file" required name="profile_image" className="form-control  mt-1" accept="image/*" id="profileImage" onChange={handleImageChange} />
+                         <input type="file"  name="profile_image" className="form-control  mt-1" accept="image/*" id="profileImage" onChange={handleImageChange} />
                         </div>
 
                           <div className="mb-3 d-flex col-md-12 col-sm-8">

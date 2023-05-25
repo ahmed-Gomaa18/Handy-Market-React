@@ -10,6 +10,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import styles from './productTable.module.css';
 
+import Swal from "sweetalert2";
+
 const ProductTable = () => {
   const [productsData, productsDataState] = useState([]);
 
@@ -78,10 +80,16 @@ const ProductTable = () => {
                 <TableCell align="left">
                   <button className={styles.status}
                     onClick={() => {
-                      const confirmBox = window.confirm("Do you really want to delete this product?");
-                      if (confirmBox === true) {
-                        deleteProduct(row._id);
-                      }
+                      Swal.fire({
+                        title: 'Do you really want to delete this product?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Delete',
+                        icon: 'error'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          deleteProduct(row._id);
+                        } 
+                      })
                     }}
                     >Delete</button>
                 </TableCell>

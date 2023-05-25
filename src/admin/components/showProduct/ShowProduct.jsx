@@ -5,7 +5,7 @@ import axios from 'axios';
 const ShowProduct = (props) => {
     const [product, setProduct] = useState(null);
     let { prodId } = props;
-    const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
+    //const imgSrc = 'http://localhost:3000/api/v1/image';
 
     useEffect(() => {
         axios.get(`https://handy-market-api.onrender.com/api/v1/admin/notApproval/${prodId}`, {
@@ -32,7 +32,7 @@ const ShowProduct = (props) => {
                     <div className="row mt-5">
                         <div className="col-12 col-md-6">
                             <div className="product-zoom w-100">
-                                <img className="w-100" src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
+                                <img className="w-100" src={`${product.photos[0]}`} alt={product.product_name} />
                             </div>
                         </div>
                         <div className="col-12 col-md-5 offset-md-1">

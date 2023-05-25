@@ -109,6 +109,11 @@
     "check your email for code": "check your email for code",
     "Change Password": "Change Password",
     "Remove": "Remove",
+
+    "User Profile": "User Profile",
+    "Dashboard": "Dashboard"
+
+
     "Profile": "Profile",
     "Remove from Favorite" : "Remove from Favorite",
     "Name": "Name",
@@ -119,4 +124,5 @@
     "Arts": "Arts",
     "Clay": "Clay",
     "Clothes": "Clothes"
+
 }

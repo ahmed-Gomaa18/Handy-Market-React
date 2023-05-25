@@ -16,7 +16,7 @@ const ProductView = () => {
   const [rate, setRate] = useState();
   let { prodId } = useParams();
   const { t } = useTranslation();
-  const imgSrc = 'https://handy-market-api.onrender.com/api/v1/image';
+  //const imgSrc = 'http://localhost:3000/api/v1/image';
 
   const onUpdateRate = async(e) => {
 
@@ -104,7 +104,7 @@ const ProductView = () => {
             <div className="row mt-5">
               <div className="col-12 col-md-6">
                 <div className={`w-100 ${styles.product_zoom}`}>
-                  <img className="w-100" src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
+                  <img className="w-100" src={`${product.photos[0]}`} alt={product.product_name} />
                 </div>
               </div>
 
@@ -186,7 +186,7 @@ const ProductView = () => {
                 <div className="product single-product">
                   <div className={`single-product__image d-flex align-items-center ${styles.product_thumb}`}>
                     <Link className="image image-wrap" to={`../product/${product._id}`}>
-                      <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${imgSrc}${product.photos[0]}`} alt={product.product_name} />
+                      <img className={`responsive-image__image popup_cart_image w-100 ${styles.prod_img}`} src={`${product.photos[0]}`} alt={product.product_name} />
                       <div className={styles.product_badges}>
                         <span className={styles.onsale}>-{product.discount}%</span>
                       </div>
