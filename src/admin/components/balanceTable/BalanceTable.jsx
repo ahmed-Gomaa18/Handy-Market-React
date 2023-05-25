@@ -42,7 +42,7 @@ const BalanceTable = () => {
                 <TableCell align="center">{row.order_id?.user_id?.user_name}</TableCell>
                 <TableCell align="center">{row.order_id?.user_id?.email}</TableCell>
                 <TableCell align="center">{row.order_profit}  LE</TableCell>
-                <TableCell align="center">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
+                <TableCell align="center">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm a")}</TableCell>
                 <TableCell align="center">{row.total_profit}  LE</TableCell>
               </TableRow>
             ))}

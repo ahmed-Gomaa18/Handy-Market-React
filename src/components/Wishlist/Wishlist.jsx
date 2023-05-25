@@ -1,10 +1,12 @@
+import axios from 'axios';
 import React from 'react';
-import { useState, useEffect } from "react"
-import axios from "axios"
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import WishlistCard from '../WishlistCard/WishlistCard';
 import styles from './Wishlist.module.css';
-import { useTranslation } from 'react-i18next'; 
 
+import { ToastContainer, toast  } from 'react-toastify';
 
 const Wishlist = () => {
     const { t, i18n } = useTranslation();
@@ -24,6 +26,32 @@ const Wishlist = () => {
         });
     }, []);
 
+
+    const unWishlist = (id) => {
+        const unWhishlistUrl = "https://handy-market-api.onrender.com/api/v1/user/unWhishlist/";
+
+        axios.patch(`${unWhishlistUrl}${id}`, null, { headers: { "authorization": `Bearer ${userToken}` } })
+            .then((data) => {
+                let allWishlist = [];
+                if (data.status === 200)
+
+                allWishlist = wishlistData.filter((product) => {
+                        return product._id !== id;
+                })
+                const allwishlistFiltered = filteredData.filter((product) => {
+                    return product._id !== id;
+                })
+                setWishlist(allWishlist);
+                setFiltered(allwishlistFiltered);
+                
+                toast.success('Remove this product from Wishlist Successfully.', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 1000,
+                })
+            
+            })
+    }
+    
     const getNotSloidProduct = (e) => {
         if (e.target.checked) {
             let Arr = wishlistData.filter((product) => product.number_of_items > 0);
@@ -35,6 +63,7 @@ const Wishlist = () => {
     }
     return (
         <>
+            <ToastContainer />
             {
                 <div className='container-fluid ' >
                     <div className="row">
@@ -62,7 +91,7 @@ const Wishlist = () => {
                 
                             <div className='row'>
                                 {
-                                    filteredData?.map((product) => (<WishlistCard key={product._id} {...product} />))
+                                    filteredData?.map((product) => (<WishlistCard key={product._id} {...product}  unWishlist={unWishlist} />))
                                 }
                             </div>
                         </div>

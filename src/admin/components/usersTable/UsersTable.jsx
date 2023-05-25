@@ -8,6 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import styles from './userTable.module.css'
 
+
+import Swal from "sweetalert2";
+
 const UsersTable = () => {
 
   const [usersData, usersDataState] = useState([]);
@@ -51,7 +54,7 @@ const UsersTable = () => {
           </TableHead>
           <TableBody >
             {usersData.map((row) => (
-              <TableRow key={row.product_name} >
+              <TableRow key={row.email} >
                 <TableCell align="center"> {row.user_name}</TableCell>
                 <TableCell align="center">{row.email}</TableCell>
                 <TableCell align="center">{row.phone}</TableCell>
@@ -60,10 +63,19 @@ const UsersTable = () => {
                 <TableCell align="center">
                   <button className={styles.status}
                     onClick={() => {
-                      const confirmBox = window.confirm("Do you really want to block this user?");
-                      if (confirmBox === true) {
-                        BlockUser(row._id, row.isBlocked);
-                      }
+
+                      Swal.fire({
+                        title: `Do you really want to ${row.isBlocked === true ? "UnBlock" : "Block"} this user?`,
+                        showCancelButton: true,
+                        confirmButtonText: `${row.isBlocked === true ? "UnBlock" : "Block"}`,
+                        icon: 'warning'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+
+                          BlockUser(row._id, row.isBlocked);
+                        } 
+                      })
+                     
                     }}>{row.isBlocked === true ? "UnBlock" : "Block"}
                   </button>
                 </TableCell>

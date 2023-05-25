@@ -18,7 +18,7 @@ const Cart = () => {
     }, [])
 
 
-    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+    //const sorcImag = 'http://localhost:3000/api/v1/image';
 
     const [items, itemsState] = useState([]);
 
@@ -64,7 +64,7 @@ const Cart = () => {
                         {items && items.map((item, index) => (
                             <div className={`${styles.product} ${styles.ux_card}`} key={index}>
                                 <div className="col-3">
-                                    <img src={`${sorcImag}${item.photos[0]}`} alt={item.product_name} className='w-100 h-100' />
+                                    <img src={`${item.photos[0]}`} alt={item.product_name} className='w-100 h-100' />
                                 </div>
 
                                 <div className={`col-9 ${styles.product_info}`}>

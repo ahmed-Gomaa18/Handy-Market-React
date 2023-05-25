@@ -10,6 +10,8 @@ import TableRow from "@mui/material/TableRow";
 import styles from "./Table.module.css";
 import moment from "moment/moment";
 
+import Swal from "sweetalert2";
+
 const BasicTable = () => {
   const [productData, productDataState] = useState([]);
 
@@ -80,10 +82,16 @@ const BasicTable = () => {
                   <TableCell align="center">{moment(row.createdAt).format("ddd, MMM Do YYYY, h:mm:ss a")}</TableCell>
                   <TableCell align="center">
                     <button className={styles.status} onClick={() => {
-                      const confirmBox = window.confirm("Do you really want to approve this product?");
-                      if (confirmBox === true) {
-                        updateProductState(row._id)
-                      }
+                      Swal.fire({
+                        title: 'Do you really want to approve this product?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Approve',
+                        icon: 'success'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          updateProductState(row._id);
+                        } 
+                      })
                     }}>Approve</button>
                   </TableCell>
                   <TableCell align="center">
@@ -93,10 +101,16 @@ const BasicTable = () => {
                   </TableCell>
                   <TableCell align="center">
                     <button className={styles.status} onClick={() => {
-                      const confirmBox = window.confirm("Do you really want to delete this product?");
-                      if (confirmBox === true) {
-                        deleteProduct(row._id);
-                      }
+                      Swal.fire({
+                        title: 'Do you really want to delete this product?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Delete',
+                        icon: 'error'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          deleteProduct(row._id);
+                        } 
+                      })
                     }}>Delete</button>
                   </TableCell>
                 </TableRow>

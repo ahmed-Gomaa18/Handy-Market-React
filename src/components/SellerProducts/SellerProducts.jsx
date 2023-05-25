@@ -10,7 +10,7 @@ const SellerProducts = () => {
   const [allProducts, setProductsState] = useState(null);
 
   const ProductUrl = "https://handy-market-api.onrender.com/api/v1/product/seller/true/";
-  const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+  //const sorcImag = 'http://localhost:3000/api/v1/image';
 
   //authorization
   useEffect(() => {
@@ -31,7 +31,7 @@ const SellerProducts = () => {
         {allProducts && allProducts?.map((product, index) => (
           <div className="product-grid col-md-4 mt-4  ">
             <div className="product-image">
-                {(product.photos[0] && <img key={product._id} className='img-fluid w-100 h-100' alt='not has photo' src={`${sorcImag}${product.photos[0]}`} onClick={((e) => handleClick(e, product))}></img>)}
+                {(product.photos[0] && <img key={product._id} className='img-fluid w-100 h-100' alt='not has photo' src={`${product.photos[0]}`} onClick={((e) => handleClick(e, product))}></img>)}
             </div>
           </div>
               ))

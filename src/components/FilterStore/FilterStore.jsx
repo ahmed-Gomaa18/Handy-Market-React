@@ -23,19 +23,19 @@ const FilterStore = ({ getFilterCategory }) => {
             <div className="form-check m-2">
 
                 <div className="col-md-4">
-                    <h3 className="heading-section">
+                    <h3 className="heading-section" data-aos="fade-left">
                         <small>{t("Categories")}</small>
                     </h3>
                     {
                         categories && categories.map((category) => (
 
                             i18n.language === "en" ? 
-                            <label key={category._id} className={styles.checkbox}><span>{category.name_en}</span>
+                            <label key={category._id} className={styles.checkbox} data-aos="fade-right"><span>{category.name_en}</span>
                                 <input type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
                                 <span className={styles.checkmark}></span>
                             </label>
                             :
-                            <label key={category._id} className={styles.checkbox}><span>{category.name_ar}</span>
+                            <label key={category._id} className={styles.checkbox} data-aos="fade-right"><span>{category.name_ar}</span>
                                 <input type="checkbox" value={category._id} id={category._id} onChange={getFilterCategory} />
                                 <span className={styles.checkmark}></span>
                             </label>

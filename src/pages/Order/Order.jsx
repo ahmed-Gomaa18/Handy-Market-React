@@ -5,10 +5,13 @@ import Action_buttons from "../../components/Action_buttons/Action_buttons";
 import styles from './Order.module.css';
 
 import { ToastContainer, toast  } from 'react-toastify';
+
+import Swal from "sweetalert2";
+
 import { useTranslation } from "react-i18next";
 
 const Order = () => {
-    const sorcImag = 'https://handy-market-api.onrender.com/api/v1/image';
+    //const sorcImag = 'http://localhost:3000/api/v1/image';
 
     const { t } = useTranslation();
 
@@ -22,7 +25,7 @@ const Order = () => {
     // First
     // Check role customer and has cart to go to order
     useEffect(()=>{
-        if(localStorage.getItem('role') === 'Customer' && JSON.parse(localStorage.getItem('data-cart')).length > 0){
+        if(localStorage.getItem('role') === 'Customer' && JSON.parse(localStorage.getItem('data-cart'))?.length > 0){
             console.log('valid')
         }else{
             navigate('/')
@@ -116,6 +119,9 @@ const Order = () => {
             product.unitPrice = items[i].price;
             form.products.push(product);
         }
+
+        console.log(items);
+        console.log(form.products);
     }
     const clearCart = () => {
         localStorage.setItem('data-cart', JSON.stringify([]));
@@ -144,44 +150,51 @@ const Order = () => {
         }
 
         console.log(form);
-        const cofrimOrder = window.confirm("Cofrim Order");
-        if (cofrimOrder === true) {
-            if (form.payment_method === "Cash") {
-                axios.post('https://handy-market-api.onrender.com/api/v1/order/create', form, {
-                    headers: {
-                        'authorization': `Bearer ${token}`
-                    }
-                }).then((res) => {
-                    console.log(res);
-                    // alert("Sucess Creat Your Order");
-                    toast.success('Success Creat Your Order', {
-                        position: toast.POSITION.TOP_RIGHT,
-                        autoClose: 1000
-                    })
-                    clearCart();
+        Swal.fire({
+            title: 'Complete Order?',
+            showCancelButton: true,
+            confirmButtonText: 'Order',
+            icon: 'question'
+          }).then((result) => {
+            if (result.isConfirmed) {
+            
+                if (form.payment_method === "Cash") {
+                    axios.post('https://handy-market-api.onrender.com/api/v1/order/create', form, {
+                            headers: {
+                                'authorization': `Bearer ${token}`
+                            }
+                    }).then((res) => {
+                        console.log(res);
+                        // alert("Sucess Creat Your Order");
+                        toast.success('Success Creat Your Order', {
+                            position: toast.POSITION.TOP_RIGHT,
+                            autoClose: 1000
+                        })
+                        clearCart();
 
-                    setTimeout(()=>{
-                        navigate('/');
-                    }, 2000)
+                        setTimeout(()=>{
+                            navigate('/');
+                        }, 2000)
+                        
+                    }).catch((err) => {
+                        // Check
+                        toast.error(err.response.data.message, {
+                            position: toast.POSITION.TOP_RIGHT,
+                            autoClose: 1000
+                        })
+                        console.log(err.response.data.message)
+                    });
+                } else {
                     
-                }).catch((err) => {
-                    // Check
-                    toast.error(err.response.data.message, {
-                        position: toast.POSITION.TOP_RIGHT,
-                        autoClose: 1000
-                    })
-                    console.log(err.response.data.message)
-                });
-            } else {
-                
-                localStorage.setItem("order-data",JSON.stringify(form));
+                    localStorage.setItem("order-data",JSON.stringify(form));
 
-                navigate('payment');
+                    navigate('payment');
 
 
-            }
-        }
-
+                }
+            } 
+          })
+        
     };
 
 
@@ -266,7 +279,7 @@ const Order = () => {
 
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="order_img">
-                                            <img className="w-25 img-fluid" src={`${sorcImag}${item.photos[0]}`} alt="Card image cap" />
+                                            <img className="w-25 img-fluid" src={`${item.photos[0]}`} alt="Card image cap" />
                                         </div>
 
                                         <div className="order_title">

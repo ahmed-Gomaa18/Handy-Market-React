@@ -284,7 +284,9 @@ const SellerSignUp = () => {
                             <div className=" text-danger">
                                 {formErrors.gender}
                             </div>
-                            <button type="submit" className={`btn ${styles.mybtn}`}>{t("Submit")}</button>
+                            
+                            <button type="submit" className={` ${styles.mybtn}`}>{t("Submit")}</button>
+                        
                         </form>
                     </div>
                 </div>

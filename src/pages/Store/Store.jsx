@@ -14,9 +14,12 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import { useTranslation } from 'react-i18next';
 
+import { ThreeDots  } from 'react-loader-spinner'
+
+import AOS from 'aos';
 
 
-const image_url = "https://handy-market-api.onrender.com/api/v1/image";
+// const image_url = "http://localhost:3000/api/v1/image";
 const base_url = "https://handy-market-api.onrender.com/api/v1/product";
 
 const Store = () => {
@@ -25,6 +28,9 @@ const Store = () => {
     const [products, setProducts] = useState([]);
 
     const { t ,i18n } = useTranslation();
+
+    const [avalForm, setAvalForm] = useState('none')
+    const [avalLoading, setavalLoading] = useState(true)
 
     const getFilterCategory = (e) => {
         if (e.target.checked) {
@@ -36,10 +42,20 @@ const Store = () => {
         }
     }
 
+    useEffect(()=>{
+        AOS.init({duration: 1500});
+    }, [])
+
     useEffect(() => {
         axios.get(`${base_url}?search=${search}&categories=${filterCategory}`)
             .then((data) => {
                 setProducts(() => data.data);
+
+                // --------------------
+                setAvalForm('block')
+                setavalLoading(false)
+                //---------------------
+
             })
             .catch((err) => {
                 console.log(err)
@@ -108,11 +124,23 @@ const Store = () => {
 
     return (
         <>
-            <div className='direct-url d-flex container p-3 align-items-center border-bottom'>
-                <SearchStore setSearch={searchFun} />
+
+            <div className='direct-url d-flex container p-3 align-items-center border-bottom' data-aos="fade-up">
+                <SearchStore setSearch={searchFun} style={{display: avalForm}}  />
             </div>
 
-            <div id="store" className='d-flex flex-lg-row flex-column'>    
+            <ThreeDots 
+            height="200" 
+            width="200" 
+            radius="9"
+            color="#cedddd" 
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{width: '100%', margin: '90px 20% 90px 40%'}}
+            wrapperClassName=""
+            visible={avalLoading}
+            />
+
+            <div id="store" className='d-flex flex-lg-row flex-column' style={{display: avalForm}}>    
                 <div className="col-md-12 col-sm-12 col-lg-2 d-flex flex-wrap justify-content-center aligin-items-stretch align-content-start border border-end rounded-1">
                     <FilterStore getFilterCategory={getFilterCategory} />
                 </div>
@@ -121,12 +149,12 @@ const Store = () => {
                     <div className='products-container col-12 d-flex flex-wrap justify-content-center p-5'>
                         {
                             products && products.map((product) => (
-                                <div className="col-md-4 col-sm-12" key={product._id}>
+                                <div className="col-md-4 col-sm-12" key={product._id} data-aos="fade-up">
                                     <div className="product-grid">
                                         <div className="product-image">
                                             <Link id='link' to="#" className="image d-flex align-items-center">
-                                                {product.photos && <img className="pic-1" src={ image_url+product.photos[0] } alt='photoTwo'/>}
-                                                {(product.photos[1] && <img className="pic-2" src={ image_url+product.photos[1] } alt='photoTwo'/>) || <img className="pic-2" src={ image_url+product.photos[0] } alt='photoTwo'/>}
+                                                {product.photos && <img className="pic-1" src={ product.photos[0] } alt='photoTwo'/>}
+                                                {(product.photos[1] && <img className="pic-2" src={ product.photos[1] } alt='photoTwo'/>) || <img className="pic-2" src={ product.photos[0] } alt='photoTwo'/>}
                                             </Link>
                                             
                                             {product.discount ? <span className="product-discount-label">-{product.discount}%</span> : ''}

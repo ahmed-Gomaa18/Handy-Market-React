@@ -25,7 +25,10 @@ const Navbar = () => {
   // Add Language to localStorage By defualt english
 
   const logOut = ()=>{
-    localStorage.clear();
+    //localStorage.clear();
+    localStorage.removeItem('user-token');
+    localStorage.removeItem('user-id');
+    localStorage.removeItem('role');
     setToken(true)
     navigate('/')
 
@@ -42,10 +45,8 @@ const Navbar = () => {
       
    }).catch(err => {
     console.log(err);
-    if(err.response?.data.message === 'Please Login aggen'){
+    if(err.response?.data.message == "Please Login again"){
       logOut()
-      console.log("bella test exp");
-
     }
     })
   }
